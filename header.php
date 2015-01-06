@@ -23,7 +23,7 @@
 		<div id="LibTitleBar"><!--header tag-->
 			<div id="LibTitleBarContainer">
 				<a href="#ContentArea" title="Skip to content" style="display: none;" class="AccessabilityEnabled"><img src="/images/spacer.gif" alt="Skip to content" height="1" width="1" border="0"></a>
-				<a href="http://www.ucf.edu/" id="LibTitleBarPegasus"><em>UCF Website - JOHN'S WORLD!!!!</em></a>
+				<a href="http://www.ucf.edu/" id="LibTitleBarPegasus"><em>UCF Website</em></a>
 				<a href="http://library.ucf.edu" id="LibTitleBarTitle"><strong>University of Central Florida Libraries</strong></a>
 				<div id="search-container" class="search-box-wrapper">
 					<div class="search-box">
