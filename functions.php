@@ -1,4 +1,4 @@
-<? php
+<?php
 add_filter('upload_mimes', 'custom_upload_xml');
  
 function custom_upload_xml($mimes) {
