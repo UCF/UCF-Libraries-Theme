@@ -13,10 +13,10 @@
 	<head>
 		<title><?php wp_title( '|', true, 'right' ); ?></title>
 		<meta name="viewport" content="width=device-width">
-		<?php wp_head(); ?>
 		<link rel="stylesheet" src="http://normalize-css.googlecode.com/svn/trunk/normalize.css" />
 		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 		<script type="text/javascript" id="ucfhb-script" src="//universityheader.ucf.edu/bar/js/university-header.js"></script>
+		<?php wp_head(); ?> 
 	</head>
 	<body <?php body_class(); ?>>
 	<header>
