@@ -21,8 +21,18 @@ header {
 	padding: 2em;
 }
 
-nav {
+.navbar {
 	font-weight: 700;
 	font-size: 1.25em;
 	line-height: 2;
+	margin: 0
+}
+
+.navbar a{
+	color: #222;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+	text-decoration: none;
+	background-color: #222;
+	color: #ffcc00;
 }
