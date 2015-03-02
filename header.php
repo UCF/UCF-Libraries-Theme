@@ -13,18 +13,36 @@
 	<head>
 		<title><?php wp_title( '|', true, 'right' ); ?></title>
 		<meta name="viewport" content="width=device-width">
-		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 		<?php wp_head(); ?>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-		<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>	
+		<link rel="stylesheet" src="http://normalize-css.googlecode.com/svn/trunk/normalize.css" />
+		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 		<script type="text/javascript" id="ucfhb-script" src="//universityheader.ucf.edu/bar/js/university-header.js"></script>
 	</head>
 	<body <?php body_class(); ?>>
+	<header>
+		<nav class="navbar navbar-default" role="navigation"> 
+		<!-- Brand and toggle get grouped for better mobile display --> 
+		  <div class="navbar-header"> 
+		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"> 
+		      <span class="sr-only">Toggle navigation</span> 
+		      <span class="icon-bar"></span> 
+		      <span class="icon-bar"></span> 
+		      <span class="icon-bar"></span> 
+		    </button> 
+		    <a class="navbar-brand" href="<?php bloginfo('url')?>"><?php bloginfo('name')?></a>
+		  </div> 
+		  <!-- Collect the nav links, forms, and other content for toggling --> 
+		  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
+		    <?php /* Primary navigation */
+				wp_nav_menu( array(
+				  'menu' => 'top_menu',
+				  'depth' => 2,
+				  'container' => false,
+				  'menu_class' => 'nav',
+				  //Process nav menu using our custom nav walker
+				  'walker' => new wp_bootstrap_navwalker())
+				);
+			?>
+		  </div>
+		</nav>
 
