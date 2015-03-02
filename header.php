@@ -20,29 +20,33 @@
 	</head>
 	<body <?php body_class(); ?>>
 	<header>
-		<nav class="navbar navbar-default" role="navigation"> 
-		<!-- Brand and toggle get grouped for better mobile display --> 
-		  <div class="navbar-header"> 
-		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"> 
-		      <span class="sr-only">Toggle navigation</span> 
-		      <span class="icon-bar"></span> 
-		      <span class="icon-bar"></span> 
-		      <span class="icon-bar"></span> 
-		    </button> 
-		    <a class="navbar-brand" href="<?php bloginfo('url')?>"><?php bloginfo('name')?></a>
-		  </div> 
-		  <!-- Collect the nav links, forms, and other content for toggling --> 
-		  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
-		    <?php /* Primary navigation */
-				wp_nav_menu( array(
-				  'menu' => 'top_menu',
-				  'depth' => 2,
-				  'container' => false,
-				  'menu_class' => 'nav nav-pills navbar-right',
-				  //Process nav menu using our custom nav walker
-				  'walker' => new wp_bootstrap_navwalker())
-				);
-			?>
-		  </div>
-		</nav>
+		<div class="container">
+			<nav class="navbar" role="navigation"> 
+				<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display --> 
+				  <div class="navbar-header"> 
+				    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"> 
+				      <span class="sr-only">Toggle navigation</span> 
+				      <span class="icon-bar"></span> 
+				      <span class="icon-bar"></span> 
+				      <span class="icon-bar"></span> 
+				    </button> 
+				    <a class="navbar-brand" href="<?php bloginfo('url')?>"><?php bloginfo('name')?></a>
+				  </div> 
+				  <!-- Collect the nav links, forms, and other content for toggling --> 
+				  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
+				    <?php /* Primary navigation */
+						wp_nav_menu( array(
+						  'menu' => 'top_menu',
+						  'depth' => 2,
+						  'container' => false,
+						  'menu_class' => 'nav nav-pills navbar-right',
+						  //Process nav menu using our custom nav walker
+						  'walker' => new wp_bootstrap_navwalker())
+						);
+					?>
+				  </div>
+			  </div>
+			</nav>
+		</div>
 	</header>
