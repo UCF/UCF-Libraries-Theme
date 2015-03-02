@@ -8,13 +8,8 @@ Text Domain: UCFLibrary
 Version: 0.0.1;
 
 */
-*, *:before, *:after {
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-}
 
-.header {
+header {
 	background: #ffcc00; /* Old browsers */
 	background: -moz-linear-gradient(top,  #ffcc00 0%, #e5af00 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffcc00), color-stop(100%,#e5af00)); /* Chrome,Safari4+ */
@@ -27,7 +22,6 @@ Version: 0.0.1;
 }
 
 nav {
-	overflow: hidden;
 	font-weight: 700;
 	font-size: 1.25em;
 	line-height: 2;
