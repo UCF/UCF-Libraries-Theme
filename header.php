@@ -13,15 +13,12 @@
 	<head>
 		<title><?php wp_title( '|', true, 'right' ); ?></title>
 		<meta name="viewport" content="width=device-width">
-		<link rel="stylesheet" src="http://normalize-css.googlecode.com/svn/trunk/normalize.css" />
-		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 		<script type="text/javascript" id="ucfhb-script" src="//universityheader.ucf.edu/bar/js/university-header.js"></script>
 		<?php wp_head(); ?> 
 	</head>
 	<body <?php body_class(); ?>>
 	<header>
-		<div class="container">
-			<nav class="navbar" role="navigation"> 
+			<nav class="navbar navbar-static-top" role="navigation"> 
 				<div class="container">
 				<!-- Brand and toggle get grouped for better mobile display --> 
 				  <div class="navbar-header"> 
@@ -48,5 +45,4 @@
 				  </div>
 			  </div>
 			</nav>
-		</div>
 	</header>
