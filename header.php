@@ -6,7 +6,7 @@
  *
  * @package WordPress
  * @subpackage Library Test
- * @since Library Test 1.0
+ * @since Library Test 1.0.0
  */
 ?><!DOCTYPE html>
 <html>
@@ -31,18 +31,19 @@
 				    <a class="navbar-brand" href="<?php bloginfo('url')?>"><?php bloginfo('name')?></a>
 				  </div> 
 				  <!-- Collect the nav links, forms, and other content for toggling --> 
-				  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
 				    <?php /* Primary navigation */
 						wp_nav_menu( array(
-						  'menu' => 'top_menu',
-						  'depth' => 2,
-						  'container' => false,
-						  'menu_class' => 'nav nav-pills navbar-right',
+						  'menu' 				=> 'top_menu',
+						  'theme_location'		=> 'primary',
+						  'depth'				=> 2,
+						  'container'			=> 'div',
+						  'container_class'		=> 'collapse navbar-collapse',
+						  'menu_class' 			=> 'nav nav-pills navbar-right',
+						  'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
 						  //Process nav menu using our custom nav walker
 						  'walker' => new wp_bootstrap_navwalker())
 						);
 					?>
-				  </div>
 			  </div>
 			</nav>
 	</header>
