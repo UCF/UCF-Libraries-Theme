@@ -34,12 +34,11 @@
 				    <?php /* Primary navigation */
 						wp_nav_menu( array(
 						  'menu' 				=> 'top_menu',
-						  'theme_location'		=> 'primary',
 						  'depth'				=> 2,
 						  'container'			=> 'div',
 						  'container_class'		=> 'collapse navbar-collapse',
 						  'menu_class' 			=> 'nav nav-pills navbar-right',
-						  'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+						  'fallback_cb'      	=> 'wp_bootstrap_navwalker::fallback',
 						  //Process nav menu using our custom nav walker
 						  'walker' => new wp_bootstrap_navwalker())
 						);
