@@ -18,6 +18,7 @@ add_action( 'init', 'register_my_menus' );
 function wpt_register_js() {
     wp_register_script('jquery.bootstrap.min', get_template_directory_uri() . '/js/bootstrap.min.js', 'jquery');
     wp_enqueue_script('jquery.bootstrap.min');
+    wp_enqueue_script("jquery");
 }
 add_action( 'init', 'wpt_register_js' );
 
