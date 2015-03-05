@@ -36,8 +36,8 @@ header {
 .navbar-library .navbar-brand {
 	color: #222;
 	height: auto;
-	font-size: 2em;
-	margin: .5em 0;
+    font-size: 2.5em;
+    margin: .35em 0;
 }.navbar-library .navbar-brand:hover, .navbar-library .navbar-brand:focus {
 	color: #fff;
 	background-color: transparent;
@@ -67,6 +67,7 @@ header {
 .navbar-library .navbar-toggle {
 	border-color: none;
 	background-color: #222;
+	color: #222;
 	margin-top: 12px;
 }
 .navbar-library .navbar-toggle:hover, .navbar-library .navbar-toggle:focus {
@@ -75,8 +76,9 @@ header {
 .navbar-library .navbar-toggle .icon-bar {
 	background-color: #ffcc00;
 }
+
 .navbar-library .navbar-toggle .icon-text {
-	font-size: .4em;
+	font-size: .5em;
 	padding: 0;
 	margin: 1.25em 0 0 0;
 	text-transform: uppercase;
@@ -87,6 +89,7 @@ header {
 .navbar-library .navbar-collapse, .navbar-library .navbar-form {
 	border-color: #222;
 	padding: 1em 0 0;
+	overflow: hidden;
 }
 .navbar-library .navbar-nav > .open > a, .navbar-library .navbar-nav > .open > a:hover, .navbar-library .navbar-nav > .open > a:focus {
 	color: #555;
