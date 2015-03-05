@@ -15,15 +15,13 @@ add_action( 'init', 'register_my_menus' );
 
 //This section below loads the javascript and css used throughout the entire site
 
-if (!is_admin()) add_action("wp_enqueue_scripts", "my_jquery_enqueue", 11);
-function my_jquery_enqueue() {
-   wp_deregister_script('jquery');
-   wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js", false, null);
-   wp_enqueue_script('jquery');
-}
 
 function wpt_register_js() {
+    wp_deregister_script('jquery');
+    wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js", false, null);
     wp_register_script('jquery.bootstrap.min', get_template_directory_uri() . '/js/bootstrap.min.js', 'jquery');
+
+    wp_enqueue_script('jquery');
     wp_enqueue_script('jquery.bootstrap.min');
 }
 add_action( 'init', 'wpt_register_js' );
