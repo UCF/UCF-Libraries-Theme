@@ -37,11 +37,13 @@ header {
 	color: #222;
 	height: auto;
 	font-size: 2em;
-}
-.navbar-library .navbar-brand:hover, .navbar-library .navbar-brand:focus {
-	color: #5e5e5e;
+	margin: .5em 0;
+}.navbar-library .navbar-brand:hover, .navbar-library .navbar-brand:focus {
+	color: #fff;
 	background-color: transparent;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 }
+
 .navbar-library .navbar-text {
 	color: #222;
 }
