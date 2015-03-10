@@ -35,7 +35,7 @@
 				  <!-- Collect the nav links, forms, and other content for toggling --> 
 				    <?php /* Primary navigation */
 						wp_nav_menu( array(
-						  'menu' 				=> 'top_menu',
+						  'menu' 				=> 'Header Menu',
 						  'depth'				=> 2,
 						  'container'			=> 'div',
 						  'container_class'		=> 'collapse navbar-collapse',
