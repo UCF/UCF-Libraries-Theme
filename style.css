@@ -23,6 +23,11 @@ header {
 	padding: 1em;
 }
 
+/* Sidebar */
+.lib-sidebar {
+	float: left;;
+}
+
 /* Footer */
 
 footer {
