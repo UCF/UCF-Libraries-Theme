@@ -1,12 +1,43 @@
-<aside>
-	<div id="LibSideBar" class="lib-sidebar">
-		<h3><?php _e('Categories'); ?></h3>
-		<ul>
-			<?php wp_list_cats('sort_column=name&optioncount=1&hierarchical=0'); ?>
-		</ul>
-		<h3><?php _e('Archives'); ?></h3>
-		<ul>
-			<?php wp_get_archives('type=monthly'); ?>
-		</ul>
-	</div>
-</aside>
+<?php
+
+
+if ( has_nav_menu( 'primary' ) || has_nav_menu( 'social' ) || is_active_sidebar( 'sidebar-1' )  ) : ?>
+	<aside>	
+		<div id="secondary" class="secondary">
+
+			<?php if ( has_nav_menu( 'primary' ) ) : ?>
+				<nav id="site-navigation" class="main-navigation" role="navigation">
+					<?php
+						// Primary navigation menu.
+						wp_nav_menu( array(
+							'menu_class'     => 'nav-menu',
+							'theme_location' => 'primary',
+						) );
+					?>
+				</nav><!-- .main-navigation -->
+			<?php endif; ?>
+
+			<?php if ( has_nav_menu( 'social' ) ) : ?>
+				<nav id="social-navigation" class="social-navigation" role="navigation">
+					<?php
+						// Social links navigation menu.
+						wp_nav_menu( array(
+							'theme_location' => 'social',
+							'depth'          => 1,
+							'link_before'    => '<span class="screen-reader-text">',
+							'link_after'     => '</span>',
+						) );
+					?>
+				</nav><!-- .social-navigation -->
+			<?php endif; ?>
+
+			<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
+				<div id="widget-area" class="widget-area" role="complementary">
+					<?php dynamic_sidebar( 'sidebar-1' ); ?>
+				</div><!-- .widget-area -->
+			<?php endif; ?>
+
+		</div><!-- .secondary -->
+	</aside>
+
+<?php endif; ?>
