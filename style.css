@@ -23,6 +23,57 @@ header {
 	padding: 1em;
 }
 
+/* Footer */
+
+footer {
+	background-color: #222;
+	margin: 2em 0 0;
+	padding: 1em 0;
+}
+
+footer ul {
+	padding: 1em 0;
+}
+
+footer ul li {
+	list-style: none;
+    text-decoration: none;
+    font-weight: 100;
+    font-size: .9em;
+    line-height: 1.2rem;
+}
+
+footer ul li a {
+	text-decoration: none;
+	padding: 1.5rem 1rem;
+	border-radius: 5px;
+	display: inline-block;
+  	width: 100%;
+}
+footer ul li a:hover { text-decoration: none;}
+
+.footer-title {
+	height: 5rem;
+	margin-bottom: 1rem;
+	font-size: 1.25em;
+}
+
+.Find  .footer-title {border-bottom: 1px solid #d6ebc2;}
+.Find  a {color: #d6ebc2;}
+.Find  a:hover {background-color: rgba(111,169,56,0.8);}
+
+.Services .footer-title {border-bottom: 1px solid #b4cfeb;}
+.Services a {color: #b4cfeb;}
+.Services a:hover {background-color: rgba(44,104,167,0.8);}
+
+.Help .footer-title {border-bottom: 1px solid #e7c5a3;}
+.Help a {color:#e7c5a3;}
+.Help a:hover{background-color: rgba(151,95,39,0.8);}
+
+.About .footer-title {border-bottom: 1px solid #c8afb2;}
+.About a {color:#c8afb2;}
+.About a:hover{background-color: rgba(101,70,73,0.8);}
+
 
 /* Bootstrap style override/extention */
 
@@ -95,6 +146,10 @@ header {
 	color: #555;
 	background-color: #e7e7e7;
 }
+
+
+/*Media Queries */
+
 @media (max-width: 767px) {
 .navbar-library .navbar-brand img {
 	width: 11em;
