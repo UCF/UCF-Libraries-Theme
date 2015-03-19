@@ -112,8 +112,9 @@ footer ul li a:hover { text-decoration: none;}
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 }
 .navbar-library .navbar-nav > .active > a, .navbar-library .navbar-nav > .active > a:hover, .navbar-library .navbar-nav > .active > a:focus {
-	color: #555;
-	background-color: #e7e7e7;
+	color: #fff;
+	background-color: transparent;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 }
 .navbar-library .navbar-nav > .disabled > a, .navbar-library .navbar-nav > .disabled > a:hover, .navbar-library .navbar-nav > .disabled > a:focus {
 	color: #ccc;
