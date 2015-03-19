@@ -37,4 +37,18 @@ function wpt_register_css() {
 }
 add_action( 'wp_enqueue_scripts', 'wpt_register_css' );
 
+//Add sidebar
+function theme_slug_widgets_init() {
+    register_sidebar( array(
+        'name'          => __( 'Main Sidebar', 'theme-slug' ),
+        'id'            => 'sidebar-1',
+        'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'theme-slug' ),
+        'before_widget' => '<li id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</li>',
+        'before_title'  => '<h2 class="widgettitle">',
+        'after_title'   => '</h2>',
+    ) );
+}
+add_action( 'widgets_init', 'theme_slug_widgets_init' );
+
 ?>
