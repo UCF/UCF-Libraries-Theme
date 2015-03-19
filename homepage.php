@@ -1,7 +1,7 @@
 <?php
 /*
 Template Name: Home Page
-Description: A Template for Location Home pages.
+Description: A Template for the Website homepage.
 */
 ?>
 
