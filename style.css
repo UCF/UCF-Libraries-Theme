@@ -156,7 +156,7 @@ footer ul li a:hover { text-decoration: none;}
 .alignright		{ float: right; margin: 0 0 1em 1em; }
 .alignleft		{ float: left; margin: 0 1em 1em 0; }
 .floatleft		{ float: left; }
-
+.size-full		{ width: 100%; }
 
 /*Media Queries */
 
