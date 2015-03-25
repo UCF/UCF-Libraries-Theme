@@ -82,6 +82,64 @@ function OneSearchform( $form ) {
 
 add_shortcode('OneSearch', 'OneSearchform');
 
+// Homepage Searchbox Shortcode
 
+function HomepageSearchBox( $code ) {
+
+  $code = '           <div id="tabs">
+              <ul>
+                <li><a href="#QuickSearch"><span>QuickSearch</span></a></li>
+                <li><a href="#Articles"><span>Articles+</span></a></li>
+                <li><a href="#Books"><span>Books+</span></a></li>
+                <li><a href="#Videos"><span>Videos+</span></a></li>
+                <li><a href="#Website"><span>Website</span></a></li>
+              </ul>
+              <div id="QuickSearch">
+                <p>First tab is active by default:</p>
+                <pre><code>$( "#tabs" ).tabs(); </code></pre>
+              </div>
+              <div id="Articles">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed 
+                diam nonummy nibh euismod tincidunt ut laoreet dolore magna 
+                aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer 
+                adipiscing elit, sed diam nonummy nibh euismod tincidunt ut 
+                laoreet dolore magna aliquam erat volutpat. </div>
+              <div id="Books">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed 
+                diam nonummy nibh euismod tincidunt ut laoreet dolore magna 
+                aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer 
+                adipiscing elit, sed diam nonummy nibh euismod tincidunt ut 
+                laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor 
+                sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
+                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+              </div>
+              <div id="Videos">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed 
+                diam nonummy nibh euismod tincidunt ut laoreet dolore magna 
+                aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer 
+                adipiscing elit, sed diam nonummy nibh euismod tincidunt ut 
+                laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor 
+                sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
+                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+              </div>
+              <div id="Website">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed 
+                diam nonummy nibh euismod tincidunt ut laoreet dolore magna 
+                aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer 
+                adipiscing elit, sed diam nonummy nibh euismod tincidunt ut 
+                laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor 
+                sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
+                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+              </div>
+            </div>
+<script>
+$( "#tabs" ).tabs();
+</script>
+          ';
+
+  return $code;
+}
+
+add_shortcode('HomepageSearch', 'HomepageSearchBox');
 
 ?>
