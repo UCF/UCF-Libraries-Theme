@@ -21,7 +21,7 @@ header {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffcc00', endColorstr='#e5af00',GradientType=0 ); /* IE6-9 */;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
-
+h1 { margin: 1em 0;}
 /* Sidebar */
 .lib-sidebar {
 /*	float: left; */
@@ -157,6 +157,63 @@ footer ul li a:hover { text-decoration: none;}
 .alignleft		{ float: left; margin: 0 1em 1em 0; }
 .floatleft		{ float: left; }
 .size-full		{ width: 100%; }
+
+
+/* jquery ui tabs override */
+
+.ui-widget-content {
+  border: none;
+  background: transparent;
+  color: #fff;
+}
+.ui-tabs .ui-tabs-nav {
+	padding: 0;
+}
+.ui-tabs .ui-tabs-nav li {
+	margin: 0;
+}
+
+.ui-widget-header {
+	border: none;
+	background: transparent;
+	background-color: rgba(0,0,0,0.85);
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr, .ui-corner-left, .ui-corner-tl {
+	border-radius: 0;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  border: 1px solid #000;
+  background: transparent;
+  background-color: rgba(0,0,0,0.35);
+  font-weight: normal;
+  color: #fff;
+}
+
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+  color: #ccc;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+  border: none;
+  background-color: rgba(0,0,0,0.0);
+  font-weight: normal;
+  color: #fff;
+}
+.ui-state-active a, .ui-state-hover a, .ui-state-visited a, .ui-state-focus a  {
+    outline: none;
+}
+
+.ui-tabs .ui-tabs-panel {
+  min-height: 15.75em;
+  background-color: rgba(0,0,0,0.75);
+}
+
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+
+
 
 /*Media Queries */
 
