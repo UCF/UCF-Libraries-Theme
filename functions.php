@@ -58,19 +58,29 @@ add_action( 'widgets_init', 'theme_slug_widgets_init' );
 
 //Onesearch form shortcode
 
-function wpbsearchform( $form ) {
+function OneSearchform( $form ) {
 
-    $form = '<form role="search" method="get" id="searchform" action="' . home_url( '/' ) . '" >
+    $form = '<form role="search" action="http://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
     <div><label class="screen-reader-text" for="s">' . __('Search for:') . '</label>
-    <input type="text" value="' . get_search_query() . '" name="s" id="s" />
-    <input type="submit" id="searchsubmit" value="'. esc_attr__('Search') .'" />
+      <input name="direct" type="hidden" value="true">
+      <input name="site" type="hidden" value="ehost-live">
+      <input name="scope" type="hidden" value="site">
+      <input name="type" type="hidden" value="1">
+      <input name="site" type="hidden" value="eds-live">
+      <input name="authtype" type="hidden" value="ip,guest,cookie,shib">
+      <input name="custid" type="hidden" value="current">
+      <input name="groupid" type="hidden" value="main">
+      <input name="profile" type="hidden" value="eds">
+      <input name="guidedField_3" type="hidden" value=""><fieldset>
+    <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="textbox Blank" name="bQuery" placeholder="Search All" results="5" size="60" type="text" x-webkit-speech="" >
+    <input class="button" type="submit" value="Search">
     </div>
     </form>';
 
     return $form;
 }
 
-add_shortcode('wpbsearch', 'wpbsearchform');
+add_shortcode('OneSearch', 'OneSearchform');
 
 
 
