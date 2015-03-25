@@ -29,7 +29,7 @@ add_action( 'init', 'wpt_register_js' );
 
 function wpt_register_css() {
     wp_register_style( 'normalize', get_stylesheet_directory_uri() . '/css/normalize.css', array(), '1', 'all' );
-    wp_register_style( 'jquery-ui', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js")
+    wp_register_style( 'jquery-ui', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js");
     wp_register_style( 'bootstrap.min', get_template_directory_uri() . '/css/bootstrap.min.css' );
     wp_register_style( 'style', get_stylesheet_directory_uri() . '/style.css', array(), '1', 'all' );
 
