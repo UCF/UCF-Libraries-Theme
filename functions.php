@@ -82,7 +82,7 @@ function OneSearchform( $form ) {
 add_shortcode('OneSearch', 'OneSearchform');
 
 // Homepage Searchbox Shortcode
-function HomepageSearchBox( $content ) {
+function HomepageSearchBox( $content = null ) {
   return '<div id="tabs">
               <ul>
                 <li><a href="#QuickSearch"><span>QuickSearch</span></a></li>
@@ -101,13 +101,13 @@ add_shortcode('HomepageSearch', 'HomepageSearchBox');
 
 
 // QuickSearch Tab 
-function QuickSearchTab( $content ) {
+function QuickSearchTab( $content = null ) {
   return '<div id="QuickSearch">'
           . do_shortcode($content) .
           '</div>';
 }
 
-add_shortcode('Quick_Search', 'QuickSearchTab');
+add_shortcode('QuickSearch', 'QuickSearchTab');
 
 // Articles Tab 
 function ArticlesTab( $content ) {
@@ -119,7 +119,7 @@ function ArticlesTab( $content ) {
 add_shortcode('Articles', 'ArticlesTab');
 
 // Books Tab 
-function BooksTab( $content ) {
+function BooksTab( $content = null ) {
   return '<div id="Books">'
           . do_shortcode($content) .
           '</div>';
@@ -128,7 +128,7 @@ function BooksTab( $content ) {
 add_shortcode('Books', 'BooksTab');
 
 // Videos Tab 
-function VideosTab( $content ) {
+function VideosTab( $content = null ) {
   return '<div id="Videos">'
           . do_shortcode($content) .
           '</div>';
@@ -137,7 +137,7 @@ function VideosTab( $content ) {
 add_shortcode('Videos', 'VideosTab');
 
 // Website Tab 
-function WebsiteTab( $content ) {
+function WebsiteTab( $content = null ) {
   return '<div id="Website">'
           . do_shortcode($content) .
           '</div>';
