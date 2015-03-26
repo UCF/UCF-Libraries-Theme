@@ -57,7 +57,6 @@ add_action( 'widgets_init', 'theme_slug_widgets_init' );
 
 
 //Onesearch form shortcode
-
 function OneSearchform( $form ) {
 
     $form = '<form role="search" action="http://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
@@ -83,63 +82,67 @@ function OneSearchform( $form ) {
 add_shortcode('OneSearch', 'OneSearchform');
 
 // Homepage Searchbox Shortcode
-
-function HomepageSearchBox( $code ) {
-
-  $code = '           <div id="tabs">
+function HomepageSearchBox( $content ) {
+  return '<div id="tabs">
               <ul>
                 <li><a href="#QuickSearch"><span>QuickSearch</span></a></li>
                 <li><a href="#Articles"><span>Articles+</span></a></li>
                 <li><a href="#Books"><span>Books+</span></a></li>
                 <li><a href="#Videos"><span>Videos+</span></a></li>
                 <li><a href="#Website"><span>Website</span></a></li>
-              </ul>
-              <div id="QuickSearch">
-                <p>First tab is active by default:</p>
-                <pre><code>$( "#tabs" ).tabs(); </code></pre>
-              </div>
-              <div id="Articles">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed 
-                diam nonummy nibh euismod tincidunt ut laoreet dolore magna 
-                aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer 
-                adipiscing elit, sed diam nonummy nibh euismod tincidunt ut 
-                laoreet dolore magna aliquam erat volutpat. </div>
-              <div id="Books">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed 
-                diam nonummy nibh euismod tincidunt ut laoreet dolore magna 
-                aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer 
-                adipiscing elit, sed diam nonummy nibh euismod tincidunt ut 
-                laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor 
-                sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
-                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-              </div>
-              <div id="Videos">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed 
-                diam nonummy nibh euismod tincidunt ut laoreet dolore magna 
-                aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer 
-                adipiscing elit, sed diam nonummy nibh euismod tincidunt ut 
-                laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor 
-                sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
-                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-              </div>
-              <div id="Website">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed 
-                diam nonummy nibh euismod tincidunt ut laoreet dolore magna 
-                aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer 
-                adipiscing elit, sed diam nonummy nibh euismod tincidunt ut 
-                laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor 
-                sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
-                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-              </div>
-            </div>
-<script>
-$( "#tabs" ).tabs();
-</script>
-          ';
-
-  return $code;
+              </ul>' . do_shortcode($content) . '
+          </div>
+          <script>
+          $( "#tabs" ).tabs();
+          </script>';
 }
 
 add_shortcode('HomepageSearch', 'HomepageSearchBox');
+
+
+// QuickSearch Tab 
+function QuickSearchTab( $content ) {
+  return '<div id="QuickSearch">'
+          . do_shortcode($content) .
+          '</div>';
+}
+
+add_shortcode('Quick_Search', 'QuickSearchTab');
+
+// Articles Tab 
+function ArticlesTab( $content ) {
+  return '<div id="Articles">'
+          . do_shortcode($content) .
+          '</div>';
+}
+
+add_shortcode('Articles', 'ArticlesTab');
+
+// Books Tab 
+function BooksTab( $content ) {
+  return '<div id="Books">'
+          . do_shortcode($content) .
+          '</div>';
+}
+
+add_shortcode('Books', 'BooksTab');
+
+// Videos Tab 
+function VideosTab( $content ) {
+  return '<div id="Videos">'
+          . do_shortcode($content) .
+          '</div>';
+}
+
+add_shortcode('Videos', 'VideosTab');
+
+// Website Tab 
+function WebsiteTab( $content ) {
+  return '<div id="Website">'
+          . do_shortcode($content) .
+          '</div>';
+}
+
+add_shortcode('Website', 'WebsiteTab');
 
 ?>
