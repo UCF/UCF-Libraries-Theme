@@ -72,7 +72,7 @@ function OneSearchform( $form ) {
       <input name="profile" type="hidden" value="eds">
       <input name="guidedField_3" type="hidden" value=""><fieldset>
     <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="textbox Blank" name="bQuery" placeholder="Search All" results="5" size="60" type="text" x-webkit-speech="" >
-    <input class="button" type="submit" value="Search">
+    <button id="search-button" type="submit"><span class="glyphicon glyphicon-search">&nbsp;</span><span class="btn_text">Search</span></button>
     </div>
     </form>';
 
