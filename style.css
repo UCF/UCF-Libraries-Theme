@@ -163,7 +163,11 @@ footer ul li a:hover { text-decoration: none;}
 .btn_text {display: none;}
 
 
-.subpage-title {margin-top: 0;}
+.subpage-title { margin-top: 0; }
+.widget-title {
+	border-bottom: 4px solid #555;
+	padding: 0 0 .25em;
+}
 
 /* jquery ui tabs override */
 

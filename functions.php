@@ -49,7 +49,7 @@ function theme_slug_widgets_init() {
         'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'theme-slug' ),
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget'  => '</div>',
-        'before_title'  => '<h4 class="widgettitle">',
+        'before_title'  => '<h4 class="widget-title">',
         'after_title'   => '</h4>',
     ) );
 }
@@ -81,8 +81,31 @@ function OneSearchform( $form ) {
 
 add_shortcode('OneSearch', 'OneSearchform');
 
+/**
+*Create a jquery tab box for the homepage - ToDo - make this box generic/more streamlined.
+*Example:
+*[HomepageSearch]
+*  [QuickSearch]
+*   Content
+*  [/QuickSearch]
+*  [Articles]
+*   Content
+*  [/Articles]
+*  [Books]
+*   Content
+*  [/Books]
+*  [Videos]
+*   Content
+*  [/Videos]
+*  [Website]
+*   Content
+*  [/Website]
+**/
+
 // Homepage Searchbox Shortcode
 function HomepageSearchBox( $atts, $content = null ) {
+  $content = cleanup(str_replace('<br />', '', $content));
+
   return '<div id="tabs">
               <ul>
                 <li><a href="#QuickSearch"><span>QuickSearch</span></a></li>
@@ -130,6 +153,18 @@ function WebsiteTab( $atts, $content = null ) {
 add_shortcode('Website', 'WebsiteTab');
 
 
+/**
+*Glyphicons
+*Create a glyphicon anywhere on the page. 
+*
+*Example:
+*[icon ]
+*
+*
+*
+*
+*
+**/
 function GlyphIcon ($atts) {
   $a = shortcode_atts( array(
 
