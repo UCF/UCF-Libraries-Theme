@@ -154,6 +154,13 @@ function WebsiteTab( $atts, $content = null ) {
 add_shortcode('Website', 'WebsiteTab');
 
 
+//Site map shortcode
+ 
+function wp_sitemap_page(){
+    return "<ul>".wp_list_pages('title_li=&echo=0')."</ul>";
+}
+add_shortcode('sitemap', 'wp_sitemap_page');
+
 /**
 *Glyphicons
 *Create a glyphicon anywhere on the page. 
