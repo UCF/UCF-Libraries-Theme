@@ -47,10 +47,10 @@ function theme_slug_widgets_init() {
         'name'          => __( 'Main Sidebar', 'theme-slug' ),
         'id'            => 'sidebar-1',
         'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'theme-slug' ),
-        'before_widget' => '<li id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</li>',
-        'before_title'  => '<h2 class="widgettitle">',
-        'after_title'   => '</h2>',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h4 class="widgettitle">',
+        'after_title'   => '</h4>',
     ) );
 }
 add_action( 'widgets_init', 'theme_slug_widgets_init' );
@@ -128,5 +128,14 @@ function WebsiteTab( $atts, $content = null ) {
   return '<div id="Website">'.do_shortcode($content).'</div>';
 }
 add_shortcode('Website', 'WebsiteTab');
+
+
+function GlyphIcon ($atts) {
+  $a = shortcode_atts( array(
+
+  ), $atts );
+  return '<span class="glyphicon glyphicon-map-marker"><!-- Map Marker --></span>';
+}
+add_shortcode('icon', 'GlyphIcon');
 
 ?>
