@@ -1,4 +1,5 @@
 <?php
+
 //Onesearch form shortcode
 function OneSearchform( $form ) {
 
@@ -108,6 +109,7 @@ add_shortcode('Website', 'WebsiteTab');
 *
 *
 **/
+/*
 function GlyphIcon ($atts) {
   $a = shortcode_atts( array(
 
@@ -115,5 +117,6 @@ function GlyphIcon ($atts) {
   return '<span class="glyphicon glyphicon-map-marker"><!-- Map Marker --></span>';
 }
 add_shortcode('icon', 'GlyphIcon');
+*/
 
 ?>
