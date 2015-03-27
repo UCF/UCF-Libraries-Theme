@@ -104,7 +104,7 @@ add_shortcode('OneSearch', 'OneSearchform');
 
 // Homepage Searchbox Shortcode
 function HomepageSearchBox( $atts, $content = null ) {
-  $content = cleanup(str_replace('<br />', '', $content));
+ // $content = cleanup(str_replace('<br />', '', $content));
 
   return '<div id="tabs">
               <ul>
