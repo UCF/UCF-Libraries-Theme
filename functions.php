@@ -161,23 +161,41 @@ function wp_sitemap_page(){
 }
 add_shortcode('sitemap', 'wp_sitemap_page');
 
+//Recent posts shortcode (from tutorial)
+/*
+function recent_posts_function($atts){
+   extract(shortcode_atts(array(
+      'posts' => 1,
+   ), $atts));
+
+   $return_string = '<ul>';
+   query_posts(array('orderby' => 'date', 'order' => 'DESC' , 'showposts' => $posts));
+   if (have_posts()) :
+      while (have_posts()) : the_post();
+         $return_string .= '<li><a href="'.get_permalink().'">'.get_the_title().'</a></li>';
+      endwhile;
+   endif;
+   $return_string .= '</ul>';
+
+   wp_reset_query();
+   return $return_string;
+}
+add_shortcode('recent-posts', 'recent_posts_function');
+*/
+
 /**
 *Glyphicons
 *Create a glyphicon anywhere on the page. 
 *
 *Example:
-*[icon ]
-*
-*
-*
-*
+*[icon name="search"]
 *
 **/
-function GlyphIcon ($atts) {
-  $a = shortcode_atts( array(
-
-  ), $atts );
-  return '<span class="glyphicon glyphicon-map-marker"><!-- Map Marker --></span>';
+function GlyphIcon($atts) {
+  extract(shortcode_atts( array(
+      'name' => search,
+  ), $atts ));
+  return '<span class="glyphicon glyphicon-'.$name.'"></span>';
 }
 add_shortcode('icon', 'GlyphIcon');
 
