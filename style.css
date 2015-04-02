@@ -162,6 +162,10 @@ footer ul li a:hover { text-decoration: none;}
 /*hiding button text for ADA */
 .btn_text {display: none;}
 
+/*Widget area*/
+.widget-area ul { padding-left: 1em;}
+.widget-area ul li { list-style: none;}
+
 
 .subpage-title { margin-top: 0; }
 .widget-title {
