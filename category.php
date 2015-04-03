@@ -1,6 +1,7 @@
 <?php
-/**
-* A Simple Category Template
+/*
+Template Name: Category
+Description: A Template for the categories.
 */
 
 get_header(); ?> 
