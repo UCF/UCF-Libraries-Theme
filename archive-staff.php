@@ -7,13 +7,17 @@
 		</div>
 		<div class="col-sm-9">
 			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-			<div class"col-sm-4">
-				<p><?php the_post_thumbnail( ); ?></p>
-				<h2><?php the_title(); ?></h2>
-				<p><?php the_meta(); ?></p>
-				<p><?php echo get_the_term_list( $post->ID, 'department', 'Department: ', ', ', '' ); ?></p>
+			<div class="col-sm-6 col-md-4">
+    			<div class="thumbnail">
+					<?php the_post_thumbnail( ); ?>
+					<div class="caption">
+						<h3><?php the_title(); ?></h3>
+						<?php the_meta(); ?>
+						<p><?php echo get_the_term_list( $post->ID, 'department', 'Department: ', ', ', '' ); ?></p>
+					</div>
+				</div>
 			</div>
-			<hr> <?php endwhile; else: ?>
+			<?php endwhile; else: ?>
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 		</div>
 	</div>
