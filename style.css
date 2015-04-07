@@ -10,7 +10,7 @@ Version: 0.0.1;
 */
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
 
-header {
+.main-header {
 	background: #ffcc00;
 /* Old browsers */background: -moz-linear-gradient(top, #ffcc00 0%, #e5af00 100%); /* FF3.6+ */;
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffcc00), color-stop(100%,#e5af00)); /* Chrome,Safari4+ */;

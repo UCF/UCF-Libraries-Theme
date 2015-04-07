@@ -17,7 +17,7 @@
 		<?php wp_head(); ?> 
 	</head>
 	<body <?php body_class(); ?>>
-	<header>
+	<header class="main-header">
 		<nav class="navbar navbar-library navbar-static-top" role="navigation">
 			<div class="container">
 				<!-- Brand and toggle get grouped for better mobile display -->
