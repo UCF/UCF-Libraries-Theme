@@ -199,6 +199,28 @@ function GlyphIcon($atts) {
 }
 add_shortcode('icon', 'GlyphIcon');
 
+/**
+*Youtube shortcode
+*Create embeded youtube links that are responsive.
+*
+*Example:
+*[youtube id="cJHCKkCesuE" width="500"]
+**/
+function youtube_video($atts) {
+  extract(shortcode_atts( array(
+      'id' => '62NEzgmqwx0',
+      'width' => '100%',
+  ), $atts ));
+  return '<div class="youtube-wrapper" style="max-width:'.$width.';">
+            <div class="responsive-container">
+             <iframe src="http://youtube.com/embed/'.$id.'?rel=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>';
+
+  return '<span class="glyphicon glyphicon-'.$name.'"></span>';
+}
+add_shortcode('youtube', 'youtube_video');
+
 
 /**
 *Staff Directory Custom Post Type
