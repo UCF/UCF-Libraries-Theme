@@ -16,9 +16,9 @@ Description: Archive staff member page.
 			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 			<div class="col-sm-6 col-md-4">
     			<div class="thumbnail">
-    				<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail( ); ?></a></figure>
+    				<figure><?php the_post_thumbnail( ); ?></figure>
 					<div class="caption">
-						<h3><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h3>
+						<h3><?php the_title(); ?></h3>
 						<?php if(get_post_meta($post->ID, 'title', true) ||
 							 get_post_meta($post->ID, 'room', true) ||
 							 get_post_meta($post->ID, 'phone', true) || 
