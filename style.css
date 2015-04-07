@@ -183,6 +183,10 @@ footer ul li a:hover { text-decoration: none;}
 .staff-info-single ul {font-size: 1.5em;}
 .staff-info-single ul li {list-style: none;}
 
+/*People page*/
+.caption ul { padding-left: 0}
+.caption ul li {list-style: none;}
+
 /* jquery ui tabs override */
 
 .ui-widget-content {
