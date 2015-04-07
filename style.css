@@ -178,6 +178,11 @@ footer ul li a:hover { text-decoration: none;}
 .responsive-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 .youtube-wrapper { margin: 0 auto 1em; }
 
+/* Single Person page */
+.staff-info-single figure {float: left; margin: 0 2em 1em 0;}
+.staff-info-single ul {font-size: 1.5em;}
+.staff-info-single ul li {list-style: none;}
+
 /* jquery ui tabs override */
 
 .ui-widget-content {
