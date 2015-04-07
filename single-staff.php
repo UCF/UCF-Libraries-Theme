@@ -41,7 +41,7 @@ Description: Single staff member page.
 							<?php endif; ?>
 
 							<?php if(get_post_meta($post->ID, 'email', true)): ?>
-							<li><span class="glyphicon glyphicon-envelope"></span> <?php echo get_post_meta($post->ID, 'email', true); ?></li>
+							<li><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"><span class="glyphicon glyphicon-envelope"></span> <?php echo get_post_meta($post->ID, 'email', true); ?></a></li>
 							<?php endif; ?>
 						</ul>
 					</article>
