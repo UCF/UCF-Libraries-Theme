@@ -55,7 +55,7 @@ Description: Archive staff member page.
 					</div>
 				</div>
 			</div>
-			<?php if (i % 3) { //adds a clearfix every 3 items. ?>
+			<?php if ($i % 3) { //adds a clearfix every 3 items. ?>
 					<div class="clearfix visible-md-block"></div>
 			<?php } i++; ?>
 			<?php endwhile; else: ?>
