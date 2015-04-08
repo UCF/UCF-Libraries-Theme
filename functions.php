@@ -298,7 +298,7 @@ set_post_thumbnail_size( 150, 150, true ); // default Post Thumbnail dimensions 
 
 // additional image sizes
 // delete the next line if you do not need additional image sizes
-add_image_size( 'category-thumb', 300, 9999 ); //300 pixels wide (and unlimited height)
+add_image_size( 'staff-thumbnail', 300, 9999 ); //300 pixels wide (and unlimited height)
 
 }
 ?>
