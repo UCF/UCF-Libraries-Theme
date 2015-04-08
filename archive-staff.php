@@ -20,6 +20,7 @@ Description: Archive staff member page.
 			<?php get_sidebar(); ?>
 		</div>
 		<div class="col-sm-9">
+			<?php $i = 0; ?>
 			<?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
 			<?//php if (have_posts()) : while (have_posts()) : the_post(); ?>
 			<div class="col-sm-6 col-md-4">
@@ -54,6 +55,9 @@ Description: Archive staff member page.
 					</div>
 				</div>
 			</div>
+			<?php if (i % 3) { //adds a clearfix every 3 items. ?>
+					<div class="clearfix visible-md-block"></div>
+			<?php } i++; ?>
 			<?php endwhile; else: ?>
 			<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?> 
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
