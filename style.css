@@ -184,8 +184,12 @@ footer ul li a:hover { text-decoration: none;}
 .staff-info-single ul li {list-style: none;}
 
 /*People page*/
-.caption ul { padding-left: 0}
-.caption ul li {list-style: none;}
+.caption ul { padding-left: 20px;}
+.caption ul li {list-style: none; position: relative;}
+.caption .glyphicon {
+	position: absolute;
+	left: -20px;
+}
 
 /* jquery ui tabs override */
 
