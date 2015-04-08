@@ -249,7 +249,7 @@ function register_cpt_staff() {
         'hierarchical' => true,
         'description' => 'Staff names and descriptions',
         'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions' ),
-        'taxonomies' => array( 'post_tag', 'page-category', 'Department', 'Unit' ),
+        'taxonomies' => array( 'post_tag', 'page-category', 'department', 'unit' ),
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
@@ -285,6 +285,7 @@ function department_init() {
     'menu_name' => __( 'Department' ),
   ),
     'show_ui' => true,
+    'show_admin_column' => true,
     'query_var' => true,
     'rewrite' => array( 'slug' => 'department' ),
   ));
@@ -310,6 +311,7 @@ function unit_init() {
     'menu_name' => __( 'Unit' ),
   ),
     'show_ui' => true,
+    'show_admin_column' => true,
     'query_var' => true,
     'rewrite' => array( 'slug' => 'unit' ),
   ));
