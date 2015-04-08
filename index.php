@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 <div id="main">
 	<div id="content" class="container">
+	<!-- index.php -->
 		<div class="col-sm-3">
 			<?php get_sidebar(); ?>
 		</div>
