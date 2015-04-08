@@ -249,7 +249,7 @@ function register_cpt_staff() {
         'hierarchical' => true,
         'description' => 'Staff names and descriptions',
         'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions' ),
-        'taxonomies' => array( 'post_tag', 'page-category', 'department', 'unit' ),
+        'taxonomies' => array( 'department', 'unit', 'group' ),
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
@@ -267,6 +267,8 @@ function register_cpt_staff() {
     register_post_type( 'staff', $args );
 }
 // Department Taxonomy
+add_action( 'init', 'department_init' );
+
 function department_init() {
   register_taxonomy('department',array('staff'), array(
 
@@ -290,9 +292,11 @@ function department_init() {
     'rewrite' => array( 'slug' => 'department' ),
   ));
 }
-add_action( 'init', 'department_init' );
+
 
 // Unit Taxonomy
+add_action( 'init', 'unit_init' );
+
 function unit_init() {
   register_taxonomy('unit',array('staff'), array(
 
@@ -316,7 +320,33 @@ function unit_init() {
     'rewrite' => array( 'slug' => 'unit' ),
   ));
 }
-add_action( 'init', 'unit_init' );
+
+add_action( 'init', 'group_init' );
+
+function group_init() {
+  register_taxonomy('group',array('staff'), array(
+
+    'hierarchical' => true,
+    'labels' => array(
+    'name' => _x( 'Group', 'taxonomy general name' ),
+    'singular_name' => _x( 'Group', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Groups' ),
+    'all_items' => __( 'All Groups' ),
+    'parent_item' => __( 'Parent Group' ),
+    'parent_item_colon' => __( 'Parent Group:' ),
+    'edit_item' => __( 'Edit Group' ),
+    'update_item' => __( 'Update Group' ),
+    'add_new_item' => __( 'Add New Group' ),
+    'new_item_name' => __( 'New Group Name' ),
+    'menu_name' => __( 'Group' ),
+  ),
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'group' ),
+  ));
+}
+
 
 //Adding in Featured image feature
 if ( function_exists( 'add_theme_support' ) ) { 
