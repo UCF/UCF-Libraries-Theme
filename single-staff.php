@@ -17,7 +17,7 @@ Description: Single staff member page.
 			<div class="col-sm-9">
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					<header>
-						<h1>People >> <?php the_title(); ?></h1>
+						<h1>People >> <?php the_title().explode(",")[1]." ".the_title().explode(",")[0]; ?></h1>
 					</header>
 					<article class="staff-info-single clearfix">
 						<figure><?php the_post_thumbnail( ); ?></figure>
