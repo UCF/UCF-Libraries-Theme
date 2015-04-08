@@ -22,8 +22,7 @@ Description: Archive staff member page.
 		<div class="col-sm-9">
 			<?php $i = 0; ?>
 			<?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
-				<?php //$i++; ?>
-				<?//php if (have_posts()) : while (have_posts()) : the_post(); ?>
+				<?php $i++; ?>
 				<div class="col-sm-6 col-md-4">
 	    			<div class="thumbnail">
 	    				<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail( ); ?></a></figure>
@@ -56,9 +55,9 @@ Description: Archive staff member page.
 						</div>
 					</div>
 				</div>
-				<?php //if ($i % 3) { //adds a clearfix every 3 items. ?>
-						<!--div class="clearfix visible-md-block visible-lg-block"></div-->
-				<?php //} ?>
+				<?php if ($i % 3 == 0) : //adds a clearfix every 3 items. ?>
+						<div class="clearfix visible-md-block visible-lg-block"></div>
+				<?php endif; ?>
 			<?php endwhile; else: ?>
 			<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?> 
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
