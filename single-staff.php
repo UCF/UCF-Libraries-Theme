@@ -17,8 +17,9 @@ Description: Single staff member page.
 			<div class="col-sm-9">
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					<header>
-						<h1>People >> <?php 
-						($lastname, $firstname) = the_title().explode(",");
+						<h1>People >> <?php
+						$fullname = the_title();
+						($lastname, $firstname) = explode(",", $fullname);
 						echo $firstname." ".$lastname;
 						?>
 						</h1>
