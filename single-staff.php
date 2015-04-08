@@ -18,8 +18,8 @@ Description: Single staff member page.
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					<header>
 						<h1>People >> <?php
-						$namearray = explode(",", get_the_title());
-						echo $namearray[1];
+						$namearray = explode(", ", get_the_title());
+						echo $namearray[1]." ".$namearray[0];
 						?>
 						</h1>
 					</header>
