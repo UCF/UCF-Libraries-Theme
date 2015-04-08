@@ -249,7 +249,7 @@ function register_cpt_staff() {
         'hierarchical' => true,
         'description' => 'Staff names and descriptions',
         'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions' ),
-        'taxonomies' => array( 'post_tag', 'page-category', 'Department' ),
+        'taxonomies' => array( 'post_tag', 'page-category', 'Department', 'Unit' ),
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
@@ -266,7 +266,7 @@ function register_cpt_staff() {
 
     register_post_type( 'staff', $args );
 }
-
+// Department Taxonomy
 function department_init() {
   register_taxonomy('department',array('staff'), array(
 
@@ -290,6 +290,31 @@ function department_init() {
   ));
 }
 add_action( 'init', 'department_init' );
+
+// Unit Taxonomy
+function unit_init() {
+  register_taxonomy('unit',array('staff'), array(
+
+    'hierarchical' => true,
+    'labels' => array(
+    'name' => _x( 'Unit', 'taxonomy general name' ),
+    'singular_name' => _x( 'Unit', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Units' ),
+    'all_items' => __( 'All Units' ),
+    'parent_item' => __( 'Parent Unit' ),
+    'parent_item_colon' => __( 'Parent Unit:' ),
+    'edit_item' => __( 'Edit Unit' ),
+    'update_item' => __( 'Update Unit' ),
+    'add_new_item' => __( 'Add New Unit' ),
+    'new_item_name' => __( 'New Unit Name' ),
+    'menu_name' => __( 'Unit' ),
+  ),
+    'show_ui' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'unit' ),
+  ));
+}
+add_action( 'init', 'unit_init' );
 
 //Adding in Featured image feature
 if ( function_exists( 'add_theme_support' ) ) { 
