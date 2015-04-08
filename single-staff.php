@@ -19,7 +19,7 @@ Description: Single staff member page.
 					<header>
 						<h1>People >> <?php
 						$namearray = explode(",", the_title());
-						echo $namearray[1]." ".$namearray[0];
+						echo "NOBODY!!!"
 						?>
 						</h1>
 					</header>
