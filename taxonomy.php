@@ -17,7 +17,9 @@ Description: Taxonomy archive page.
 	query_posts(
 	   array_merge(
 	      $wp_query->query,
-	      array('orderby' => 'title')
+	      array(
+	      	'orderby' => 'title',
+	      	'order' => 'ASC')
    )
 );
 ?>
