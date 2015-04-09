@@ -1,10 +1,11 @@
 <?php
 /*
-Description: Archive staff member page.
+Description: Taxonomy archive page.
 */
 ?>
 <?php
 	$args=array(
+	'taxonomy' => 'department',
 	'post_type' => 'staff',
 	'orderby' => 'title',
 	'order' => 'ASC');
