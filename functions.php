@@ -289,7 +289,7 @@ function department_init() {
     'show_ui' => true,
     'show_admin_column' => true,
     'query_var' => true,
-    'rewrite' => array( 'slug' => 'department' ),
+    'rewrite' => array( 'slug' => 'department', 'with_front' => false ),
   ));
 }
 
@@ -317,7 +317,7 @@ function unit_init() {
     'show_ui' => true,
     'show_admin_column' => true,
     'query_var' => true,
-    'rewrite' => array( 'slug' => 'unit' ),
+    'rewrite' => array( 'slug' => 'unit', 'with_front' => false ),
   ));
 }
 
@@ -343,7 +343,7 @@ function group_init() {
     'show_ui' => true,
     'show_admin_column' => true,
     'query_var' => true,
-    'rewrite' => array( 'slug' => 'group' ),
+    'rewrite' => array( 'slug' => 'group', 'with_front' => false ),
   ));
 }
 
