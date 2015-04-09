@@ -30,29 +30,31 @@ Description: Single staff member page.
 									<figure><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></figure>
 								</div>
 								<div class="col-sm-8">
-									<?php if(get_post_meta($post->ID, 'title', true) ||
-										 get_post_meta($post->ID, 'room', true) ||
-										 get_post_meta($post->ID, 'phone', true) || 
-										 get_post_meta($post->ID, 'email', true)
-									): ?>
-									<ul>
-										<?php if(get_post_meta($post->ID, 'title', true)): ?>
-											<li><span class="glyphicon glyphicon-user"></span> <?php echo get_post_meta($post->ID, 'title', true); ?></li>
-										<?php endif; ?>
+									<div class="caption">
+										<?php if(get_post_meta($post->ID, 'title', true) ||
+											 get_post_meta($post->ID, 'room', true) ||
+											 get_post_meta($post->ID, 'phone', true) || 
+											 get_post_meta($post->ID, 'email', true)
+										): ?>
+										<ul>
+											<?php if(get_post_meta($post->ID, 'title', true)): ?>
+												<li><span class="glyphicon glyphicon-user"></span> <?php echo get_post_meta($post->ID, 'title', true); ?></li>
+											<?php endif; ?>
 
-										<?php if(get_post_meta($post->ID, 'room', true)): ?>
-											<li><span class="glyphicon glyphicon-map-marker"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
-										<?php endif; ?>
+											<?php if(get_post_meta($post->ID, 'room', true)): ?>
+												<li><span class="glyphicon glyphicon-map-marker"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
+											<?php endif; ?>
 
-										<?php if(get_post_meta($post->ID, 'phone', true)): ?>
-											<li><span class="glyphicon glyphicon-earphone"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
-										<?php endif; ?>
+											<?php if(get_post_meta($post->ID, 'phone', true)): ?>
+												<li><span class="glyphicon glyphicon-earphone"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
+											<?php endif; ?>
 
-										<?php if(get_post_meta($post->ID, 'email', true)): ?>
-											<li><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"><span class="glyphicon glyphicon-envelope"></span> <?php echo get_post_meta($post->ID, 'email', true); ?></a></li>
+											<?php if(get_post_meta($post->ID, 'email', true)): ?>
+												<li><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"><span class="glyphicon glyphicon-envelope"></span> <?php echo get_post_meta($post->ID, 'email', true); ?></a></li>
+											<?php endif; ?>
+										</ul>
 										<?php endif; ?>
-									</ul>
-									<?php endif; ?>
+									</div>
 								</div>
 							</div>
 						</div>
