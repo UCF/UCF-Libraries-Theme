@@ -23,7 +23,8 @@ Description: Taxonomy archive page.
 		</div>
 		<div class="col-sm-9">
 			<?php $i = 0; ?>
-			<?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
+			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+			<?php // if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
 				<?php $i++; ?>
 				<div class="col-sm-6 col-md-4">
 	    			<div class="thumbnail">
@@ -61,7 +62,7 @@ Description: Taxonomy archive page.
 						<div class="clearfix visible-md-block visible-lg-block"></div>
 				<?php endif; ?>
 			<?php endwhile; else: ?>
-			<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?> 
+			<?php // wp_reset_query(); // Restore global post data stomped by the_post(). ?> 
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 		</div>
 	</div>
