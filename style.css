@@ -179,9 +179,6 @@ footer ul li a:hover { text-decoration: none;}
 .youtube-wrapper { margin: 0 auto 1em; }
 
 /* Single Person page */
-.staff-info-single figure {float: left; margin: 0 2em 1em 0;}
-.staff-info-single ul {font-size: 1.5em;}
-.staff-info-single ul li {list-style: none;}
 
 /*Staff Directories*/
 .thumbnail { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
@@ -190,8 +187,9 @@ footer ul li a:hover { text-decoration: none;}
 .caption .glyphicon {
 	position: absolute;
 	left: -20px;
+	top: 2px;
 }
-.staff-thumbnail { width: 100%; }
+.staff-thumbnail { width: 100%; max-width: 300px; height: auto;}
 
 /* jquery ui tabs override */
 

@@ -23,42 +23,50 @@ Description: Single staff member page.
 						?>
 						</h1>
 					</header>
-					<article class="staff-info-single clearfix">
-						<figure><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></figure>
-						<?php if(get_post_meta($post->ID, 'title', true) ||
-							 get_post_meta($post->ID, 'room', true) ||
-							 get_post_meta($post->ID, 'phone', true) || 
-							 get_post_meta($post->ID, 'email', true)
-						): ?>
-						<div class="info-box">
-							<ul>
-								<?php if(get_post_meta($post->ID, 'title', true)): ?>
-									<li><span class="glyphicon glyphicon-user"></span> <?php echo get_post_meta($post->ID, 'title', true); ?></li>
-								<?php endif; ?>
+					<article class="clearfix">
+						<div class="thumbnail">
+							<div class="row">
+								<div class="col-sm-4">
+									<figure><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></figure>
+								</div>
+								<div class="col-sm-8">
+									<?php if(get_post_meta($post->ID, 'title', true) ||
+										 get_post_meta($post->ID, 'room', true) ||
+										 get_post_meta($post->ID, 'phone', true) || 
+										 get_post_meta($post->ID, 'email', true)
+									): ?>
+									<ul>
+										<?php if(get_post_meta($post->ID, 'title', true)): ?>
+											<li><span class="glyphicon glyphicon-user"></span> <?php echo get_post_meta($post->ID, 'title', true); ?></li>
+										<?php endif; ?>
 
-								<?php if(get_post_meta($post->ID, 'room', true)): ?>
-									<li><span class="glyphicon glyphicon-map-marker"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
-								<?php endif; ?>
+										<?php if(get_post_meta($post->ID, 'room', true)): ?>
+											<li><span class="glyphicon glyphicon-map-marker"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
+										<?php endif; ?>
 
-								<?php if(get_post_meta($post->ID, 'phone', true)): ?>
-									<li><span class="glyphicon glyphicon-earphone"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
-								<?php endif; ?>
+										<?php if(get_post_meta($post->ID, 'phone', true)): ?>
+											<li><span class="glyphicon glyphicon-earphone"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
+										<?php endif; ?>
 
-								<?php if(get_post_meta($post->ID, 'email', true)): ?>
-									<li><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"><span class="glyphicon glyphicon-envelope"></span> <?php echo get_post_meta($post->ID, 'email', true); ?></a></li>
-								<?php endif; ?>
-							</ul>
+										<?php if(get_post_meta($post->ID, 'email', true)): ?>
+											<li><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"><span class="glyphicon glyphicon-envelope"></span> <?php echo get_post_meta($post->ID, 'email', true); ?></a></li>
+										<?php endif; ?>
+									</ul>
+									<?php endif; ?>
+								</div>
+							</div>
 						</div>
+						<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
+							<p><?php echo get_the_term_list( $post->ID, 'department', 'Department: ', ', ', '' ); ?></p>
+						<?php endif; ?>
+						<?php if(get_the_term_list( $post->ID, 'unit', true)): ?>
+							<p><?php echo get_the_term_list( $post->ID, 'unit', 'Unit: ', ', ', '' ); ?></p>
+						<?php endif; ?>
+						<?php if(get_the_term_list( $post->ID, 'group', true)): ?>
+							<p><?php echo get_the_term_list( $post->ID, 'group', 'Group: ', ', ', '' ); ?></p>
+						<?php endif; ?>
 					</article>
-				<?php endif; ?>
-				<p><?php echo get_the_term_list( $post->ID, 'department', 'Department: ', ', ', '' ); ?></p>
-				<?php if(get_the_term_list( $post->ID, 'unit', true)): ?>
-					<p><?php echo get_the_term_list( $post->ID, 'unit', 'Unit: ', ', ', '' ); ?></p>
-				<?php endif; ?>
-				<?php if(get_the_term_list( $post->ID, 'group', true)): ?>
-					<p><?php echo get_the_term_list( $post->ID, 'group', 'Group: ', ', ', '' ); ?></p>
-				<?php endif; ?>
-				<p><?php the_content(__('(more...)')); ?></p>
+					<p><?php the_content(__('(more...)')); ?></p>
 				<?php endwhile; else: ?>
 				<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 			</div>
