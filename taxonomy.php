@@ -4,14 +4,23 @@ Description: Taxonomy archive page.
 */
 ?>
 <?php
-	$args=array(
-	'taxonomy' => 'department',
-	'post_type' => 'staff',
-	'orderby' => 'title',
-	'order' => 'ASC');
-	$my_query = null;
-	$my_query = new WP_Query($args);
+	// $args=array(
+	// 'taxonomy' => 'department',
+	// 'post_type' => 'staff',
+	// 'orderby' => 'title',
+	// 'order' => 'ASC');
+	// $my_query = null;
+	// $my_query = new WP_Query($args);
  ?>
+ <?php
+	global $wp_query;
+	query_posts(
+	   array_merge(
+	      $wp_query->query,
+	      array('orderby' => 'title')
+   )
+);
+?>
 
 <?php get_header(); ?>
 <div id="main">
@@ -62,7 +71,7 @@ Description: Taxonomy archive page.
 						<div class="clearfix visible-md-block visible-lg-block"></div>
 				<?php endif; ?>
 			<?php endwhile; else: ?>
-			<?php // wp_reset_query(); // Restore global post data stomped by the_post(). ?> 
+			<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?> 
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 		</div>
 	</div>
