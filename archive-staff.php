@@ -16,7 +16,7 @@ Description: Archive staff member page.
 <div id="main">
 	<div id="content" class="container">
 	<!-- archive-staff.php -->
-		<h1><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h1>
+		<h1>Staff</h1>
 		<div class="col-sm-3">
 			<?php get_sidebar(); ?>
 		</div>
