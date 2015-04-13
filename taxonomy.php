@@ -28,7 +28,7 @@ Description: Taxonomy archive page.
 <div id="main">
 	<div id="content" class="container">
 	<!-- archive-staff.php -->
-		<h1><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->slug." - ".$term->name; ?></h1>
+		<h1><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->taxonomy." - ".$term->name; ?></h1>
 		<div class="col-sm-3">
 			<?php get_sidebar(); ?>
 		</div>
