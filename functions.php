@@ -3,6 +3,13 @@
     
 //add custom php functions here.
 
+//Output a staff name in Firstname Lastname format.
+function friendly_name() { 
+  $namearray = explode(", ", get_the_title());
+  echo $namearray[1]." ".$namearray[0];
+}
+
+
 function register_my_menus() {
   register_nav_menus(
     array(

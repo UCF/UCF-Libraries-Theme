@@ -10,19 +10,13 @@ Description: Single staff member page.
 <div id="main">
 	<div id="content" class="container">
 		<!-- single-staff template. -->
+		<h1>Staff</h1>
 		<div class="row">
 			<div class="col-sm-3">
 				<?php get_sidebar(); ?>
 			</div>
 			<div class="col-sm-9">
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-					<header>
-						<h1>People >> <?php
-						$namearray = explode(", ", get_the_title());
-						echo $namearray[1]." ".$namearray[0];
-						?>
-						</h1>
-					</header>
 					<article class="clearfix">
 						<div class="thumbnail">
 							<div class="row">
@@ -31,6 +25,8 @@ Description: Single staff member page.
 								</div>
 								<div class="col-sm-8">
 									<div class="caption">
+									<h2><?php friendly_name(); ?>
+									</h2>
 										<?php if(get_post_meta($post->ID, 'title', true) ||
 											 get_post_meta($post->ID, 'room', true) ||
 											 get_post_meta($post->ID, 'phone', true) || 
