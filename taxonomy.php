@@ -30,8 +30,6 @@ Description: Taxonomy archive page.
 	<!-- archive-staff.php -->
 		<h1><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); ?>
 			<a href="<?php echo get_post_type_archive_link( 'staff' ); ?>">Staff</a> - 
-			<?php $taxonomy_permalink = get_term_link( get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); ?>
-			<a href="<?php echo $taxonomy_permalink; ?>"><?php echo $term->taxonomy; ?></a> - 
 			<?php echo $term->name; ?>
 		</h1>
 		<div class="row">
