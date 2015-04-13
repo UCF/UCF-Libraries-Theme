@@ -260,7 +260,7 @@ function register_cpt_staff() {
         'has_archive' => true,
         'query_var' => true,
         'can_export' => true,
-        'rewrite' => array( 'slug' => 'staff', 'with_front' => false ),
+        'rewrite' => array( 'with_front' => false ),
         'capability_type' => 'post'
     );
 
