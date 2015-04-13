@@ -1,7 +1,7 @@
 <?php
 /*
-Template Name: Department Sub Page
-Description: Use for all department sub pages.
+Template Name: Subpage
+Description: Use if a page belongs under another page.
 */
 ?>
 
