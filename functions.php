@@ -79,7 +79,7 @@ function OneSearchform( $form ) {
       <input name="groupid" type="hidden" value="main">
       <input name="profile" type="hidden" value="eds">
       <input name="guidedField_3" type="hidden" value=""><fieldset>
-    <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="textbox Blank" name="bQuery" placeholder="Search All" results="5" size="60" type="text" x-webkit-speech="" >
+    <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="textbox" name="bQuery" placeholder="Search All" results="5" size="60" type="text" x-webkit-speech="" >
     <button id="search-button" type="submit"><span class="glyphicon glyphicon-search">&nbsp;</span><span class="btn_text">Search</span></button>
     </div>
     </form>';
@@ -169,17 +169,17 @@ function wp_sitemap_page(){
 add_shortcode('sitemap', 'wp_sitemap_page');
 
 //Recent posts shortcode (from tutorial)
-/*
+
 function recent_posts_function($atts){
    extract(shortcode_atts(array(
-      'posts' => 1,
+      'posts' => 3,
    ), $atts));
 
-   $return_string = '<ul>';
+   $return_string = '<ul class ="post-news">';
    query_posts(array('orderby' => 'date', 'order' => 'DESC' , 'showposts' => $posts));
    if (have_posts()) :
       while (have_posts()) : the_post();
-         $return_string .= '<li><a href="'.get_permalink().'">'.get_the_title().'</a></li>';
+         $return_string .= '<li><a href="'.get_permalink().'"><span class="post-news-thumbnail>'. get_the_post_thumbnail('thumbnail') .'</span>'.get_the_title().'</a>'.'<br />'.get_the_excerpt().'</li>';
       endwhile;
    endif;
    $return_string .= '</ul>';
@@ -188,7 +188,7 @@ function recent_posts_function($atts){
    return $return_string;
 }
 add_shortcode('recent-posts', 'recent_posts_function');
-*/
+
 
 /**
 *Glyphicons
