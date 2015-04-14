@@ -24,7 +24,6 @@ Generate a random backround from the list below.
 }
 -->
 </style>
-s
 <?php get_header(); ?>
 <div id="main">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
