@@ -1,10 +1,10 @@
 /*
-Theme Name: Library Test
+Theme Name: UCF Libraries
 Theme URI: http://librarycmsdev.smca.ucf.edu/
 Author: Bobby Ciullo
 Author URI: http://librarycmsdev.smca.ucf.edu/
-Description: This is a test for a UCF Library theme
-Text Domain: UCFLibrary 
+Description: This is the theme of University of Central Florida Libraries.
+Text Domain: UCFLibraries 
 Version: 0.0.1;
 
 */
@@ -186,8 +186,8 @@ footer ul li a:hover { text-decoration: none;}
 .caption ul li {list-style: none; position: relative;}
 .caption .glyphicon {
 	position: absolute;
-	left: -20px;
-	top: 2px;
+	left: -1.5em;
+ 	top: 0.2em;
 }
 .staff-thumbnail { width: 100%; max-width: 300px; height: auto;}
 
@@ -245,6 +245,28 @@ footer ul li a:hover { text-decoration: none;}
   text-decoration: none;
 }
 
+/*Homepage*/
+
+.background-image {
+	width: 100%;
+	min-height: 50vh;
+	display: block;
+	position: relative;
+	padding: 10vh 0;
+}
+
+.background-image::after {
+  content: "";
+	background-size: cover;
+	background-position: center center;
+  opacity: 0.75;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
 
 
 /*Media Queries */
