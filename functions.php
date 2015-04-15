@@ -9,8 +9,7 @@ function friendly_name() {
   echo $namearray[1]." ".$namearray[0];
 }
 
-function taxonomy_term_list( $taxonomy_name ) {
-  $taxonomy = $taxonomy_name;
+function taxonomy_term_list( $taxonomy ) {
   $term_args = array(
     'hide_empty' => false,
     'orderby' => 'name',
@@ -22,7 +21,7 @@ function taxonomy_term_list( $taxonomy_name ) {
     $term_list .= '<li><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all posts in %s" ), $tax_term->name ) . '">' . $tax_term->name.'</a></li>';
   }
   $term_list .= '</ul>';
-  return $term_list;
+  echo $term_list;
 }
 
 
@@ -201,7 +200,7 @@ function recent_posts_function($atts){
    $return_string .= '</ul>';
 
    wp_reset_query();
-   return $return_string;
+   echo $return_string;
 }
 add_shortcode('recent-posts', 'recent_posts_function');
 
