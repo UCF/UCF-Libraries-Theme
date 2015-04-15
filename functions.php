@@ -194,7 +194,7 @@ function recent_posts_function($atts){
    query_posts(array('orderby' => 'date', 'order' => 'DESC' , 'showposts' => $posts));
    if (have_posts()) :
       while (have_posts()) : the_post();
-         $return_string .= '<li><a href="'.get_permalink().'">'.the_post_thumbnail('post-thumbnails', array('class' => 'post-thumbnails')).get_the_title().'</a>'.'<br />'.get_the_excerpt().'</li>';
+         $return_string .= '<li><a href="'.get_permalink().'">'.get_the_title().'</a>'.'<br />'.get_the_excerpt().'</li>';
       endwhile;
    endif;
    $return_string .= '</ul>';
@@ -372,12 +372,13 @@ function group_init() {
 
 //Adding in Featured image feature
 if ( function_exists( 'add_theme_support' ) ) { 
-add_theme_support( 'post-thumbnails' );
-set_post_thumbnail_size( 150, 150, true ); // default Post Thumbnail dimensions (cropped)
+  add_theme_support( 'post-thumbnails' );
+  set_post_thumbnail_size( 150, 150, true ); // default Post Thumbnail dimensions (cropped)
 
-// additional image sizes
-// delete the next line if you do not need additional image sizes
-add_image_size( 'staff-thumbnail', 300, 9999 ); //300 pixels wide (and unlimited height)
+  // additional image sizes
+  // delete the next line if you do not need additional image sizes
+  add_image_size( 'staff-thumbnail', 300, 9999 ); //300 pixels wide (and unlimited height)
+  add_image_size( 'homepage-thumbnail', 100, 100);
 
 }
 ?>
