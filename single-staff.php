@@ -42,7 +42,7 @@ Description: Single staff member page.
 											<?php endif; ?>
 
 											<?php if(get_post_meta($post->ID, 'phone', true)): ?>
-												<li><span class="glyphicon glyphicon-earphone"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
+												<li><span class="glyphicon glyphicon-phone"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
 											<?php endif; ?>
 
 											<?php if(get_post_meta($post->ID, 'email', true)): ?>
