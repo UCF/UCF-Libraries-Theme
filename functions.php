@@ -9,6 +9,20 @@ function friendly_name() {
   echo $namearray[1]." ".$namearray[0];
 }
 
+function taxonomy_term_list( $taxonomy ) {
+  
+  $term_args=array(
+    'hide_empty' => false,
+    'orderby' => 'name',
+    'order' => 'ASC'
+  );
+  $tax_terms = get_terms($taxonomy,$term_args);
+  foreach ($tax_terms as $tax_term) {
+    $term_list = '<li><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all posts in %s" ), $tax_term->name ) . '">' . $tax_term->name.'</a></li>';
+  }
+  return $term_list;
+}
+
 
 function register_my_menus() {
   register_nav_menus(
@@ -179,7 +193,7 @@ function recent_posts_function($atts){
    query_posts(array('orderby' => 'date', 'order' => 'DESC' , 'showposts' => $posts));
    if (have_posts()) :
       while (have_posts()) : the_post();
-         $return_string .= '<li><a href="'.get_permalink().'"><span class="post-news-thumbnail">'.get_the_post_thumbnail('thumbnail').'</span>'.get_the_title().'</a>'.'<br />'.get_the_excerpt().'</li>';
+         $return_string .= '<li><a href="'.get_permalink().'"><span class="post-news-thumbnail">'.the_post_thumbnail('post-thumbnails', array('class' => 'post-thumbnail')).'</span>'.get_the_title().'</a>'.'<br />'.get_the_excerpt().'</li>';
       endwhile;
    endif;
    $return_string .= '</ul>';

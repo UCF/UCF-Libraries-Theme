@@ -13,7 +13,7 @@ Description: Single staff member page.
 		<h1><a href="<?php echo get_post_type_archive_link( 'staff' ); ?>">Staff</a></h1>
 		<div class="row">
 			<div class="col-sm-3">
-				<?php get_sidebar(); ?>
+				<?php get_sidebar('staff'); ?>
 			</div>
 			<div class="col-sm-9">
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>

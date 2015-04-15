@@ -3,15 +3,6 @@
 Description: Taxonomy archive page.
 */
 ?>
-<?php
-	// $args=array(
-	// 'taxonomy' => 'department',
-	// 'post_type' => 'staff',
-	// 'orderby' => 'title',
-	// 'order' => 'ASC');
-	// $my_query = null;
-	// $my_query = new WP_Query($args);
- ?>
  <?php
 	global $wp_query;
 	query_posts(
@@ -34,7 +25,7 @@ Description: Taxonomy archive page.
 		</h1>
 		<div class="row">
 			<div class="col-sm-3">
-				<?php get_sidebar(); ?>
+				<?php get_sidebar('staff'); ?>
 			</div>
 			<div class="col-sm-9">
 				<?php $i = 0; ?>

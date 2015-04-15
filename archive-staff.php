@@ -19,7 +19,7 @@ Description: Archive staff member page.
 		<h1>Staff</h1>
 		<div class="row">
 			<div class="col-sm-3">
-				<?php get_sidebar(); ?>
+				<?php get_sidebar('staff'); ?>
 			</div>
 			<div class="col-sm-9">
 				<?php $i = 0; ?>
