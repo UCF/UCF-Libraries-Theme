@@ -194,7 +194,7 @@ function recent_posts_function($atts){
    query_posts(array('orderby' => 'date', 'order' => 'DESC' , 'showposts' => $posts));
    if (have_posts()) :
       while (have_posts()) : the_post();
-         $return_string .= '<li><a href="'.get_permalink().'"><span class="post-news-thumbnail">'.the_post_thumbnail('post-thumbnails', array('class' => 'post-thumbnail')).'</span>'.get_the_title().'</a>'.'<br />'.get_the_excerpt().'</li>';
+         $return_string .= '<li><a href="'.get_permalink().'">'.the_post_thumbnail('post-thumbnails', array('class' => 'post-thumbnails')).get_the_title().'</a>'.'<br />'.get_the_excerpt().'</li>';
       endwhile;
    endif;
    $return_string .= '</ul>';
