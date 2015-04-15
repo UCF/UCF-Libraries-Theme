@@ -4,17 +4,11 @@
 	<div id="secondary" class="secondary">
 		<div id="widget-area" class="widget-area" role="complementary">
 			<h4 class="widget-title">Departments</h4>
-			<ul>
-				<?php taxonomy_term_list('department'); ?>
-			</ul>
+			<?php taxonomy_term_list('department'); ?>
 			<h4 class="widget-title">Units</h4>
-			<ul>
-				<?php taxonomy_term_list('unit'); ?>
-			</ul>
-			<h4 class="widget-title">Group</h4>
-			<ul>
-				<?php taxonomy_term_list('group'); ?>
-			</ul>
+			<?php taxonomy_term_list('unit'); ?>
+			<h4 class="widget-title">Groups</h4>
+			<?php taxonomy_term_list('group'); ?>
 		</div><!-- .widget-area -->
 	</div>
 </aside>
