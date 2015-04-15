@@ -18,7 +18,7 @@ function taxonomy_term_list( $taxonomy ) {
   );
   $tax_terms = get_terms($taxonomy,$term_args);
   foreach ($tax_terms as $tax_term) {
-    $term_list = '<li><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all posts in %s" ), $tax_term->name ) . '">' . $tax_term->name.'</a></li>';
+    $term_list .= '<li><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all posts in %s" ), $tax_term->name ) . '">' . $tax_term->name.'</a></li>';
   }
   return $term_list;
 }
