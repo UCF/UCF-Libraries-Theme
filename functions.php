@@ -200,7 +200,7 @@ function recent_posts_function($atts){
    $return_string .= '</ul>';
 
    wp_reset_query();
-   echo $return_string;
+   return $return_string;
 }
 add_shortcode('recent-posts', 'recent_posts_function');
 
