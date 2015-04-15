@@ -9,9 +9,9 @@ function friendly_name() {
   echo $namearray[1]." ".$namearray[0];
 }
 
-function taxonomy_term_list( $taxonomy ) {
-  $taxonomy = $taxonomy;
-  $term_args=array(
+function taxonomy_term_list( $taxonomy_name ) {
+  $taxonomy = $taxonomy_name;
+  $term_args = array(
     'hide_empty' => false,
     'orderby' => 'name',
     'order' => 'ASC'
