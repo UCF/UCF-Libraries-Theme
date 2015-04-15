@@ -10,7 +10,7 @@ function friendly_name() {
 }
 
 function taxonomy_term_list( $taxonomy ) {
-  
+  $taxonomy = $taxonomy;
   $term_args=array(
     'hide_empty' => false,
     'orderby' => 'name',
