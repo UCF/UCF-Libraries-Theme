@@ -190,14 +190,36 @@ function recent_posts_function($atts){
       'posts' => 3,
    ), $atts));
 
-   $return_string = '<ul class ="post-news">';
+   $return_string = '<div class="news">';
    query_posts(array('orderby' => 'date', 'order' => 'DESC' , 'showposts' => $posts));
    if (have_posts()) :
       while (have_posts()) : the_post();
-         $return_string .= '<li><a href="'.get_permalink().'">'.get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail')).get_the_title().'</a>'.'<br />'.get_the_excerpt().'</li>';
+        $categories = get_the_category();
+        $separator = ', ';
+        $output = '';
+        if($categories){
+          foreach($categories as $category) {
+            $output .= '<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '">'.$category->cat_name.'</a>'.$separator;
+          }
+        }
+         $return_string .= 
+         '<div class="news-post">
+            <div class="news-post-image"><a href="'.get_permalink().'">'.get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail')).'</a></div>
+            <div class="news-post-text">
+              <div class="news-post-title">
+                <header>
+                  <h3><a href="'.get_permalink().'">'.get_the_title().'</a></h3>
+                  <span class="news-post-category">'.trim($output, $separator).' - '.get_the_time('F jS, Y').'</span>
+                </header>
+              </div>
+              <article>
+                <p>'.get_the_excerpt().'</p>
+              </article>
+            </div>
+          </div>';
       endwhile;
    endif;
-   $return_string .= '</ul>';
+   $return_string .= '</div>';
 
    wp_reset_query();
    return $return_string;
@@ -376,9 +398,9 @@ if ( function_exists( 'add_theme_support' ) ) {
   set_post_thumbnail_size( 150, 150, true ); // default Post Thumbnail dimensions (cropped)
 
   // additional image sizes
-  // delete the next line if you do not need additional image sizes
+  // delete the next line if you do not need additional image sizes 
   add_image_size( 'staff-thumbnail', 300, 9999 ); //300 pixels wide (and unlimited height)
-  add_image_size( 'homepage-thumbnail', 100, 100);
+  add_image_size( 'homepage-thumbnail', 100, 100, true );
 
 }
 ?>
