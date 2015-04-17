@@ -258,7 +258,7 @@ function youtube_video($atts) {
   ), $atts ));
   return '<div class="youtube-wrapper" style="max-width:'.$width.';">
             <div class="responsive-container">
-             <iframe src="http://youtube.com/embed/'.$id.'?list='.$list.'?rel=0" frameborder="0" allowfullscreen></iframe>
+             <iframe src="http://youtube.com/embed/'.$id.'?list='.$list.'" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>';
 
