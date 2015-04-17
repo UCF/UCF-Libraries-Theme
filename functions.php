@@ -44,10 +44,12 @@ function wpt_register_js() {
     wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js", false, null);
     wp_register_script('jquery.ui', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js", false, null);
     wp_register_script('jquery.bootstrap.min', get_template_directory_uri() . '/js/bootstrap.min.js', 'jquery');
+    wp_register_script('jquery.scripts', get_template_directory_uri(). '/js/scripts.js', 'jquery');
 
     wp_enqueue_script('jquery');
     wp_enqueue_script('jquery.ui');
     wp_enqueue_script('jquery.bootstrap.min');
+    wp_enqueue_script('jquery.scripts');
 }
 add_action( 'init', 'wpt_register_js' );
 
@@ -64,16 +66,17 @@ function wpt_register_css() {
 }
 add_action( 'wp_enqueue_scripts', 'wpt_register_css' );
 
-//Add sidebar
+// Add sidebar
+//==============================
 function theme_slug_widgets_init() {
     register_sidebar( array(
         'name'          => __( 'Main Sidebar', 'theme-slug' ),
         'id'            => 'sidebar-1',
         'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'theme-slug' ),
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h4 class="widget-title">',
-        'after_title'   => '</h4>',
+        'before_widget' => '<div class="sidebar-collapse">',
+        'after_widget'  => '</div></div>',
+        'before_title'  => '<h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#%1$s" aria-expanded="true" aria-controls="collapseExample"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span>',
+        'after_title'   => '</a></h4><div class="collapse in" id="%1$s">',
     ) );
 }
 add_action( 'widgets_init', 'theme_slug_widgets_init' );
