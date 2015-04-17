@@ -24,6 +24,32 @@ function taxonomy_term_list( $taxonomy ) {
   echo $term_list;
 }
 
+function get_random_string($valid_chars, $length)
+{
+    // start with an empty random string
+    $random_string = "";
+
+    // count the number of chars in the valid chars string so we know how many choices we have
+    $num_valid_chars = strlen($valid_chars);
+
+    // repeat the steps until we've created a string of the right length
+    for ($i = 0; $i < $length; $i++)
+    {
+        // pick a random number from 1 up to the number of valid chars
+        $random_pick = mt_rand(1, $num_valid_chars);
+
+        // take the random character out of the string of valid chars
+        // subtract 1 from $random_pick because strings are indexed starting at 0, and we started picking at 1
+        $random_char = $valid_chars[$random_pick-1];
+
+        // add the randomly-chosen char onto the end of our string so far
+        $random_string .= $random_char;
+    }
+
+    // return our finished random string
+    return $random_string;
+}
+
 
 function register_my_menus() {
   register_nav_menus(
@@ -69,14 +95,16 @@ add_action( 'wp_enqueue_scripts', 'wpt_register_css' );
 // Add sidebar
 //==============================
 function theme_slug_widgets_init() {
+    $original_string = 'abcdefghijklmnopqrstuvwxyz';
+    $random_string = get_random_string($original_string, 8);
     register_sidebar( array(
         'name'          => __( 'Main Sidebar', 'theme-slug' ),
         'id'            => 'sidebar-1',
         'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'theme-slug' ),
         'before_widget' => '<div class="sidebar-collapse">',
         'after_widget'  => '</div></div>',
-        'before_title'  => '<h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#%1$s" aria-expanded="true" aria-controls="collapseExample"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span>',
-        'after_title'   => '</a></h4><div class="collapse in" id="%1$s">',
+        'before_title'  => '<h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#'.$random_string.'" aria-expanded="true" aria-controls="collapseExample"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span>',
+        'after_title'   => '</a></h4><div class="collapse in" id="'.$random_string.'">',
     ) );
 }
 add_action( 'widgets_init', 'theme_slug_widgets_init' );
