@@ -68,8 +68,6 @@ add_action( 'wp_enqueue_scripts', 'wpt_register_css' );
 // Add sidebar
 //==============================
 function theme_slug_widgets_init() {
-    $original_string = 'abcdefghijklmnopqrstuvwxyz';
-    $random_string = get_random_string($original_string, 8);
     register_sidebar( array(
         'name'          => __( 'Main Sidebar', 'theme-slug' ),
         'id'            => 'sidebar-1',
