@@ -63,10 +63,8 @@ $(window).resize(function(){
   }
 });
 
-$('.collapse').on('show.bs.collapse', function(){
-  $(this).parent().find(".glyphicon-plus-sign").removeClass("glyphicon-plus-sign").addClass("glyphicon-minus-sign");
-  alert('minus sign should be appearing.')
-}).on('hide.bs.collapse', function(){
-$(this).parent().find(".glyphicon-minus-sign").removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");
-  alert('plus sign should be appearing.')
+$(document).on("hide.bs.collapse show.bs.collapse", ".collapse", function (event) {
+  $(this).prev().find(".glyphicon").toggleClass("glyphicon-plus-sign glyphicon-minus-sign");
+  alert('minus and plus sign should be toggling.');
 });
+
