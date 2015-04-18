@@ -65,6 +65,5 @@ $(window).resize(function(){
 
 $(document).on("hide.bs.collapse show.bs.collapse", ".collapse", function (event) {
   $(this).prev().find(".glyphicon").toggleClass("glyphicon-plus-sign glyphicon-minus-sign");
-  alert('minus and plus sign should be toggling.');
 });
 
