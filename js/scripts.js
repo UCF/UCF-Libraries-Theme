@@ -57,14 +57,16 @@ $(window).resize(function(){
     expandMenus();
     $menus_open = true;
   }
-  if ($(window).width() <= 768 && $menus_open){  
+  if ($(window).width() < 768 && $menus_open){  
 	collapseMenus();
 	$menus_open = false;
   }
 });
 
 $('.collapse').on('show.bs.collapse', function(){
-$(this).parent().find(".glyphicon-plus-sign").removeClass("glyphicon-plus-sign").addClass("glyphicon-minus-sign");
+  $(this).parent().find(".glyphicon-plus-sign").removeClass("glyphicon-plus-sign").addClass("glyphicon-minus-sign");
+  alert('minus sign should be appearing.')
 }).on('hide.bs.collapse', function(){
 $(this).parent().find(".glyphicon-minus-sign").removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");
+  alert('plus sign should be appearing.')
 });
