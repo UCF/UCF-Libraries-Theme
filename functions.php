@@ -205,7 +205,8 @@ function recent_posts_function($atts){
           }
         }
          $return_string .= 
-         '<div class="news-post">
+         '<article>
+         <div class="news-post">
             <div class="news-post-image"><a href="'.get_permalink().'">'.get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail')).'</a></div>
             <div class="news-post-text">
               <div class="news-post-title">
@@ -214,11 +215,10 @@ function recent_posts_function($atts){
                   <span class="news-post-category">'.trim($output, $separator).' - '.get_the_time('F jS, Y').'</span>
                 </header>
               </div>
-              <article>
-                <p>'.get_the_excerpt().'</p>
-              </article>
+              <p>'.get_the_excerpt().'</p>
             </div>
-          </div>';
+          </div>
+          </article>';
       endwhile;
    endif;
    $return_string .= '</div>';
