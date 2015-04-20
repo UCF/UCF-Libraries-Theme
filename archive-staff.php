@@ -27,7 +27,7 @@ Description: Archive staff member page.
 					<?php $i = 0; ?>
 					<?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
 						<?php $i++; ?>
-						<div class="col-sm-6 col-md-4">
+						<div class="col-xs-6 col-md-4 col-lg-3">
 			    			<div class="thumbnail">
 			    				<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
 								<div class="caption">
@@ -59,11 +59,14 @@ Description: Archive staff member page.
 								</div>
 							</div>
 						</div>
+						<?php if ($i % 4 == 0) : //adds a clearfix every 3 items. ?>
+								<div class="clearfix visible-lg-block"></div>
+						<?php endif; ?>
 						<?php if ($i % 3 == 0) : //adds a clearfix every 3 items. ?>
-								<div class="clearfix visible-md-block visible-lg-block"></div>
+								<div class="clearfix visible-md-block"></div>
 						<?php endif; ?>
 						<?php if ($i % 2 == 0) : //adds a clearfix every 3 items. ?>
-								<div class="clearfix visible-sm-block"></div>
+								<div class="clearfix visible-xs-block"></div>
 						<?php endif; ?>
 				<?php endwhile; else: ?>
 				</div>
