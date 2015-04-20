@@ -10,7 +10,7 @@ Description: Single staff member page.
 <div id="main">
 	<div id="content" class="container">
 		<!-- single-staff template. -->
-		<h1><a href="<?php echo get_post_type_archive_link( 'staff' ); ?>">Staff</a></h1>
+		<h1><a href="<?php echo get_post_type_archive_link( 'staff' ); ?>">Staff Directory</a></h1>
 		<div class="row">
 			<div class="col-sm-3">
 				<?php get_sidebar('staff'); ?>

@@ -16,12 +16,13 @@ Description: Archive staff member page.
 <div id="main">
 	<div id="content" class="container">
 	<!-- archive-staff.php -->
-		<h1>Staff</h1>
+		<h1>Staff Directory</h1>
 		<div class="row">
 			<div class="col-sm-3">
 				<?php get_sidebar('staff'); ?>
 			</div>
 			<div class="col-sm-9">
+				<h2>All Staff</h2>
 				<?php $i = 0; ?>
 				<?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
 					<?php $i++; ?>

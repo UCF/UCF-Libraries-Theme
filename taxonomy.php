@@ -19,15 +19,13 @@ Description: Taxonomy archive page.
 <div id="main">
 	<div id="content" class="container">
 	<!-- archive-staff.php -->
-		<h1><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); ?>
-			<a href="<?php echo get_post_type_archive_link( 'staff' ); ?>">Staff</a> - 
-			<?php echo $term->name; ?>
-		</h1>
+		<h1><a href="<?php echo get_post_type_archive_link( 'staff' ); ?>">Staff Directory</a></h1>
 		<div class="row">
 			<div class="col-sm-3">
 				<?php get_sidebar('staff'); ?>
 			</div>
 			<div class="col-sm-9">
+				<h2><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h2>
 				<?php $i = 0; ?>
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 				<?php // if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
