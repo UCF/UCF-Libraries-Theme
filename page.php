@@ -16,7 +16,9 @@ Description: Default Page.
 			</div>
 			<div class="col-sm-9">
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+				<article>
 				<p><?php the_content(__('(more...)')); ?></p>
+				</article>
 				<hr> <?php endwhile; else: ?>
 				<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 			</div>

@@ -8,11 +8,15 @@
 		</div>
 		<div class="col-sm-9">
 			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-			<h2><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h2>
-			<p><?php the_post_thumbnail( ); ?></p>
-			<h4>Posted on <?php the_time('F jS, Y') ?></h4>
-			<p><?php the_content(__('(more...)')); ?></p>
-			<p><?php comments_template( $file, $separate_comments ); ?></p>
+			<article>
+				<header>
+                  <h3><a href="'.get_permalink().'">'.get_the_title().'</a></h3>
+                  <span class="news-post-category">'.trim($output, $separator).' - '.get_the_time('F jS, Y').'</span>
+				</header>
+				<p><?php the_post_thumbnail( ); ?></p>
+				<p><?php the_content(__('(more...)')); ?></p>
+				<p><?php comments_template( $file, $separate_comments ); ?></p>
+			</article>
 			<hr> <?php endwhile; else: ?>
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 		</div>
