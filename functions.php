@@ -185,7 +185,7 @@ function wp_sitemap_page(){
 }
 add_shortcode('sitemap', 'wp_sitemap_page');
 
-//Recent posts shortcode (from tutorial)
+//Recent posts shortcode
 
 function recent_posts_function($atts){
    extract(shortcode_atts(array(
@@ -267,6 +267,39 @@ function youtube_video($atts) {
   return '<span class="glyphicon glyphicon-'.$name.'"></span>';
 }
 add_shortcode('youtube', 'youtube_video');
+
+/**
+*
+* Hours Weekly Calendar Shortcode
+*
+**/
+function hours_week_calendar($hours) {
+  $hours = '
+  <script src="//api3.libcal.com/js/hours_grid.js?002"></script> 
+
+  <div id="s-lc-whw0"></div> 
+  <script>
+  $(function(){ 
+  var week0 = new $.LibCalWeeklyGrid( $("#s-lc-whw0"), { iid: 246, lid: 0,  weeks: 52 }); 
+  });
+  </script> 
+
+  <!-- Please note: The following styles are optional, feel free to modify! //-->
+  <style>
+  .s-lc-whw thead { background-color: #F5F5F5; }
+  .s-lc-whw-head-date { color: #999; }
+  .s-lc-whw-today-h {  background-color: #ddd; }
+  .s-lc-whw-today { background-color: #F5F5F5; }
+  .s-lc-whw-bh { text-align: right; white-space: nowrap; }
+  .s-lc-whw-locname { font-weight: bold;}
+  .s-lc-whw-sublocname{ padding-left: 10px!important; }
+  .s-lc-whw-footnote { color: #555; font-size: 80%; }
+  .s-lc-whw-footnote td:hover { background-color:#fff!important;}
+  </style>';
+  return $hours;
+}
+add_shortcode('hours-calendar', 'hours_week_calendar');
+
 
 
 /**
