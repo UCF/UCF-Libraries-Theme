@@ -3,6 +3,16 @@
     
 //add custom php functions here.
 
+//fopen test
+    //Onesearch form shortcode
+function json_test( $form ) {
+
+  $form = file_get_contents('http://api3.libcal.com/api_hours_grid.php?iid=246&amp;format=json&amp;weeks=52');
+  echo $form;
+  return $form;
+}
+add_shortcode('json-test', 'json_test');
+
 //Output a staff name in Firstname Lastname format.
 function friendly_name() { 
   $namearray = explode(", ", get_the_title());
