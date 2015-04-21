@@ -183,7 +183,8 @@ footer ul li a:hover { text-decoration: none;}
 /*Staff Directories*/
 .thumbnail { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
 .caption ul { padding-left: 20px;}
-.caption ul li {list-style: none; position: relative; overflow: hidden; text-overflow: ellipsis;}
+.caption ul li {list-style: none; position: relative;}
+.caption ul li a { display: block; overflow: hidden; text-overflow: ellipsis;}
 .caption .glyphicon {
 	position: absolute;
 	left: -1.5em;
