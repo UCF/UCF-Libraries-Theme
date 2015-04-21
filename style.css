@@ -370,12 +370,9 @@ footer ul li a:hover { text-decoration: none;}
 	color: #ccc;
 }
 @media (max-width: 991px) {
-	.navbar {
-		font-size: 1em;
-	}
-	.navbar-library .navbar-brand img {
-		width: 10em;
-	}
+	.navbar { font-size: 1em; }
+	.navbar-library .navbar-brand img { width: 10em; }
+	.nav > li > a { padding: 10px 10px; }
 }
 
 /*
