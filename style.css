@@ -372,7 +372,7 @@ footer ul li a:hover { text-decoration: none;}
 @media (max-width: 991px) {
 	.navbar { font-size: 1em; }
 	.navbar-library .navbar-brand img { width: 10em; }
-	.nav > li > a { padding: 10px 10px; }
+	.nav > li > a { padding: 15px 10px; }
 }
 
 /*
