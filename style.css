@@ -275,6 +275,23 @@ footer ul li a:hover { text-decoration: none;}
 	padding: 2em 0;
 }
 
+.dl-horizontal.homepage {
+	width: 20em;
+	margin: 0 auto;
+}
+.dl-horizontal.homepage dt {
+	float: left;
+	width: 135px;
+	overflow: hidden;
+	clear: left;
+	text-align: right;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.dl-horizontal.homepage dd {
+	margin-left: 150px;
+}
+
 /*Homepage News*/
 .news-post {
 	display:table; 

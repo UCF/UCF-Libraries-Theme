@@ -3,20 +3,6 @@
     
 //add custom php functions here.
 
-//json parse test
-function json_test( $string ) {
-
-  $string = file_get_contents('http://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
-  $json_o = json_decode($string);
-  $hours_list = '<dl class="dl-horizontal">';
-  foreach ($json_o->locations as $location) {
-    $hours_list .= '<dt>'.$location->name.'</dt><dd>'.$location->rendered.'</dd>';
-  }
-  $hours_list .= '</dl>';
-  return $hours_list;
-}
-add_shortcode('json-test', 'json_test');
-
 //Output a staff name in Firstname Lastname format.
 function friendly_name() { 
   $namearray = explode(", ", get_the_title());
@@ -314,7 +300,27 @@ function hours_week_calendar($hours) {
 }
 add_shortcode('hours-calendar', 'hours_week_calendar');
 
+/**
+* Homepage Today's Hours Shortcode
+* Create a dl list for the current daily hours.
+*
+*Example:
+*[hours-today]
+*
+**/
 
+function hours_today( $string ) {
+
+  $string = file_get_contents('http://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
+  $json_o = json_decode($string);
+  $hours_list = '<dl class="dl-horizontal homepage">';
+  foreach ($json_o->locations as $location) {
+    $hours_list .= '<dt>'.$location->name.'</dt><dd>'.$location->rendered.'</dd>';
+  }
+  $hours_list .= '</dl>';
+  return $hours_list;
+}
+add_shortcode('hours-today', 'hours_today');
 
 /**
 *Staff Directory Custom Post Type
