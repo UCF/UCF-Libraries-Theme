@@ -3,13 +3,17 @@
     
 //add custom php functions here.
 
-//fopen test
-    //Onesearch form shortcode
-function json_test( $form ) {
+//json parse test
+function json_test( $string ) {
 
-  $form = file_get_contents('http://api3.libcal.com/api_hours_grid.php?iid=246&amp;format=json&amp;weeks=52');
-  echo $form;
-  return $form;
+  $string = file_get_contents('http://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
+  $json_o = json_decode($string);
+  $hours_list = '<dl class="dl-horizontal">';
+  foreach ($json_o->locations as $location) {
+    $hours_list .= '<dt>'.$location->name.'</dt><dd>'.$location->rendered.'</dd>';
+  }
+  $hours_list .= '</dl>';
+  return $hours_list;
 }
 add_shortcode('json-test', 'json_test');
 
