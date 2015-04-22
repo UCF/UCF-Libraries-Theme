@@ -321,9 +321,9 @@ add_shortcode('hours-today', 'hours_today');
 **/
 function library_events($atts) {
    extract(shortcode_atts(array(
-      'number' => 4,
+      'number' => '4',
    ), $atts));
-  $string = file_get_contents('https://events.ucf.edu/calendar/2085/library-test/upcoming/feed.json');
+  $string = file_get_contents('http://events.ucf.edu/calendar/2085/library-test/upcoming/feed.json');
   $json_o = json_decode($string);
   $events_list = '';
   $i = 0;
