@@ -273,26 +273,21 @@ add_shortcode('youtube', 'youtube_video');
 * Hours Weekly Calendar Shortcode
 *
 **/
-// function hours_week_calendar($atts) {
-//   extract(shortcode_atts( array(
-//     'id' => '0';
-//   ), $atts ));
-//   return '
-//   <script src="//api3.libcal.com/js/hours_grid.js?002"></script> 
+function hours_week_calendar($atts) {
+  extract(shortcode_atts( array(
+    'id' => '0',
+  ), $atts ));
+  return '
+  <script src="//api3.libcal.com/js/hours_grid.js?002"></script> 
 
-//   <div id="s-lc-whw'.$id.'"></div> 
-//   <script>
-//   $(function(){ 
-//   var week0 = new $.LibCalWeeklyGrid( $("#s-lc-whw'.$id.'"), { iid: 246, lid: '.$id.',  weeks: 52 }); 
-//   });
-//   </script> 
-
-//   <!-- Please note: The following styles are optional, feel free to modify! //-->
-//   <style>
-
-//   </style>';
-// }
-// add_shortcode('hours-calendar', 'hours_week_calendar');
+  <div id="s-lc-whw'.$id.'"></div> 
+  <script>
+  $(function(){ 
+  var week0 = new $.LibCalWeeklyGrid( $("#s-lc-whw'.$id.'"), { iid: 246, lid: '.$id.',  weeks: 52 }); 
+  });
+  </script>';
+}
+add_shortcode('hours-calendar', 'hours_week_calendar');
 
 /**
 * Homepage Today's Hours Shortcode
