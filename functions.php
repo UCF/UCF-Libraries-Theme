@@ -319,37 +319,37 @@ add_shortcode('hours-today', 'hours_today');
 *[events]
 *
 **/
-function library_events($atts) {
-   extract(shortcode_atts(array(
-      'number' => 4,
-   ), $atts));
-  $string = file_get_contents('https://events.ucf.edu/calendar/2085/library-test/upcoming/feed.json');
-  $json_o = json_decode($string);
-  $events_list = '';
-  $i = 0;
-  foreach ($json_o as $event) {
-    $date = strtotime($event->starts);
-    $day = date('d',$date);
-    $month = date('m',$date);
-    $year = date('Y',$date);
-    $start_time = date('h:iA',$date);
-    $end_time = date('h:iA',strtotime($event->ends));
-    $events_list .= '
-      <article>
-        <span class="eventDate"><ul><li id="eventMonth">'.$month.'</li><li id="eventDay">'.$day.'</li><li id="eventYear">'.$year.'</li><li id="eventDate">'.$event->starts.'</li></ul></span>
-        <ul class="eventInfo">
-          <li class="eventTitle"><a href="'.$event->url.'" title="'.$event->title.'">'.$event->title.'</a></li>
-          <li class="eventTime"><span class="glyphicon glyphicon-time"></span>'.$start_time' - '.$end_time.'</li>         
-          <li class="eventLocation"><span class="glyphicon glyphicon-map-marker"></span><a href="'.$event->location_url.'">'.$event->location.'</a></li>
-        </ul>
-      </article>
-    <span class="event-date">'.$location->name.'</span><li>'.$location->rendered.'</dd>';
-    if(++$i == $number) break;
-  }
-  return $events_list;
-}
+// function library_events($atts) {
+//    extract(shortcode_atts(array(
+//       'number' => 4,
+//    ), $atts));
+//   $string = file_get_contents('https://events.ucf.edu/calendar/2085/library-test/upcoming/feed.json');
+//   $json_o = json_decode($string);
+//   $events_list = '';
+//   $i = 0;
+//   foreach ($json_o as $event) {
+//     $date = strtotime($event->starts);
+//     $day = date('d',$date);
+//     $month = date('m',$date);
+//     $year = date('Y',$date);
+//     $start_time = date('h:iA',$date);
+//     $end_time = date('h:iA',strtotime($event->ends));
+//     $events_list .= '
+//       <article>
+//         <span class="eventDate"><ul><li id="eventMonth">'.$month.'</li><li id="eventDay">'.$day.'</li><li id="eventYear">'.$year.'</li><li id="eventDate">'.$event->starts.'</li></ul></span>
+//         <ul class="eventInfo">
+//           <li class="eventTitle"><a href="'.$event->url.'" title="'.$event->title.'">'.$event->title.'</a></li>
+//           <li class="eventTime"><span class="glyphicon glyphicon-time"></span>'.$start_time' - '.$end_time.'</li>         
+//           <li class="eventLocation"><span class="glyphicon glyphicon-map-marker"></span><a href="'.$event->location_url.'">'.$event->location.'</a></li>
+//         </ul>
+//       </article>
+//     <span class="event-date">'.$location->name.'</span><li>'.$location->rendered.'</dd>';
+//     if(++$i == $number) break;
+//   }
+//   return $events_list;
+// }
 
-add_shortcode('library-events', 'library_events');
+// add_shortcode('library-events', 'library_events');
 
 /**
 *Staff Directory Custom Post Type
