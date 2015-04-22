@@ -1,29 +1,38 @@
-<?php
-/*
-Template Name: Archives
-*/
-get_header(); ?>
-
-<div id="container">
-	<div id="content" role="main">
-
-		<?php the_post(); ?>
-		<h1 class="entry-title"><?php the_title(); ?></h1>
-		
-		<?php get_search_form(); ?>
-		
-		<h2>Archives by Month:</h2>
-		<ul>
-			<?php wp_get_archives('type=monthly'); ?>
-		</ul>
-		
-		<h2>Archives by Subject:</h2>
-		<ul>
-			 <?php wp_list_categories(); ?>
-		</ul>
-
-	</div><!-- #content -->
-</div><!-- #container -->
-
-<?php get_sidebar(); ?>
+<?php get_header(); ?>
+<div id="main">
+	<div id="content" class="container">
+	<!-- index.php -->
+		<h1><?php echo $post->post_name;?></h1>
+		<div class="row">
+			<div class="col-sm-3">
+				<?php get_sidebar(); ?>
+			</div>
+			<div class="col-sm-9">
+				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+				<?php	
+					$categories = get_the_category();
+			        $separator = ', ';
+			        $output = '';
+			        if($categories){
+			          foreach($categories as $category) {
+			            $output .= '<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '">'.$category->cat_name.'</a>'.$separator;
+			          }
+			        }
+		        ?>
+				<article>
+					<header>
+	                  <h3><a href="<?php get_permalink() ?>"><?php get_the_title() ?></a></h3>
+	                  <span class="news-post-category"><?php trim($output, $separator).' - '.get_the_time('F jS, Y') ?></span>
+					</header>
+					<p><?php the_post_thumbnail( ); ?></p>
+					<p><?php the_content(__('(more...)')); ?></p>
+					<p><?php comments_template( $file, $separate_comments ); ?></p>
+				</article>
+				<hr> <?php endwhile; else: ?>
+				<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="delimiter"></div>
 <?php get_footer(); ?>
