@@ -339,6 +339,101 @@ footer ul li a:hover { text-decoration: none;}
   .s-lc-whw-footnote { color: #555; font-size: 80%; }
   .s-lc-whw-footnote td:hover { background-color:#fff!important;}
 
+/* Homepage Events Widget */
+.events-homepage article {
+  padding: 5px 0;
+  width: auto;
+  position: relative;
+  clear: both;
+}
+
+.events-homepage .eventDate {
+  display: inline-block;
+  position: absolute;
+  top: 5px;
+  margin-left: 10px;
+}
+.events-homepage .eventDate ul {
+  position: relative;
+  font-size: 10px;
+  background: #22282d;
+  width: 50px;
+  height: 65px;
+  text-align: center;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.events-homepage .eventDate ul > li {
+  position: relative;
+  text-align: center;
+}
+.events-homepage .eventDate ul #eventMonth {
+  font-size: 12px;
+  height: 16px;
+  line-height: 16px;
+  font-family: 'MuseoSlab500', Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+  text-decoration: none;
+  font-style: normal !important;
+  color: #22282d;
+  font-weight: bold;
+  width: 100%;
+  background: #f2f2f2;
+  text-transform: uppercase;
+  position: absolute;
+  left: 0px;
+}
+.events-homepage .eventDate ul #eventDay {
+  font-family: 'MuseoSlab500', Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+  text-decoration: none;
+  font-style: normal !important;
+  font-size: 36px;
+  color: #f2f2f2;
+  top: 19px;
+}
+
+.events-homepage .eventDate ul #eventYear {
+  font-family: 'MuseoSlab500', Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+  text-decoration: none;
+  font-style: normal !important;
+  font-size: 10px;
+  color: #f2f2f2;
+  top: 16px;
+}
+.events-homepage .eventDate ul #eventDate {
+  display: none;
+}
+.events-homepage .eventDate ul:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-width: 8px 8px 0 0;
+  border-style: solid;
+  border-color: #475159 #171b1e;
+}
+.events-homepage .eventInfo {
+  display: inline-block;
+  min-height: 65px;
+  margin-left: 80px;
+}
+.events-homepage .eventInfo .eventTitle {
+  display: inline-block;
+  font-family: 'MuseoSans500', Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+  text-decoration: none;
+  font-style: normal !important;
+  color: #22282d;
+  font-size: 1.125em;
+  margin: 0 0 5px 0;
+}
+
+.events-homepage .eventInfo .eventTime, .events-homepage .eventInfo .eventLocation {
+  font-size: 0.875em;
+  color: #475159;
+  padding: 2px 0;
+}
+.events-homepage 
+
 /* Media Queries */
 
 @media (max-width: 767px) {
