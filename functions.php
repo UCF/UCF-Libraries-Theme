@@ -283,7 +283,7 @@ function hours_week_calendar($atts) {
   <div id="s-lc-whw'.$id.'"></div> 
   <script>
   $(function(){ 
-  var week0 = new $.LibCalWeeklyGrid( $("#s-lc-whw'.$id.'"), { iid: 246, lid: '.$id.',  weeks: 52 }); 
+  var week'.$id.' = new $.LibCalWeeklyGrid( $("#s-lc-whw'.$id.'"), { iid: 246, lid: '.$id.',  weeks: 52 }); 
   });
   </script>';
 }
