@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 <div id="main">
 	<div id="content" class="container">
-	<!-- index.php -->
+	<!-- home.php -->
 		<h1><?php echo $post->post_name;?></h1>
 		<div class="row">
 			<div class="col-sm-3">
