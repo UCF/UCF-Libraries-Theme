@@ -334,7 +334,7 @@ function library_events($atts) {
     $year = date('Y',$date);
     $start_time = date('h:iA',$date);
     $end_time = date('h:iA',strtotime($event->ends));
-    $hours_list .= '
+    $events_list .= '
       <article>
         <span class="eventDate"><ul><li id="eventMonth">'.$month.'</li><li id="eventDay">'.$day.'</li><li id="eventYear">'.$year.'</li><li id="eventDate">'.$event->starts.'</li></ul></span>
         <ul class="eventInfo">
