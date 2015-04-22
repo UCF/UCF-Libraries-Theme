@@ -1,6 +1,5 @@
 <?php
 /*
-Template Name: Single Staff
 Description: Single staff member page.
 */
 ?>
