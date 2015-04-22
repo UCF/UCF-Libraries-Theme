@@ -15,14 +15,14 @@
 			        $output = '';
 			        if($categories){
 			          foreach($categories as $category) {
-			            $output .= '<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '">'.$category->cat_name.'</a>'.$separator;
+			            $output .= '<a href="'.get_category_link( $category->term_id ).'" title="'.esc_attr( sprintf( __( "View all posts in %s" ), $category->name)).'">'.$category->cat_name.'</a>'.$separator;
 			          }
 			        }
 		        ?>
 				<article>
 					<header>
-	                  <h3><a href="<?php get_permalink() ?>"><?php get_the_title() ?></a></h3>
-	                  <span class="news-post-category"><?php trim($output, $separator).' - '.get_the_time('F jS, Y') ?></span>
+	                  <h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+	                  <span class="news-post-category"><?php echo trim($output, $separator).' - '.get_the_time('F jS, Y'); ?></span>
 					</header>
 					<p><?php the_post_thumbnail( ); ?></p>
 					<p><?php the_content(__('(more...)')); ?></p>
