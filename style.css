@@ -340,11 +340,26 @@ footer ul li a:hover { text-decoration: none;}
   .s-lc-whw-footnote td:hover { background-color:#fff!important;}
 
 /* Homepage Events Widget */
+
+.events-homepage {
+  padding: 0 1%;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.events-homepage li {
+  margin: 0;
+  line-height: inherit;
+  list-style: none;
+}
+
 .events-homepage article {
   padding: 5px 0;
   width: auto;
   position: relative;
   clear: both;
+}
+.events-homepage article:hover {
+  background: #efefef;
 }
 
 .events-homepage .eventDate {
@@ -355,6 +370,8 @@ footer ul li a:hover { text-decoration: none;}
 }
 .events-homepage .eventDate ul {
   position: relative;
+  margin: 0;
+  padding: 0;
   font-size: 10px;
   background: #22282d;
   width: 50px;
@@ -368,7 +385,7 @@ footer ul li a:hover { text-decoration: none;}
   position: relative;
   text-align: center;
 }
-.events-homepage .eventDate ul #eventMonth {
+.events-homepage .eventDate ul .eventMonth {
   font-size: 12px;
   height: 16px;
   line-height: 16px;
@@ -383,24 +400,24 @@ footer ul li a:hover { text-decoration: none;}
   position: absolute;
   left: 0px;
 }
-.events-homepage .eventDate ul #eventDay {
+.events-homepage .eventDate ul .eventDay {
   font-family: 'MuseoSlab500', Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
   text-decoration: none;
   font-style: normal !important;
   font-size: 36px;
   color: #f2f2f2;
-  top: 19px;
+  top: 8px;
 }
 
-.events-homepage .eventDate ul #eventYear {
+.events-homepage .eventDate ul .eventYear {
   font-family: 'MuseoSlab500', Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
   text-decoration: none;
   font-style: normal !important;
   font-size: 10px;
   color: #f2f2f2;
-  top: 16px;
+  top: 0;
 }
-.events-homepage .eventDate ul #eventDate {
+.events-homepage .eventDate ul .eventDate {
   display: none;
 }
 .events-homepage .eventDate ul:after {
@@ -414,6 +431,7 @@ footer ul li a:hover { text-decoration: none;}
 }
 .events-homepage .eventInfo {
   display: inline-block;
+  padding: 0;
   min-height: 65px;
   margin-left: 80px;
 }
@@ -432,7 +450,7 @@ footer ul li a:hover { text-decoration: none;}
   color: #475159;
   padding: 2px 0;
 }
-.events-homepage 
+
 
 /* Media Queries */
 
