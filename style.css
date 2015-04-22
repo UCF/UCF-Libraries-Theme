@@ -328,9 +328,18 @@ footer ul li a:hover { text-decoration: none;}
 	border-radius: 50px;
 }
 
+/* Hours Week Widget */
+  .s-lc-whw thead { background-color: #F5F5F5; }
+  .s-lc-whw-head-date { color: #999; }
+  .s-lc-whw-today-h {  background-color: #ddd; }
+  .s-lc-whw-today { background-color: #F5F5F5; }
+  .s-lc-whw-bh { text-align: right; white-space: nowrap; }
+  .s-lc-whw-locname { font-weight: bold;}
+  .s-lc-whw-sublocname{ padding-left: 10px!important; }
+  .s-lc-whw-footnote { color: #555; font-size: 80%; }
+  .s-lc-whw-footnote td:hover { background-color:#fff!important;}
 
-
-/*Media Queries */
+/* Media Queries */
 
 @media (max-width: 767px) {
 .navbar-library .navbar-brand img {

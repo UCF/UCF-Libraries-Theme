@@ -273,30 +273,24 @@ add_shortcode('youtube', 'youtube_video');
 * Hours Weekly Calendar Shortcode
 *
 **/
-function hours_week_calendar($hours) {
-  $hours = '
+function hours_week_calendar($atts) {
+  extract(shortcode_atts( array(
+    'id' => '0';
+  ), $atts ));
+  return '
   <script src="//api3.libcal.com/js/hours_grid.js?002"></script> 
 
-  <div id="s-lc-whw0"></div> 
+  <div id="s-lc-whw'.$id.'"></div> 
   <script>
   $(function(){ 
-  var week0 = new $.LibCalWeeklyGrid( $("#s-lc-whw0"), { iid: 246, lid: 0,  weeks: 52 }); 
+  var week0 = new $.LibCalWeeklyGrid( $("#s-lc-whw'.$id.'"), { iid: 246, lid: '.$id.',  weeks: 52 }); 
   });
   </script> 
 
   <!-- Please note: The following styles are optional, feel free to modify! //-->
   <style>
-  .s-lc-whw thead { background-color: #F5F5F5; }
-  .s-lc-whw-head-date { color: #999; }
-  .s-lc-whw-today-h {  background-color: #ddd; }
-  .s-lc-whw-today { background-color: #F5F5F5; }
-  .s-lc-whw-bh { text-align: right; white-space: nowrap; }
-  .s-lc-whw-locname { font-weight: bold;}
-  .s-lc-whw-sublocname{ padding-left: 10px!important; }
-  .s-lc-whw-footnote { color: #555; font-size: 80%; }
-  .s-lc-whw-footnote td:hover { background-color:#fff!important;}
+
   </style>';
-  return $hours;
 }
 add_shortcode('hours-calendar', 'hours_week_calendar');
 
@@ -321,6 +315,27 @@ function hours_today( $string ) {
   return $hours_list;
 }
 add_shortcode('hours-today', 'hours_today');
+
+/**
+* Homepage Events Shortcode
+* Create a list for the upcoming library events.
+*
+*Example:
+*[events]
+*
+**/
+// function library_events( $string ) {
+
+//   $string = file_get_contents('https://events.ucf.edu/calendar/2085/library-test/upcoming/feed.json');
+//   $json_o = json_decode($string);
+//   $events_list = '<ul">';
+//   foreach ($json_o->locations as $location) {
+//     $hours_list .= '<span class="event-date">'.$location->name.'</span><li>'.$location->rendered.'</dd>';
+//   }
+//   $hours_list .= '</ul>';
+//   return $hours_list;
+// }
+// add_shortcode('library-events', 'library_events');
 
 /**
 *Staff Directory Custom Post Type
