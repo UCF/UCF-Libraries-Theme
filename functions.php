@@ -338,7 +338,7 @@ function library_events($atts) {
       <article>
         <span class="eventDate"><ul><li class="eventMonth">'.$month.'</li><li class="eventDay">'.$day.'</li><li class="eventYear">'.$year.'</li><li class="eventDate">'.$event->starts.'</li></ul></span>
         <ul class="eventInfo">
-          <li class="eventTitle"><a href="'.$event->url.'" title="'.$event->title.'">'.$event->title.'</a></li>
+          <li class="eventTitle"><a href="'.$event->url.'" title="'.$event->title.'" target="_blank">'.$event->title.'</a></li>
           <li class="eventTime"><span class="glyphicon glyphicon-time"></span> '.$start_time.' - '.$end_time.'</li>         
           <li class="eventLocation"><span class="glyphicon glyphicon-map-marker"></span> <a href="'.$event->location_url.'">'.$event->location.'</a></li>
         </ul>
