@@ -1,7 +1,7 @@
 <?php
 /*
-Template Name: Default Page
-Description: Default Page.
+Template Name: Page & Sidebar
+Description: Use if a page requires a sidebar.
 */
 ?>
 
@@ -9,10 +9,13 @@ Description: Default Page.
 <?php get_header(); ?>
 <div id="main">
 	<div id="content" class="container">
-	<!-- Page.php -->
+	<!-- page_sidebar.php -->
 		<header><h1><?php the_title(); ?></h1></header>
 		<div class="row">
-			<div class="col-sm-12">
+			<div class="col-sm-3">
+				<?php get_sidebar(); ?>
+			</div>
+			<div class="col-sm-9">
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 				<article>
 				<?php the_content(__('(more...)')); ?>
