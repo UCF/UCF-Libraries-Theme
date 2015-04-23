@@ -16,8 +16,14 @@ Description: Archive staff member page.
 <div id="main">
 	<div id="content" class="container">
 	<!-- archive-staff.php -->
-		<div style="float:right; margin-top: 3em;"><?php get_search_form(); ?></div>
-		<h1>Staff Directory</h1>
+		<div class="row">
+			<div class="col-sm-8">
+				<h1>Staff Directory</h1>
+			</div>
+			<div class="col-sm-4">
+				<div style="margin-top: 3em;"><?php get_search_form(); ?></div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-sm-3">
 				<?php get_sidebar('staff'); ?>
