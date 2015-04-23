@@ -197,7 +197,7 @@ function search_scua($form) {
               </span>
         </div>
       </form>
-    '
+    ';
     return $form;
 }
 add_shortcode('search-scua', 'search_scua');
