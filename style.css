@@ -27,7 +27,7 @@ h1 { margin: 1em 0;}
 /*	float: left; */
 }
 dl.menu-list dt { font-size: 2em; font-weight: 300; }
-dl.menu-list dd { margin-bottom: 1.5em; }
+dl.menu-list dd, dl.list-spaced dd { margin-bottom: 1.5em; }
 
 .jumbotron h1 { margin: .25em 0; }
 
