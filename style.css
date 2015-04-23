@@ -26,6 +26,8 @@ h1 { margin: 1em 0;}
 .lib-sidebar {
 /*	float: left; */
 }
+dl.menu-list dt { font-size: 2em; font-weight: 300; }
+dl.menu-list dd { margin-bottom: 1.5em; }
 
 /* Footer */
 
