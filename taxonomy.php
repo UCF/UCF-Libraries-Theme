@@ -19,7 +19,14 @@ Description: Taxonomy archive page.
 <div id="main">
 	<div id="content" class="container">
 	<!-- archive-staff.php -->
-		<h1><a href="<?php echo get_post_type_archive_link( 'staff' ); ?>">Staff Directory</a></h1>
+		<div class="row">
+			<div class="col-sm-8">
+				<h1><a href="<?php echo get_post_type_archive_link( 'staff' ); ?>">Staff Directory</a></h1>
+			</div>
+			<div class="col-sm-4">
+				<div style="margin-top: 3em;"><?php get_search_form(); ?></div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-sm-3">
 				<?php get_sidebar('staff'); ?>
@@ -31,7 +38,7 @@ Description: Taxonomy archive page.
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					<?php // if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
 						<?php $i++; ?>
-						<div class="col-sm-6 col-md-4">
+						<div class="col-xs-6 col-md-4 col-lg-3">
 			    			<div class="thumbnail">
 			    				<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
 								<div class="caption">
@@ -63,9 +70,15 @@ Description: Taxonomy archive page.
 								</div>
 							</div>
 						</div>
-					<?php if ($i % 3 == 0) : //adds a clearfix every 3 items. ?>
-							<div class="clearfix visible-md-block visible-lg-block"></div>
-					<?php endif; ?>
+						<?php if ($i % 4 == 0) : //adds a clearfix every 3 items. ?>
+								<div class="clearfix visible-lg-block"></div>
+						<?php endif; ?>
+						<?php if ($i % 3 == 0) : //adds a clearfix every 3 items. ?>
+								<div class="clearfix visible-md-block"></div>
+						<?php endif; ?>
+						<?php if ($i % 2 == 0) : //adds a clearfix every 3 items. ?>
+								<div class="clearfix visible-xs-block"></div>
+						<?php endif; ?>
 				<?php endwhile; else: ?>
 				</div>
 				<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?> 
