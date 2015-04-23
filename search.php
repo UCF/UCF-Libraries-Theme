@@ -19,7 +19,8 @@ $results_count = $wp_query->found_posts;
 </div> <!-- .jumbotron -->
 <div class="container" id="main">
     <div class="row">
-        <div class="col-md-8">
+
+        <div class="col-md-12">
             <?php if (have_posts()) : // Results Found ?>
 
                 <h1><?php _e('Search Results'); ?></h1>
@@ -70,9 +71,6 @@ $results_count = $wp_query->found_posts;
             <?php endif; ?>
 
         </div> <!-- .col-md-8 -->
-
-        <?php get_sidebar(); ?>
-
     </div> <!-- .row -->
 </div><!-- .container -->
 <?php get_footer(); ?>
