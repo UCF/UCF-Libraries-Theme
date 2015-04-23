@@ -17,6 +17,7 @@ Description: Archive staff member page.
 	<div id="content" class="container">
 	<!-- archive-staff.php -->
 		<h1>Staff Directory</h1>
+		<div style="float:right;"><?php get_search_form(); ?></div>
 		<div class="row">
 			<div class="col-sm-3">
 				<?php get_sidebar('staff'); ?>
