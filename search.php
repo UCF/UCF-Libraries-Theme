@@ -1,7 +1,7 @@
 <?php // Get number of results
 $results_count = $wp_query->found_posts;
 ?>
-
+<?php get_header(); ?>
 <div class="jumbotron">
     <div class="container">
         <h1>Search <span class="keyword">&ldquo;<?php the_search_query(); ?>&rdquo;</span></h1>
@@ -75,3 +75,4 @@ $results_count = $wp_query->found_posts;
 
     </div> <!-- .row -->
 </div><!-- .container -->
+<?php get_footer(); ?>
