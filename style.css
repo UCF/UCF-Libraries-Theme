@@ -29,6 +29,8 @@ h1 { margin: 1em 0;}
 dl.menu-list dt { font-size: 2em; font-weight: 300; }
 dl.menu-list dd { margin-bottom: 1.5em; }
 
+.jumbotron h1 { margin: .25em 0; }
+
 /* Footer */
 
 footer {
