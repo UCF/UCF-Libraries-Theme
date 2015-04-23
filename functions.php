@@ -183,24 +183,24 @@ add_shortcode('Website', 'WebsiteTab');
 *
 * Example: [search-scua]
 **/
-function search_scua($form) {
-    $search_terms = htmlspecialchars( $_GET["s"] ); 
-    $form = '
-      <form role="form" id="advanced" name="searchAdv" action="http://cf.catalog.fcla.edu/cf.jsp?ADV=S">
-        <label for="s" class="sr-only">Search</label>
-        <div class="input-group">
-          <input name="ADV" type="hidden" value="S">
-          <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
-          <input id="box" name="t1" class="form-control" type="search" placeholder="Special Collections Search"'.if ( $search_terms !== '' ) { echo ' value="' . $search_terms . '"'; }.'/>
-          <span class="input-group-btn">
-                  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
-              </span>
-        </div>
-      </form>
-    ';
-    return $form;
-}
-add_shortcode('search-scua', 'search_scua');
+// function search_scua($form) {
+//     $search_terms = htmlspecialchars( $_GET["s"] ); 
+//     $form = '
+//       <form role="form" id="advanced" name="searchAdv" action="http://cf.catalog.fcla.edu/cf.jsp?ADV=S">
+//         <label for="s" class="sr-only">Search</label>
+//         <div class="input-group">
+//           <input name="ADV" type="hidden" value="S">
+//           <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
+//           <input id="box" name="t1" class="form-control" type="search" placeholder="Special Collections Search"'.if ( $search_terms !== '' ) { echo ' value="' . $search_terms . '"'; }.'/>
+//           <span class="input-group-btn">
+//                   <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+//               </span>
+//         </div>
+//       </form>
+//     ';
+//     return $form;
+// }
+// add_shortcode('search-scua', 'search_scua');
 
 //Site map shortcode
 function wp_sitemap_page(){
