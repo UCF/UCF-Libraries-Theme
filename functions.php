@@ -103,8 +103,73 @@ function OneSearchform( $form ) {
 
     return $form;
 }
-
 add_shortcode('OneSearch', 'OneSearchform');
+
+/**
+* Articles only search
+* Search ebscohost for just articles
+*
+*[onesearch-articles]
+**/
+function onesearch_articles( $form ){
+  $form = '
+    <form role="form" action="http://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
+      <label for="s" class="sr-only">Search</label>
+      <div class="input-group">
+        <input name="direct" type="hidden" value="true">
+        <input name="site" type="hidden" value="ehost-live">
+        <input name="scope" type="hidden" value="site">
+        <input name="type" type="hidden" value="1">
+        <input name="site" type="hidden" value="eds-live">
+        <input name="authtype" type="hidden" value="ip,guest,cookie,shib">
+        <input name="custid" type="hidden" value="current">
+        <input name="groupid" type="hidden" value="main">
+        <input name="profile" type="hidden" value="edsarticle">
+        <input name="guidedField_3" type="hidden" value=""><fieldset>
+        <input name="doctype" type="hidden" value="160MN">
+        <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" name="bQuery" placeholder="Search Articles" results="5" type="text" x-webkit-speech="">
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div>
+    </form>
+  ';
+  return $form;
+}
+add_shortcode('onesearch-articles', 'onesearch_articles');
+
+/**
+* Book/catalog search
+* Search the catalog
+*
+*[search-catalog]
+**/
+function search_catalog( $form ){
+  $form = '
+    <form role="form" id="searchbox" name="searchBox" action="http://cf.catalog.fcla.edu" class="form-inline">
+      <label for="s" class="sr-only">Search</label>
+      <div class="input-group">
+        <input id="box" type="text" name="st" value="" class="form-control">
+      </div>
+      <div class="input-group">
+        <select title="index" id="catsearchix" name="ix" class="form-control">
+          <option value="kw" selected="">Anywhere</option>
+          <option value="ti">Title</option>
+          <option value="jt">Journal Title</option>
+          <option value="au">Author</option>
+          <option value="su">Subject Heading</option>
+          <option value="nu">ISBN, ISSN, OCLC, etc.</option>
+        </select>
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+        </span>           
+      </div>
+    </form>
+  ';
+  return $form;
+}
+add_shortcode('search-catalog', 'search_catalog');
+
 
 /**
 *Create a jquery tab box for the homepage - ToDo - make this box generic/more streamlined.
