@@ -195,13 +195,17 @@ add_shortcode('search-catalog', 'search_catalog');
 // Homepage Searchbox Shortcode
 function HomepageSearchBox( $atts, $content = null ) {
  // $content = cleanup(str_replace('<br />', '', $content));
+   // extract(shortcode_atts(array(
+   //    'number' => 2,
+   // ), $atts));
+   // $tabs = '';
 
   return '<div id="tabs">
               <ul>
                 <li><a href="#QuickSearch"><span>QuickSearch</span></a></li>
-                <li><a href="#Articles"><span>Articles+</span></a></li>
-                <li><a href="#Books"><span>Books+</span></a></li>
-                <li><a href="#Videos"><span>Videos+</span></a></li>
+                <li><a href="#Articles"><span>Articles</span></a></li>
+                <li><a href="#Books"><span>Books</span></a></li>
+                <li><a href="#Videos"><span>Media</span></a></li>
                 <li><a href="#Website"><span>Website</span></a></li>
               </ul>' . do_shortcode($content) . '
           </div>
