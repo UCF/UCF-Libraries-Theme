@@ -156,6 +156,8 @@ footer ul li a:hover { text-decoration: none;}
 	background-color: #e7e7e7;
 }
 
+textarea { width: 100%;}
+
 /* Image alignment */
 .aligncenter	{ display: block; margin: 0 auto; }
 .alignright		{ float: right; margin: 0 0 1em 1em; }
