@@ -371,17 +371,17 @@ function instruction_calendar($atts) {
       'width' => '100%',
   ), $atts ));
   return '
-        <div class="hidden-md hidden-lg"
+        <div class="hidden-sm hidden-md hidden-lg">
           <div class="youtube-wrapper" style="max-width:'.$width.'; height: 300px;">
             <div class="responsive-container">
              <iframe src="http://api3.libcal.com/embed_mini_calendar.php?mode=month&iid=246&cal_id=1351&l=5&h=500" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>
         </div>
-        <div class="visible-md visible-lg">
+        <div class="visible-sm visible-md visible-lg">
           <div class="youtube-wrapper" style="max-width:'.$width.';">
             <div class="responsive-container">
-             <iframe src="//api3.libcal.com/embed_calendar.php?iid=246&cal_id=1351&w=800&h=600"frameborder="0" scrolling="auto"></iframe>
+             <iframe src="//api3.libcal.com/embed_calendar.php?mode=month&iid=246&cal_id=1351&w=800&h=600"frameborder="0" scrolling="auto"></iframe>
             </div>
           </div>
         </div>
