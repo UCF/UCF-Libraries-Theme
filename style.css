@@ -296,13 +296,18 @@ footer ul li a:hover { text-decoration: none;}
 .dl-horizontal.homepage dd {
 	margin-left: 150px;
 }
+
+
 /* Homepage Service Bar */
 .homepage-services {
-	font-size: 1em;
+	font-size: 1.75em;
 }
 .homepage-services a {
 	display: block;
+	width: 13em;
+	margin: 0 auto;
 }
+
 .homepage-services a:hover {
 	text-decoration: none;
 }
@@ -319,13 +324,19 @@ footer ul li a:hover { text-decoration: none;}
 	.homepage-services {
 		font-size: 1.8em;
 	}
+	.homepage-services a {
+		width: auto;
+		margin: 0;
+	}
 	.homepage-services>div {
 		text-align: center;
 	}
 	.homepage-services span {
 		text-align: center;
 	}
-
+	.homepage-services .h-s-text {
+		display: block;
+	} 
 }
 
 /* Medium devices (desktops, 992px and up) */
