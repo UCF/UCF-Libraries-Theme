@@ -286,6 +286,13 @@ footer ul li a:hover { text-decoration: none;}
 	padding: 2em 0;
 }
 
+.button-wrapper {
+	margin: 1em 0;
+}
+.button-wrapper .btn {
+	margin: 1em;
+}
+
 .dl-horizontal.homepage {
 	width: 20em;
 	margin: 0 auto;
