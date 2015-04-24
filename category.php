@@ -8,6 +8,8 @@
 				<?php get_sidebar(); ?>
 			</div>
 			<div class="col-sm-9">
+				<h2 class="subpage-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'category' ) ); echo $term->name; ?></h2>
+
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 				<?php	
 					$categories = get_the_category();
