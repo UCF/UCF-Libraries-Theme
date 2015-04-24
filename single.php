@@ -21,7 +21,7 @@
 		        ?>
 				<article>
 					<header>
-	                  <h3><?php echo get_the_title(); ?></h3>
+	                  <h2><?php echo get_the_title(); ?></h2>
 	                  <span class="news-post-category"><?php echo trim($output, $separator).' - '.get_the_time('F jS, Y'); ?></span>
 					</header>
 					<p><?php the_post_thumbnail( ); ?></p>
