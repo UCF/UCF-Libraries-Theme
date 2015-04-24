@@ -314,6 +314,9 @@ footer ul li a:hover { text-decoration: none;}
 .homepage-services span.fa-lg {
 	font-size: 2em;
 }
+.homepage-services .h-s-text {
+	padding-left: .5em;
+}
 .homepage-services>div {
 	margin: 1em 0;
 }
