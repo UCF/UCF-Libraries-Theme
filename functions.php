@@ -356,10 +356,27 @@ function youtube_video($atts) {
              <iframe src="http://youtube.com/embed/'.$id.'?list='.$list.'" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>';
-
-  return '<span class="glyphicon glyphicon-'.$name.'"></span>';
 }
 add_shortcode('youtube', 'youtube_video');
+
+/**
+*Libcal instruction calendar shortcode
+*responsive mini calendar.
+*
+*Example:
+*[instruction-calendar width="500px"]
+**/
+function instruction_calendar($atts) {
+  extract(shortcode_atts( array(
+      'width' => '100%',
+  ), $atts ));
+  return '<div class="youtube-wrapper" style="max-width:'.$width.';">
+            <div class="responsive-container">
+             <iframe src="http://api3.libcal.com/embed_mini_calendar.php?mode=month&iid=246&cal_id=1351&l=5&h=500" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>';
+}
+add_shortcode('instruction-calendar', 'instruction_calendar');
 
 /**
 *
