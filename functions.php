@@ -90,7 +90,7 @@ add_action( 'widgets_init', 'theme_slug_widgets_init' );
 **/
 
 function search_website( $form ) {
-  $form = get_search_form();
+  $form = get_search_form(false);
   return $form;
 }
 add_shortcode('search-website', 'search_website');
