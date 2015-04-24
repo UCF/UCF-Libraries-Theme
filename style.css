@@ -311,7 +311,7 @@ footer ul li a:hover { text-decoration: none;}
 .homepage-services a:hover {
 	text-decoration: none;
 }
-.homepage-services span {
+.homepage-services span.fa-lg {
 	font-size: 2em;
 }
 .homepage-services>div {
