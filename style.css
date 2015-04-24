@@ -340,6 +340,10 @@ footer ul li a:hover { text-decoration: none;}
 	.homepage-services .h-s-text {
 		display: block;
 	} 
+	.homepage-services .h-s-text {
+		padding-left: 0;
+	}
+
 }
 
 /* Medium devices (desktops, 992px and up) */
