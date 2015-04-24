@@ -250,6 +250,12 @@ footer ul li a:hover { text-decoration: none;}
   text-decoration: none;
 }
 
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+   font-family: inherit; 
+   font-size: 14px;
+}
+
+
 .textbox { width: 75%; }
 
 /*Homepage*/
