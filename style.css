@@ -296,6 +296,55 @@ footer ul li a:hover { text-decoration: none;}
 .dl-horizontal.homepage dd {
 	margin-left: 150px;
 }
+/* Homepage Service Bar */
+.homepage-services {
+	font-size: 1em;
+}
+.homepage-services a {
+	display: block;
+}
+.homepage-services a:hover {
+	text-decoration: none;
+}
+.homepage-services span {
+	font-size: 2em;
+}
+.homepage-services>div {
+	margin: 2em 0;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { 	
+
+	.homepage-services {
+		font-size: 1.8em;
+	}
+	.homepage-services>div {
+		text-align: center;
+	}
+	.homepage-services span {
+		text-align: center;
+	}
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+	.homepage-services {
+		font-size: 2.5em;
+	}
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+	.homepage-services {
+		font-size: 3em;
+	}
+}
+
+
 
 /*Homepage News*/
 .news-post {
