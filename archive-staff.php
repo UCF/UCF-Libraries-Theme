@@ -67,10 +67,10 @@ Description: Archive staff member page.
 							</div>
 						</div>
 						<?php if ($i % 3 == 0) : //adds a clearfix every 3 items. ?>
-								<div class="clearfix visible-md-block"></div>
+								<div class="clearfix visible-md-block visible-lg-block"></div>
 						<?php endif; ?>
-						<?php if ($i % 2 == 0) : //adds a clearfix every 3 items. ?>
-								<div class="clearfix visible-xs-block"></div>
+						<?php if ($i % 2 == 0) : //adds a clearfix every 2 items. ?>
+								<div class="clearfix visible-sm-block"></div>
 						<?php endif; ?>
 				<?php endwhile; else: ?>
 				</div>
