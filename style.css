@@ -355,13 +355,6 @@ footer ul li a:hover { text-decoration: none;}
 
 }
 
-/* Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-	.homepage-services {
-		font-size: 3em;
-	}
-}
-
 
 
 /*Homepage News*/
