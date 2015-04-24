@@ -82,8 +82,26 @@ function theme_slug_widgets_init() {
 }
 add_action( 'widgets_init', 'theme_slug_widgets_init' );
 
+/**
+* Website search
+* Search the wordpress website
+*
+*[search-website]
+**/
 
-//Onesearch form shortcode
+function search_website( $form ) {
+  $form = get_search_form();
+  return $form;
+}
+add_shortcode('search-website', 'search_website');
+
+
+/**
+* OneSearch search
+* Search OneSearch
+*
+*[OneSearch]
+**/
 function OneSearchform( $form ) {
 
     $form = '
