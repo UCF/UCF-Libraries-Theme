@@ -351,7 +351,7 @@ function youtube_video($atts) {
       'width' => '100%',
       'list' => ''
   ), $atts ));
-  return '<div class="youtube-wrapper" style="max-width:'.$width.';">
+  return '<div class="responsive-wrapper" style="max-width:'.$width.';">
             <div class="responsive-container">
              <iframe src="http://youtube.com/embed/'.$id.'?list='.$list.'" frameborder="0" allowfullscreen></iframe>
             </div>
@@ -372,14 +372,14 @@ function instruction_calendar($atts) {
   ), $atts ));
   return '
         <div class="hidden-sm hidden-md hidden-lg">
-          <div class="youtube-wrapper" style="max-width:'.$width.'; height: 300px;">
+          <div class="responsive-wrapper" style="max-width:'.$width.'; height: 300px;">
             <div class="responsive-container">
              <iframe src="http://api3.libcal.com/embed_mini_calendar.php?mode=month&iid=246&cal_id=1351&l=5&h=500" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>
         </div>
         <div class="visible-sm visible-md visible-lg">
-          <div class="youtube-wrapper" style="max-width:'.$width.';">
+          <div class="responsive-wrapper" style="max-width:'.$width.';">
             <div class="responsive-container">
              <iframe src="//api3.libcal.com/embed_calendar.php?mode=month&iid=246&cal_id=1351&w=800&h=600"frameborder="0" scrolling="auto"></iframe>
             </div>
