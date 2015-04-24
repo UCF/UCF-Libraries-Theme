@@ -2,7 +2,7 @@
 <div id="main">
 	<div id="content" class="container">
 	<!-- single.php -->
-		<h1><a href="<?php echo get_post_type_archive_link(); ?>"</a>News &amp; Blog</a></h1>
+		<h1><a href="<?php echo get_post_type_archive_link(); ?>">News &amp; Blog</a></h1>
 		<div class="row">
 			<div class="col-sm-3">
 				<?php get_sidebar(); ?>
