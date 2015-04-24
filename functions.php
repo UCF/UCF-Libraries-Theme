@@ -106,7 +106,7 @@ function OneSearchform( $form ) {
 
     $form = '
   <form role="search" action="http://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
-      <label class="screen-reader-text" for="s">Search All</label>
+      <label class="sr-only" for="s">Search All</label>
         <div class="input-group">
         <input name="direct" type="hidden" value="true">
         <input name="site" type="hidden" value="ehost-live">
@@ -118,7 +118,7 @@ function OneSearchform( $form ) {
         <input name="groupid" type="hidden" value="main">
         <input name="profile" type="hidden" value="eds">
         <input name="guidedField_3" type="hidden" value="">
-      <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search All" results="5" size="60" type="text" x-webkit-speech="" >
+      <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search" results="5" size="60" type="text" x-webkit-speech="" >
         <span class="input-group-btn">
           <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
         </span>
@@ -174,7 +174,7 @@ function search_catalog( $form ){
     <form role="form" id="searchbox" name="searchBox" action="http://cf.catalog.fcla.edu" class="form-inline">
       <label for="s" class="sr-only">Search catalog</label>
       <div class="input-group">
-        <input id="box" type="text" name="st" value="" class="form-control">
+        <input id="box" type="text" name="st" value="" placeholder="Search Books" class="form-control">
       </div>
       <div class="input-group">
         <select title="index" id="catsearchix" name="ix" class="form-control">
