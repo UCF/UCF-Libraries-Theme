@@ -370,14 +370,24 @@ function instruction_calendar($atts) {
   extract(shortcode_atts( array(
       'width' => '100%',
   ), $atts ));
-  return '<div class="youtube-wrapper" style="max-width:'.$width.';">
+  return '
+        <div class="hidden-md hidden-lg"
+          <div class="youtube-wrapper" style="max-width:'.$width.'; height: 300px;">
             <div class="responsive-container">
              <iframe src="http://api3.libcal.com/embed_mini_calendar.php?mode=month&iid=246&cal_id=1351&l=5&h=500" frameborder="0" allowfullscreen></iframe>
             </div>
-          </div>';
+          </div>
+        </div>
+        <div class="visible-md visible-lg">
+          <div class="youtube-wrapper" style="max-width:'.$width.';">
+            <div class="responsive-container">
+             <iframe src="//api3.libcal.com/embed_calendar.php?iid=246&cal_id=1351&w=800&h=600"frameborder="0" scrolling="auto"></iframe>
+            </div>
+          </div>
+        </div>
+  ';
 }
 add_shortcode('instruction-calendar', 'instruction_calendar');
-
 /**
 *
 * Hours Weekly Calendar Shortcode
