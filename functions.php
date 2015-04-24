@@ -56,11 +56,13 @@ function wpt_register_css() {
     wp_register_style( 'normalize', get_stylesheet_directory_uri() . '/css/normalize.css', array(), '1', 'all' );
     wp_register_style( 'jquery.ui.css', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css");
     wp_register_style( 'bootstrap.min', get_template_directory_uri() . '/css/bootstrap.min.css' );
+    wp_register_style( 'font-awesome.min.css', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
     wp_register_style( 'style', get_stylesheet_directory_uri() . '/style.css', array(), '1', 'all' );
 
     wp_enqueue_style( 'normalize');
     wp_enqueue_style( 'jquery.ui.css');
     wp_enqueue_style( 'bootstrap.min' );
+    wp_enqueue_style( 'font-awesome.min.css' );    
     wp_enqueue_style( 'style');
 }
 add_action( 'wp_enqueue_scripts', 'wpt_register_css' );
