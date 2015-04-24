@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 <div id="main">
 	<div id="content" class="container">
-	<!-- home.php -->
-		<h1><a href="<?php echo get_post_type_archive_link( 'post' ); ?>"</a>News &amp; Blog</a></h1>
+	<!-- single.php -->
+		<h1><a href="<?php echo get_post_type_archive_link(); ?>"</a>News &amp; Blog</a></h1>
 		<div class="row">
 			<div class="col-sm-3">
 				<?php get_sidebar(); ?>
