@@ -252,7 +252,7 @@ footer ul li a:hover { text-decoration: none;}
 
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
    font-family: inherit; 
-   font-size: 14px;
+  font-size: 20px;
 }
 
 
