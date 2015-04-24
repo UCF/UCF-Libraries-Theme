@@ -2,7 +2,7 @@
 <div id="main">
 	<div id="content" class="container">
 	<!-- category.php -->
-		<h1>News &amp; Blog</h1>
+		<h1><a href="http://librarycmsdev.smca.ucf.edu/blog/">News &amp; Blog</a></h1>
 		<div class="row">
 			<div class="col-sm-3">
 				<?php get_sidebar(); ?>
