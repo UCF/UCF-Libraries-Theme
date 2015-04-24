@@ -102,7 +102,7 @@ function OneSearchform( $form ) {
         <input name="guidedField_3" type="hidden" value="">
       <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search All" results="5" size="60" type="text" x-webkit-speech="" >
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
         </span>
       </div>
     </form>
@@ -136,7 +136,7 @@ function onesearch_articles( $form ){
         <input name="doctype" type="hidden" value="160MN">
         <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" name="bQuery" placeholder="Search Articles" results="5" type="text" x-webkit-speech="">
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
         </span>
       </div>
     </form>
@@ -168,7 +168,7 @@ function search_catalog( $form ){
           <option value="nu">ISBN, ISSN, OCLC, etc.</option>
         </select>
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
         </span>           
       </div>
     </form>
