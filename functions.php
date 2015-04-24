@@ -86,22 +86,27 @@ add_action( 'widgets_init', 'theme_slug_widgets_init' );
 //Onesearch form shortcode
 function OneSearchform( $form ) {
 
-    $form = '<form role="search" action="http://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
-    <div><label class="screen-reader-text" for="s">' . __('Search for:') . '</label>
-      <input name="direct" type="hidden" value="true">
-      <input name="site" type="hidden" value="ehost-live">
-      <input name="scope" type="hidden" value="site">
-      <input name="type" type="hidden" value="1">
-      <input name="site" type="hidden" value="eds-live">
-      <input name="authtype" type="hidden" value="ip,guest,cookie,shib">
-      <input name="custid" type="hidden" value="current">
-      <input name="groupid" type="hidden" value="main">
-      <input name="profile" type="hidden" value="eds">
-      <input name="guidedField_3" type="hidden" value=""><fieldset>
-    <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="textbox" name="bQuery" placeholder="Search All" results="5" size="60" type="text" x-webkit-speech="" >
-    <button id="search-button" type="submit"><span class="glyphicon glyphicon-search">&nbsp;</span><span class="btn_text">Search</span></button>
-    </div>
-    </form>';
+    $form = '
+  <form role="search" action="http://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
+      <label class="screen-reader-text" for="s">Search All</label>
+        <div class="input-group">
+        <input name="direct" type="hidden" value="true">
+        <input name="site" type="hidden" value="ehost-live">
+        <input name="scope" type="hidden" value="site">
+        <input name="type" type="hidden" value="1">
+        <input name="site" type="hidden" value="eds-live">
+        <input name="authtype" type="hidden" value="ip,guest,cookie,shib">
+        <input name="custid" type="hidden" value="current">
+        <input name="groupid" type="hidden" value="main">
+        <input name="profile" type="hidden" value="eds">
+        <input name="guidedField_3" type="hidden" value="">
+      <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search All" results="5" size="60" type="text" x-webkit-speech="" >
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div>
+    </form>
+';
 
     return $form;
 }
@@ -127,7 +132,7 @@ function onesearch_articles( $form ){
         <input name="custid" type="hidden" value="current">
         <input name="groupid" type="hidden" value="main">
         <input name="profile" type="hidden" value="edsarticle">
-        <input name="guidedField_3" type="hidden" value=""><fieldset>
+        <input name="guidedField_3" type="hidden" value="">
         <input name="doctype" type="hidden" value="160MN">
         <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" name="bQuery" placeholder="Search Articles" results="5" type="text" x-webkit-speech="">
         <span class="input-group-btn">
@@ -149,7 +154,7 @@ add_shortcode('onesearch-articles', 'onesearch_articles');
 function search_catalog( $form ){
   $form = '
     <form role="form" id="searchbox" name="searchBox" action="http://cf.catalog.fcla.edu" class="form-inline">
-      <label for="s" class="sr-only">Search</label>
+      <label for="s" class="sr-only">Search catalog</label>
       <div class="input-group">
         <input id="box" type="text" name="st" value="" class="form-control">
       </div>
