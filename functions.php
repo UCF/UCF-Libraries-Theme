@@ -1,10 +1,10 @@
 <?php
     require_once('wp_bootstrap_navwalker.php');
-    
+
 //add custom php functions here.
 
 //Output a staff name in Firstname Lastname format.
-function friendly_name() { 
+function friendly_name() {
   $namearray = explode(", ", get_the_title());
   echo $namearray[1]." ".$namearray[0];
 }
@@ -62,7 +62,7 @@ function wpt_register_css() {
     wp_enqueue_style( 'normalize');
     wp_enqueue_style( 'jquery.ui.css');
     wp_enqueue_style( 'bootstrap.min' );
-    wp_enqueue_style( 'font-awesome.min.css' );    
+    wp_enqueue_style( 'font-awesome.min.css' );
     wp_enqueue_style( 'style');
 }
 add_action( 'wp_enqueue_scripts', 'wpt_register_css' );
@@ -187,7 +187,7 @@ function search_catalog( $form ){
         </select>
         <span class="input-group-btn">
           <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-        </span>           
+        </span>
       </div>
     </form>
   ';
@@ -241,31 +241,31 @@ function HomepageSearchBox( $atts, $content = null ) {
 add_shortcode('HomepageSearch', 'HomepageSearchBox');
 
 
-// QuickSearch Tab 
+// QuickSearch Tab
 function QuickSearchTab( $atts, $content = null ) {
   return '<div id="QuickSearch">'.do_shortcode($content).'</div>';
 }
 add_shortcode('QuickSearch', 'QuickSearchTab');
 
-// Articles Tab 
+// Articles Tab
 function ArticlesTab( $atts, $content = null ) {
   return '<div id="Articles">'.do_shortcode($content).'</div>';
 }
 add_shortcode('Articles', 'ArticlesTab');
 
-// Books Tab 
+// Books Tab
 function BooksTab( $atts, $content = null ) {
   return '<div id="Books">'.do_shortcode($content).'</div>';
 }
 add_shortcode('Books', 'BooksTab');
 
-// Videos Tab 
+// Videos Tab
 function VideosTab( $atts, $content = null ) {
   return '<div id="Videos">'.do_shortcode($content).'</div>';
 }
 add_shortcode('Videos', 'VideosTab');
 
-// Website Tab 
+// Website Tab
 function WebsiteTab( $atts, $content = null ) {
   return '<div id="Website">'.do_shortcode($content).'</div>';
 }
@@ -320,7 +320,7 @@ function recent_posts_function($atts){
             $output .= '<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '">'.$category->cat_name.'</a>'.$separator;
           }
         }
-         $return_string .= 
+         $return_string .=
          '<article>
          <div class="news-post">
             <div class="news-post-image"><a href="'.get_permalink().'">'.get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail')).'</a></div>
@@ -347,7 +347,7 @@ add_shortcode('recent-posts', 'recent_posts_function');
 
 /**
 *Glyphicons
-*Create a glyphicon anywhere on the page. 
+*Create a glyphicon anywhere on the page.
 *
 *Example:
 *[icon name="search"]
@@ -375,7 +375,7 @@ function youtube_video($atts) {
       'list' => ''
   ), $atts ));
   return '<div class="responsive-wrapper" style="max-width:'.$width.';">
-            <div class="responsive-container">
+            <div class="responsive-container youtube">
              <iframe src="http://youtube.com/embed/'.$id.'?list='.$list.'" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>';
@@ -421,12 +421,12 @@ function hours_week_calendar($atts) {
     'id' => '0',
   ), $atts ));
   return '
-  <script src="//api3.libcal.com/js/hours_grid.js?002"></script> 
+  <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
 
-  <div id="s-lc-whw'.$id.'"></div> 
+  <div id="s-lc-whw'.$id.'"></div>
   <script>
-  $(function(){ 
-  var week'.$id.' = new $.LibCalWeeklyGrid( $("#s-lc-whw'.$id.'"), { iid: 246, lid: '.$id.',  weeks: 52 }); 
+  $(function(){
+  var week'.$id.' = new $.LibCalWeeklyGrid( $("#s-lc-whw'.$id.'"), { iid: 246, lid: '.$id.',  weeks: 52 });
   });
   </script>';
 }
@@ -482,7 +482,7 @@ function library_events($atts) {
         <span class="eventDate"><ul><li class="eventMonth">'.$month.'</li><li class="eventDay">'.$day.'</li><li class="eventYear">'.$year.'</li><li class="eventDate">'.$event->starts.'</li></ul></span>
         <ul class="eventInfo">
           <li class="eventTitle"><a href="'.$event->url.'" title="'.$event->title.'" target="_blank">'.$event->title.'</a></li>
-          <li class="eventTime"><span class="glyphicon glyphicon-time"></span> '.$start_time.' - '.$end_time.'</li>         
+          <li class="eventTime"><span class="glyphicon glyphicon-time"></span> '.$start_time.' - '.$end_time.'</li>
           <li class="eventLocation"><span class="glyphicon glyphicon-map-marker"></span> <a href="'.$event->location_url.'">'.$event->location.'</a></li>
         </ul>
       </article>';
@@ -620,12 +620,12 @@ function group_init() {
 
 
 //Adding in Featured image feature
-if ( function_exists( 'add_theme_support' ) ) { 
+if ( function_exists( 'add_theme_support' ) ) {
   add_theme_support( 'post-thumbnails' );
   set_post_thumbnail_size( 150, 150, true ); // default Post Thumbnail dimensions (cropped)
 
   // additional image sizes
-  // delete the next line if you do not need additional image sizes 
+  // delete the next line if you do not need additional image sizes
   add_image_size( 'staff-thumbnail', 300, 9999 ); //300 pixels wide (and unlimited height)
   add_image_size( 'homepage-thumbnail', 100, 100, true );
 

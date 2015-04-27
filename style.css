@@ -4,7 +4,7 @@ Theme URI: http://librarycmsdev.smca.ucf.edu/
 Author: Bobby Ciullo
 Author URI: http://librarycmsdev.smca.ucf.edu/
 Description: This is the theme of University of Central Florida Libraries.
-Text Domain: UCFLibraries 
+Text Domain: UCFLibraries
 Version: 0.0.1;
 
 */
@@ -182,6 +182,8 @@ footer ul li a:hover { text-decoration: none;}
 /*Youtube iframe responsive wrapper*/
 .responsive-container { position: relative; padding-bottom: 100%; padding-top: 30px; height: 0; overflow: hidden; }
 .responsive-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.responsive-container.youtube { padding-bottom: 57%; }
+
 .responsive-wrapper { margin: 0 auto 1em; }
 
 /* Single Person page */
@@ -253,7 +255,7 @@ footer ul li a:hover { text-decoration: none;}
 }
 
 .ui-widget button {
-   font-family: inherit; 
+   font-family: inherit;
   font-size: 20px;
 }
 
@@ -280,7 +282,7 @@ footer ul li a:hover { text-decoration: none;}
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;   
+  z-index: -1;
 }
 
 .background-color-gray{
@@ -337,7 +339,7 @@ footer ul li a:hover { text-decoration: none;}
 }
 
 /* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) { 	
+@media (min-width: 768px) {
 
 	.homepage-services {
 		font-size: 1.8em;
@@ -354,7 +356,7 @@ footer ul li a:hover { text-decoration: none;}
 	}
 	.homepage-services .h-s-text {
 		display: block;
-	} 
+	}
 	.homepage-services .h-s-text {
 		padding-left: 0;
 	}
@@ -374,7 +376,7 @@ footer ul li a:hover { text-decoration: none;}
 
 /*Homepage News*/
 .news-post {
-	display:table; 
+	display:table;
 	background-color: #fff;
 	border-radius: 5px;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -596,5 +598,5 @@ footer ul li a:hover { text-decoration: none;}
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;   
+  z-index: -1;
 }*/
