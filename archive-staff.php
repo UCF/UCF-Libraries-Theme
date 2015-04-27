@@ -41,7 +41,7 @@ Description: Archive staff member page.
 									<h3><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h3>
 									<?php if(get_post_meta($post->ID, 'title', true) ||
 										 get_post_meta($post->ID, 'room', true) ||
-										 get_post_meta($post->ID, 'phone', true) || 
+										 get_post_meta($post->ID, 'phone', true) ||
 										 get_post_meta($post->ID, 'email', true)
 									): ?>
 
@@ -55,7 +55,7 @@ Description: Archive staff member page.
 										<?php endif; ?>
 
 										<?php if(get_post_meta($post->ID, 'phone', true)): ?>
-										<li><span class="glyphicon glyphicon-phone"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
+										<li><span class="glyphicon glyphicon-phone-alt"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
 										<?php endif; ?>
 
 										<?php if(get_post_meta($post->ID, 'email', true)): ?>
@@ -74,7 +74,7 @@ Description: Archive staff member page.
 						<?php endif; ?>
 				<?php endwhile; else: ?>
 				</div>
-				<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?> 
+				<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?>
 				<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 			</div>
 		</div>
