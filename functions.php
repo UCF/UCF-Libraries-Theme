@@ -9,6 +9,12 @@ function friendly_name() {
   echo $namearray[1]." ".$namearray[0];
 }
 
+function debug(){
+  return ($_SERVER['SERVER_PORT']);
+}
+add_shortcode('debug', 'debug');
+
+
 function taxonomy_term_list( $taxonomy ) {
   $term_args = array(
     'hide_empty' => false,
