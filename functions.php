@@ -42,12 +42,12 @@ add_action( 'init', 'register_my_menus' );
 
 
 //This section below loads the javascript and css used throughout the entire site
-
+//. ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . 
 
 function wpt_register_js() {
     wp_deregister_script('jquery');
-    wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js", false, null);
-    wp_register_script('jquery.ui', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js", false, null);
+    wp_register_script('jquery', "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js", false, null);
+    wp_register_script('jquery.ui', "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js", false, null);
     wp_register_script('jquery.bootstrap.min', get_template_directory_uri() . '/js/bootstrap.min.js', 'jquery');
     wp_register_script('jquery.scripts', get_template_directory_uri(). '/js/scripts.js', 'jquery');
 
@@ -60,9 +60,9 @@ add_action( 'init', 'wpt_register_js' );
 
 function wpt_register_css() {
     wp_register_style( 'normalize', get_stylesheet_directory_uri() . '/css/normalize.css', array(), '1', 'all' );
-    wp_register_style( 'jquery.ui.css', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css");
+    wp_register_style( 'jquery.ui.css', "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css");
     wp_register_style( 'bootstrap.min', get_template_directory_uri() . '/css/bootstrap.min.css' );
-    wp_register_style( 'font-awesome.min.css', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+    wp_register_style( 'font-awesome.min.css', "https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
     wp_register_style( 'style', get_stylesheet_directory_uri() . '/style.css', array(), '1', 'all' );
 
     wp_enqueue_style( 'normalize');
