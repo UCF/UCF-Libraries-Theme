@@ -427,7 +427,7 @@ function hours_week_calendar($atts) {
     'id' => '0',
   ), $atts ));
   return '
-  <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
+  <script src="http://api3.libcal.com/js/hours_grid.js?002"></script>
 
   <div id="s-lc-whw'.$id.'"></div>
   <script>
@@ -449,7 +449,7 @@ add_shortcode('hours-calendar', 'hours_week_calendar');
 
 function hours_today( $string ) {
 
-  $string = file_get_contents('//api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
+  $string = file_get_contents('http://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
   $json_o = json_decode($string);
   $hours_list = '<dl class="dl-horizontal homepage">';
   foreach ($json_o->locations as $location) {
