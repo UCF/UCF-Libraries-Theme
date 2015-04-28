@@ -382,7 +382,7 @@ function youtube_video($atts) {
   ), $atts ));
   return '<div class="responsive-wrapper" style="max-width:'.$width.';">
             <div class="responsive-container youtube">
-             <iframe src="http://youtube.com/embed/'.$id.'?list='.$list.'" frameborder="0" allowfullscreen></iframe>
+             <iframe src="https://youtube.com/embed/'.$id.'?list='.$list.'" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>';
 }
@@ -403,14 +403,14 @@ function instruction_calendar($atts) {
         <div class="hidden-sm hidden-md hidden-lg">
           <div class="responsive-wrapper" style="max-width:'.$width.'; height: 300px;">
             <div class="responsive-container">
-             <iframe src="http://api3.libcal.com/embed_mini_calendar.php?mode=month&iid=246&cal_id=1351&l=5&h=500" frameborder="0" allowfullscreen></iframe>
+             <iframe src="https://api3.libcal.com/embed_mini_calendar.php?mode=month&iid=246&cal_id=1351&l=5&h=500" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>
         </div>
         <div class="visible-sm visible-md visible-lg">
           <div class="responsive-wrapper" style="max-width:'.$width.';">
             <div class="responsive-container">
-             <iframe src="//api3.libcal.com/embed_calendar.php?mode=month&iid=246&cal_id=1351&w=800&h=600"frameborder="0" scrolling="auto"></iframe>
+             <iframe src="https://api3.libcal.com/embed_calendar.php?mode=month&iid=246&cal_id=1351&w=800&h=600"frameborder="0" scrolling="auto"></iframe>
             </div>
           </div>
         </div>
@@ -427,7 +427,7 @@ function hours_week_calendar($atts) {
     'id' => '0',
   ), $atts ));
   return '
-  <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
+  <script src="https://api3.libcal.com/js/hours_grid.js?002"></script>
 
   <div id="s-lc-whw'.$id.'"></div>
   <script>
@@ -449,7 +449,7 @@ add_shortcode('hours-calendar', 'hours_week_calendar');
 
 function hours_today( $string ) {
 
-  $string = file_get_contents('http://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
+  $string = file_get_contents('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
   $json_o = json_decode($string);
   $hours_list = '<dl class="dl-horizontal homepage">';
   foreach ($json_o->locations as $location) {
@@ -472,7 +472,7 @@ function library_events($atts) {
    extract(shortcode_atts(array(
       'number' => '4',
    ), $atts));
-  $string = file_get_contents('http://events.ucf.edu/calendar/2084/ucf-libraries-events/upcoming/feed.json');
+  $string = file_get_contents('https://events.ucf.edu/calendar/2084/ucf-libraries-events/upcoming/feed.json');
   $json_o = json_decode($string);
   $events_list = '';
   $i = 0;
