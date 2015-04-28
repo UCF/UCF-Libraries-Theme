@@ -111,7 +111,7 @@ add_shortcode('search-website', 'search_website');
 function OneSearchform( $form ) {
 
     $form = '
-  <form role="search" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
+  <form role="search" action="http://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
       <label class="sr-only" for="s">Search All</label>
         <div class="input-group">
         <input name="direct" type="hidden" value="true">
@@ -144,7 +144,7 @@ add_shortcode('OneSearch', 'OneSearchform');
 **/
 function onesearch_articles( $form ){
   $form = '
-    <form role="form" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
+    <form role="form" action="http://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
       <label for="s" class="sr-only">Search</label>
       <div class="input-group">
         <input name="direct" type="hidden" value="true">
@@ -177,7 +177,7 @@ add_shortcode('onesearch-articles', 'onesearch_articles');
 **/
 function search_catalog( $form ){
   $form = '
-    <form role="form" id="searchbox" name="searchBox" action="https://cf.catalog.fcla.edu" class="form-inline">
+    <form role="form" id="searchbox" name="searchBox" action="http://cf.catalog.fcla.edu" class="form-inline">
       <label for="s" class="sr-only">Search catalog</label>
       <div class="input-group">
         <input id="box" type="text" name="st" value="" placeholder="Search Books" class="form-control">
@@ -285,7 +285,7 @@ add_shortcode('Website', 'WebsiteTab');
 **/
 function search_scua($form) {
     $form = '
-      <form role="form" id="advanced" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp?ADV=S">
+      <form role="form" id="advanced" name="searchAdv" action="http://cf.catalog.fcla.edu/cf.jsp?ADV=S">
         <label for="s" class="sr-only">Search</label>
         <div class="input-group">
           <input name="ADV" type="hidden" value="S">
@@ -382,7 +382,7 @@ function youtube_video($atts) {
   ), $atts ));
   return '<div class="responsive-wrapper" style="max-width:'.$width.';">
             <div class="responsive-container youtube">
-             <iframe src="https://youtube.com/embed/'.$id.'?list='.$list.'" frameborder="0" allowfullscreen></iframe>
+             <iframe src="http://youtube.com/embed/'.$id.'?list='.$list.'" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>';
 }
@@ -403,14 +403,14 @@ function instruction_calendar($atts) {
         <div class="hidden-sm hidden-md hidden-lg">
           <div class="responsive-wrapper" style="max-width:'.$width.'; height: 300px;">
             <div class="responsive-container">
-             <iframe src="https://api3.libcal.com/embed_mini_calendar.php?mode=month&iid=246&cal_id=1351&l=5&h=500" frameborder="0" allowfullscreen></iframe>
+             <iframe src="http://api3.libcal.com/embed_mini_calendar.php?mode=month&iid=246&cal_id=1351&l=5&h=500" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>
         </div>
         <div class="visible-sm visible-md visible-lg">
           <div class="responsive-wrapper" style="max-width:'.$width.';">
             <div class="responsive-container">
-             <iframe src="https://api3.libcal.com/embed_calendar.php?mode=month&iid=246&cal_id=1351&w=800&h=600"frameborder="0" scrolling="auto"></iframe>
+             <iframe src="//api3.libcal.com/embed_calendar.php?mode=month&iid=246&cal_id=1351&w=800&h=600"frameborder="0" scrolling="auto"></iframe>
             </div>
           </div>
         </div>
@@ -427,7 +427,7 @@ function hours_week_calendar($atts) {
     'id' => '0',
   ), $atts ));
   return '
-  <script src="https://api3.libcal.com/js/hours_grid.js?002"></script>
+  <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
 
   <div id="s-lc-whw'.$id.'"></div>
   <script>
@@ -449,7 +449,7 @@ add_shortcode('hours-calendar', 'hours_week_calendar');
 
 function hours_today( $string ) {
 
-  $string = file_get_contents('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
+  $string = file_get_contents('http://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
   $json_o = json_decode($string);
   $hours_list = '<dl class="dl-horizontal homepage">';
   foreach ($json_o->locations as $location) {
@@ -472,7 +472,7 @@ function library_events($atts) {
    extract(shortcode_atts(array(
       'number' => '4',
    ), $atts));
-  $string = file_get_contents('https://events.ucf.edu/calendar/2084/ucf-libraries-events/upcoming/feed.json');
+  $string = file_get_contents('http://events.ucf.edu/calendar/2084/ucf-libraries-events/upcoming/feed.json');
   $json_o = json_decode($string);
   $events_list = '';
   $i = 0;
