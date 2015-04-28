@@ -111,7 +111,7 @@ add_shortcode('search-website', 'search_website');
 function OneSearchform( $form ) {
 
     $form = '
-  <form role="search" action="http://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
+  <form role="search" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
       <label class="sr-only" for="s">Search All</label>
         <div class="input-group">
         <input name="direct" type="hidden" value="true">
@@ -144,7 +144,7 @@ add_shortcode('OneSearch', 'OneSearchform');
 **/
 function onesearch_articles( $form ){
   $form = '
-    <form role="form" action="http://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
+    <form role="form" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
       <label for="s" class="sr-only">Search</label>
       <div class="input-group">
         <input name="direct" type="hidden" value="true">
@@ -177,7 +177,7 @@ add_shortcode('onesearch-articles', 'onesearch_articles');
 **/
 function search_catalog( $form ){
   $form = '
-    <form role="form" id="searchbox" name="searchBox" action="http://cf.catalog.fcla.edu" class="form-inline">
+    <form role="form" id="searchbox" name="searchBox" action="https://cf.catalog.fcla.edu" class="form-inline">
       <label for="s" class="sr-only">Search catalog</label>
       <div class="input-group">
         <input id="box" type="text" name="st" value="" placeholder="Search Books" class="form-control">
@@ -285,7 +285,7 @@ add_shortcode('Website', 'WebsiteTab');
 **/
 function search_scua($form) {
     $form = '
-      <form role="form" id="advanced" name="searchAdv" action="http://cf.catalog.fcla.edu/cf.jsp?ADV=S">
+      <form role="form" id="advanced" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp?ADV=S">
         <label for="s" class="sr-only">Search</label>
         <div class="input-group">
           <input name="ADV" type="hidden" value="S">
