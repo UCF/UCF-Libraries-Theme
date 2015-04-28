@@ -472,7 +472,7 @@ function library_events($atts) {
    extract(shortcode_atts(array(
       'number' => '4',
    ), $atts));
-  $string = file_get_contents('//events.ucf.edu/calendar/2084/ucf-libraries-events/upcoming/feed.json');
+  $string = file_get_contents('http://events.ucf.edu/calendar/2084/ucf-libraries-events/upcoming/feed.json');
   $json_o = json_decode($string);
   $events_list = '';
   $i = 0;
