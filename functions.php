@@ -10,7 +10,7 @@ function friendly_name() {
 }
 
 function debug(){
-  return ($_SERVER['SERVER_PORT']);
+  return is_ssl();
 }
 add_shortcode('debug', 'debug');
 
