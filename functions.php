@@ -14,6 +14,54 @@ function debug(){
 }
 add_shortcode('debug', 'debug');
 
+/**
+ * Strings passed to this function will be modified under the assumption that
+ * they were outputted by wordpress' the_output filter.  It checks for a handful
+ * of things like empty, unnecessary, and unclosed tags.
+ *
+ * @return string
+ * @author Jared Lang
+ **/
+function cleanup($content){
+	# Balance auto paragraphs
+	$lines = explode("\n", $content);
+	foreach($lines as $key=>$line){
+		$null = null;
+		$found_closed = preg_match_all('/<\/p>/', $line, $null);
+		$found_opened = preg_match_all('/<p[^>]*>/', $line, $null);
+		
+		$diff = $found_closed - $found_opened;
+		# Balanced tags
+		if ($diff == 0){continue;}
+		
+		# missing closed
+		if ($diff < 0){
+			$lines[$key] = $lines[$key] . str_repeat('</p>', abs($diff));
+		}
+		
+		# missing open
+		if ($diff > 0){
+			$lines[$key] = str_repeat('<p>', abs($diff)) . $lines[$key];
+		}
+	}
+	$content = implode("\n", $lines);
+	
+	#Remove incomplete tags at start and end
+	$content = preg_replace('/^<\/p>[\s]*/i', '', $content);
+	$content = preg_replace('/[\s]*<p>$/i', '', $content);
+	$content = preg_replace('/^<br \/>/i', '', $content);
+	$content = preg_replace('/<br \/>$/i', '', $content);
+
+	#Remove paragraph and linebreak tags wrapped around shortcodes
+	$content = preg_replace('/(<p>|<br \/>)\[/i', '[', $content);
+	$content = preg_replace('/\](<\/p>|<br \/>)/i', ']', $content);
+
+	#Remove empty paragraphs
+	$content = preg_replace('/<p><\/p>/i', '', $content);
+
+	return $content;
+}
+
 
 function taxonomy_term_list( $taxonomy ) {
   $term_args = array(
@@ -388,6 +436,79 @@ function youtube_video($atts) {
 }
 add_shortcode('youtube', 'youtube_video');
 
+/**
+*Bootstrap Tabs Shortcode
+*Create bootstrap tabs with this shortcode
+*
+*[tab id="name" active="active"]
+**/
+function tab_container($atts, $content = null) {
+  extract(shortcode_atts( array(
+      'names' => 'placehold',
+  ), $atts ));
+  $content = cleanup(str_replace('<br />', '', $content));
+  $ids = explode(", ", $names);
+  $i = 0;
+  $output = '
+  	<div role="tabpanel">
+
+  	<!-- Nav tabs -->
+  	<ul class="nav nav-tabs" role="tablist">';
+  foreach($ids as $id) {
+  	$id_name = $id;
+  	if($id == "John C. Hitt") {
+  		$id = 'john-c-hitt';
+  	}
+  	if($i == 0) {
+   	  $output .= '<li role="presentation" class="active"><a href="#'.$id.'" aria-controls="'.$id.'" role="tab" data-toggle="tab">'.$id_name.'</a></li>';
+	} else {
+   	  $output .= '<li role="presentation"><a href="#'.$id.'" aria-controls="'.$id.'" role="tab" data-toggle="tab">'.$id_name.'</a></li>';
+	}
+	++$i;
+  }
+  $output .= '
+   </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">'.do_shortcode($content).'</div></div>';
+  return $output;
+}
+add_shortcode('tab-container', 'tab_container');
+
+function tab_pane($atts, $content = null) {
+  extract(shortcode_atts( array(
+      'id' => 'placeholder',
+      'active' => '',
+  ), $atts ));
+  if($id == "John C. Hitt") {
+  	$id = 'john-c-hitt';
+  }
+  return '<div role="tabpanel" class="tab-pane '.$active.'" id="'.$id.'">'.do_shortcode($content).'</div>';
+}
+add_shortcode('tab-pane', 'tab_pane');
+
+
+
+
+//   <div role="tabpanel">
+
+//   <!-- Nav tabs -->
+//   <ul class="nav nav-tabs" role="tablist">
+//     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+//     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+//     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+//     <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+//   </ul>
+
+//   <!-- Tab panes -->
+//   <div class="tab-content">
+//     <div role="tabpanel" class="tab-pane active" id="home">...</div>
+//     <div role="tabpanel" class="tab-pane" id="profile">...</div>
+//     <div role="tabpanel" class="tab-pane" id="messages">...</div>
+//     <div role="tabpanel" class="tab-pane" id="settings">...</div>
+//   </div>
+
+// </div>
 /**
 *Libcal instruction calendar shortcode
 *responsive mini calendar.
