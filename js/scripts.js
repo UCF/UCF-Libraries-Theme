@@ -67,3 +67,20 @@ $(document).on("hide.bs.collapse show.bs.collapse", ".collapse", function (event
   $(this).prev().find(".glyphicon").toggleClass("glyphicon-plus-sign glyphicon-minus-sign");
 });
 
+
+// Javascript to enable link to tab
+//=================================
+var hash = document.location.hash;
+var prefix = "tab_";
+$(document).ready(function(){
+  if (hash) {
+      $('.nav-tabs a[href='+hash.replace(prefix,"")+']').tab('show');
+  } 
+});
+
+
+// Change hash for page-reload
+$('.nav-tabs a').on('shown', function (e) {
+    window.location.hash = e.target.hash.replace("#", "#" + prefix);
+});
+

@@ -440,7 +440,17 @@ add_shortcode('youtube', 'youtube_video');
 *Bootstrap Tabs Shortcode
 *Create bootstrap tabs with this shortcode
 *
-*[tab id="name" active="active"]
+*[tab-container names="name1, name2, name3"]
+*[tab-pane name="name1"]
+*	Tab content here
+*[/tab-pane]
+*[tab-pane name="name2"]
+*	Tab content here
+*[/tab-pane]
+*[tab-pane name="name3"]
+*	Tab content here
+*[/tab-pane]
+*[/tab-container]
 **/
 function tab_container($atts, $content = null) {
   extract(shortcode_atts( array(
@@ -477,38 +487,17 @@ add_shortcode('tab-container', 'tab_container');
 
 function tab_pane($atts, $content = null) {
   extract(shortcode_atts( array(
-      'id' => 'placeholder',
+      'name' => 'placeholder',
       'active' => '',
   ), $atts ));
-  if($id == "John C. Hitt") {
-  	$id = 'john-c-hitt';
+  if($name == "John C. Hitt") {
+  	$name = 'john-c-hitt';
   }
-  return '<div role="tabpanel" class="tab-pane '.$active.'" id="'.$id.'">'.do_shortcode($content).'</div>';
+  return '<div role="tabpanel" class="tab-pane '.$active.'" id="'.$name.'">'.do_shortcode($content).'</div>';
 }
 add_shortcode('tab-pane', 'tab_pane');
 
 
-
-
-//   <div role="tabpanel">
-
-//   <!-- Nav tabs -->
-//   <ul class="nav nav-tabs" role="tablist">
-//     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-//     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-//     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-//     <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
-//   </ul>
-
-//   <!-- Tab panes -->
-//   <div class="tab-content">
-//     <div role="tabpanel" class="tab-pane active" id="home">...</div>
-//     <div role="tabpanel" class="tab-pane" id="profile">...</div>
-//     <div role="tabpanel" class="tab-pane" id="messages">...</div>
-//     <div role="tabpanel" class="tab-pane" id="settings">...</div>
-//   </div>
-
-// </div>
 /**
 *Libcal instruction calendar shortcode
 *responsive mini calendar.
