@@ -214,6 +214,14 @@ footer ul li a:hover { text-decoration: none;}
 	left: -1.5em;
  	top: 0.2em;
 }
+.caption h3 {
+  background: #222;
+  padding: .25em 0 .25em 1em;
+  margin: -1.25em 0 .5em -1em;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.caption h3 a { color: #fff; }
 .staff-thumbnail { width: 100%; max-width: 300px; height: auto;}
 
 /* jquery ui tabs override */
