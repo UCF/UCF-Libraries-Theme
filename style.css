@@ -32,7 +32,7 @@ h1 { margin: 1em 0;}
   background-color: transparent; 
 }
 
-aside {margin-bottom: 3em}
+aside {margin-bottom: 2em}
 
 dl.menu-list dt { font-size: 2em; font-weight: 300; }
 dl.menu-list dd, dl.list-spaced dd { margin-bottom: 1.5em; }
@@ -251,7 +251,7 @@ footer ul li a:hover { text-decoration: none;}
 }
 
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
-  border: none;
+  /*border: none;*/
   background-color: rgba(0,0,0,0.0);
   font-weight: normal;
   color: #fff;
