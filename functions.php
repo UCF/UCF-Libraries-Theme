@@ -1,5 +1,6 @@
 <?php
     require_once('wp_bootstrap_navwalker.php');
+    require_once('breadcrumbs.php');
 
 //add custom php functions here.
 
@@ -61,7 +62,6 @@ function cleanup($content){
 
 	return $content;
 }
-
 
 function taxonomy_term_list( $taxonomy ) {
   $term_args = array(
@@ -469,9 +469,9 @@ function tab_container($atts, $content = null) {
   	$id = str_replace(' ', '-', $id);
   	$id = str_replace('.', '', $id);
   	if($i == 0) {
-   	  $output .= '<li role="presentation" class="active"><a href="#'.$id.'" aria-controls="'.$id.'" role="tab" data-toggle="tab">'.$id_name.'</a></li>';
+   	  $output .= '<li class="active" role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$id_name.'</a></li>';
 	} else {
-   	  $output .= '<li role="presentation"><a href="#'.$id.'" aria-controls="'.$id.'" role="tab" data-toggle="tab">'.$id_name.'</a></li>';
+   	  $output .= '<li role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$id_name.'</a></li>';
 	}
 	++$i;
   }
@@ -491,9 +491,6 @@ function tab_pane($atts, $content = null) {
   ), $atts ));
   $name = str_replace(' ', '-', $name);
   $name = str_replace('.', '', $name);
-  if($name == "John C. Hitt") {
-  	$name = 'john-c-hitt';
-  }
   return '<div role="tabpanel" class="tab-pane '.$active.'" id="'.$name.'">'.do_shortcode($content).'</div>';
 }
 add_shortcode('tab-pane', 'tab_pane');
