@@ -26,6 +26,11 @@ h1 { margin: 1em 0;}
 /*Misc*/
 .capitalize { text-transform: capitalize;}
 
+.breadcrumb {
+  padding: 8px 0px;
+  margin-top: -2.5em;
+  background-color: transparent; 
+}
 
 dl.menu-list dt { font-size: 2em; font-weight: 300; }
 dl.menu-list dd, dl.list-spaced dd { margin-bottom: 1.5em; }
