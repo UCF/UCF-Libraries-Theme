@@ -466,9 +466,8 @@ function tab_container($atts, $content = null) {
   	<ul class="nav nav-tabs" role="tablist">';
   foreach($ids as $id) {
   	$id_name = $id;
-  	if($id == "John C. Hitt") {
-  		$id = 'john-c-hitt';
-  	}
+  	$id = str_replace(' ', '-', $id);
+  	$id = str_replace('.', '', $id);
   	if($i == 0) {
    	  $output .= '<li role="presentation" class="active"><a href="#'.$id.'" aria-controls="'.$id.'" role="tab" data-toggle="tab">'.$id_name.'</a></li>';
 	} else {
@@ -490,6 +489,8 @@ function tab_pane($atts, $content = null) {
       'name' => 'placeholder',
       'active' => '',
   ), $atts ));
+  $name = str_replace(' ', '-', $name);
+  $name = str_replace('.', '', $name);
   if($name == "John C. Hitt") {
   	$name = 'john-c-hitt';
   }
