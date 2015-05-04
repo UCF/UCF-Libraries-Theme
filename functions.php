@@ -16,6 +16,10 @@ function debug(){
 }
 add_shortcode('debug', 'debug');
 
+//Allow shortcodes in widget text area
+add_filter('widget_text', 'do_shortcode');
+
+
 /**
  * Strings passed to this function will be modified under the assumption that
  * they were outputted by wordpress' the_output filter.  It checks for a handful
