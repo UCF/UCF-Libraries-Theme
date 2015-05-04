@@ -402,7 +402,7 @@ add_shortcode('instruction-calendar', 'instruction_calendar');
 *Example: 
 *[hours-calendar id="0"]
 **/
-function hours_week_calendar($atts) {
+function hours_week_calendar( $atts ) {
   extract(shortcode_atts( array(
     'id' => '0',
   ), $atts ));
@@ -421,24 +421,47 @@ add_shortcode('hours-calendar', 'hours_week_calendar');
 
 /**
 * Homepage Today's Hours Shortcode
-* Create a dl list for the current daily hours.
+* Create a dl list for the current daily hours. Only shows hours for Hitt Rosen and CMC
 *
 *Example:
-*[hours-today]
+*[hours-today-homepage]
 *
 **/
-function hours_today( $string ) {
-
+function hours_today_homepage( $atts ) {
   $string = file_get_contents('http://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
   $json_o = json_decode($string);
   $hours_list = '<dl class="dl-horizontal homepage">';
-  foreach ($json_o->locations as $location) {
-    $hours_list .= '<dt>'.$location->name.'</dt><dd>'.$location->rendered.'</dd>';
+  foreach ($json_o->locations as $location) if ($location->lid == '1206' || $location->lid == '1209' || $location->lid == '1211') {
+      $hours_list .= '<dt>'.$location->name.'</dt><dd>'.$location->rendered.'</dd>';
   }
   $hours_list .= '</dl>';
   return $hours_list;
 }
-add_shortcode('hours-today', 'hours_today');
+add_shortcode('hours-today-homepage', 'hours_today_homepage');
+
+
+/**
+* Single Department Today's Hours
+* Display the hours for a single department
+*
+*Example:
+*[hours-today-single id="1206"]
+*
+**/
+function hours_today_single( $atts ) {
+  extract(shortcode_atts( array(
+    'id' => '1206',
+  ), $atts ));
+  $string = file_get_contents('http://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
+  $json_o = json_decode($string);
+  $hours = '';
+  foreach ($json_o->locations as $location) if ($location->lid == $id) {
+    $hours .= '<span class="department-hours"><!-- '.$location->name.'-->'.$location->rendered.'</span>';
+  }
+
+  return $hours;
+}
+add_shortcode('hours-today-single', 'hours_today_single');
 
 
 /**
