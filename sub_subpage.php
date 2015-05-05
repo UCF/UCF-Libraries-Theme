@@ -15,7 +15,7 @@ $parent = get_post( $id );
 	<div id="content" class="container">
 		<div class="row">
 			<div class="col-sm-8">
-				<header><h1 class="capitalize"><?php echo $parent->post_name.' - '.get_the_title($post->post_parent);?></h1></header>
+				<header><h1><?php echo get_the_title($parent).' - '.get_the_title($post->post_parent);?></h1></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div>
 			<div class="col-sm-4">
