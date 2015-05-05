@@ -503,4 +503,30 @@ function library_events($atts) {
 
 add_shortcode('library-events', 'library_events');
 
+function ask_chat() {
+  $output = '
+<div class="libraryh3lp" style="display: none;" jid="mainlibrary@chat.libraryh3lp.com">
+  <iframe src="https://libraryh3lp.com/chat/mainlibrary@chat.libraryh3lp.com?skin=710&amp;identity=Librarian&sounds=true" frameborder="0" style="width: 99%; height: 300px; "></iframe>
+  <p style="text-align: center">Your chat will be disconnected 
+  if you leave this page during a conversation.<br>
+</div>
+<div class="libraryh3lp" style="display: none;">
+  <p style="text-align: center" class="Red">Instant Message Chat is closed.<br>
+  Send a <a href="http://www.askalibrarian.org/ucf" class="Red"><strong>Standard Chat</strong></a> to us instead.</p>
+  <iframe src="https://libraryh3lp.com/chat/mainlibrary@chat.libraryh3lp.com?skin=710&amp;identity=Librarian&sounds=true" frameborder="0" style="width: 99%; height: 200px;"></iframe>
+<!--p class="ImportantNote" style="text-align: center;">Chat is offline.</p-->
+</div>
+
+<!-- Place this script as near to the end of your BODY as possible. -->
+<script type="text/javascript">
+  (function() {
+    var x = document.createElement("script"); x.type = "text/javascript"; x.async = true;
+    x.src = (document.location.protocol === "https:" ? "https://" : "http://") + "libraryh3lp.com/js/libraryh3lp.js?multi"
+    var y = document.getElementsByTagName("script")[0]; y.parentNode.insertBefore(x, y);
+  })();
+</script>';
+return $output;
+}
+add_shortcode('ask-chat','ask_chat');
+
 ?>
