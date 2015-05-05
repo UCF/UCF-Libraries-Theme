@@ -209,7 +209,7 @@ footer ul li a:hover { text-decoration: none;}
 .caption ul { padding-left: 20px;}
 .caption ul li {list-style: none; position: relative;}
 .caption ul li a { display: block; overflow: hidden; text-overflow: ellipsis;}
-.caption .glyphicon {
+.caption .glyphicon, .caption .fa {
 	position: absolute;
 	left: -1.5em;
  	top: 0.2em;
