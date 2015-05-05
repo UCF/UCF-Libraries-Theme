@@ -32,6 +32,10 @@ h1 { margin: 1em 0;}
   margin-top: -2.5em;
   background-color: transparent; 
 }
+.header-search { margin: 1em 0; }
+@media (min-width: 768px) {
+	.header-search { margin: 3em 0 1em; }
+}
 
 aside {margin-bottom: 2em}
 

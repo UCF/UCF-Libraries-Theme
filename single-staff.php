@@ -9,7 +9,15 @@ Description: Single staff member page.
 <div id="main">
 	<div id="content" class="container">
 		<!-- single-staff template. -->
-		<h1><a href="<?php echo get_post_type_archive_link( 'staff' ); ?>">Staff Directory</a></h1>
+		<div class="row">
+			<div class="col-sm-8">
+				<header><h1>Staff Directory</h1></header>
+				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
+			</div>
+			<div class="col-sm-4">
+				<div class="header-search"><?php get_search_form(); ?></div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-sm-3">
 				<?php get_sidebar('staff'); ?>

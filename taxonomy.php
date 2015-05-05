@@ -21,10 +21,11 @@ Description: Taxonomy archive page.
 	<!-- archive-staff.php -->
 		<div class="row">
 			<div class="col-sm-8">
-				<h1><a href="<?php echo get_post_type_archive_link( 'staff' ); ?>">Staff Directory</a></h1>
+				<header><h1>Staff Directory</h1></header>
+				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div>
 			<div class="col-sm-4">
-				<div style="margin-top: 3em;"><?php get_search_form(); ?></div>
+				<div class="header-search"><?php get_search_form(); ?></div>
 			</div>
 		</div>
 		<div class="row">
