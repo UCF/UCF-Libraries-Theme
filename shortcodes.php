@@ -36,7 +36,7 @@ function OneSearchform( $form ) {
         <input name="groupid" type="hidden" value="main">
         <input name="profile" type="hidden" value="eds">
         <input name="guidedField_3" type="hidden" value="">
-      <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search" results="5" size="60" type="text" x-webkit-speech="" >
+      <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search Catalog and Databases" results="5" size="60" type="text" x-webkit-speech="" >
         <span class="input-group-btn">
           <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
         </span>
