@@ -9,7 +9,7 @@ Description: Use if a page belongs under another page.
 <?php get_header(); ?>
 <div id="main">
 	<div id="content" class="container">
-		<header><h1>><?php echo get_the_title($post->post_parent);?></h1></header>
+		<header><h1><?php echo get_the_title($post->post_parent);?></h1></header>
 		<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 		<div class="row">
 			<div class="col-sm-3">
