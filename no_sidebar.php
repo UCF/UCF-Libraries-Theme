@@ -10,8 +10,15 @@ Description: This page template does not have a sidebar.
 	<div id="content" class="container">
 	<!-- no_sidebar -->
 	
-		<header><h1><?php the_title(); ?></h1></header>
-		<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
+		<div class="row">
+			<div class="col-sm-8">
+				<header><h1><?php the_title(); ?></h1></header>
+				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
+			</div>
+			<div class="col-sm-4">
+				<div class="header-search"><?php get_search_form(); ?></div>
+			</div>
+		</div>
 
 		<div class="row">
 			<div class="col-sm-12">

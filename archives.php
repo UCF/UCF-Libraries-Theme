@@ -3,6 +3,7 @@
 	<div id="content" class="container">
 	<!-- archives.php -->
 		<h1><?php echo $post->post_name;?></h1>
+		<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 		<div class="row">
 			<div class="col-sm-3">
 				<?php get_sidebar(); ?>
