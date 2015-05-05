@@ -25,6 +25,7 @@ h1 { margin: 1em 0;}
 
 /*Misc*/
 .capitalize { text-transform: capitalize;}
+.ellipsis { display: block; overflow: hidden; text-overflow: ellipsis;}
 
 .breadcrumb {
   padding: 8px 2px;
@@ -208,7 +209,7 @@ footer ul li a:hover { text-decoration: none;}
 .thumbnail { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
 .caption ul { padding-left: 20px;}
 .caption ul li {list-style: none; position: relative;}
-.caption ul li a { display: block; overflow: hidden; text-overflow: ellipsis;}
+
 .caption .glyphicon, .caption .fa {
 	position: absolute;
 	left: -1.5em;
