@@ -506,14 +506,14 @@ add_shortcode('library-events', 'library_events');
 function ask_chat() {
   $output = '
 <div class="libraryh3lp" style="display: none;" jid="mainlibrary@chat.libraryh3lp.com">
-  <iframe src="https://libraryh3lp.com/chat/mainlibrary@chat.libraryh3lp.com?skin=710&amp;identity=Librarian&sounds=true" frameborder="0" style="width: 99%; height: 300px; "></iframe>
+  <iframe src="https://libraryh3lp.com/chat/mainlibrary@chat.libraryh3lp.com?skin=24425&amp;identity=Librarian&sounds=true" frameborder="0" style="width: 99%; height: 300px; border: 1px solid #ccc; border-radius: 4px;"></iframe>
   <p style="text-align: center">Your chat will be disconnected 
   if you leave this page during a conversation.<br>
 </div>
 <div class="libraryh3lp" style="display: none;">
   <p style="text-align: center" class="Red">Instant Message Chat is closed.<br>
   Send a <a href="http://www.askalibrarian.org/ucf" class="Red"><strong>Standard Chat</strong></a> to us instead.</p>
-  <iframe src="https://libraryh3lp.com/chat/mainlibrary@chat.libraryh3lp.com?skin=710&amp;identity=Librarian&sounds=true" frameborder="0" style="width: 99%; height: 200px;"></iframe>
+  <iframe src="https://libraryh3lp.com/chat/mainlibrary@chat.libraryh3lp.com?skin=24425&amp;identity=Librarian&sounds=true" frameborder="0" style="width: 99%; height: 200px; border: 1px solid #ccc; border-radius: 4px;"></iframe>
 <!--p class="ImportantNote" style="text-align: center;">Chat is offline.</p-->
 </div>
 
