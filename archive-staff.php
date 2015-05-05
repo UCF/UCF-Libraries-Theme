@@ -46,21 +46,25 @@ Description: Archive staff member page.
 									): ?>
 
 									<ul>
-										<?php if(get_post_meta($post->ID, 'title', true)): ?>
-										<li><span class="glyphicon glyphicon-user"></span> <?php echo get_post_meta($post->ID, 'title', true); ?></li>
-										<?php endif; ?>
+											<?php if(get_post_meta($post->ID, 'title', true)): ?>
+												<li><span class="glyphicon glyphicon-user" data-toggle="tooltip" data-placement="left" title="Position"></span> <?php echo get_post_meta($post->ID, 'title', true); ?></li>
+											<?php endif; ?>
 
-										<?php if(get_post_meta($post->ID, 'room', true)): ?>
-										<li><span class="glyphicon glyphicon-map-marker"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
-										<?php endif; ?>
+											<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
+												<li><i class="fa fa-university" data-toggle="tooltip" data-placement="left" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
+											<?php endif; ?>
 
-										<?php if(get_post_meta($post->ID, 'phone', true)): ?>
-										<li><span class="glyphicon glyphicon-phone-alt"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
-										<?php endif; ?>
+											<?php if(get_post_meta($post->ID, 'room', true)): ?>
+												<li><span class="glyphicon glyphicon-map-marker" data-toggle="tooltip" data-placement="left" title="Location"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
+											<?php endif; ?>
 
-										<?php if(get_post_meta($post->ID, 'email', true)): ?>
-										<li><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"><span class="glyphicon glyphicon-envelope"></span> <?php echo get_post_meta($post->ID, 'email', true); ?></a></li>
-										<?php endif; ?>
+											<?php if(get_post_meta($post->ID, 'phone', true)): ?>
+												<li><span class="glyphicon glyphicon-phone-alt" data-toggle="tooltip" data-placement="left" title="Phone"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
+											<?php endif; ?>
+
+											<?php if(get_post_meta($post->ID, 'email', true)): ?>
+												<li><span class="glyphicon glyphicon-envelope" data-toggle="tooltip" data-placement="left" title="Email"></span><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"> <?php echo get_post_meta($post->ID, 'email', true); ?></a></li>
+											<?php endif; ?>
 									</ul>
 									<?php endif; ?>
 								</div>
@@ -80,5 +84,10 @@ Description: Archive staff member page.
 		</div>
 	</div>
 </div>
+<script>
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	})
+</script>
 <div id="delimiter"></div>
 <?php get_footer(); ?>
