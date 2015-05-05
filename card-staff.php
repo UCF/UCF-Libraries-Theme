@@ -33,7 +33,7 @@ Description: This template is only for including a staff member card onto a page
 											<?php endif; ?>
 
 											<?php if(get_post_meta($post->ID, 'email', true)): ?>
-												<li><span class="glyphicon glyphicon-envelope" data-toggle="tooltip" data-placement="left" title="Email"></span><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"> <?php echo get_post_meta($post->ID, 'email', true); ?></a></li>
+												<li><span class="glyphicon glyphicon-envelope" data-toggle="tooltip" data-placement="left" title="Email"></span><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"><span class="ellipsis"> <?php echo get_post_meta($post->ID, 'email', true); ?></span></a></li>
 											<?php endif; ?>
 		</ul>
 		<?php endif; ?>
