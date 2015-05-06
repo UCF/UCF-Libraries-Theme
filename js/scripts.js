@@ -84,3 +84,11 @@ $('.nav-tabs a').on('shown', function (e) {
     window.location.hash = e.target.hash.replace("#", "#" + prefix);
 });
 
+
+//Login Modal Launch
+//==================
+$(document).ready(function () {
+  $('.login-button').click(function() {
+    $('#login_modal').modal('show');
+  });
+});

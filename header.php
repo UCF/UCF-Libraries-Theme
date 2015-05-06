@@ -48,3 +48,21 @@
 			  </div>
 			</nav>
 	</header>
+<!-- Modal -->
+<div class="modal fade login-modal" id="login_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Login Preference</h4>
+      </div>
+      <div class="modal-body">
+       <a class="btn btn-primary" style="display:block; margin: 1em 0;" href="https://login.ezproxy.net.ucf.edu/login?auth=shibb" title="Login with your NID">Login with NID</a><a style="display:block; margin: 1em 0;" href="#" title="Alternate Login Method">Don't Have a NID?</a> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
