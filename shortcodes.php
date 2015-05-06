@@ -328,7 +328,7 @@ function tab_container($atts, $content = null) {
   $ids = explode(", ", $names);
   $i = 0;
   $output = '
-    <div role="tabpanel">
+    <div class="tab-container" role="tabpanel">
 
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">';
