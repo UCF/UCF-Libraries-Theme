@@ -57,7 +57,7 @@
         <h4 class="modal-title" id="myModalLabel">Login Preference</h4>
       </div>
       <div class="modal-body">
-       <a class="btn btn-primary" style="display:block; margin: 1em 0;" href="https://login.ezproxy.net.ucf.edu/login?auth=shibb" title="Login with your NID">Login with NID</a><a style="display:block; margin: 1em 0;" href="#" title="Alternate Login Method">Don't Have a NID?</a> 
+       <a class="btn btn-primary" style="display:block; margin: 1em 0;" href="http://librarycmsdev.smca.ucf.edu/my-account/" title="Login with your NID">Login with NID</a><a style="display:block; margin: 1em 0;" href="#" title="Alternate Login Method">Don't Have a NID?</a> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -65,4 +65,4 @@
     </div>
   </div>
 </div>
-
+<!-- https://login.ezproxy.net.ucf.edu/login?auth=shibb -->
