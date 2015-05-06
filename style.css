@@ -23,6 +23,16 @@ Version: 0.0.1;
 }
 h1 { margin: 1em 0;}
 
+/* Login Modal */
+.modal-dialog {
+	margin: 70px auto;
+}
+
+.login-modal .modal-body {
+	text-align:center;
+}
+
+
 /*Misc*/
 .capitalize { text-transform: capitalize;}
 .ellipsis { display: block; overflow: hidden; text-overflow: ellipsis;}
