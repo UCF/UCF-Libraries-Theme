@@ -5,9 +5,7 @@ Description: Use if a page belongs under a subpage page.
 */
 ?>
 <?php 
-$parents = get_post_ancestors( $post->ID );
-$id = ($parents) ? $parents[count($parents)-2]: $post->ID;
-$parent = get_post( $id );
+$ancestors = get_ancestors(get_the_ID(), 'page');
 ?>
 
 <?php get_header(); ?>
@@ -15,7 +13,7 @@ $parent = get_post( $id );
 	<div id="content" class="container">
 		<div class="row">
 			<div class="col-sm-8">
-				<header><h1><?php echo get_the_title($parent).' - '.get_the_title($post->post_parent);?></h1></header>
+				<header><h1><?php echo get_the_title($ancestors[1]).' - '.get_the_title($post->post_parent);?></h1></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div>
 			<div class="col-sm-4">
