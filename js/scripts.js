@@ -92,3 +92,9 @@ $(document).ready(function () {
     $('#login_modal').modal('show');
   });
 });
+
+//Enable Tooltips
+//===============
+$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
