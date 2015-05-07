@@ -35,6 +35,12 @@ h1 { margin: 1em 0;}
 
 /*Misc*/
 p, p a { word-wrap: break-word; }
+
+
+img {  
+  max-width: 100%;		/*Should stop images from breaking pages on mobile*/
+  height: auto;
+}
 .capitalize { text-transform: capitalize;}
 .ellipsis { display: block; overflow: hidden; text-overflow: ellipsis;}
 
@@ -196,7 +202,7 @@ footer ul li a:hover { text-decoration: none;}
 .alignright		{ float: right; margin: 0 0 1em 1em; }
 .alignleft		{ float: left; margin: 0 1em 1em 0; }
 .floatleft		{ float: left; }
-.size-full		{ width: 100%; }
+.size-full		{ max-width: 100%; height: auto; }
 
 /*hiding button text for ADA */
 .btn_text {display: none;}
