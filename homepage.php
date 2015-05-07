@@ -16,7 +16,6 @@ Generate a random backround from the list below.
   $selectedBg = "$bg[$i]"; // set variable equal to which random filename was chosen
 ?>
 
-
 <style type="text/css">
 <!--
 .background-image::after {
@@ -26,6 +25,7 @@ Generate a random backround from the list below.
 </style>
 <?php get_header(); ?>
 <div id="main">
+<div style="width:200px; margin: 0 auto;"><?php echo $selectedBg.' '.$i; ?></div>
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<?php the_content(__('(more...)')); ?>
 		<?php endwhile; else: ?>
