@@ -291,7 +291,7 @@ footer ul li a:hover { text-decoration: none;}
 }
 
 .ui-tabs .ui-tabs-panel {
-  min-height: 15.75em;
+  min-height: 16em;
   background-color: rgba(0,0,0,0.75);
 }
 
@@ -341,6 +341,14 @@ footer ul li a:hover { text-decoration: none;}
 }
 .button-wrapper .btn {
 	margin: .5em .5em .5em 0;
+}
+
+.chat-wrapper {
+	width: 16.5em;
+ 	margin: 0 auto;
+}
+.chat-wrapper .btn {
+	font-size: 20px;
 }
 
 .dl-horizontal.homepage {
