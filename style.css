@@ -318,8 +318,9 @@ footer ul li a:hover { text-decoration: none;}
 }
 
 .ui-tabs .ui-tabs-panel {
-  min-height: 16em;
+  min-height: 16.5em;
   background-color: rgba(0,0,0,0.85);
+  border-radius: 0px;
 }
 
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
@@ -353,7 +354,6 @@ footer ul li a:hover { text-decoration: none;}
 }
 
 .homepage-box-right{
-	height: 20em;
 	background-color: rgba(0,0,0,0.85);
 	color: #fff;
 	padding: 1em;
