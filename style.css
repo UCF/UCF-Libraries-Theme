@@ -37,7 +37,7 @@ h1 { margin: 1em 0;}
 p, p a { word-wrap: break-word; }
 
 
-img {  
+img {
   max-width: 100%;		/*Should stop images from breaking pages on mobile*/
   height: auto;
 }
@@ -47,7 +47,7 @@ img {
 .breadcrumb {
   padding: 8px 2px;
   margin-top: -2.5em;
-  background-color: transparent; 
+  background-color: transparent;
 }
 .header-search { margin: 1em 0; }
 @media (min-width: 768px) {
@@ -456,7 +456,9 @@ footer ul li a:hover { text-decoration: none;}
 	color: #999;
 	font-size: 13px;
 }
-
+.news-post-image img {
+	max-width: 100px;
+}
 
 .news-post-image, .news-post-text {
 	display: table-cell;
