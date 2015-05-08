@@ -266,20 +266,25 @@ add_shortcode('recent-posts', 'recent_posts_function');
 
 
 /**
-*Glyphicons
-*Create a glyphicon anywhere on the page.
+*Icon shortcode
+*Create either a glyphicon or  anywhere on the page.
 *
 *Example:
 *[icon name="search"]
 *
 **/
-function GlyphIcon($atts) {
+function icon_graphic($atts) {
   extract(shortcode_atts( array(
-      'name' => search,
+      'name' => 'search',
+      'type' => ''
   ), $atts ));
-  return '<span class="glyphicon glyphicon-'.$name.'"></span>';
+  if ($type == 'fa') {
+    return '<i class="fa fa-'.$name.'"></i>';
+  } else {
+    return '<span class="glyphicon glyphicon-'.$name.'"></span>';
+  }
 }
-add_shortcode('icon', 'GlyphIcon');
+add_shortcode('icon', 'icon_graphic');
 
 
 /**
