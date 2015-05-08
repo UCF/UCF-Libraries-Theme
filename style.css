@@ -274,8 +274,14 @@ footer ul li a:hover { text-decoration: none;}
 .ui-widget-header {
 	border: none;
 	background: transparent;
-/*	background-color: rgba(0,0,0,0.85);
-*/}
+	background-color: rgba(0,0,0,0.9);
+}
+@media (min-width: 525px) {
+	.ui-widget-header {
+		background-color: transparent;
+	}
+}
+
 .ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr, .ui-corner-left, .ui-corner-tl {
 	border-radius: 0;
 }
