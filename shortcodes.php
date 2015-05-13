@@ -242,7 +242,7 @@ function recent_posts_function($atts){
         }
          $return_string .=
          '<article>
-         <div class="news-post">
+         <div class="news-post card">
             <div class="news-post-image"><a href="'.get_permalink().'">'.get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail')).'</a></div>
             <div class="news-post-text">
               <div class="news-post-title">
@@ -270,7 +270,7 @@ add_shortcode('recent-posts', 'recent_posts_function');
 *Create either a glyphicon or  anywhere on the page.
 *
 *Example:
-*[icon name="search"]
+*[icon name="search" type="fa"]
 *
 **/
 function icon_graphic($atts) {
