@@ -25,7 +25,7 @@ Description: Single staff member page.
 			<div class="col-sm-9">
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					<article class="clearfix">
-						<div class="thumbnail">
+						<div class="thumbnail single">
 							<div class="row">
 								<div class="col-sm-4">
 									<figure><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></figure>
@@ -82,6 +82,4 @@ Description: Single staff member page.
 		</div>
 	</div>
 </div>
-
-<div id="delimiter"></div>
 <?php get_footer(); ?>
