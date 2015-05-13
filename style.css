@@ -65,9 +65,9 @@ dl.menu-list dd, dl.list-spaced dd { margin-bottom: 1.5em; }
 
 
 /* Material Cards */
-
+.card, .thumbnail {	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+.card .thumbnail { box-shadow: none; }
 .card {
-	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 	background-color: #fff;
 	border-radius: 2px;
 	overflow: auto;
@@ -240,7 +240,8 @@ footer ul li a:hover { text-decoration: none;}
 /* Single Person page */
 
 /*Staff Directories*/
-.thumbnail { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+.thumbnail { border: none; }
+.thumbnail.single { box-shadow: none; }
 .caption ul { padding-left: 20px;}
 .caption ul li {list-style: none; position: relative;}
 
@@ -257,13 +258,14 @@ footer ul li a:hover { text-decoration: none;}
   position: relative;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
+
 @media (min-width: 768px) {
 	.caption h2  {
-	  margin-top: 1em;
+	  margin-top: -9px;
 	}
 }
 .caption h3 a { color: #fff; }
-.staff-thumbnail { width: 100%; max-width: 300px; height: auto;}
+.staff-thumbnail { width: 100%; height: auto;}
 
 /* jquery ui tabs override */
 
@@ -491,7 +493,7 @@ footer ul li a:hover { text-decoration: none;}
 .news-post-text {
 	width: 100%;
 }
-.news-post-content { padding: 0 4em 1em;}
+.news-post-content, .card-content { padding: 0 4em 1em;}
 
 .news-post-thumbnail {
 	width: 100px;
