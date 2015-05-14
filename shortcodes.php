@@ -508,6 +508,14 @@ function library_events($atts) {
 
 add_shortcode('library-events', 'library_events');
 
+/**
+* Ask a Librarian chat widget
+* Insert the Ask a Librarian chat widget anywhere on the site.
+*
+* Example:
+* [ask-chat]
+*
+**/
 function ask_chat() {
   $output = '
 <div class="libraryh3lp" style="display: none;" jid="mainlibrary@chat.libraryh3lp.com">
@@ -533,5 +541,72 @@ function ask_chat() {
 return $output;
 }
 add_shortcode('ask-chat','ask_chat');
+
+
+/**
+* Alert Message
+* Insert an alert message box onto a page that looks for 1 of 4 custom meta fields.
+*
+* Example:
+* [alert-message]
+*
+**/
+function alert_message() {
+  $output = '';
+  global $post;
+  if(get_post_meta($post->ID, 'success', true) || get_post_meta($post->ID, 'info', true) || get_post_meta($post->ID, 'warning', true) || get_post_meta($post->ID, 'danger', true)): 
+    if(get_post_meta($post->ID, 'success', true)):
+      $success = get_post_meta($post->ID, 'success', true);
+      $output .= '
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              '.$success.'
+           </div>
+          </div>
+        </div>';
+    endif;
+    if(get_post_meta($post->ID, 'info', true)):
+      $info = get_post_meta($post->ID, 'info', true);
+      $output .= '
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="alert alert-info alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              '.$info.'
+           </div>
+          </div>
+       </div>';
+    endif;
+    if(get_post_meta($post->ID, 'warning', true)):
+      $warning = get_post_meta($post->ID, 'warning', true);
+      $output .= '
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="alert alert-warning alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              '.$warning.'
+           </div>
+          </div>
+        </div>';
+    endif;
+    if(get_post_meta($post->ID, 'danger', true)):
+      $danger = get_post_meta($post->ID, 'danger', true);
+      $output .= '
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              '.$danger.'
+           </div>
+          </div>
+       </div>';
+    endif;
+  endif;
+  return $output;
+}
+add_shortcode('alert-message','alert_message');
+
 
 ?>
