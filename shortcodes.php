@@ -143,7 +143,6 @@ function HomepageSearchBox( $atts, $content = null ) {
                 <li><a href="#QuickSearch"><span>QuickSearch</span></a></li>
                 <li><a href="#Articles"><span>Articles</span></a></li>
                 <li><a href="#Books"><span>Books</span></a></li>
-                <li><a href="#Videos"><span>Media</span></a></li>
                 <li><a href="#Website"><span>Website</span></a></li>
               </ul>' . do_shortcode($content) . '
           </div>
