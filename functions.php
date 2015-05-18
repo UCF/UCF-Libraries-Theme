@@ -141,6 +141,18 @@ function theme_slug_widgets_init() {
 }
 add_action( 'widgets_init', 'theme_slug_widgets_init' );
 
+add_filter('pre_get_posts', 'query_post_type');
+function query_post_type($query) {
+  if(is_category() || is_tag()) {
+    $post_type = get_query_var('post_type');
+    if($post_type)
+        $post_type = $post_type;
+    else
+        $post_type = array('post','staff'); // replace cpt to your custom post type
+    $query->set('post_type',$post_type);
+    return $query;
+    }
+}
 
 /**
 *Staff Directory Custom Post Type
@@ -169,7 +181,7 @@ function register_cpt_staff() {
         'hierarchical' => true,
         'description' => 'Staff names and descriptions',
         'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions' ),
-        'taxonomies' => array( 'department', 'unit', 'group' ),
+        'taxonomies' => array( 'department', 'unit', 'group', 'subject' ),
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
@@ -241,6 +253,8 @@ function unit_init() {
   ));
 }
 
+
+// Group Taxonomy
 add_action( 'init', 'group_init' );
 
 function group_init() {
@@ -264,6 +278,34 @@ function group_init() {
     'show_admin_column' => true,
     'query_var' => true,
     'rewrite' => array( 'slug' => 'group', 'with_front' => false ),
+  ));
+}
+
+
+// Subjects Taxonomy
+add_action( 'init', 'subject_init' );
+
+function subject_init() {
+  register_taxonomy('subject',array('staff'), array(
+
+    'hierarchical' => true,
+    'labels' => array(
+    'name' => _x( 'Subject', 'taxonomy general name' ),
+    'singular_name' => _x( 'Subject', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Subjects' ),
+    'all_items' => __( 'All Subjects' ),
+    'parent_item' => __( 'Parent Subject' ),
+    'parent_item_colon' => __( 'Parent Subject:' ),
+    'edit_item' => __( 'Edit Subject' ),
+    'update_item' => __( 'Update Subject' ),
+    'add_new_item' => __( 'Add New Subject' ),
+    'new_item_name' => __( 'New Subject Name' ),
+    'menu_name' => __( 'Subject' ),
+  ),
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'subject', 'with_front' => false ),
   ));
 }
 
