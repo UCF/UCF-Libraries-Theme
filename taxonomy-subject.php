@@ -42,11 +42,15 @@ function subject_dropdown( $taxonomy ) {
 		<div class="row">
 			<div class="col-sm-8">
 				<header><h1>Your Librarian</h1></header>
-				<p>Here is some descriptive text here.</p>
-				<p style="display:inline-block">Choose Librarians by Subject:</p> <?php subject_dropdown( 'subject' ); ?>
 			</div>
 			<div class="col-sm-4">
 				<div class="header-search"><?php get_search_form(); ?></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p>Use the drop down menu to view the librarian(s) associated with each subject. You can also view the librarians at the <a href="http://librarycmsdev.smca.ucf.edu/about/libraries/rosen-library/">Rosen Library</a>, <a href="http://librarycmsdev.smca.ucf.edu/about/libraries/curriculum-materials-center/">the Curriculum Materials Center (CMC)</a>, and the <a href="http://librarycmsdev.smca.ucf.edu/department/regional-campus-libraries/">Regional Campus Libraries</a>.</p>
+				<p style="display:inline-block">Choose Librarians by Subject:</p> <?php subject_dropdown( 'subject' ); ?>
 			</div>
 		</div>
 	</div>
