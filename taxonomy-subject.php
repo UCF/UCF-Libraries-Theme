@@ -21,7 +21,14 @@ function subject_dropdown( $taxonomy ) {
 	if ( $terms ) {
 		printf( '<form action="" method="get" style="display:inline-block;"><select name="%s"  class="form-control"  onchange="this.form.submit();"><option value="-- Choose a Subject --">-- Choose a Subject --</option>', esc_attr( $taxonomy ) );
 		foreach ( $terms as $term ) {
-			printf( '<option value="%s">%s</option>', esc_attr( $term->slug ), esc_html( $term->name ) );
+			if ($term->slug == 'all') {
+				printf( '<option value="%s">%s</option>', esc_attr( $term->slug ), esc_html( $term->name ) );
+			}
+		}
+		foreach ( $terms as $term ) {
+			if ($term->slug != 'all') {
+				printf( '<option value="%s">%s</option>', esc_attr( $term->slug ), esc_html( $term->name ) );
+			}
 		}
 		print( '</select></form>' );
 	}
