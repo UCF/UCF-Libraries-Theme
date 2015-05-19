@@ -35,7 +35,7 @@
 					<article>
 						<div class="card">
 						<?php if (has_post_thumbnail()): ?>
-							<div class="post-header-img"><?php the_post_thumbnail('full'); ?></div>
+							<div class="post-header-img"><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('full'); ?></a></div>
 						<?php endif; ?>
 							<div class="news-post-content">
 								<div class="news-post-title">
