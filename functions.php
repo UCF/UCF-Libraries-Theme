@@ -155,7 +155,41 @@ function query_post_type($query) {
 }
 
 /**
-*Staff Directory Custom Post Type
+* Modfied term list
+* Allows you to exclude an array of terms from the list.
+*
+* Example: <?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array(term) ); ?>
+*
+**/
+
+function get_modified_term_list( $id = 0, $taxonomy, $before = '', $sep = '', $after = '', $exclude = array() ) {
+    $terms = get_the_terms( $id, $taxonomy );
+
+    if ( is_wp_error( $terms ) )
+        return $terms;
+
+    if ( empty( $terms ) )
+        return false;
+
+    foreach ( $terms as $term ) {
+
+        if(!in_array($term->slug,$exclude)) {
+            $link = get_term_link( $term, $taxonomy );
+            if ( is_wp_error( $link ) )
+                return $link;
+            $term_links[] = '<a href="' . $link . '" rel="tag">' . $term->name . '</a>';
+        }
+    }
+
+    if( !isset( $term_links ) )
+        return false;
+
+    return $before . join( $sep, $term_links ) . $after;
+}
+
+
+/**
+* Staff Directory Custom Post Type
 **/
 add_action( 'init', 'register_cpt_staff' );
 

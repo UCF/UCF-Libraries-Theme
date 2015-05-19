@@ -15,10 +15,11 @@ Description: Taxonomy archive page.
 );
 ?>
 <?php
+
 function subject_dropdown( $taxonomy ) {
 	$terms = get_terms( $taxonomy );
 	if ( $terms ) {
-		printf( '<form action="" method="get" ><select name="%s" class="postform" onchange="this.form.submit();"><option value="--Choose a Subject--">--Choose a Subject--</option>', esc_attr( $taxonomy ) );
+		printf( '<form action="" method="get" style="display:inline-block;"><select name="%s"  class="form-control"  onchange="this.form.submit();"><option value="-- Choose a Subject --">-- Choose a Subject --</option>', esc_attr( $taxonomy ) );
 		foreach ( $terms as $term ) {
 			printf( '<option value="%s">%s</option>', esc_attr( $term->slug ), esc_html( $term->name ) );
 		}
@@ -26,6 +27,7 @@ function subject_dropdown( $taxonomy ) {
 	}
 }
 ?>
+
 <?php get_header(); ?>
 <div id="main">
 	<div id="content" class="container">
@@ -34,10 +36,7 @@ function subject_dropdown( $taxonomy ) {
 			<div class="col-sm-8">
 				<header><h1>Your Librarian</h1></header>
 				<p>Here is some descriptive text here.</p>
-				<p>Choose Librarians by Subject:
-					<?php subject_dropdown( 'subject' ); ?>
-				</p>
-				
+				<p style="display:inline-block">Choose Librarians by Subject:</p> <?php subject_dropdown( 'subject' ); ?>
 			</div>
 			<div class="col-sm-4">
 				<div class="header-search"><?php get_search_form(); ?></div>
@@ -74,7 +73,10 @@ function subject_dropdown( $taxonomy ) {
 												<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
 													<li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
 												<?php endif; ?>
-
+												<?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array(all) )): ?>
+													<li><i class="fa fa-book" data-toggle="tooltip" data-placement="right" title="Subject"></i><?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array(all) ); ?></li>
+												<?php endif; ?>
+												
 												<?php if(get_post_meta($post->ID, 'room', true)): ?>
 													<li><span class="glyphicon glyphicon-map-marker" data-toggle="tooltip" data-placement="right" title="Location"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
 												<?php endif; ?>
