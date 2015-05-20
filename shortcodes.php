@@ -340,6 +340,7 @@ function tab_container($atts, $content = null) {
     $id_name = $id;
     $id = str_replace(' ', '-', $id);
     $id = str_replace('.', '', $id);
+    $id = str_replace('&', '', $id);
     if($i == 0) {
       $output .= '<li class="active" role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$id_name.'</a></li>';
   } else {
