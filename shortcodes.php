@@ -307,6 +307,24 @@ function youtube_video($atts) {
 }
 add_shortcode('youtube', 'youtube_video');
 
+/**
+* Temporary Library Map
+* A temporary availability map for the library site until a new one is made 
+*
+* Example:
+* [map]
+**/
+function map_include($atts) {
+  extract(shortcode_atts( array(
+      'width' => '100%',
+  ), $atts ));
+  return '<div class="responsive-wrapper" style="max-width:'.$width.';">
+            <div class="responsive-container">
+             <iframe src="http://libdevelop.net.ucf.edu/Web/Status/Standard/Main/IncludeMap.php" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>';
+}
+add_shortcode('map', 'map_include');
 
 /**
 *Bootstrap Tabs Shortcode
@@ -340,13 +358,14 @@ function tab_container($atts, $content = null) {
     $id_name = $id;
     $id = str_replace(' ', '-', $id);
     $id = str_replace('.', '', $id);
+    $id = str_replace('&amp;', '', $id);
     $id = str_replace('&', '', $id);
     if($i == 0) {
       $output .= '<li class="active" role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$id_name.'</a></li>';
-  } else {
-      $output .= '<li role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$id_name.'</a></li>';
-  }
-  ++$i;
+    } else {
+        $output .= '<li role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$id_name.'</a></li>';
+    }
+    ++$i;
   }
   $output .= '
    </ul>
@@ -364,6 +383,8 @@ function tab_pane($atts, $content = null) {
   ), $atts ));
   $name = str_replace(' ', '-', $name);
   $name = str_replace('.', '', $name);
+  $name = str_replace('&amp;', '', $name);
+  $name = str_replace('&', '', $name);
   return '<div role="tabpanel" class="tab-pane '.$active.'" id="'.$name.'">'.do_shortcode($content).'</div>';
 }
 add_shortcode('tab-pane', 'tab_pane');
