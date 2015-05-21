@@ -18,6 +18,11 @@ Description: Default Page.
 				<div class="header-search"><?php get_search_form(); ?></div>
 			</div>
 		</div>
+<?php if(get_post_meta($post->ID, 'background', true)): ?>
+	</div>
+	<div  class="background-color-gray">
+		<div id="content" class="container">
+<?php endif; ?>	
 		<div class="row">
 			<div class="col-sm-12">
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -28,6 +33,9 @@ Description: Default Page.
 				<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 			</div>
 		</div>
+<?php if(get_post_meta($post->ID, 'background', true)): ?>
+	</div>
+<?php endif; ?>	
 	</div>
 </div>
 <div id="delimiter"></div>
