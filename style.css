@@ -62,7 +62,7 @@ dl.menu-list dd, dl.list-spaced dd { margin-bottom: 1.5em; }
 .jumbotron h1 { margin: .25em 0; }
 .tab-container { margin: 1em 0;}
 #comment { width: 100%;}
-.gform_wrapper .gfield_time_ampm select {
+.gform_wrapper .gfield .gfield_time_ampm select {
   width: auto!important;
 }
 
