@@ -98,3 +98,14 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
+
+
+$(document).ready(function () {
+  $(".gform_wrapper input:text").addClass("form-control");
+  $(".gform_wrapper textarea").addClass("form-control");
+  $(".gform_wrapper select").addClass("form-control");
+  $(".gform_wrapper input:radio").each(function(){
+    $(this).next('label').andSelf().wrapAll('<div class="radio"/>');
+  });
+  // $(".gform_wrapper .clear-multi").addClass("form-inline");
+});
