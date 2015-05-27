@@ -62,6 +62,9 @@ dl.menu-list dd, dl.list-spaced dd { margin-bottom: 1.5em; }
 .jumbotron h1 { margin: .25em 0; }
 .tab-container { margin: 1em 0;}
 #comment { width: 100%;}
+.gform_wrapper .gfield_time_ampm select {
+  width: auto!important;
+}
 
 
 /* Material Cards */
@@ -206,6 +209,22 @@ footer ul li a:hover { text-decoration: none;}
 .navbar-library .navbar-nav > .open > a, .navbar-library .navbar-nav > .open > a:hover, .navbar-library .navbar-nav > .open > a:focus {
 	color: #555;
 	background-color: #e7e7e7;
+}
+
+/* Font Awesome Icons for Menu */
+.menu-icon {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+}
+.icon-institution:before,
+.icon-bank:before,
+.icon-university:before {
+  content: "\f19c";
 }
 
 
@@ -439,7 +458,7 @@ footer ul li a:hover { text-decoration: none;}
 }
 .homepage-services a {
 	display: block;
-	width: 13em;
+	width: 14em;
 	margin: 0 auto;
 }
 
