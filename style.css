@@ -65,6 +65,9 @@ dl.menu-list dd, dl.list-spaced dd { margin-bottom: 1.5em; }
 .gform_wrapper .gfield .gfield_time_ampm select {
   width: auto!important;
 }
+.gform_wrapper input[value="Other"] {
+	margin-left: 24px;
+}
 
 
 /* Material Cards */
