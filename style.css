@@ -767,4 +767,4 @@ footer ul li a:hover { text-decoration: none;}
 	margin-top: .25em;
 }
 
-.gform_wrapper .gfield_time_hour i { margin-top: -2em; }
+.gform_wrapper .gform_body .gfield .gfield_time_hour i { margin-top: -2em; }
