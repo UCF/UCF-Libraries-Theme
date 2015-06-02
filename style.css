@@ -756,14 +756,14 @@ footer ul li a:hover { text-decoration: none;}
 	 margin-left: .063em;
 }
 
-.gform_wrapper.gf_browser_gecko .gfield_checkbox li input,
-.gform_wrapper.gf_browser_gecko .gfield_checkbox li input[type="checkbox"],
-.gform_wrapper.gf_browser_gecko .gfield_radio li input[type="radio"] {
+.gform_wrapper.gf_browser_gecko .gform_body .gfield .gfield_checkbox li input,
+.gform_wrapper.gf_browser_gecko .gform_body .gfield .gfield_checkbox li input[type="checkbox"],
+.gform_wrapper.gf_browser_gecko .gform_body .gfield .gfield_radio li input[type="radio"] {
 	margin-top: .35em;
 }
-.gf_browser_ie.gform_wrapper .gfield_checkbox li input,
-.gf_browser_ie.gform_wrapper .gfield_checkbox li input[type=checkbox],
-.gf_browser_ie.gform_wrapper .gfield_radio li input[type=radio] { 
+.gf_browser_ie.gform_wrapper .gform_body .gfield .gfield_checkbox li input,
+.gf_browser_ie.gform_wrapper .gform_body .gfield .gfield_checkbox li input[type=checkbox],
+.gf_browser_ie.gform_wrapper .gform_body .gfield .gfield_radio li input[type=radio] { 
 	margin-top: .25em;
 }
 
