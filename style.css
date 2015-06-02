@@ -746,6 +746,12 @@ footer ul li a:hover { text-decoration: none;}
 .gform_wrapper.gf_browser_chrome ul.gform_fields li.gfield div.ginput_complex span.ginput_left select,
 .gform_wrapper.gf_browser_chrome ul.gform_fields li.gfield div.ginput_complex span.ginput_right select,
 .gform_wrapper.gf_browser_chrome ul.gform_fields li.gfield input[type=radio],
-.gform_wrapper.gf_browser_chrome ul.gform_fields li.gfield select {
-  margin-left: .063em!important;
+.gform_wrapper.gf_browser_chrome ul.gform_fields li.gfield select, 
+.gform_wrapper.gf_browser_gecko .gfield_checkbox li input,
+.gform_wrapper.gf_browser_gecko .gfield_checkbox li input[type="checkbox"],
+.gform_wrapper.gf_browser_gecko .gfield_radio li input[type="radio"],
+.gf_browser_ie.gform_wrapper .gfield_checkbox li input,
+.gf_browser_ie.gform_wrapper .gfield_checkbox li input[type=checkbox],
+.gf_browser_ie.gform_wrapper .gfield_radio li input[type=radio] { 
+	 margin-left: .063em;
 }
