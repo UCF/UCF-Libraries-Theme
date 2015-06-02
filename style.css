@@ -741,24 +741,11 @@ footer ul li a:hover { text-decoration: none;}
 	.nav > li > a { padding: 15px 10px; }
 }
 
-/*
-.img-container {
-	width: 100%;
-	min-height: 50vh;
-	display: block;
-	position: relative;
-}
+/* Gravity forms overrides */
 
-.img-container::after {
-  content: "";
-	background-image: url(Library01.jpg);
-	background-size: cover;
-	background-position: center center;
-  opacity: 0.75;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-}*/
+.gform_wrapper.gf_browser_chrome ul.gform_fields li.gfield div.ginput_complex span.ginput_left select,
+.gform_wrapper.gf_browser_chrome ul.gform_fields li.gfield div.ginput_complex span.ginput_right select,
+.gform_wrapper.gf_browser_chrome ul.gform_fields li.gfield input[type=radio],
+.gform_wrapper.gf_browser_chrome ul.gform_fields li.gfield select {
+  margin-left: .063em;
+}
