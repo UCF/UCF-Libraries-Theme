@@ -23,7 +23,7 @@ add_shortcode('search-website', 'search_website');
 function OneSearchform( $form ) {
 
     $form = '
-  <form role="search" action="http://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
+  <form role="search" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
       <label class="sr-only" for="s">Search All</label>
         <div class="input-group">
         <input name="direct" type="hidden" value="true">
@@ -56,7 +56,7 @@ add_shortcode('OneSearch', 'OneSearchform');
 **/
 function onesearch_articles( $form ){
   $form = '
-    <form role="form" action="http://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
+    <form role="form" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
       <label for="s" class="sr-only">Search</label>
       <div class="input-group">
         <input name="direct" type="hidden" value="true">
@@ -89,7 +89,7 @@ add_shortcode('onesearch-articles', 'onesearch_articles');
 **/
 function search_catalog( $form ){
   $form = '
-    <form role="form" id="searchbox" name="searchBox" action="http://cf.catalog.fcla.edu" class="form-inline">
+    <form role="form" id="searchbox" name="searchBox" action="https://ucf.catalog.fcla.edu" class="form-inline">
       <label for="s" class="sr-only">Search catalog</label>
       <div class="input-group">
         <input id="box" type="text" name="st" value="" placeholder="Search Books" class="form-control">
@@ -433,7 +433,7 @@ function hours_week_calendar( $atts ) {
     'id' => '0',
   ), $atts ));
   return '
-  <script src="http://api3.libcal.com/js/hours_grid.js?002"></script>
+  <script src="https://api3.libcal.com/js/hours_grid.js?002"></script>
 
   <div id="s-lc-whw'.$id.'"></div>
   <script>
@@ -465,6 +465,13 @@ function hours_today_homepage( $atts ) {
 }
 add_shortcode('hours-today-homepage', 'hours_today_homepage');
 
+
+
+function ajax_test () {
+
+
+}
+add_shortcode('ajax-test', 'ajax_test');
 
 /**
 * Single Department Today's Hours
