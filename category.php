@@ -4,7 +4,7 @@
 	<!-- category.php -->
 		<div class="row">
 			<div class="col-sm-8">
-				<header><h1><a href="http://librarycmsdev.smca.ucf.edu/blog/">News &amp; Blog</a></h1></header>
+				<header><h1><a href="/blog/">News &amp; Blog</a></h1></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div>
 			<div class="col-sm-4">
