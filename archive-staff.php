@@ -82,7 +82,8 @@ Description: Archive staff member page.
 							<?php endif; ?>
 							<?php if ($i % 2 == 0) : //adds a clearfix every 3 items. ?>
 									<div class="clearfix visible-sm-block visible-xs-block"></div>
-							<?php endif; ?>					<?php endwhile; else: ?>
+							<?php endif; ?>	
+						<?php endwhile; else: ?>
 					</div>
 					<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?>
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
