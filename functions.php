@@ -83,11 +83,17 @@ function taxonomy_term_list( $taxonomy ) {
   echo $term_list;
 }
 
+//Register all Wordpress menus
+//============================
 function register_my_menus() {
   register_nav_menus(
     array(
       'header-menu' => __( 'Header Menu' ),
-      'side-menu' => __( 'Side Menu' )
+      'side-menu' => __( 'Side Menu' ),
+      'footer-menu-find' => __( 'Footer Menu Find'),
+      'footer-menu-services' => __( 'Footer Menu Services'),
+      'footer-menu-about' => __( 'Footer Menu About'),
+      'footer-menu-help' => __( 'Footer Menu Help')
     )
   );
 }
