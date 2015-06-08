@@ -336,6 +336,12 @@ footer ul li a:hover { text-decoration: none;}
 }
 .ui-tabs .ui-tabs-nav li {
 	margin: 0;
+	width: 100%;
+}
+@media (min-width: 525px) {
+	.ui-tabs .ui-tabs-nav li {
+		width: auto;
+	}
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-active {
   margin-bottom: 0;
