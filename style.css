@@ -65,7 +65,11 @@ img {
 
 aside {margin-bottom: 2em}
 
-dl.menu-list dt { font-size: 2em; font-weight: 300; }
+dl.menu-list dt {
+	font-size: 2em;
+	font-weight: 500;
+	font-family: "Roboto", sans-serif;
+}
 dl.menu-list dd, dl.list-spaced dd { margin-bottom: 1.5em; }
 
 .jumbotron h1 { margin: .25em 0; }
@@ -338,8 +342,14 @@ footer ul li a:hover { text-decoration: none;}
 	margin: 0;
 	width: 100%;
 }
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+	width: 100%;
+}
 @media (min-width: 525px) {
 	.ui-tabs .ui-tabs-nav li {
+		width: auto;
+	}
+	.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
 		width: auto;
 	}
 }
@@ -351,9 +361,9 @@ footer ul li a:hover { text-decoration: none;}
 .ui-widget-header {
 	border: none;
 	background: transparent;
-	background-color: rgba(0,0,0,0.9);
+/*	background-color: rgba(0,0,0,0.9);*/
 }
-@media (min-width: 525px) {
+/*@media (min-width: 525px) {
 	.ui-widget-header {
 		background-color: transparent;
 	}
@@ -367,7 +377,7 @@ footer ul li a:hover { text-decoration: none;}
 	.ui-widget-header {
 		background-color: transparent;
 	}
-}
+}*/
 
 .ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr, .ui-corner-left, .ui-corner-tl {
 	border-radius: 0;
@@ -464,6 +474,7 @@ footer ul li a:hover { text-decoration: none;}
 	text-align: right;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	font-weight: 300;
 }
 .dl-horizontal.homepage dd {
 	margin-left: 150px;
@@ -476,7 +487,7 @@ footer ul li a:hover { text-decoration: none;}
 }
 .homepage-services a {
 	display: block;
-	width: 14em;
+	width: 15em;
 	margin: 0 auto;
 }
 
