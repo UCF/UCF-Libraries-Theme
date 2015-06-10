@@ -43,6 +43,7 @@ h1 { margin: 1em 0;}
 
 
 /*Misc*/
+
 p, p a { word-wrap: break-word; }
 
 
@@ -71,6 +72,7 @@ dl.menu-list dt {
 	font-family: "Roboto", sans-serif;
 }
 dl.menu-list dd, dl.list-spaced dd { margin-bottom: 1.5em; }
+.webcourses dl.menu-list dt { font-size: 1.5em;}
 
 .jumbotron h1 { margin: .25em 0; }
 .tab-container { margin: 1em 0;}
