@@ -9,7 +9,7 @@ Version: 1.1.1
 
 */
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
 
 body {
   font-family: "Droid Sans", sans-serif;
@@ -147,6 +147,14 @@ footer ul li a:hover { text-decoration: none;}
 
 
 /* Bootstrap style override/extention */
+.nav-tabs>li>a {
+  background-color: #eee;
+}
+.nav-tabs>li>a:hover {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;  
+}
 
 .navbar-library {
 	font-weight: 700;
