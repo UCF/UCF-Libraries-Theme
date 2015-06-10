@@ -25,7 +25,7 @@ function OneSearchform( $form ) {
     $form = '
   <form role="search" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
       <label class="sr-only" for="s">Search All</label>
-        <div class="input-group">
+      <div class="input-group">
         <input name="direct" type="hidden" value="true">
         <input name="site" type="hidden" value="ehost-live">
         <input name="scope" type="hidden" value="site">
@@ -36,9 +36,9 @@ function OneSearchform( $form ) {
         <input name="groupid" type="hidden" value="main">
         <input name="profile" type="hidden" value="eds">
         <input name="guidedField_3" type="hidden" value="">
-      <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search Catalog and Databases" results="5" size="60" type="text" x-webkit-speech="" >
+        <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search Databases, Articles, and Catalog" results="5" size="60" type="text" x-webkit-speech="" >
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
         </span>
       </div>
     </form>
@@ -143,7 +143,7 @@ function HomepageSearchBox( $atts, $content = null ) {
                 <li><a href="#QuickSearch"><span>QuickSearch</span></a></li>
                 <li><a href="#Articles"><span>Articles</span></a></li>
                 <li><a href="#Books"><span>Books</span></a></li>
-                <li><a href="#Website"><span>Website</span></a></li>
+                <li><a href="#Website"><span>Site Search</span></a></li>
               </ul>' . do_shortcode($content) . '
           </div>
           <script>
