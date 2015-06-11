@@ -147,6 +147,18 @@ footer ul li a:hover { text-decoration: none;}
 .About a {color:#c8afb2;}
 .About a:hover{background-color: rgba(101,70,73,0.8);}
 
+.my-account {
+  margin-top: 1rem;
+	border-top: 1px solid #e7c5a3;
+  padding: 1.5rem 0;
+  
+}
+.my-account a {
+  color: #fff;
+}
+.my-account a:hover {
+  background-color: #286090;
+}
 
 /* Bootstrap style override/extention */
 .nav-tabs>li>a {
