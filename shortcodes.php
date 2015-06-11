@@ -330,7 +330,7 @@ add_shortcode('map', 'map_include');
 *Bootstrap Tabs Shortcode
 *Create bootstrap tabs with this shortcode
 *
-*[tab-container names="name1, name2, name3"]
+*[tab-container names="name1, name2, name3" numbers="(0), (1), (2)" icons="search, book, question-sign"]
 *[tab-pane name="name1"]
 * Tab content here
 *[/tab-pane]
@@ -345,9 +345,17 @@ add_shortcode('map', 'map_include');
 function tab_container($atts, $content = null) {
   extract(shortcode_atts( array(
       'names' => 'placehold',
+      'numbers' => '',
+      'icons' => '',
   ), $atts ));
   $content = cleanup(str_replace('<br />', '', $content));
   $ids = explode(", ", $names);
+  if ($numbers != '') {
+    $numbers = explode(", ", $numbers);
+  }
+  if ($icons != '') {
+    $icons = explode(", ", $icons);
+  }
   $i = 0;
   $output = '
     <div class="tab-container" role="tabpanel">
@@ -355,15 +363,19 @@ function tab_container($atts, $content = null) {
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">';
   foreach($ids as $id) {
+    $icon = '';
     $id_name = $id;
     $id = str_replace(' ', '-', $id);
     $id = str_replace('.', '', $id);
     $id = str_replace('&amp;', '', $id);
     $id = str_replace('&', '', $id);
+    if ($icons[$i] != '') {
+      $icon = '<span class="glyphicon glyphicon-'.$icons[$i].'"></span>';
+    }
     if($i == 0) {
-      $output .= '<li class="active" role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$id_name.'</a></li>';
+      $output .= '<li class="active" role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$numbers[$i].'</a></li>';
     } else {
-        $output .= '<li role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$id_name.'</a></li>';
+        $output .= '<li role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$numbers[$i].'</a></li>';
     }
     ++$i;
   }
