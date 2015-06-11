@@ -111,3 +111,28 @@ $(document).ready(function () {
   });
   // $(".gform_wrapper .clear-multi").addClass("form-inline");
 });
+
+// Apply btn class to footer My Account Button
+//============================================
+$(document).ready(function() {
+  $(".my-account a").addClass("btn btn-primary");
+});
+
+
+
+// Ajax test
+//=============
+// (function($) {
+//     var url = 'http://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json';
+//     $.ajax({
+//        type: 'GET',
+//         url: url,
+//         async: false,
+//         contentType: "application/json",
+//         dataType: 'jsonp'
+//     });
+// })(jQuery);
+
+// $.each( locations, function(key, val) {
+//     $('#json_test').html('<p> Key: ' + key + '</p><p> Val:' + val + '</p>');
+// });
