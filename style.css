@@ -151,10 +151,11 @@ footer ul li a:hover { text-decoration: none;}
 /* Bootstrap style override/extention */
 .nav-tabs>li>a {
   background-color: #eee;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;  
 }
 .nav-tabs>li>a:hover {
   background-color: #fff;
-  border: 1px solid #ddd;
   border-bottom-color: transparent;  
 }
 
