@@ -60,12 +60,59 @@ function subject_dropdown( $taxonomy ) {
 				<div class="col-sm-12">
 					<h2 class="subpage-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h2>
 					<?php echo term_description( ) ?>
-					<div class="row">
+						<div class="row">
 						<?php $i = 0; ?>
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-						<?php // if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
+								<?php if(get_post_meta($post->ID, 'primary-subject', true) == $term->name) : ?>
+								<?php $i++; ?>
+									<div class="col-sm-6 col-md-3">
+										<h4 class="primary">Primary Librarian</h4>
+						    			<div class="thumbnail">
+						    				<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
+											<div class="caption">
+												<h3><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h3>
+												<?php if(get_post_meta($post->ID, 'title', true) ||
+													 get_post_meta($post->ID, 'room', true) ||
+													 get_post_meta($post->ID, 'phone', true) ||
+													 get_post_meta($post->ID, 'email', true)
+												): ?>
+
+												<ul>
+														<?php if(get_post_meta($post->ID, 'title', true)): ?>
+															<li><span class="glyphicon glyphicon-user" data-toggle="tooltip" data-placement="right" title="Position"></span> <?php echo get_post_meta($post->ID, 'title', true); ?></li>
+														<?php endif; ?>
+
+														<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
+															<li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
+														<?php endif; ?>
+														<?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array(all) )): ?>
+															<li><i class="fa fa-book" data-toggle="tooltip" data-placement="right" title="Subject"></i><?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array(all) ); ?></li>
+														<?php endif; ?>
+														
+														<?php if(get_post_meta($post->ID, 'room', true)): ?>
+															<li><span class="glyphicon glyphicon-map-marker" data-toggle="tooltip" data-placement="right" title="Location"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
+														<?php endif; ?>
+
+														<?php if(get_post_meta($post->ID, 'phone', true)): ?>
+															<li><span class="glyphicon glyphicon-phone-alt" data-toggle="tooltip" data-placement="right" title="Phone"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
+														<?php endif; ?>
+
+														<?php if(get_post_meta($post->ID, 'email', true)): ?>
+															<li><span class="glyphicon glyphicon-envelope" data-toggle="tooltip" data-placement="right" title="Email"></span><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"><span class="ellipsis"> <?php echo get_post_meta($post->ID, 'email', true); ?></span></a></li>
+														<?php endif; ?>
+												</ul>
+												<?php endif; ?>
+											</div>
+										</div>
+									</div>
+								<?php endif; ?>
+						<?php endwhile;?>
+						<?php endif; ?>					
+						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+							<?php if(get_post_meta($post->ID, 'primary-subject', true) != $term->name) : ?>
 							<?php $i++; ?>
 							<div class="col-sm-6 col-md-3">
+								<h4>&nbsp;</h4>									
 				    			<div class="thumbnail">
 				    				<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
 									<div class="caption">
@@ -109,6 +156,7 @@ function subject_dropdown( $taxonomy ) {
 							<?php endif; ?>
 							<?php if ($i % 2 == 0) : //adds a clearfix every 2 items. ?>
 									<div class="clearfix visible-sm-block"></div>
+							<?php endif; ?>
 							<?php endif; ?>
 					<?php endwhile; else: ?>
 					</div>
