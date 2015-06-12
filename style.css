@@ -5,7 +5,7 @@ Author: Bobby Ciullo
 Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
-Version: 1.1.3
+Version: 1.1.4
 
 */
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
@@ -16,7 +16,7 @@ body {
 }
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-  font-family: "Roboto", inherit;
+  font-family: "Roboto";
 }
 
 .main-header {
@@ -298,7 +298,10 @@ footer ul li a:hover { text-decoration: none;}
 /* Single Person page */
 
 /*Staff Directories*/
-
+.primary {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
 .thumbnail { border: none; }
 .thumbnail.single { box-shadow: none; }
 .caption ul { padding-left: 20px;}
