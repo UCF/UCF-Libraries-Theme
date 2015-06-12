@@ -62,8 +62,11 @@ function subject_dropdown( $taxonomy ) {
 					<?php echo term_description( ) ?>
 						<div class="row">
 						<?php $i = 0; ?>
+						
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-								<?php if(get_post_meta($post->ID, 'primary-subject', true) == $term->name) : ?>
+							<?php $subjects = explode(", ", get_post_meta($post->ID, 'primary-subject', true)); ?>
+							<?php foreach ($subjects as $subject) {
+								if ($subject == $term->name) : ?>
 								<?php $i++; ?>
 									<div class="col-sm-6 col-md-3">
 										<h4 class="primary">Primary Librarian</h4>
@@ -106,10 +109,18 @@ function subject_dropdown( $taxonomy ) {
 										</div>
 									</div>
 								<?php endif; ?>
+							<?php	} ?>
 						<?php endwhile;?>
 						<?php endif; ?>					
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-							<?php if(get_post_meta($post->ID, 'primary-subject', true) != $term->name) : ?>
+							<?php $subjects = explode(", ", get_post_meta($post->ID, 'primary-subject', true)); ?>
+							<?php $match = 0; ?>
+							<?php foreach ($subjects as $subject) {
+								if ($subject == $term->name) {
+									$match++;
+								}
+							}?>
+							<?php if($match == 0) : ?>
 							<?php $i++; ?>
 							<div class="col-sm-6 col-md-3">
 								<h4>&nbsp;</h4>									
