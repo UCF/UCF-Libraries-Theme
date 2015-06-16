@@ -649,4 +649,29 @@ function alert_message() {
 add_shortcode('alert-message','alert_message');
 
 
+/**
+* Guides List
+* Insert a list of guides links for a given librarian
+*
+* Example:
+* [guide-list id="12345"]
+*
+**/
+function guide_list($atts) {
+  extract(shortcode_atts(array(
+      'id' => '',
+  ), $atts));
+    if ($id != '') {
+      $output = "<script>
+      springshare_widget_config_1434485025109 = { path: 'guides' };
+      </script>
+      <div id=\"s-lg-widget-1434485025109\"></div>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+\"://lgapi.libapps.com/widgets.php?site_id=626&widget_type=1&search_terms=&search_match=2&sort_by=name&list_format=1&drop_text=Select+a+Guide...&output_format=1&load_type=2&enable_description=0&enable_group_search_limit=0&enable_subject_search_limit=0&account_ids%5B0%5D=".$id."&widget_title=Guide+List&widget_height=250&widget_width=100%25&widget_link_color=2954d1&widget_embed_type=1&num_results=0&enable_more_results=1&window_target=2&config_id=1434485025109\";fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"s-lg-widget-script-1434485025109\");</script>";
+    } else {
+      $output = '<!-- No Owner Specified-->';
+    }
+    return $output;
+}
+add_shortcode('guide-list', 'guide_list');
+
 ?>
