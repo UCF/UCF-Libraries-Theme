@@ -70,11 +70,13 @@ $(document).on("hide.bs.collapse show.bs.collapse", ".collapse", function (event
 
 // Javascript to enable link to tab
 //=================================
-var hash = document.location.hash;
+var hash = window.location.hash;
 var prefix = "tab_";
+var id = hash.replace(prefix,"");
 $(document).ready(function(){
   if (hash) {
-      $('.nav-tabs a[href='+hash.replace(prefix,"")+']').tab('show');
+      $('.nav-tabs a[href='+id+']').tab('show');
+      $('html, body').animate({scrollTop:$(id).position().top}, 0);
   } 
 });
 
