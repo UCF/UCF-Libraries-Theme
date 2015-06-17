@@ -160,6 +160,35 @@ footer ul li a:hover { text-decoration: none;}
   background-color: #286090;
 }
 
+.scroll-top {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  display: none;
+  text-align: center;
+  opacity: .5;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.scroll-top .glyphicon {
+  font-size: 40px;
+}
+.scroll-top .text {
+  margin-top: -5px;
+  font-size: 11px;
+  display: block;
+}
+
+.scroll-top:hover {
+  opacity: 1;
+}
+@media (min-width: 992px) {
+  .scroll-top {
+   opacity: 1;
+  }
+}
+
 /* Bootstrap style override/extention */
 .nav-tabs>li>a {
   background-color: #eee;
