@@ -87,8 +87,8 @@ $.extend({
   }
 });
 
-// Links to an anchor inside of a tab and scrolls the page to the anchor
-// Example: library.ucf.edu/?tab=#Tab-One&anchor=#Anchor-3
+// Links to an anchor inside of a tab and scrolls the page to the anchor. Only works on page that does NOT contain the tabs
+// Example: <a href="library.ucf.edu/?tab=#Tab-One&anchor=#Anchor-3">Link to Anchor-3 inside Tab-One on a different page.</a>
 $(document).ready(function(){
   var hash = window.location.hash;
   var tab = $.getUrlVar('tab');
@@ -107,15 +107,15 @@ $(document).ready(function(){
     $('html, body').animate({scrollTop:$(id).position().top}, 0);
   } 
 
-  $('.tab-pane a').click(function() {
-    var url = [location.protocol, '//', location.host, location.pathname].join('');   // Get the URL of the current page without the query string.
-    if (url == this.href.split('?')[0]) {   //Check the URL of the current page against the href of the link, both without query strings.
-        if(document.location.search.length) {
-          if (tab && anchor) {
-            window.location.reload(false);    // Reload the page to make the damn link work.
-          }
-        }
-    }
+// Links to an anchor inside of a tab and scrolls the page to the anchor. Only works on page that CONTAINS the tabs.
+// Example: <a href="library.ucf.edu/#Anchor" data-tab="Tab-Name">Link to Anchor inside of Tab-Name on same page</a>
+  $('a[data-tab]').on('click', function() { 
+    var othertab = $(this).attr('data-tab'),
+        target = $(this).attr('href');
+      $('ul.nav a[href="' + othertab + '"]').tab('show');
+      $('html, body').animate({
+          scrollTop: $(target).offset().top
+      }, 10);    
   });
 
 });
