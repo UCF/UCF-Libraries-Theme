@@ -69,16 +69,57 @@ $(document).on("hide.bs.collapse show.bs.collapse", ".collapse", function (event
 
 
 // Javascript to enable link to tab
-//=================================
-var hash = window.location.hash;
-var prefix = "tab_";
-var id = hash.replace(prefix,"");
-$(document).ready(function(){
-  if (hash) {
-      $('.nav-tabs a[href='+id+']').tab('show');
-      $('html, body').animate({scrollTop:$(id).position().top}, 0);
-  } 
+// =================================
+$.extend({
+  getUrlVars: function(){
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+  getUrlVar: function(name){
+    return $.getUrlVars()[name];
+  }
 });
+
+// Links to an anchor inside of a tab and scrolls the page to the anchor. Only works on page that does NOT contain the tabs
+// Example: <a href="library.ucf.edu/?tab=#Tab-One&anchor=#Anchor-3">Link to Anchor-3 inside Tab-One on a different page.</a>
+$(document).ready(function(){
+  var hash = window.location.hash;
+  var tab = $.getUrlVar('tab');
+  var anchor = $.getUrlVar('anchor');
+  var prefix = "tab_";
+  var id = hash.replace(prefix,"");
+  if(document.location.search.length) {
+    if (tab && anchor) {
+      $('ul.nav a[href="' + tab + '"]').tab('show');
+      $('html, body').animate({
+          scrollTop: $(anchor).offset().top
+      }, 10);    
+    } 
+  } else if (hash) {
+    $('.nav-tabs a[href='+id+']').tab('show');
+    $('html, body').animate({scrollTop:$(id).position().top}, 0);
+  } 
+
+// Links to an anchor inside of a tab and scrolls the page to the anchor. Only works on page that CONTAINS the tabs.
+// Example: <a href="library.ucf.edu/#Anchor" data-tab="Tab-Name">Link to Anchor inside of Tab-Name on same page</a>
+  $('a[data-tab]').on('click', function() { 
+    var othertab = $(this).attr('data-tab'),
+        target = $(this).attr('href');
+      $('ul.nav a[href="' + othertab + '"]').tab('show');
+      $('html, body').animate({
+          scrollTop: $(target).offset().top
+      }, 10);    
+  });
+
+});
+
 
 
 // Change hash for page-reload
@@ -142,6 +183,10 @@ $(document).ready(function () {
     });
 
 });
+
+// Link to anchor within a tab
+//============================
+
 
 // Ajax test
 //=============
