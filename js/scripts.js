@@ -69,16 +69,57 @@ $(document).on("hide.bs.collapse show.bs.collapse", ".collapse", function (event
 
 
 // Javascript to enable link to tab
-//=================================
-var hash = window.location.hash;
-var prefix = "tab_";
-var id = hash.replace(prefix,"");
-$(document).ready(function(){
-  if (hash) {
-      $('.nav-tabs a[href='+id+']').tab('show');
-      $('html, body').animate({scrollTop:$(id).position().top}, 0);
-  } 
+// =================================
+$.extend({
+  getUrlVars: function(){
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+  getUrlVar: function(name){
+    return $.getUrlVars()[name];
+  }
 });
+
+// Links to an anchor inside of a tab and scrolls the page to the anchor
+// Example: library.ucf.edu/?tab=#Tab-One&anchor=#Anchor-3
+$(document).ready(function(){
+  var hash = window.location.hash;
+  var tab = $.getUrlVar('tab');
+  var anchor = $.getUrlVar('anchor');
+  var prefix = "tab_";
+  var id = hash.replace(prefix,"");
+  if(document.location.search.length) {
+    if (tab && anchor) {
+      $('ul.nav a[href="' + tab + '"]').tab('show');
+      $('html, body').animate({
+          scrollTop: $(anchor).offset().top
+      }, 10);    
+    } 
+  } else if (hash) {
+    $('.nav-tabs a[href='+id+']').tab('show');
+    $('html, body').animate({scrollTop:$(id).position().top}, 0);
+  } 
+
+  $('.tab-pane a').click(function() {
+    var url = [location.protocol, '//', location.host, location.pathname].join('');   // Get the URL of the current page without the query string.
+    if (url == this.href.split('?')[0]) {   //Check the URL of the current page against the href of the link, both without query strings.
+        if(document.location.search.length) {
+          if (tab && anchor) {
+            window.location.reload(false);    // Reload the page to make the damn link work.
+          }
+        }
+    }
+  });
+
+});
+
 
 
 // Change hash for page-reload
@@ -142,6 +183,10 @@ $(document).ready(function () {
     });
 
 });
+
+// Link to anchor within a tab
+//============================
+
 
 // Ajax test
 //=============
