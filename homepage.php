@@ -14,14 +14,13 @@ Generate a random backround from the list below.
 
 
 <?php get_header(); ?>
+<h1 class="sr-only">UCF Libraries Website Homepage</h1>
 <div id="main">
-<div style="width:200px; margin: 0 auto;"></div>
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<?php the_content(__('(more...)')); ?>
 		<?php endwhile; else: ?>
 		<?php _e('Sorry, no posts matched your criteria.'); ?><?php endif; ?>
 </div>
-<div id="delimiter"></div>
 <script type="text/javascript">
 
 $(document).ready(function() {
