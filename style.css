@@ -849,3 +849,8 @@ footer ul li a:hover { text-decoration: none;}
 }
 
 .gform_wrapper .gform_body .gfield .gfield_time_hour i { margin-top: -2em; }
+
+.gform_wrapper .radio {
+  margin-top: 0;
+  margin-bottom: 0;
+}
