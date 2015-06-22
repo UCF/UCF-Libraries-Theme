@@ -5,7 +5,7 @@ Author: Bobby Ciullo
 Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
-Version: 1.2.0
+Version: 1.2.1
 
 */
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
@@ -358,12 +358,10 @@ footer ul li a:hover { text-decoration: none;}
 .directory .caption h3 { font-size: 17px; }
 
 @media (min-width: 768px) {
-	.libraries-page .caption h3 { font-size: 18px;}
-	.libraries-page .caption h4 { font-size: 16px;}
+	.libraries-page .caption h3 { font-size: 16px;}
 }
 @media (min-width: 992px) {
-	.libraries-page .caption h3 { font-size: 24px;}
-	.libraries-page .caption h4 { font-size: 18px;}
+	.libraries-page .caption h3 { font-size: 18px;}
 }
 
 @media (max-width: 445px) {
