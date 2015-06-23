@@ -303,6 +303,10 @@ footer ul li a:hover { text-decoration: none;}
 .floatleft		{ float: left; }
 .size-full		{ max-width: 100%; height: auto; }
 
+@media (max-width: 767px) {
+  .size-thumbnail { width: 25%; }
+}
+
 /*hiding button text for ADA */
 .btn_text {display: none;}
 
