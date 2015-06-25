@@ -674,4 +674,19 @@ function guide_list($atts) {
 }
 add_shortcode('guide-list', 'guide_list');
 
+/**
+* Discovery Rss Feed
+* Inserts Discovery Feed for ScholCom
+* 
+*[discovery-feed]
+*
+**/
+function discovery_feed() {
+  $output = '<div id="feed"></div>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script> discovery_feed() </script>';
+  return $output;
+}
+add_shortcode('discovery-feed', 'discovery_feed');
+
 ?>
