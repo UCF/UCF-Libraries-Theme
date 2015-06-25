@@ -184,6 +184,41 @@ $(document).ready(function () {
 
 });
 
+// Scholarly Communication Discovery Feed
+//=======================================
+function discovery_feed() {
+  google.load("feeds", "1");
+
+  function initialize() {
+    var feed = new google.feeds.Feed("https://rss.webofknowledge.com/rss?e=95be9f48d4ee02bc&c=ef02692db23aab900c8d0a068112113a");
+    feed.setNumEntries(10);
+    feed.load(function(result) {
+      if (!result.error) {
+        var container = document.getElementById("feed");
+//              var ul = document.createElement("ul");
+        for (var i = 0; i < result.feed.entries.length; i++) {
+          var entry = result.feed.entries[i];
+          var h3 = document.createElement("h3");
+          var link = document.createElement("a");
+          link.setAttribute('href', entry.link);
+          link.appendChild(document.createTextNode(entry.title));
+          h3.appendChild(link);
+          container.appendChild(h3);
+          var div = document.createElement("div");
+          div.innerHTML = entry.content;
+          container.appendChild(div);
+        }
+      } else {
+       var container = document.getElementById("feed");
+        var h3 = document.createElement("h3");
+    h3.appendChild(document.createTextNode('there was an error'));
+       container.appendChild(h3);          
+    }
+    });
+  }
+  google.setOnLoadCallback(initialize);
+}
+
 // Link to anchor within a tab
 //============================
 
