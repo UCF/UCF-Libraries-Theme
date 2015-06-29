@@ -698,33 +698,28 @@ add_shortcode('discovery-feed', 'discovery_feed');
 *
 **/
 function lending_login() {
-  $output = '<form action="https://illiad.net.ucf.edu/lending/illiadlending.dll" method="post" name="ILLiadLogin" id="ILLiadLogin">
+  $output = '<form  class="form-horizontal" action="https://illiad.net.ucf.edu/lending/illiadlending.dll" method="post" name="ILLiadLogin" id="ILLiadLogin">
   <fieldset>
     <legend>Lending Logon</legend>
     <input type="hidden" name="IlliadForm" value="LendingLogon">
     <input type="hidden" name="WebSessionLogoutPage" value="LendingLogon.html">
-    <table class="FormTable" style="width: 100%">
-      <tbody>
-        <tr>
-          <td class="CellLabel"><label for="Username">Library Login:</label></td>
-          <td><input type="text" size="15" name="Username" id="Username" class="textbox"></td>
-        </tr>
-        <tr>
-          <td class="CellLabel"><label for="Password">Password:</label></td>
-          <td><input type="password" size="15" name="Password" id="Password" class="textbox">
-          <span class="Note"><br>
-          (case-sensitive)</span> </td>
-        </tr>
-        <tr>
-          <td class="CellLabel">&nbsp;</td>
-          <td><input type="submit" name="SubmitButton" value="Logon to ILLiad" class="button"></td>
-        </tr>
-        <tr>
-          <td colspan="2" class="ImportantNote" style="text-align: center">
-          <a href="https://illiad.net.ucf.edu/lending/LendingFirstTime.html">First Time User Registration</a> </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="Username">Library Login:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" size="15" name="Username" id="Username" placeholder="Username" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="Password">Password:</label>
+      <div class="col-sm-10"> 
+        <input type="password" class="form-control" size="15" name="Password" id="Password" placeholder="Password">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+          <input type="submit" class="btn btn-primary" name="SubmitButton" value="Logon to ILLiad"> or <a href="https://illiad.net.ucf.edu/lending/LendingFirstTime.html" >First Time User Registration</a>
+      </div>
+    </div>
     </fieldset>
   </form>';
 return $output;
