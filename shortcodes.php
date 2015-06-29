@@ -689,4 +689,45 @@ function discovery_feed() {
 }
 add_shortcode('discovery-feed', 'discovery_feed');
 
+
+/**
+* ILL Lending Login
+* Allows ILL patrons to login to the lending site
+*
+*[lending-login]
+*
+**/
+function lending_login() {
+  $output = '<form action="https://illiad.net.ucf.edu/lending/illiadlending.dll" method="post" name="ILLiadLogin" id="ILLiadLogin">
+  <fieldset>
+    <legend>Lending Logon</legend>
+    <input type="hidden" name="IlliadForm" value="LendingLogon">
+    <input type="hidden" name="WebSessionLogoutPage" value="LendingLogon.html">
+    <table class="FormTable" style="width: 100%">
+      <tbody>
+        <tr>
+          <td class="CellLabel"><label for="Username">Library Login:</label></td>
+          <td><input type="text" size="15" name="Username" id="Username" class="textbox"></td>
+        </tr>
+        <tr>
+          <td class="CellLabel"><label for="Password">Password:</label></td>
+          <td><input type="password" size="15" name="Password" id="Password" class="textbox">
+          <span class="Note"><br>
+          (case-sensitive)</span> </td>
+        </tr>
+        <tr>
+          <td class="CellLabel">&nbsp;</td>
+          <td><input type="submit" name="SubmitButton" value="Logon to ILLiad" class="button"></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="ImportantNote" style="text-align: center">
+          <a href="https://illiad.net.ucf.edu/lending/LendingFirstTime.html">First Time User Registration</a> </td>
+        </tr>
+      </tbody>
+    </table>
+    </fieldset>
+  </form>';
+return $output;
+}
+add_shortcode('lending-login', 'lending_login');
 ?>
