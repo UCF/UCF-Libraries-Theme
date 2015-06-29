@@ -674,4 +674,55 @@ function guide_list($atts) {
 }
 add_shortcode('guide-list', 'guide_list');
 
+/**
+* Discovery Rss Feed
+* Inserts Discovery Feed for ScholCom
+* 
+*[discovery-feed]
+*
+**/
+function discovery_feed() {
+  $output = '<div id="feed"></div>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script> discovery_feed() </script>';
+  return $output;
+}
+add_shortcode('discovery-feed', 'discovery_feed');
+
+
+/**
+* ILL Lending Login
+* Allows ILL patrons to login to the lending site
+*
+*[lending-login]
+*
+**/
+function lending_login() {
+  $output = '<form  class="form-horizontal" action="https://illiad.net.ucf.edu/lending/illiadlending.dll" method="post" name="ILLiadLogin" id="ILLiadLogin">
+  <fieldset>
+    <legend>Lending Logon</legend>
+    <input type="hidden" name="IlliadForm" value="LendingLogon">
+    <input type="hidden" name="WebSessionLogoutPage" value="LendingLogon.html">
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="Username">Library Login:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" size="15" name="Username" id="Username" placeholder="Username" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="Password">Password:</label>
+      <div class="col-sm-10"> 
+        <input type="password" class="form-control" size="15" name="Password" id="Password" placeholder="Password">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+          <input type="submit" class="btn btn-primary" name="SubmitButton" value="Logon to ILLiad"> or <a href="https://illiad.net.ucf.edu/lending/LendingFirstTime.html" >First Time User Registration</a>
+      </div>
+    </div>
+    </fieldset>
+  </form>';
+return $output;
+}
+add_shortcode('lending-login', 'lending_login');
 ?>
