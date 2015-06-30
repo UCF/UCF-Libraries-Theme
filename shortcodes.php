@@ -320,7 +320,7 @@ function map_include($atts) {
   ), $atts ));
   return '<div class="responsive-wrapper" style="max-width:'.$width.';">
             <div class="responsive-container">
-             <iframe src="http://libdevelop.net.ucf.edu/Web/Status/Standard/Main/IncludeMap.php" frameborder="0" allowfullscreen></iframe>
+             <iframe src="http://libweb.net.ucf.edu/Web/Status/Standard/Main/IncludeMap.php" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>';
 }
@@ -700,7 +700,7 @@ add_shortcode('discovery-feed', 'discovery_feed');
 function lending_login() {
   $output = '<form  class="form-horizontal" action="https://illiad.net.ucf.edu/lending/illiadlending.dll" method="post" name="ILLiadLogin" id="ILLiadLogin">
   <fieldset>
-    <legend>Lending Logon</legend>
+    <legend>Lending Login</legend>
     <input type="hidden" name="IlliadForm" value="LendingLogon">
     <input type="hidden" name="WebSessionLogoutPage" value="LendingLogon.html">
     <div class="form-group">
