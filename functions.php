@@ -150,18 +150,19 @@ function theme_slug_widgets_init() {
 }
 add_action( 'widgets_init', 'theme_slug_widgets_init' );
 
-add_filter('pre_get_posts', 'query_post_type');
-function query_post_type($query) {
-  if(is_category() || is_tag()) {
-    $post_type = get_query_var('post_type');
-    if($post_type)
-        $post_type = $post_type;
-    else
-        $post_type = array('post','staff'); // replace cpt to your custom post type
-    $query->set('post_type',$post_type);
-    return $query;
-    }
-}
+// Commented out this code to make the menu work on categories and tags. Can't remember what this was used for. Leaving commented out for now.
+// add_filter('pre_get_posts', 'query_post_type');
+// function query_post_type($query) {
+//   if(is_category() || is_tag()) {
+//     $post_type = get_query_var('post_type');
+//     if($post_type)
+//         $post_type = $post_type;
+//     else
+//         $post_type = array('post','staff'); // replace cpt to your custom post type
+//     $query->set('post_type',$post_type);
+//     return $query;
+//     }
+// }
 
 /**
 * Modfied term list
