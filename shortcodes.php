@@ -137,73 +137,68 @@ add_shortcode('search-catalog', 'search_catalog');
 
 
 /**
-*Create a jquery tab box for the homepage - ToDo - make this box generic/more streamlined.
+*Create a jquery tab box for the homepage.
 *
 *Example:
-*[HomepageSearch]
-*  [QuickSearch]
+*[homepage-tab-container name="One, Two, Three, Four"]
+*  [homepage-tab-pane name=""]
 *   Content
-*  [/QuickSearch]
-*  [Articles]
+*  [/homepage-tab-pane]
+*  [homepage-tab-pane name="One"]
 *   Content
-*  [/Articles]
-*  [Books]
+*  [/homepage-tab-pane]
+*  [homepage-tab-pane name="Two"]
 *   Content
-*  [/Books]
-*  [Videos]
+*  [/homepage-tab-pane]
+*  [homepage-tab-pane name="Three"]
 *   Content
-*  [/Videos]
-*  [Website]
+*  [/homepage-tab-pane]
+*  [homepage-tab-pane name="Four"]
 *   Content
-*  [/Website]
+*  [/homepage-tab-pane]
 **/
 
 // Homepage Searchbox Shortcode
-function HomepageSearchBox( $atts, $content = null ) {
-  return '<div id="tabs">
-              <ul>
-                <li><a href="#QuickSearch"><span>QuickSearch</span></a></li>
-                <li><a href="#Articles"><span>Articles</span></a></li>
-                <li><a href="#Books"><span>Books/Catalog</span></a></li>
-                <li><a href="#Website"><span>Site Search</span></a></li>
-              </ul>' . do_shortcode($content) . '
+function hompage_tab_container( $atts, $content = null ) {
+  extract(shortcode_atts( array(
+      'names' => 'placehold',
+  ), $atts ));
+  $content = cleanup(str_replace('<br />', '', $content));  
+  $ids = explode(", ", $names);
+  $output = '<div id="tabs">
+              <ul>';
+  foreach($ids as $id) {
+    $id_name = $id;
+    $id = str_replace(' ', '-', $id);
+    $id = str_replace('.', '', $id);
+    $id = str_replace('&amp;', '', $id);
+    $id = str_replace('&', '', $id);
+    $id = str_replace('/', '', $id);
+    $output .= '<li><a href="#'.$id.'"><span>'.$id_name.'</span></a></li>';
+  }
+  $output .= '</ul>' . do_shortcode($content) . '
           </div>
           <script>
           $( "#tabs" ).tabs();
           </script>';
+  return $output;
 }
-add_shortcode('HomepageSearch', 'HomepageSearchBox');
+add_shortcode('homepage-tab-container', 'hompage_tab_container');
 
-
-// QuickSearch Tab
-function QuickSearchTab( $atts, $content = null ) {
-  return '<div id="QuickSearch">'.do_shortcode($content).'</div>';
+function homepage_tab_pane($atts, $content = null) {
+  extract(shortcode_atts( array(
+      'name' => 'placeholder',
+      'active' => '',
+  ), $atts ));
+  $name = str_replace(' ', '-', $name);
+  $name = str_replace('.', '', $name);
+  $name = str_replace('&amp;', '', $name);
+  $name = str_replace('&', '', $name);
+  $name = str_replace('/', '', $name);
+  return '<div id="'.$name.'">'.do_shortcode($content).'</div>';
 }
-add_shortcode('QuickSearch', 'QuickSearchTab');
+add_shortcode('homepage-tab-pane', 'homepage_tab_pane');
 
-// Articles Tab
-function ArticlesTab( $atts, $content = null ) {
-  return '<div id="Articles">'.do_shortcode($content).'</div>';
-}
-add_shortcode('Articles', 'ArticlesTab');
-
-// Books Tab
-function BooksTab( $atts, $content = null ) {
-  return '<div id="Books">'.do_shortcode($content).'</div>';
-}
-add_shortcode('Books', 'BooksTab');
-
-// Videos Tab
-function VideosTab( $atts, $content = null ) {
-  return '<div id="Videos">'.do_shortcode($content).'</div>';
-}
-add_shortcode('Videos', 'VideosTab');
-
-// Website Tab
-function WebsiteTab( $atts, $content = null ) {
-  return '<div id="Website">'.do_shortcode($content).'</div>';
-}
-add_shortcode('Website', 'WebsiteTab');
 
 /**
 * Special Colletions Search bar shortcode
@@ -214,6 +209,7 @@ add_shortcode('Website', 'WebsiteTab');
 function search_scua($form) {
     $form = '
       <form role="form" id="advanced" name="searchAdv" action="http://cf.catalog.fcla.edu/cf.jsp?ADV=S">
+        
         <input name="ADV" type="hidden" value="S">
         <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
         <label for="s" class="sr-only">Search</label>
