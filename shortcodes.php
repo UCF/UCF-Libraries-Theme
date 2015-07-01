@@ -23,23 +23,24 @@ add_shortcode('search-website', 'search_website');
 function OneSearchform( $form ) {
 
     $form = '
-  <form role="search" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
+  <form role="form" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
+      <input name="direct" type="hidden" value="true">
+      <input name="site" type="hidden" value="ehost-live">
+      <input name="scope" type="hidden" value="site">
+      <input name="type" type="hidden" value="1">
+      <input name="site" type="hidden" value="eds-live">
+      <input name="authtype" type="hidden" value="ip,guest,cookie,shib">
+      <input name="custid" type="hidden" value="current">
+      <input name="groupid" type="hidden" value="main">
+      <input name="profile" type="hidden" value="eds">
+      <input name="guidedField_3" type="hidden" value="">
       <label class="sr-only" for="s">Search All</label>
       <div class="input-group">
-        <input name="direct" type="hidden" value="true">
-        <input name="site" type="hidden" value="ehost-live">
-        <input name="scope" type="hidden" value="site">
-        <input name="type" type="hidden" value="1">
-        <input name="site" type="hidden" value="eds-live">
-        <input name="authtype" type="hidden" value="ip,guest,cookie,shib">
-        <input name="custid" type="hidden" value="current">
-        <input name="groupid" type="hidden" value="main">
-        <input name="profile" type="hidden" value="eds">
-        <input name="guidedField_3" type="hidden" value="">
         <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search Databases, Articles, and Catalog" results="5" size="60" type="text" x-webkit-speech="" >
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
         </span>
+
       </div>
     </form>
 ';
@@ -58,21 +59,21 @@ function onesearch_articles( $form ){
   $form = '
     <form role="form" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
       <label for="s" class="sr-only">Search</label>
+      <input name="direct" type="hidden" value="true">
+      <input name="site" type="hidden" value="ehost-live">
+      <input name="scope" type="hidden" value="site">
+      <input name="type" type="hidden" value="1">
+      <input name="site" type="hidden" value="eds-live">
+      <input name="authtype" type="hidden" value="ip,guest,cookie,shib">
+      <input name="custid" type="hidden" value="current">
+      <input name="groupid" type="hidden" value="main">
+      <input name="profile" type="hidden" value="edsarticle">
+      <input name="guidedField_3" type="hidden" value="">
+      <input name="doctype" type="hidden" value="160MN">
       <div class="input-group">
-        <input name="direct" type="hidden" value="true">
-        <input name="site" type="hidden" value="ehost-live">
-        <input name="scope" type="hidden" value="site">
-        <input name="type" type="hidden" value="1">
-        <input name="site" type="hidden" value="eds-live">
-        <input name="authtype" type="hidden" value="ip,guest,cookie,shib">
-        <input name="custid" type="hidden" value="current">
-        <input name="groupid" type="hidden" value="main">
-        <input name="profile" type="hidden" value="edsarticle">
-        <input name="guidedField_3" type="hidden" value="">
-        <input name="doctype" type="hidden" value="160MN">
         <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" name="bQuery" placeholder="Search Articles" results="5" type="text" x-webkit-speech="">
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
         </span>
       </div>
     </form>
@@ -89,23 +90,44 @@ add_shortcode('onesearch-articles', 'onesearch_articles');
 **/
 function search_catalog( $form ){
   $form = '
-    <form role="form" id="searchbox" name="searchBox" action="https://ucf.catalog.fcla.edu/cf.jsp" class="form-inline">
-      <label for="s" class="sr-only">Search catalog</label>
+    <form role="form" id="searchbox" name="searchBox" action="https://ucf.catalog.fcla.edu/cf.jsp">
+      <label for="st" class="sr-only">Search catalog</label>
       <div class="input-group">
-        <input id="box" type="text" name="st" value="" placeholder="Search Books" class="form-control">
-      </div>
-      <div class="input-group">
-        <select title="index" id="catsearchix" name="ix" class="form-control">
-          <option value="kw" selected="">Anywhere</option>
-          <option value="ti">Title</option>
-          <option value="jt">Journal Title</option>
-          <option value="au">Author</option>
-          <option value="su">Subject Heading</option>
-          <option value="nu">ISBN, ISSN, OCLC, etc.</option>
-        </select>
+        <input id="box" type="text" name="st" value="" placeholder="Search the Catalog" class="form-control" />
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
         </span>
+      </div>
+      <div class="row" style="margin-top: 1em;">
+        <div class="col-sm-6">
+          <label for="ix" class="sr-only">Choose Type</label>
+          <select title="index" id="catsearchix" name="ix" class="form-control">
+            <option value="kw" selected="">Any Field</option>
+            <option value="ti">Title</option>
+            <option value="jt">Journal Title</option>
+            <option value="au">Author</option>
+            <option value="su">Subject Heading</option>
+            <option value="nu">ISBN, ISSN, OCLC, etc.</option>
+          </select>
+        </div>
+        <div class="col-sm-6">
+          <select id="avli" name="avli" class="form-control">
+            <option value="" selected="selected">Any Locations</option>
+            <option value="CFORLANDO">John C. Hitt</option>
+            <option value="CFC*">CMC</option>
+            <option value="CFHSL*">Health Sciences Library</option>
+            <option value="CFRO*">Rosen</option>
+            <option value="CFSAL*">Altamonte Springs</option>
+            <option value="CFBCC*">Cocoa</option>
+            <option value="CFDBG*">Daytona Beach</option>
+            <option value="CFLEE*">Leesburg</option>
+            <option value="CFOCA*">Ocala</option>
+            <option value="CFBPC*">Palm Bay</option>
+            <option value="CFSLM*">Sanford/Lake Mary</option>
+            <option value="CFSOUTHLAKE">South Lake</option>
+            <option value="CFMTW*">Valencia West</option>
+          </select>
+        </div>
       </div>
     </form>
   ';
@@ -142,7 +164,7 @@ function HomepageSearchBox( $atts, $content = null ) {
               <ul>
                 <li><a href="#QuickSearch"><span>QuickSearch</span></a></li>
                 <li><a href="#Articles"><span>Articles</span></a></li>
-                <li><a href="#Books"><span>Books</span></a></li>
+                <li><a href="#Books"><span>Books/Catalog</span></a></li>
                 <li><a href="#Website"><span>Site Search</span></a></li>
               </ul>' . do_shortcode($content) . '
           </div>
