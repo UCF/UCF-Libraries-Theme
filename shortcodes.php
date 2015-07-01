@@ -23,7 +23,7 @@ add_shortcode('search-website', 'search_website');
 function OneSearchform( $form ) {
 
     $form = '
-  <form role="form" class="search-onesearch" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
+  <form role="form" class="search search-onesearch" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
       <input name="direct" type="hidden" value="true">
       <input name="site" type="hidden" value="ehost-live">
       <input name="scope" type="hidden" value="site">
@@ -57,7 +57,7 @@ add_shortcode('OneSearch', 'OneSearchform');
 **/
 function onesearch_articles( $form ){
   $form = '
-    <form role="form" class="search-articles" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
+    <form role="form" class="search search-articles" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
       <label for="s" class="sr-only">Search</label>
       <input name="direct" type="hidden" value="true">
       <input name="site" type="hidden" value="ehost-live">
@@ -90,7 +90,7 @@ add_shortcode('onesearch-articles', 'onesearch_articles');
 **/
 function search_catalog( $form ){
   $form = '
-    <form role="form" class="search-catalog" id="searchbox" name="searchBox" action="https://ucf.catalog.fcla.edu/cf.jsp">
+    <form role="form" class="search search-catalog" id="searchbox" name="searchBox" action="https://ucf.catalog.fcla.edu/cf.jsp">
       <label for="st" class="sr-only">Search catalog</label>
       <div class="input-group">
         <input id="box" type="text" name="st" value="" placeholder="Search the Catalog" class="form-control" />
@@ -144,7 +144,7 @@ add_shortcode('search-catalog', 'search_catalog');
 **/
 function search_scua($form) {
     $form = '
-      <form role="form" class="search-scua" id="advanced" name="searchAdv" action="http://cf.catalog.fcla.edu/cf.jsp?ADV=S">
+      <form role="form" class="search search-scua" id="advanced" name="searchAdv" action="http://cf.catalog.fcla.edu/cf.jsp?ADV=S">
         
         <input name="ADV" type="hidden" value="S">
         <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
