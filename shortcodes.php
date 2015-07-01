@@ -89,7 +89,7 @@ add_shortcode('onesearch-articles', 'onesearch_articles');
 **/
 function search_catalog( $form ){
   $form = '
-    <form role="form" id="searchbox" name="searchBox" action="https://ucf.catalog.fcla.edu" class="form-inline">
+    <form role="form" id="searchbox" name="searchBox" action="https://ucf.catalog.fcla.edu/cf.jsp" class="form-inline">
       <label for="s" class="sr-only">Search catalog</label>
       <div class="input-group">
         <input id="box" type="text" name="st" value="" placeholder="Search Books" class="form-control">
