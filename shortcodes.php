@@ -214,10 +214,10 @@ add_shortcode('Website', 'WebsiteTab');
 function search_scua($form) {
     $form = '
       <form role="form" id="advanced" name="searchAdv" action="http://cf.catalog.fcla.edu/cf.jsp?ADV=S">
+        <input name="ADV" type="hidden" value="S">
+        <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
         <label for="s" class="sr-only">Search</label>
         <div class="input-group">
-          <input name="ADV" type="hidden" value="S">
-          <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
           <input id="box" name="t1" class="form-control" type="search" placeholder="Special Collections Search" />
           <span class="input-group-btn">
                   <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
