@@ -780,6 +780,12 @@ footer ul li a:hover { text-decoration: none;}
 	overflow: hidden;
 }
 
+/* Search bars */
+
+.search {
+  margin: 1em 0;
+}
+
 /* Media Queries */
 
 @media screen and (max-width: 480px) {
