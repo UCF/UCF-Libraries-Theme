@@ -72,7 +72,7 @@ function onesearch_articles( $form ){
         <input name="doctype" type="hidden" value="160MN">
         <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" name="bQuery" placeholder="Search Articles" results="5" type="text" x-webkit-speech="">
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
         </span>
       </div>
     </form>
@@ -104,7 +104,7 @@ function search_catalog( $form ){
           <option value="nu">ISBN, ISSN, OCLC, etc.</option>
         </select>
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
         </span>
       </div>
     </form>
