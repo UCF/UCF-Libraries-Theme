@@ -6,7 +6,7 @@ Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
 
-Version: 1.4.1
+Version: 1.4.2
 
 */
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
@@ -403,7 +403,7 @@ footer ul li a:hover { text-decoration: none;}
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
 	width: 100%;
 }
-@media (min-width: 525px) {
+@media (min-width: 550px) {
 	.ui-tabs .ui-tabs-nav li {
 		width: auto;
 	}
@@ -411,6 +411,23 @@ footer ul li a:hover { text-decoration: none;}
 		width: auto;
 	}
 }
+@media (min-width: 768px) {
+  .ui-tabs .ui-tabs-nav li {
+    width: 100%;
+  }
+  .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+    width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  .ui-tabs .ui-tabs-nav li {
+    width: auto;
+  }
+  .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+    width: auto;
+  }
+}
+
 .ui-tabs .ui-tabs-nav li.ui-tabs-active {
   margin-bottom: 0;
   padding-bottom: 0;
@@ -421,7 +438,7 @@ footer ul li a:hover { text-decoration: none;}
 	background: transparent;
 /*	background-color: rgba(0,0,0,0.9);*/
 }
-/*@media (min-width: 525px) {
+@media (min-width: 525px) {
 	.ui-widget-header {
 		background-color: transparent;
 	}
@@ -435,7 +452,7 @@ footer ul li a:hover { text-decoration: none;}
 	.ui-widget-header {
 		background-color: transparent;
 	}
-}*/
+}
 
 .ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr, .ui-corner-left, .ui-corner-tl {
 	border-radius: 0;
@@ -466,6 +483,7 @@ footer ul li a:hover { text-decoration: none;}
   min-height: 16.5em;
   background-color: rgba(0,0,0,0.85);
   border-radius: 0px;
+  padding: 2em 1.4em 1em;
 }
 
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
@@ -506,7 +524,7 @@ footer ul li a:hover { text-decoration: none;}
 }
 
 .button-wrapper {
-	margin: 1em 0;
+	margin-top: 1em;
 }
 .button-wrapper .btn {
 	margin: .5em .5em .5em 0;
@@ -761,6 +779,12 @@ footer ul li a:hover { text-decoration: none;}
 	position: relative;
 	max-height: 400px;
 	overflow: hidden;
+}
+
+/* Search bars */
+
+.search {
+  margin: 1em 0;
 }
 
 /* Media Queries */

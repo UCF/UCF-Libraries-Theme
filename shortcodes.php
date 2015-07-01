@@ -23,23 +23,24 @@ add_shortcode('search-website', 'search_website');
 function OneSearchform( $form ) {
 
     $form = '
-  <form role="search" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
+  <form role="form" class="search search-onesearch" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
+      <input name="direct" type="hidden" value="true">
+      <input name="site" type="hidden" value="ehost-live">
+      <input name="scope" type="hidden" value="site">
+      <input name="type" type="hidden" value="1">
+      <input name="site" type="hidden" value="eds-live">
+      <input name="authtype" type="hidden" value="ip,guest,cookie,shib">
+      <input name="custid" type="hidden" value="current">
+      <input name="groupid" type="hidden" value="main">
+      <input name="profile" type="hidden" value="eds">
+      <input name="guidedField_3" type="hidden" value="">
       <label class="sr-only" for="s">Search All</label>
       <div class="input-group">
-        <input name="direct" type="hidden" value="true">
-        <input name="site" type="hidden" value="ehost-live">
-        <input name="scope" type="hidden" value="site">
-        <input name="type" type="hidden" value="1">
-        <input name="site" type="hidden" value="eds-live">
-        <input name="authtype" type="hidden" value="ip,guest,cookie,shib">
-        <input name="custid" type="hidden" value="current">
-        <input name="groupid" type="hidden" value="main">
-        <input name="profile" type="hidden" value="eds">
-        <input name="guidedField_3" type="hidden" value="">
         <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search Databases, Articles, and Catalog" results="5" size="60" type="text" x-webkit-speech="" >
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
         </span>
+
       </div>
     </form>
 ';
@@ -56,23 +57,23 @@ add_shortcode('OneSearch', 'OneSearchform');
 **/
 function onesearch_articles( $form ){
   $form = '
-    <form role="form" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
+    <form role="form" class="search search-articles" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
       <label for="s" class="sr-only">Search</label>
+      <input name="direct" type="hidden" value="true">
+      <input name="site" type="hidden" value="ehost-live">
+      <input name="scope" type="hidden" value="site">
+      <input name="type" type="hidden" value="1">
+      <input name="site" type="hidden" value="eds-live">
+      <input name="authtype" type="hidden" value="ip,guest,cookie,shib">
+      <input name="custid" type="hidden" value="current">
+      <input name="groupid" type="hidden" value="main">
+      <input name="profile" type="hidden" value="edsarticle">
+      <input name="guidedField_3" type="hidden" value="">
+      <input name="doctype" type="hidden" value="160MN">
       <div class="input-group">
-        <input name="direct" type="hidden" value="true">
-        <input name="site" type="hidden" value="ehost-live">
-        <input name="scope" type="hidden" value="site">
-        <input name="type" type="hidden" value="1">
-        <input name="site" type="hidden" value="eds-live">
-        <input name="authtype" type="hidden" value="ip,guest,cookie,shib">
-        <input name="custid" type="hidden" value="current">
-        <input name="groupid" type="hidden" value="main">
-        <input name="profile" type="hidden" value="edsarticle">
-        <input name="guidedField_3" type="hidden" value="">
-        <input name="doctype" type="hidden" value="160MN">
         <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" name="bQuery" placeholder="Search Articles" results="5" type="text" x-webkit-speech="">
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
         </span>
       </div>
     </form>
@@ -89,23 +90,44 @@ add_shortcode('onesearch-articles', 'onesearch_articles');
 **/
 function search_catalog( $form ){
   $form = '
-    <form role="form" id="searchbox" name="searchBox" action="https://ucf.catalog.fcla.edu" class="form-inline">
-      <label for="s" class="sr-only">Search catalog</label>
+    <form role="form" class="search search-catalog" id="searchbox" name="searchBox" action="https://ucf.catalog.fcla.edu/cf.jsp">
+      <label for="st" class="sr-only">Search catalog</label>
       <div class="input-group">
-        <input id="box" type="text" name="st" value="" placeholder="Search Books" class="form-control">
-      </div>
-      <div class="input-group">
-        <select title="index" id="catsearchix" name="ix" class="form-control">
-          <option value="kw" selected="">Anywhere</option>
-          <option value="ti">Title</option>
-          <option value="jt">Journal Title</option>
-          <option value="au">Author</option>
-          <option value="su">Subject Heading</option>
-          <option value="nu">ISBN, ISSN, OCLC, etc.</option>
-        </select>
+        <input id="box" type="text" name="st" value="" placeholder="Search the Catalog" class="form-control" />
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
         </span>
+      </div>
+      <div class="row" style="margin-top: 1em;">
+        <div class="col-sm-6">
+          <label for="ix" class="sr-only">Choose Type</label>
+          <select title="index" id="catsearchix" name="ix" class="form-control">
+            <option value="kw" selected="">Any Field</option>
+            <option value="ti">Title</option>
+            <option value="jt">Journal Title</option>
+            <option value="au">Author</option>
+            <option value="su">Subject Heading</option>
+            <option value="nu">ISBN, ISSN, OCLC, etc.</option>
+          </select>
+        </div>
+        <div class="col-sm-6">
+          <select id="avli" name="avli" class="form-control">
+            <option value="" selected="selected">Any Locations</option>
+            <option value="CFORLANDO">John C. Hitt</option>
+            <option value="CFC*">CMC</option>
+            <option value="CFHSL*">Health Sciences Library</option>
+            <option value="CFRO*">Rosen</option>
+            <option value="CFSAL*">Altamonte Springs</option>
+            <option value="CFBCC*">Cocoa</option>
+            <option value="CFDBG*">Daytona Beach</option>
+            <option value="CFLEE*">Leesburg</option>
+            <option value="CFOCA*">Ocala</option>
+            <option value="CFBPC*">Palm Bay</option>
+            <option value="CFSLM*">Sanford/Lake Mary</option>
+            <option value="CFSOUTHLAKE">South Lake</option>
+            <option value="CFMTW*">Valencia West</option>
+          </select>
+        </div>
       </div>
     </form>
   ';
@@ -115,75 +137,6 @@ add_shortcode('search-catalog', 'search_catalog');
 
 
 /**
-*Create a jquery tab box for the homepage - ToDo - make this box generic/more streamlined.
-*
-*Example:
-*[HomepageSearch]
-*  [QuickSearch]
-*   Content
-*  [/QuickSearch]
-*  [Articles]
-*   Content
-*  [/Articles]
-*  [Books]
-*   Content
-*  [/Books]
-*  [Videos]
-*   Content
-*  [/Videos]
-*  [Website]
-*   Content
-*  [/Website]
-**/
-
-// Homepage Searchbox Shortcode
-function HomepageSearchBox( $atts, $content = null ) {
-  return '<div id="tabs">
-              <ul>
-                <li><a href="#QuickSearch"><span>QuickSearch</span></a></li>
-                <li><a href="#Articles"><span>Articles</span></a></li>
-                <li><a href="#Books"><span>Books</span></a></li>
-                <li><a href="#Website"><span>Site Search</span></a></li>
-              </ul>' . do_shortcode($content) . '
-          </div>
-          <script>
-          $( "#tabs" ).tabs();
-          </script>';
-}
-add_shortcode('HomepageSearch', 'HomepageSearchBox');
-
-
-// QuickSearch Tab
-function QuickSearchTab( $atts, $content = null ) {
-  return '<div id="QuickSearch">'.do_shortcode($content).'</div>';
-}
-add_shortcode('QuickSearch', 'QuickSearchTab');
-
-// Articles Tab
-function ArticlesTab( $atts, $content = null ) {
-  return '<div id="Articles">'.do_shortcode($content).'</div>';
-}
-add_shortcode('Articles', 'ArticlesTab');
-
-// Books Tab
-function BooksTab( $atts, $content = null ) {
-  return '<div id="Books">'.do_shortcode($content).'</div>';
-}
-add_shortcode('Books', 'BooksTab');
-
-// Videos Tab
-function VideosTab( $atts, $content = null ) {
-  return '<div id="Videos">'.do_shortcode($content).'</div>';
-}
-add_shortcode('Videos', 'VideosTab');
-
-// Website Tab
-function WebsiteTab( $atts, $content = null ) {
-  return '<div id="Website">'.do_shortcode($content).'</div>';
-}
-add_shortcode('Website', 'WebsiteTab');
-
-/**
 * Special Colletions Search bar shortcode
 * Searches the UCF Library catalog for items found in Special Collections or University Archives
 *
@@ -191,11 +144,12 @@ add_shortcode('Website', 'WebsiteTab');
 **/
 function search_scua($form) {
     $form = '
-      <form role="form" id="advanced" name="searchAdv" action="http://cf.catalog.fcla.edu/cf.jsp?ADV=S">
+      <form role="form" class="search search-scua" id="advanced" name="searchAdv" action="http://cf.catalog.fcla.edu/cf.jsp?ADV=S">
+        
+        <input name="ADV" type="hidden" value="S">
+        <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
         <label for="s" class="sr-only">Search</label>
         <div class="input-group">
-          <input name="ADV" type="hidden" value="S">
-          <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
           <input id="box" name="t1" class="form-control" type="search" placeholder="Special Collections Search" />
           <span class="input-group-btn">
                   <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
@@ -206,6 +160,147 @@ function search_scua($form) {
     return $form;
 }
 add_shortcode('search-scua', 'search_scua');
+
+
+/**
+* JQuery Homepage tabs
+* Create a jquery tab box for the homepage.
+*
+* Example:
+* [homepage-tab-container name="One, Two, Three, Four"]
+*   [homepage-tab-pane name=""]
+*    Content
+*   [/homepage-tab-pane]
+*   [homepage-tab-pane name="One"]
+*    Content
+*   [/homepage-tab-pane]
+*   [homepage-tab-pane name="Two"]
+*    Content
+*   [/homepage-tab-pane]
+*   [homepage-tab-pane name="Three"]
+*    Content
+*   [/homepage-tab-pane]
+*   [homepage-tab-pane name="Four"]
+*    Content
+*   [/homepage-tab-pane]
+**/
+
+// Homepage Searchbox Shortcode
+function hompage_tab_container( $atts, $content = null ) {
+  extract(shortcode_atts( array(
+      'names' => 'placehold',
+  ), $atts ));
+  $content = cleanup(str_replace('<br />', '', $content));  
+  $ids = explode(", ", $names);
+  $output = '<div id="tabs">
+              <ul>';
+  foreach($ids as $id) {
+    $id_name = $id;
+    $id = str_replace(' ', '-', $id);
+    $id = str_replace('.', '', $id);
+    $id = str_replace('&amp;', '', $id);
+    $id = str_replace('&', '', $id);
+    $id = str_replace('/', '', $id);
+    $output .= '<li><a href="#'.$id.'"><span>'.$id_name.'</span></a></li>';
+  }
+  $output .= '</ul>' . do_shortcode($content) . '
+          </div>
+          <script>
+          $( "#tabs" ).tabs();
+          </script>';
+  return $output;
+}
+add_shortcode('homepage-tab-container', 'hompage_tab_container');
+
+function homepage_tab_pane($atts, $content = null) {
+  extract(shortcode_atts( array(
+      'name' => 'placeholder',
+      'active' => '',
+  ), $atts ));
+  $name = str_replace(' ', '-', $name);
+  $name = str_replace('.', '', $name);
+  $name = str_replace('&amp;', '', $name);
+  $name = str_replace('&', '', $name);
+  $name = str_replace('/', '', $name);
+  return '<div id="'.$name.'">'.do_shortcode($content).'</div>';
+}
+add_shortcode('homepage-tab-pane', 'homepage_tab_pane');
+
+
+/**
+*Bootstrap Tabs Shortcode
+*Create bootstrap tabs with this shortcode
+*
+*[tab-container names="name1, name2, name3" numbers="(0), (1), (2)" icons="search, book, question-sign"]
+*[tab-pane name="name1"]
+* Tab content here
+*[/tab-pane]
+*[tab-pane name="name2"]
+* Tab content here
+*[/tab-pane]
+*[tab-pane name="name3"]
+* Tab content here
+*[/tab-pane]
+*[/tab-container]
+**/
+function tab_container($atts, $content = null) {
+  extract(shortcode_atts( array(
+      'names' => 'placehold',
+      'numbers' => '',
+      'icons' => '',
+  ), $atts ));
+  $content = cleanup(str_replace('<br />', '', $content));
+  $ids = explode(", ", $names);
+  if ($numbers != '') {
+    $numbers = explode(", ", $numbers);
+  }
+  if ($icons != '') {
+    $icons = explode(", ", $icons);
+  }
+  $i = 0;
+  $output = '
+    <div class="tab-container" role="tabpanel">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">';
+  foreach($ids as $id) {
+    $icon = '';
+    $id_name = $id;
+    $id = str_replace(' ', '-', $id);
+    $id = str_replace('.', '', $id);
+    $id = str_replace('&amp;', '', $id);
+    $id = str_replace('&', '', $id);
+    if ($icons[$i] != '') {
+      $icon = '<span class="glyphicon glyphicon-'.$icons[$i].'"></span>';
+    }
+    if($i == 0) {
+      $output .= '<li class="active" role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$numbers[$i].'</a></li>';
+    } else {
+        $output .= '<li role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$numbers[$i].'</a></li>';
+    }
+    ++$i;
+  }
+  $output .= '
+   </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">'.do_shortcode($content).'</div></div>';
+  return $output;
+}
+add_shortcode('tab-container', 'tab_container');
+
+function tab_pane($atts, $content = null) {
+  extract(shortcode_atts( array(
+      'name' => 'placeholder',
+      'active' => '',
+  ), $atts ));
+  $name = str_replace(' ', '-', $name);
+  $name = str_replace('.', '', $name);
+  $name = str_replace('&amp;', '', $name);
+  $name = str_replace('&', '', $name);
+  return '<div role="tabpanel" class="tab-pane '.$active.'" id="'.$name.'">'.do_shortcode($content).'</div>';
+}
+add_shortcode('tab-pane', 'tab_pane');
 
 
 //Site map shortcode
@@ -325,82 +420,6 @@ function map_include($atts) {
           </div>';
 }
 add_shortcode('map', 'map_include');
-
-/**
-*Bootstrap Tabs Shortcode
-*Create bootstrap tabs with this shortcode
-*
-*[tab-container names="name1, name2, name3" numbers="(0), (1), (2)" icons="search, book, question-sign"]
-*[tab-pane name="name1"]
-* Tab content here
-*[/tab-pane]
-*[tab-pane name="name2"]
-* Tab content here
-*[/tab-pane]
-*[tab-pane name="name3"]
-* Tab content here
-*[/tab-pane]
-*[/tab-container]
-**/
-function tab_container($atts, $content = null) {
-  extract(shortcode_atts( array(
-      'names' => 'placehold',
-      'numbers' => '',
-      'icons' => '',
-  ), $atts ));
-  $content = cleanup(str_replace('<br />', '', $content));
-  $ids = explode(", ", $names);
-  if ($numbers != '') {
-    $numbers = explode(", ", $numbers);
-  }
-  if ($icons != '') {
-    $icons = explode(", ", $icons);
-  }
-  $i = 0;
-  $output = '
-    <div class="tab-container" role="tabpanel">
-
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">';
-  foreach($ids as $id) {
-    $icon = '';
-    $id_name = $id;
-    $id = str_replace(' ', '-', $id);
-    $id = str_replace('.', '', $id);
-    $id = str_replace('&amp;', '', $id);
-    $id = str_replace('&', '', $id);
-    if ($icons[$i] != '') {
-      $icon = '<span class="glyphicon glyphicon-'.$icons[$i].'"></span>';
-    }
-    if($i == 0) {
-      $output .= '<li class="active" role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$numbers[$i].'</a></li>';
-    } else {
-        $output .= '<li role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$numbers[$i].'</a></li>';
-    }
-    ++$i;
-  }
-  $output .= '
-   </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content">'.do_shortcode($content).'</div></div>';
-  return $output;
-}
-add_shortcode('tab-container', 'tab_container');
-
-function tab_pane($atts, $content = null) {
-  extract(shortcode_atts( array(
-      'name' => 'placeholder',
-      'active' => '',
-  ), $atts ));
-  $name = str_replace(' ', '-', $name);
-  $name = str_replace('.', '', $name);
-  $name = str_replace('&amp;', '', $name);
-  $name = str_replace('&', '', $name);
-  return '<div role="tabpanel" class="tab-pane '.$active.'" id="'.$name.'">'.do_shortcode($content).'</div>';
-}
-add_shortcode('tab-pane', 'tab_pane');
-
 
 /**
 *Libcal instruction calendar shortcode
