@@ -483,6 +483,7 @@ footer ul li a:hover { text-decoration: none;}
   min-height: 16.5em;
   background-color: rgba(0,0,0,0.85);
   border-radius: 0px;
+  padding: 2em 1.4em 1em;
 }
 
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
