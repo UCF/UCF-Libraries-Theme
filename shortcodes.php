@@ -520,8 +520,12 @@ function hours_today_single( $atts ) {
   $string = file_get_contents('http://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
   $json_o = json_decode($string);
   $hours = '';
-  foreach ($json_o->locations as $location) if ($location->lid == $id) {
-    $hours .= '<span class="department-hours"><!-- '.$location->name.'-->'.$location->rendered.'</span>';
+  if ($json_o != null) {
+    foreach ($json_o->locations as $location) if ($location->lid == $id) {
+      $hours .= '<span class="department-hours"><!-- '.$location->name.'-->'.$location->rendered.'</span>';
+    }
+  } else {
+    $hours = '<p>Hours not available.</p>';
   }
 
   return $hours;
@@ -545,28 +549,90 @@ function library_events($atts) {
   $json_o = json_decode($string);
   $events_list = '';
   $i = 0;
-  foreach ($json_o as $event) {
-    $date = strtotime($event->starts);
-    $day = date('d',$date);
-    $month = date('M',$date);
-    $year = date('Y',$date);
-    $start_time = date('g:ia',$date);
-    $end_time = date('g:ia',strtotime($event->ends));
-    $events_list .= '
-      <article>
-        <span class="eventDate"><ul><li class="eventMonth">'.$month.'</li><li class="eventDay">'.$day.'</li><li class="eventYear">'.$year.'</li><li class="eventDate">'.$event->starts.'</li></ul></span>
-        <ul class="eventInfo">
-          <li class="eventTitle"><a href="'.$event->url.'" title="'.$event->title.'" target="_blank">'.$event->title.'</a></li>
-          <li class="eventTime"><span class="glyphicon glyphicon-time"></span> '.$start_time.' - '.$end_time.'</li>
-          <li class="eventLocation"><span class="glyphicon glyphicon-map-marker"></span> <a href="'.$event->location_url.'">'.$event->location.'</a></li>
-        </ul>
-      </article>';
-    if(++$i == $number) break;
+  if ($json_o != null) {
+    foreach ($json_o as $event) {
+      $date = strtotime($event->starts);
+      $day = date('d',$date);
+      $month = date('M',$date);
+      $year = date('Y',$date);
+      $start_time = date('g:ia',$date);
+      $end_time = date('g:ia',strtotime($event->ends));
+      $events_list .= '
+        <article>
+          <span class="eventDate"><ul><li class="eventMonth">'.$month.'</li><li class="eventDay">'.$day.'</li><li class="eventYear">'.$year.'</li><li class="eventDate">'.$event->starts.'</li></ul></span>
+          <ul class="eventInfo">
+            <li class="eventTitle"><a href="'.$event->url.'" title="'.$event->title.'" target="_blank">'.$event->title.'</a></li>
+            <li class="eventTime"><span class="glyphicon glyphicon-time"></span> '.$start_time.' - '.$end_time.'</li>
+            <li class="eventLocation"><span class="glyphicon glyphicon-map-marker"></span> <a href="'.$event->location_url.'">'.$event->location.'</a></li>
+          </ul>
+        </article>';
+      if(++$i == $number) break;
+    } 
+  } else {
+    $events_list = '<p>Sorry, no events could be loaded.</p>';
   }
+
   return $events_list;
 }
 
 add_shortcode('library-events', 'library_events');
+
+
+/**
+* Computer Availability
+* Lists the number of available computers per floor
+*
+* Example:
+* [computer-availability]
+*
+**/
+function computer_availability() {
+  $string = wp_remote_get('http://library.ucf.edu/Web/Db.php?q=publicStatusPCs&format=json&l=1', array(
+    'user-agent' => 'DummyAgentForDetectMobileBrowser.php',
+    ));
+  $json_o = json_decode($string['body']);
+  if ($json_o != null) {
+    $computers_list = '<dl class="dl-horizontal">';
+    $i = 1;
+    while ( $i < 6 ) {
+      $machines_in_use = 0;
+      $machines_total = 0;
+      foreach ($json_o as $location) if ($location->location_room_floor == $i) {
+        $machines_in_use += $location->machinesInUse;
+        $machines_total += $location->machinesTotal;
+      }
+      switch ($i) {
+        case 1:
+          $floor_number = '1st';
+          break;
+        case 2:
+          $floor_number = '2nd';
+          break;
+        case 3:
+          $floor_number = '3rd';
+          break;
+        case 4:
+          $floor_number = '4th';
+          break;
+        case 5:
+          $floor_number = '5th';
+          break;
+        default:
+          $floor_number = 'unknown';
+          break;
+      }
+      $computers_list .= '<dt>'.$floor_number.' Floor:</dt><dd>'.($machines_total-$machines_in_use).' / '.$machines_total.'</dd>';
+      $i++;
+    }
+    $computers_list .= '</dl>';
+  } else {
+    $computers_list = '<p>Sorry, no computers could be found</p>';
+  }
+  return $computers_list;
+  //return '<pre>'.$string['body'].'</pre>';
+}
+add_shortcode('computer-availability', 'computer_availability');
+
 
 /**
 * Ask a Librarian chat widget
