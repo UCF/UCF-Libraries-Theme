@@ -90,10 +90,10 @@ add_shortcode('onesearch-articles', 'onesearch_articles');
 **/
 function search_catalog( $form ){
   $form = '
-    <form role="form" class="search search-catalog" id="searchbox" name="searchBox" action="https://ucf.catalog.fcla.edu/cf.jsp">
+    <form role="form" class="search search-catalog"  id="advanced" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp?ADV=S">
       <label for="st" class="sr-only">Search catalog</label>
       <div class="input-group">
-        <input id="box" type="text" name="st" value="" placeholder="Search the Catalog" class="form-control" />
+        <input id="box" type="text" name="t1" value="" placeholder="Search the Catalog" class="form-control" />
         <span class="input-group-btn">
           <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
         </span>
@@ -101,7 +101,7 @@ function search_catalog( $form ){
       <div class="row" style="margin-top: 1em;">
         <div class="col-sm-6">
           <label for="ix" class="sr-only">Choose Type</label>
-          <select title="index" id="catsearchix" name="ix" class="form-control">
+          <select title="index" id="catsearch" name="k1" class="form-control">
             <option value="kw" selected="">Any Field</option>
             <option value="ti">Title</option>
             <option value="jt">Journal Title</option>
@@ -128,6 +128,7 @@ function search_catalog( $form ){
             <option value="CFMTW*">Valencia West</option>
           </select>
         </div>
+        <input name="ADV" type="hidden" value="S">
       </div>
     </form>
   ';
