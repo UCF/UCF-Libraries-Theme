@@ -488,11 +488,15 @@ add_shortcode('hours-calendar', 'hours_week_calendar');
 function hours_today_homepage( $atts ) {
   $string = file_get_contents('http://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
   $json_o = json_decode($string);
-  $hours_list = '<dl class="dl-horizontal homepage">';
-  foreach ($json_o->locations as $location) if ($location->lid == '1206' || $location->lid == '1209' || $location->lid == '1211') {
-      $hours_list .= '<dt>'.$location->name.'</dt><dd>'.$location->rendered.'</dd>';
+  if ($json_o != null) {
+    $hours_list = '<dl class="dl-horizontal homepage">';
+    foreach ($json_o->locations as $location) if ($location->lid == '1206' || $location->lid == '1209' || $location->lid == '1211') {
+        $hours_list .= '<dt>'.$location->name.'</dt><dd>'.$location->rendered.'</dd>';
+    }
+    $hours_list .= '</dl>';
+  } else {
+    $hours_list = '<p style="text-align: center">Unable to load hours.</p>';
   }
-  $hours_list .= '</dl>';
   return $hours_list;
 }
 add_shortcode('hours-today-homepage', 'hours_today_homepage');
@@ -525,7 +529,7 @@ function hours_today_single( $atts ) {
       $hours .= '<span class="department-hours"><!-- '.$location->name.'-->'.$location->rendered.'</span>';
     }
   } else {
-    $hours = '<p>Hours not available.</p>';
+    $hours = '<p>Unable to load hours.</p>';
   }
 
   return $hours;
@@ -569,7 +573,7 @@ function library_events($atts) {
       if(++$i == $number) break;
     } 
   } else {
-    $events_list = '<p>Sorry, no events could be loaded.</p>';
+    $events_list = '<p>Unable to load events.</p>';
   }
 
   return $events_list;
@@ -626,7 +630,7 @@ function computer_availability() {
     }
     $computers_list .= '</dl>';
   } else {
-    $computers_list = '<p>Sorry, no computers could be found</p>';
+    $computers_list = '<p>Unable to determin computer availability.</p>';
   }
   return $computers_list;
   //return '<pre>'.$string['body'].'</pre>';
