@@ -61,7 +61,9 @@ echo $before . $post_type->labels->singular_name . $after;
 } elseif ( is_attachment() ) {
 $parent = get_post($post->post_parent);
 $cat = get_the_category($parent->ID); $cat = $cat[0];
+if (is_string($cat)) {
 echo get_category_parents($cat, TRUE, ' </li> ');
+}
 echo '<li><a href="' . get_permalink($parent) . '">' . $parent->post_title . '</a>';
 if ($showCurrent == 1) echo ' </li> ' . $before . get_the_title() . $after;
 
