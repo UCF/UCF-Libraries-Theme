@@ -605,6 +605,7 @@ function computer_availability() {
         $machines_in_use += $location->machinesInUse;
         $machines_total += $location->machinesTotal;
       }
+      $machines_available = ($machines_total-$machines_in_use);
       switch ($i) {
         case 1:
           $floor_number = '1st';
@@ -625,7 +626,11 @@ function computer_availability() {
           $floor_number = 'unknown';
           break;
       }
-      $computers_list .= '<dt>'.$floor_number.' Floor:</dt><dd>'.($machines_total-$machines_in_use).' of '.$machines_total.' available.</dd>';
+      if ($machines_available == 0) {
+        $computers_list .= '<dt>'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</dt><dd class="unavailable">'.$machines_available.' of '.$machines_total.' available.</dd>';
+      } else {
+        $computers_list .= '<dt>'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</dt><dd>'.$machines_available.' of '.$machines_total.' available.</dd>';
+      }
       $i++;
     }
     $computers_list .= '</dl>';
