@@ -625,7 +625,7 @@ function computer_availability() {
           $floor_number = 'unknown';
           break;
       }
-      $computers_list .= '<dt>'.$floor_number.' Floor:</dt><dd>'.($machines_total-$machines_in_use).' / '.$machines_total.'</dd>';
+      $computers_list .= '<dt>'.$floor_number.' Floor:</dt><dd>'.($machines_total-$machines_in_use).' of '.$machines_total.' available.</dd>';
       $i++;
     }
     $computers_list .= '</dl>';
