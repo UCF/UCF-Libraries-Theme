@@ -38,5 +38,4 @@ Description: Default Page.
 <?php endif; ?>	
 	</div>
 </div>
-<div id="delimiter"></div>
 <?php get_footer(); ?>

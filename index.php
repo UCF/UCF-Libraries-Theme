@@ -42,5 +42,4 @@
 		</div>
 	</div>
 </div>
-<div id="delimiter"></div>
 <?php get_footer(); ?>

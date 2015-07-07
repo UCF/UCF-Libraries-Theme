@@ -34,5 +34,4 @@ Description: Use if a page requires a sidebar.
 		</div>
 	</div>
 </div>
-<div id="delimiter"></div>
 <?php get_footer(); ?>
