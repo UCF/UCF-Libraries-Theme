@@ -35,7 +35,6 @@ $results_count = $wp_query->found_posts;
                             <p><?php echo wp_trim_words( get_the_excerpt(), 30, '...' ); ?></p>
                         </div>
                     </article>
-                    <hr />
 
                     <?php endwhile; ?>
 

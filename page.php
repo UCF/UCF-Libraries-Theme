@@ -29,7 +29,7 @@ Description: Default Page.
 				<article>
 				<?php the_content(__('(more...)')); ?>
 				</article>
-				<hr> <?php endwhile; else: ?>
+				<?php endwhile; else: ?>
 				<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 			</div>
 		</div>

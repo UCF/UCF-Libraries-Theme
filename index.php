@@ -36,7 +36,7 @@
 					<p><?php the_content(__('(more...)')); ?></p>
 					<p><?php comments_template( $file, $separate_comments ); ?></p>
 				</article>
-				<hr> <?php endwhile; else: ?>
+				<?php endwhile; else: ?>
 				<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 			</div>
 		</div>
