@@ -414,10 +414,8 @@ function map_include($atts) {
   extract(shortcode_atts( array(
       'width' => '100%',
   ), $atts ));
-  return '<div class="responsive-wrapper" style="max-width:'.$width.';">
-            <div class="responsive-container">
-             <iframe src="http://libweb.net.ucf.edu/Web/Status/Standard/Main/IncludeMap.php" frameborder="0" allowfullscreen></iframe>
-            </div>
+  return '<div class="google-maps">
+             <iframe src="http://libdevelop.net.ucf.edu/Web/Status/Standard/Main/IncludeMap.php" frameborder="0"></iframe>
           </div>';
 }
 add_shortcode('map', 'map_include');
