@@ -34,5 +34,4 @@ $ancestors = get_ancestors(get_the_ID(), 'page');
 		</div>
 	</div>
 </div>
-<div id="delimiter"></div>
 <?php get_footer(); ?>

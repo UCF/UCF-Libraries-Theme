@@ -32,5 +32,4 @@ Description: Use if a page belongs under another page.
 		</div>
 	</div>
 </div>
-<div id="delimiter"></div>
 <?php get_footer(); ?>
