@@ -339,6 +339,20 @@ footer ul li a:hover { text-decoration: none;}
 
 .responsive-wrapper { margin: 0 auto 1em; }
 
+.google-maps {
+    position: relative;
+    padding-bottom: 75%; // This is the aspect ratio
+    height: 0;
+    overflow: hidden;
+}
+.google-maps iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
 /* Single Person page */
 
 /*Staff Directories*/
@@ -523,6 +537,7 @@ footer ul li a:hover { text-decoration: none;}
 
 .background-color-gray{
 	background-color: rgba(0,0,0,0.1);
+	margin-bottom: -2em;
 	padding: 2em 0;
 }
 
