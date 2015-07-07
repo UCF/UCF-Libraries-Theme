@@ -15,6 +15,7 @@
 		<meta name="viewport" content="width=device-width">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="theme-color" content="#ffcc00">
+		<link rel="icon" sizes="192x192" href="<?php echo get_stylesheet_directory_uri(); ?>/images/PegasusIcon.png">
 		<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" />
 		<script type="text/javascript" id="ucfhb-script" src="//universityheader.ucf.edu/bar/js/university-header.js"></script>
 		<?php wp_head(); ?> 
