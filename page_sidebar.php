@@ -28,11 +28,10 @@ Description: Use if a page requires a sidebar.
 				<article>
 				<?php the_content(__('(more...)')); ?>
 				</article>
-				<hr> <?php endwhile; else: ?>
+				<?php endwhile; else: ?>
 				<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 			</div>
 		</div>
 	</div>
 </div>
-<div id="delimiter"></div>
 <?php get_footer(); ?>

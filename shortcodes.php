@@ -410,17 +410,75 @@ add_shortcode('youtube', 'youtube_video');
 * Example:
 * [map]
 **/
-function map_include($atts) {
+function interactive_map($atts) {
   extract(shortcode_atts( array(
       'width' => '100%',
   ), $atts ));
-  return '<div class="responsive-wrapper" style="max-width:'.$width.';">
-            <div class="responsive-container">
-             <iframe src="http://libweb.net.ucf.edu/Web/Status/Standard/Main/IncludeMap.php" frameborder="0" allowfullscreen></iframe>
-            </div>
+  return '<div class="google-maps">
+             <iframe src="http://libdevelop.net.ucf.edu/Web/Status/Standard/Main/IncludeMap.php" frameborder="0"></iframe>
           </div>';
 }
-add_shortcode('map', 'map_include');
+add_shortcode('interactive-map', 'interactive_map');
+
+
+/**
+* General Map
+* Use to make a google map of a predifined library location or to any custom point
+*
+* Example:
+* [general-map location="Hitt"]
+* OR
+* [general-map location="google-map-coordinates-here"]
+**/
+function general_map($atts) {
+    extract(shortcode_atts( array(
+      'location' => 'Hitt',
+  ), $atts ));
+  switch ($location) {
+    case 'Hitt':
+      $src = 'https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d875.7455309790337!2d-81.20141982209049!3d28.60031308469445!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436290834017';
+      break;
+    case 'Rosen':
+      $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d877.1712348227965!2d-81.44179284571355!3d28.428762107708213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436290994918';
+      break;
+    case 'CMC':
+      $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d875.7471532641134!2d-81.20424548715444!3d28.60011841531814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436291070792';
+      break;
+    case 'Altamonte':
+      $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d875.3605067111315!2d-81.41574975829931!3d28.64648059583555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436291171096';
+      break;
+    case 'Cocoa':
+      $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d877.543018943443!2d-80.75894411468059!3d28.383870220119142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436291275931';
+      break;
+    case 'Daytona':
+      $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d870.6827500139531!2d-81.04838862757899!3d29.202045601161537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436291762901';
+      break;
+    case 'Leesburg':
+      $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d873.8414959020026!2d-81.79709471534468!3d28.82796203482712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436293795981';
+      break;
+    case 'Ocala':
+      $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d435.4925656406324!2d-82.17891057312566!3d29.166424826039044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436294701966';
+      break;
+    case 'Sanford':
+      $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d874.5443588197293!2d-81.30288227540986!3d28.744118869883454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436296187647';
+      break;
+    case 'South Lake':
+      $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d876.1545525330274!2d-81.70839270489343!3d28.551193246093373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436296296709';
+      break;
+    case 'Valencia Osceola':
+      $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d878.1771815393496!2d-81.38134562572704!3d28.30714626573258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436296377437';
+      break;
+    case 'Valencia West':
+      $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1752.7924647070772!2d-81.46436832764923!3d28.522133249858822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436296479048';
+      break;
+    default:
+      $src = $location;
+      break;
+  }
+  $output = '<div class="google-maps"> <iframe src="'.$src.'" width="600" height="450" frameborder="0" style="border:0"></iframe> </div>';
+  return $output;
+}
+add_shortcode('general-map', 'general_map');
 
 /**
 *Libcal instruction calendar shortcode

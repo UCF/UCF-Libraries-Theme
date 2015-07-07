@@ -47,7 +47,7 @@
 							</div>
 						</div>
 					</article>
-					<hr> <?php endwhile; else: ?>
+					<?php endwhile; else: ?>
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 				</div>
 			</div>
