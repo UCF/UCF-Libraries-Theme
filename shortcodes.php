@@ -410,7 +410,7 @@ add_shortcode('youtube', 'youtube_video');
 * Example:
 * [map]
 **/
-function map_include($atts) {
+function interactive_map($atts) {
   extract(shortcode_atts( array(
       'width' => '100%',
   ), $atts ));
@@ -418,7 +418,27 @@ function map_include($atts) {
              <iframe src="http://libdevelop.net.ucf.edu/Web/Status/Standard/Main/IncludeMap.php" frameborder="0"></iframe>
           </div>';
 }
-add_shortcode('map', 'map_include');
+add_shortcode('interactive-map', 'interactive_map');
+
+function general_map($atts) {
+    extract(shortcode_atts( array(
+      'location' => 'Hitt',
+  ), $atts ));
+  switch ($location) {
+    case 'Hitt':
+      $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d437.8723293398758!2d-81.20143973189681!3d28.600417757507692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436289635030';
+      break;
+    case 'Rosen':
+      $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d438.5855292673442!2d-81.44171390657597!3d28.428783378588065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436288972517';
+      break;
+    default:
+      $src = $location;
+      break;
+  }
+  $output = '<div class="google-maps"> <iframe src="'.$src.'" width="600" height="450" frameborder="0" style="border:0"></iframe> </div>';
+  return $output;
+}
+add_shortcode('general-map', 'general_map');
 
 /**
 *Libcal instruction calendar shortcode
