@@ -420,6 +420,16 @@ function interactive_map($atts) {
 }
 add_shortcode('interactive-map', 'interactive_map');
 
+
+/**
+* General Map
+* Use to make a google map of a predifined library location or to any custom point
+*
+* Example:
+* [general-map location="Hitt"]
+* OR
+* [general-map location="google-map-coordinates-here"]
+**/
 function general_map($atts) {
     extract(shortcode_atts( array(
       'location' => 'Hitt',
