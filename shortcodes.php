@@ -435,6 +435,9 @@ function general_map($atts) {
       'location' => 'Hitt',
   ), $atts ));
   switch ($location) {
+    case '':
+      $src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2954.2590431194503!2d-83.7465872!3d42.230278500000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x883caff162eda409%3A0xb0c1f9213c894648!2sUnknown%2C+Pittsfield+Charter+Township%2C+MI+48108!5e0!3m2!1sen!2sus!4v1436289719938';
+      break;
     case 'Hitt':
       $src = 'https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d875.7455309790337!2d-81.20141982209049!3d28.60031308469445!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436290834017';
       break;
