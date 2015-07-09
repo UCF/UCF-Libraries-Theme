@@ -171,6 +171,14 @@ footer ul li a:hover { text-decoration: none;}
   background-color: #286090;
 }
 
+.brand {
+  display: block;
+  text-align: center;
+  position: relative;
+  margin-top: 2em;
+  padding: .5em .5em 1em;
+}
+
 .scroll-top {
   position: fixed;
   bottom: 5%;
