@@ -55,6 +55,10 @@
 					?>
 				</div>
 			</div>
+			<div class="brand">
+				<img src="<?php echo get_template_directory_uri() ?>/images/brand-pegasus.png" alt="Pegasus" class="pegasus">
+				<img src="<?php echo get_template_directory_uri() ?>/images/brand-words.png" alt="Discover Connect Create" class="brand-words">
+			</div>
 		</footer>
 		<?php wp_footer(); ?>
 		<a class="scroll-top" href="#"><span class="glyphicon glyphicon-circle-arrow-up"></span><span class="text">Back to Top</span></a>
