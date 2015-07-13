@@ -314,6 +314,15 @@ footer ul li a:hover { text-decoration: none;}
   content: "\f19c";
 }
 
+/* Social Media icons */
+.social-icons {
+  float: right;
+  margin-top: -3em;
+}
+.social-icon-facebook {
+
+}
+
 
 /* Image alignment */
 .aligncenter	{ display: block; margin: 0 auto; }
