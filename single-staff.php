@@ -32,8 +32,7 @@ Description: Single staff member page.
 								</div>
 								<div class="col-sm-8">
 									<div class="caption">
-									<h2><?php friendly_name(); ?>
-									</h2>
+									<h2><?php friendly_name(); ?></h2>
 										<?php if(get_post_meta($post->ID, 'title', true) ||
 											 get_post_meta($post->ID, 'room', true) ||
 											 get_post_meta($post->ID, 'phone', true) || 
@@ -65,14 +64,8 @@ Description: Single staff member page.
 								</div>
 							</div>
 						</div>
-<!-- 						<?php // if(get_the_term_list( $post->ID, 'department', true)): ?>
-							<p><?php // echo get_the_term_list( $post->ID, 'department', 'Department: ', ', ', '' ); ?></p>
-						<?php // endif; ?> -->
 						<?php if(get_the_term_list( $post->ID, 'unit', true)): ?>
-							<p><?php echo get_the_term_list( $post->ID, 'unit', 'Unit: ', ', ', '' ); ?></p>
-						<?php endif; ?>
-						<?php if(get_the_term_list( $post->ID, 'group', true)): ?>
-							<p><?php echo get_the_term_list( $post->ID, 'group', 'Group: ', ', ', '' ); ?></p>
+							<p><?php echo get_the_term_list( $post->ID, 'unit', 'Units &amp; Groups: ', ', ', '' ); ?></p>
 						<?php endif; ?>
 					</article>
 					<p><?php the_content(__('(more...)')); ?></p>
