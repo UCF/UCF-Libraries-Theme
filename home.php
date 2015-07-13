@@ -1,4 +1,32 @@
 <?php get_header(); ?>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '879004742184863',
+      xfbml      : true,
+      version    : 'v2.4'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+  FB.ui({
+  method: 'share_open_graph',
+  action_type: 'og.likes',
+  action_properties: JSON.stringify({
+    object:'https://developers.facebook.com/docs/',
+  })
+}, function(response){
+  // Debug response (optional)
+  console.log(response);
+});
+</script>
 <div id="main">
 	<div id="content" class="container">
 	<!-- home.php -->
@@ -36,6 +64,26 @@
 							<div class="post-header-img"><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('full'); ?></a></div>
 						<?php endif; ?>
 							<div class="news-post-content">
+								<div class="social-icons">
+								<a href="#" onclick="FB.ui({
+									  method: 'feed',
+									  link: '<?php echo get_permalink(); ?>',
+									  caption: 'An example caption',
+									}, function(response){});">  >
+									<span class="fa-stack fa-lg">
+										<i class="fa fa-circle fa-stack-2x"></i>
+										<i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+								<span class="fa-stack fa-lg">
+									<i class="fa fa-circle fa-stack-2x"></i>
+									<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+								</span>
+								<span class="fa-stack fa-lg">
+									<i class="fa fa-circle fa-stack-2x"></i>
+									<i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+								</span>
+								</div>
 								<div class="news-post-title">
 									<header>
 					                  <h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
