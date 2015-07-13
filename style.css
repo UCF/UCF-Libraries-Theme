@@ -107,6 +107,22 @@ dl.menu-list dd, dl.list-spaced dd { margin-bottom: 1.5em; }
 	font-size: 12px;
 }
 
+/* Side Menu */
+.widget-area .textwidget ul {
+  position: relative;
+  padding-left: 33px;
+}
+.widget-area .textwidget li {
+  position: relative;
+}
+
+.textwidget .glyphicon {
+  position: absolute;
+  left: -20px;
+  top: .2em;
+}
+
+
 /* Footer */
 
 footer {
