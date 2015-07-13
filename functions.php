@@ -225,7 +225,7 @@ function register_cpt_staff() {
         'hierarchical' => true,
         'description' => 'Staff names and descriptions',
         'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions' ),
-        'taxonomies' => array( 'department', 'unit', 'group', 'subject' ),
+        'taxonomies' => array( 'department', 'unit-group', 'subject' ),
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
@@ -278,52 +278,52 @@ function unit_init() {
 
     'hierarchical' => true,
     'labels' => array(
-    'name' => _x( 'Unit', 'taxonomy general name' ),
-    'singular_name' => _x( 'Unit', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Units' ),
-    'all_items' => __( 'All Units' ),
-    'parent_item' => __( 'Parent Unit' ),
-    'parent_item_colon' => __( 'Parent Unit:' ),
-    'edit_item' => __( 'Edit Unit' ),
-    'update_item' => __( 'Update Unit' ),
-    'add_new_item' => __( 'Add New Unit' ),
-    'new_item_name' => __( 'New Unit Name' ),
-    'menu_name' => __( 'Unit' ),
+    'name' => _x( 'Unit & Group', 'taxonomy general name' ),
+    'singular_name' => _x( 'Unit & Group', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Units & Groups' ),
+    'all_items' => __( 'All Units & Groups' ),
+    'parent_item' => __( 'Parent Unit or Group' ),
+    'parent_item_colon' => __( 'Parent Unit or Group:' ),
+    'edit_item' => __( 'Edit Unit or Group' ),
+    'update_item' => __( 'Update Unit or Group' ),
+    'add_new_item' => __( 'Add New Unit or Group' ),
+    'new_item_name' => __( 'New Unit or Group Name' ),
+    'menu_name' => __( 'Unit or Group' ),
   ),
     'show_ui' => true,
     'show_admin_column' => true,
     'query_var' => true,
-    'rewrite' => array( 'slug' => 'unit', 'with_front' => false ),
+    'rewrite' => array( 'slug' => 'unit-group', 'with_front' => false ),
   ));
 }
 
 
 // Group Taxonomy
-add_action( 'init', 'group_init' );
+// add_action( 'init', 'group_init' );
 
-function group_init() {
-  register_taxonomy('group',array('staff'), array(
+// function group_init() {
+//   register_taxonomy('group',array('staff'), array(
 
-    'hierarchical' => true,
-    'labels' => array(
-    'name' => _x( 'Group', 'taxonomy general name' ),
-    'singular_name' => _x( 'Group', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Groups' ),
-    'all_items' => __( 'All Groups' ),
-    'parent_item' => __( 'Parent Group' ),
-    'parent_item_colon' => __( 'Parent Group:' ),
-    'edit_item' => __( 'Edit Group' ),
-    'update_item' => __( 'Update Group' ),
-    'add_new_item' => __( 'Add New Group' ),
-    'new_item_name' => __( 'New Group Name' ),
-    'menu_name' => __( 'Group' ),
-  ),
-    'show_ui' => true,
-    'show_admin_column' => true,
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'group', 'with_front' => false ),
-  ));
-}
+//     'hierarchical' => true,
+//     'labels' => array(
+//     'name' => _x( 'Group', 'taxonomy general name' ),
+//     'singular_name' => _x( 'Group', 'taxonomy singular name' ),
+//     'search_items' =>  __( 'Search Groups' ),
+//     'all_items' => __( 'All Groups' ),
+//     'parent_item' => __( 'Parent Group' ),
+//     'parent_item_colon' => __( 'Parent Group:' ),
+//     'edit_item' => __( 'Edit Group' ),
+//     'update_item' => __( 'Update Group' ),
+//     'add_new_item' => __( 'Add New Group' ),
+//     'new_item_name' => __( 'New Group Name' ),
+//     'menu_name' => __( 'Group' ),
+//   ),
+//     'show_ui' => true,
+//     'show_admin_column' => true,
+//     'query_var' => true,
+//     'rewrite' => array( 'slug' => 'group', 'with_front' => false ),
+//   ));
+// }
 
 
 // Subjects Taxonomy
