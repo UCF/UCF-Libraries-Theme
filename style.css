@@ -332,11 +332,19 @@ footer ul li a:hover { text-decoration: none;}
 
 
 /* Image alignment */
-.aligncenter	{ display: block; margin: 0 auto; }
-.alignright		{ float: right; margin: 0 0 1em 1em; }
-.alignleft		{ float: left; margin: 0 1em 1em 0; }
-.floatleft		{ float: left; }
-.size-full		{ max-width: 100%; height: auto; }
+.aligncenter, .alignright, .alignleft, .floatleft, .size-full {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .aligncenter, .alignright, .alignleft, .floatleft, .size-full {
+    width: auto;
+  }
+  .aligncenter	{ display: block; margin: 0 auto; }
+  .alignright		{ float: right; margin: 0 0 1em 1em; }
+  .alignleft		{ float: left; margin: 0 1em 1em 0; }
+  .floatleft		{ float: left; }
+  .size-full		{ max-width: 100%; height: auto; }
+}
 
 @media (max-width: 767px) {
   .size-thumbnail { width: 25%; }
