@@ -700,7 +700,10 @@ footer ul li a:hover { text-decoration: none;}
 .news-post-text {
 	width: 100%;
 }
-.news-post-content, .card-content { padding: 0 4em 1em;}
+.news-post-content, .card-content { padding: 0 1.5em 1em;}
+@media (min-width: 768px) {
+  .news-post-content, .card-content { padding: 0 4em 1em;}
+}
 
 .news-post-thumbnail {
 	width: 100px;
