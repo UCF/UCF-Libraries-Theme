@@ -663,7 +663,7 @@ function computer_availability() {
     ));
   $json_o = json_decode($string['body']);
   if ($json_o != null) {
-    $computers_list = '<dl class="dl-horizontal">';
+    $computers_list = '<div class="computer-availability">';
     $i = 1;
     while ( $i < 6 ) {
       $machines_in_use = 0;
@@ -699,33 +699,45 @@ function computer_availability() {
           break;
       }
       if ($percent_available > 65) {
-        $computers_list .= '<dt>'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</dt><dd>
-        <div class="progress">
-          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: '.$percent_available.'%;">
-            '.$machines_available.' / '.$machines_total.'
+        $computers_list .= '
+        <div class="row">
+          <div class="col-sm-3"><span class="floor-name">'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</span></div>
+          <div class="col-sm-9">
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: '.$percent_available.'%;">
+                '.$machines_available.' / '.$machines_total.'
+              </div>
+            </div>
           </div>
-        </div>
-        </dd>';
+        </div>';
       } elseif ($percent_available < 33) {
-        $computers_list .= '<dt>'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</dt><dd>
-        <div class="progress">
-          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 3em; width: '.$percent_available.'%;">
-            '.$machines_available.' / '.$machines_total.'
+        $computers_list .= '
+        <div class="row">
+          <div class="col-sm-3"><span class="floor-name">'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</span></div>
+          <div class="col-sm-9">
+            <div class="progress">
+              <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 3em; width: '.$percent_available.'%;">
+                '.$machines_available.' / '.$machines_total.'
+              </div>
+            </div>
           </div>
-        </div>
-        </dd>';
+        </div';
       } else {
-        $computers_list .= '<dt>'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</dt><dd>
-        <div class="progress">
-          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: '.$percent_available.'%;">
-            '.$machines_available.' / '.$machines_total.'
+        $computers_list .= '
+        <div class="row">
+          <div class="col-sm-3"><span class="floor-name">'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</span></div>
+          <div class="col-sm-9">
+            <div class="progress">
+              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: '.$percent_available.'%;">
+                '.$machines_available.' / '.$machines_total.'
+              </div>
+            </div>
           </div>
-        </div>
-        </dd>';
+        </div>';
       }
       $i++;
     }
-    $computers_list .= '</dl>';
+    $computers_list .= '</div>';
   } else {
     $computers_list = '<p>Unable to determin computer availability.</p>';
   }
