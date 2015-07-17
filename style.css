@@ -26,6 +26,13 @@ body {
   font-family: "Roboto";
 }
 
+/* UCF Header Override Class */
+@media (min-width: 1200px) {
+  #ucfhb-inner.override {
+    width: 1142px; /* Forces the UCF Header to as large as our site on desktop or large viewports */
+  }
+}
+
 .main-header {
 	background: #ffcc00;
 /* Old browsers */background: -moz-linear-gradient(top, #ffcc00 0%, #e5af00 100%); /* FF3.6+ */;
