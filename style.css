@@ -6,7 +6,7 @@ Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
 
-Version: 1.4.7
+Version: 1.4.8
 
 */
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
@@ -24,6 +24,13 @@ body {
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto";
+}
+
+/* UCF Header Override Class */
+@media (min-width: 1200px) {
+  #ucfhb-inner.override {
+    width: 1142px; /* Forces the UCF Header to as large as our site on desktop or large viewports */
+  }
 }
 
 .main-header {
@@ -314,6 +321,31 @@ footer ul li a:hover { text-decoration: none;}
 	background-color: #e7e7e7;
 }
 
+/* Computer Availability */
+
+.computer-availability .progress {
+  height: 30px;
+  margin-bottom: 15px;
+}
+
+.computer-availability .progress-bar {
+  font-size: 18px;
+  line-height: 30px;
+}
+.floor-name {
+  font-size: 18px;
+  line-height: 35px;
+}
+@media (min-width: 768px) {
+  .floor-name {
+    display: block;
+    text-align: right;
+  }
+}
+@media (min-width: 992px) {
+  .floor-name { font-size: 24px; }
+}
+
 /* Font Awesome Icons for Menu */
 .menu-icon {
   display: inline-block;
@@ -332,11 +364,19 @@ footer ul li a:hover { text-decoration: none;}
 
 
 /* Image alignment */
-.aligncenter	{ display: block; margin: 0 auto; }
-.alignright		{ float: right; margin: 0 0 1em 1em; }
-.alignleft		{ float: left; margin: 0 1em 1em 0; }
-.floatleft		{ float: left; }
-.size-full		{ max-width: 100%; height: auto; }
+.aligncenter, .alignright, .alignleft, .floatleft, .size-full {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .aligncenter, .alignright, .alignleft, .floatleft, .size-full {
+    width: auto;
+  }
+  .aligncenter	{ display: block; margin: 0 auto; }
+  .alignright		{ float: right; margin: 0 0 1em 1em; }
+  .alignleft		{ float: left; margin: 0 1em 1em 0; }
+  .floatleft		{ float: left; }
+  .size-full		{ max-width: 100%; height: auto; }
+}
 
 @media (max-width: 767px) {
   .size-thumbnail { width: 25%; }
@@ -692,7 +732,10 @@ footer ul li a:hover { text-decoration: none;}
 .news-post-text {
 	width: 100%;
 }
-.news-post-content, .card-content { padding: 0 4em 1em;}
+.news-post-content, .card-content { padding: 0 1.5em 1em;}
+@media (min-width: 768px) {
+  .news-post-content, .card-content { padding: 0 4em 1em;}
+}
 
 .news-post-thumbnail {
 	width: 100px;
@@ -924,6 +967,7 @@ footer ul li a:hover { text-decoration: none;}
 	margin-top: .25em;
 }
 
+.gform_wrapper .gform_body .gfield { margin: 2em 0; }
 .gform_wrapper .gform_body .gfield .gfield_time_hour i { margin-top: -2em; }
 
 .gform_wrapper .radio {
