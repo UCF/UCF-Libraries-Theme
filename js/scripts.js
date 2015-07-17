@@ -155,7 +155,7 @@ $(document).ready(function () {
   $(".gform_wrapper input:text").addClass("form-control");
   $(".gform_wrapper textarea").addClass("form-control");
   $(".gform_wrapper select").addClass("form-control");
-  $(".gform_wrapper input:submit").addClass("btn btn-default");
+  $(".gform_wrapper input:submit").addClass("btn btn-primary");
   $(".gform_wrapper input:radio").each(function(){
     $(this).next('label').andSelf().wrapAll('<div class="radio"/>');
   });
