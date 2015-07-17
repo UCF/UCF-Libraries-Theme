@@ -2,6 +2,13 @@
 *Custom functions for the Library Wordpress Theme
 */
 
+// Manually Adjust the UCF Header bar
+//===================================
+
+
+$(document).ready(function() {
+  $('#ucfhb-inner').addClass('override');
+});
 
 //COLLAPSING SIDEBAR MENU
 //=======================
