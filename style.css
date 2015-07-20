@@ -254,7 +254,7 @@ footer ul li a:hover { text-decoration: none;}
   font-family: 'Bitter', 'Roboto', sans-serif ;
   font-size: 3em;
   font-variant: small-caps;
-  margin: .15em 0 .45em;
+  margin: .25em 0 .35em;
 }
 .navbar-library .navbar-brand:hover, .navbar-library .navbar-brand:focus {
 	color: #fff;
