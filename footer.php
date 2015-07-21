@@ -56,8 +56,7 @@
 				</div>
 			</div>
 			<div class="brand">
-				<img src="<?php echo get_template_directory_uri() ?>/images/brand-pegasus.png" alt="Pegasus" class="pegasus">
-				<img src="<?php echo get_template_directory_uri() ?>/images/brand-words.png" alt="Discover Connect Create" class="brand-words">
+				<img src="<?php echo get_template_directory_uri() ?>/images/libraries-word-mark.png" alt="UCF Libraries">
 			</div>
 		</footer>
 		<?php wp_footer(); ?>
