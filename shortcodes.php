@@ -668,6 +668,7 @@ function computer_availability() {
     while ( $i < 6 ) {
       $machines_in_use = 0;
       $machines_total = 0;
+      $machines_available = 0;
       foreach ($json_o as $location) if ($location->location_room_floor == $i) {
         $machines_in_use += $location->machinesInUse;
         $machines_total += $location->machinesTotal;
@@ -676,7 +677,7 @@ function computer_availability() {
       if ($machines_total != 0) {
         $percent_available = round(($machines_available/$machines_total)*100);
       } else {
-        $percent_available == 0;
+        $percent_available = 0;
       }
       switch ($i) {
         case 1:
@@ -710,7 +711,7 @@ function computer_availability() {
           <div class="col-sm-3"><span class="floor-name">'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</span></div>
           <div class="col-sm-9">
             <div class="progress">
-              <div class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: '.$percent_available.'%;">
+              <div class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 2.5em; width: '.$percent_available.'%;">
                 '.$machines_available.' / '.$machines_total.'
               </div>
             </div>
