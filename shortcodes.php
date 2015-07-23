@@ -58,7 +58,7 @@ add_shortcode('OneSearch', 'OneSearchform');
 function onesearch_articles( $form ){
   $form = '
     <form role="form" class="search search-articles" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
-      <label for="s" class="sr-only">Search</label>
+      <label for="bQuery" class="sr-only">Search</label>
       <input name="direct" type="hidden" value="true">
       <input name="site" type="hidden" value="ehost-live">
       <input name="scope" type="hidden" value="site">
@@ -98,7 +98,7 @@ function search_catalog( $form ){
           <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
         </span>
       </div>
-      <div class="row" style="margin-top: 1em;">
+      <div class="row" style="margin-top: 1.5em;">
         <div class="col-sm-6">
           <label for="ix" class="sr-only">Choose Type</label>
           <select title="index" id="catsearch" name="k1" class="form-control">
@@ -136,6 +136,35 @@ function search_catalog( $form ){
 }
 add_shortcode('search-catalog', 'search_catalog');
 
+
+/**
+* Video/catalog search
+* Search the catalog for videos
+*
+*[search-videos]
+**/
+function search_videos( $form ) {
+  $form = '
+  <form role="form" class="search search-videos" id="advanced_video" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp" target="_blank">
+    <label for="t1" class="sr-only">Find DVDs, streaming videos, and VHS</label><br />
+    <input type="hidden" name="k1" value="kw">
+    <input name="ADV" type="hidden" value="S">
+    <input type="hidden" name="fa" value="Video all formats">
+    <div class="input-group">
+      <input class="form-control" id="video_box" type="text" name="t1" size="40" placeholder="Search UCF\'s Video Collections" value="">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+      </span>
+    </div>
+    <div class="input-group" style="margin-top: .5em;">
+      <label class="checkbox-inline"><input type="checkbox" name="fa" value="Feature or Motion picture"> Feature films</label>
+      <label class="checkbox-inline"><input type="checkbox" name="fa" value="Educational"> Educational films</label>
+      <label class="checkbox-inline"><input type="checkbox" name="fa" value="Documentary"> Documentary films</label>
+    </div>
+  </form>';
+  return $form;
+}
+add_shortcode('search-videos', 'search_videos');
 
 /**
 * Special Colletions Search bar shortcode
