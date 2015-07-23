@@ -58,7 +58,7 @@ add_shortcode('OneSearch', 'OneSearchform');
 function onesearch_articles( $form ){
   $form = '
     <form role="form" class="search search-articles" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
-      <label for="s" class="sr-only">Search</label>
+      <label for="bQuery" class="sr-only">Search</label>
       <input name="direct" type="hidden" value="true">
       <input name="site" type="hidden" value="ehost-live">
       <input name="scope" type="hidden" value="site">
@@ -90,7 +90,7 @@ add_shortcode('onesearch-articles', 'onesearch_articles');
 **/
 function search_catalog( $form ){
   $form = '
-    <form role="form" class="search search-catalog"  id="advanced" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp?ADV=S">
+    <form role="form" class="search search-catalog"  id="advanced" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp?ADV=S" target="_blank">
       <label for="st" class="sr-only">Search catalog</label>
       <div class="input-group">
         <input id="box" type="text" name="t1" value="" placeholder="Search the Catalog" class="form-control" />
@@ -98,7 +98,7 @@ function search_catalog( $form ){
           <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
         </span>
       </div>
-      <div class="row" style="margin-top: 1em;">
+      <div class="row" style="margin-top: 1.5em;">
         <div class="col-sm-6">
           <label for="ix" class="sr-only">Choose Type</label>
           <select title="index" id="catsearch" name="k1" class="form-control">
@@ -138,6 +138,35 @@ add_shortcode('search-catalog', 'search_catalog');
 
 
 /**
+* Video/catalog search
+* Search the catalog for videos
+*
+*[search-videos]
+**/
+function search_videos( $form ) {
+  $form = '
+  <form role="form" class="search search-videos" id="advanced_video" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp" target="_blank">
+    <label for="t1" class="sr-only">Find DVDs, streaming videos, and VHS</label><br />
+    <input type="hidden" name="k1" value="kw">
+    <input name="ADV" type="hidden" value="S">
+    <input type="hidden" name="fa" value="Video all formats">
+    <div class="input-group">
+      <input class="form-control" id="video_box" type="text" name="t1" size="40" placeholder="Search UCF\'s Video Collections" value="">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+      </span>
+    </div>
+    <div class="input-group" style="margin-top: .5em;">
+      <label class="checkbox-inline"><input type="checkbox" name="fa" value="Feature or Motion picture"> Feature films</label>
+      <label class="checkbox-inline"><input type="checkbox" name="fa" value="Educational"> Educational films</label>
+      <label class="checkbox-inline"><input type="checkbox" name="fa" value="Documentary"> Documentary films</label>
+    </div>
+  </form>';
+  return $form;
+}
+add_shortcode('search-videos', 'search_videos');
+
+/**
 * Special Colletions Search bar shortcode
 * Searches the UCF Library catalog for items found in Special Collections or University Archives
 *
@@ -145,7 +174,7 @@ add_shortcode('search-catalog', 'search_catalog');
 **/
 function search_scua($form) {
     $form = '
-      <form role="form" class="search search-scua" id="advanced" name="searchAdv" action="http://cf.catalog.fcla.edu/cf.jsp?ADV=S">
+      <form role="form" class="search search-scua" id="advanced" name="searchAdv" action="http://cf.catalog.fcla.edu/cf.jsp?ADV=S" target="_blank">
         
         <input name="ADV" type="hidden" value="S">
         <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
@@ -668,6 +697,7 @@ function computer_availability() {
     while ( $i < 6 ) {
       $machines_in_use = 0;
       $machines_total = 0;
+      $machines_available = 0;
       foreach ($json_o as $location) if ($location->location_room_floor == $i) {
         $machines_in_use += $location->machinesInUse;
         $machines_total += $location->machinesTotal;
@@ -676,7 +706,7 @@ function computer_availability() {
       if ($machines_total != 0) {
         $percent_available = round(($machines_available/$machines_total)*100);
       } else {
-        $percent_available == 0;
+        $percent_available = 0;
       }
       switch ($i) {
         case 1:
@@ -699,42 +729,23 @@ function computer_availability() {
           break;
       }
       if ($percent_available > 65) {
-        $computers_list .= '
-        <div class="row">
-          <div class="col-sm-3"><span class="floor-name">'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</span></div>
-          <div class="col-sm-9">
-            <div class="progress">
-              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: '.$percent_available.'%;">
-                '.$machines_available.' / '.$machines_total.'
-              </div>
-            </div>
-          </div>
-        </div>';
+        $progress_color = 'progress-bar-success';
       } elseif ($percent_available < 33) {
-        $computers_list .= '
-        <div class="row">
-          <div class="col-sm-3"><span class="floor-name">'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</span></div>
-          <div class="col-sm-9">
-            <div class="progress">
-              <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 3em; width: '.$percent_available.'%;">
-                '.$machines_available.' / '.$machines_total.'
-              </div>
-            </div>
-          </div>
-        </div';
+        $progress_color = 'progress-bar-danger';
       } else {
-        $computers_list .= '
+        $progress_color = 'progress-bar-warning';
+      }
+      $computers_list .= '
         <div class="row">
           <div class="col-sm-3"><span class="floor-name">'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</span></div>
           <div class="col-sm-9">
             <div class="progress">
-              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: '.$percent_available.'%;">
+              <div class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 2.5em; width: '.$percent_available.'%;">
                 '.$machines_available.' / '.$machines_total.'
               </div>
             </div>
           </div>
         </div>';
-      }
       $i++;
     }
     $computers_list .= '</div>';
