@@ -146,7 +146,7 @@ add_shortcode('search-catalog', 'search_catalog');
 function search_videos( $form ) {
   $form = '
   <form role="form" class="search search-videos" id="advanced_video" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp" target="_blank">
-    <label for="t1" class="sr-only">Find DVDs, streaming videos, and VHS</label><br />
+    <label for="t1" class="sr-only">Find DVDs, streaming videos, and VHS</label>
     <input type="hidden" name="k1" value="kw">
     <input name="ADV" type="hidden" value="S">
     <input type="hidden" name="fa" value="Video all formats">
