@@ -90,7 +90,7 @@ add_shortcode('onesearch-articles', 'onesearch_articles');
 **/
 function search_catalog( $form ){
   $form = '
-    <form role="form" class="search search-catalog"  id="advanced" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp?ADV=S">
+    <form role="form" class="search search-catalog"  id="advanced" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp?ADV=S" target="_blank">
       <label for="st" class="sr-only">Search catalog</label>
       <div class="input-group">
         <input id="box" type="text" name="t1" value="" placeholder="Search the Catalog" class="form-control" />
@@ -145,7 +145,7 @@ add_shortcode('search-catalog', 'search_catalog');
 **/
 function search_scua($form) {
     $form = '
-      <form role="form" class="search search-scua" id="advanced" name="searchAdv" action="http://cf.catalog.fcla.edu/cf.jsp?ADV=S">
+      <form role="form" class="search search-scua" id="advanced" name="searchAdv" action="http://cf.catalog.fcla.edu/cf.jsp?ADV=S" target="_blank">
         
         <input name="ADV" type="hidden" value="S">
         <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
