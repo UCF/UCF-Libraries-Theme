@@ -11,7 +11,11 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  float: none;
+  width: 100%
 }
 .external-header:before, .external-header:after {
   display: table;
@@ -39,5 +43,30 @@ a.external-title {
   font-size: 30px;
   font-variant: small-caps;
   line-height: 20px;
+  color: #ffcc00;
+}
+
+/* SFX workaround */
+.table_563 {
+  margin-top: 60px;
+}
+
+
+/* External Website minimal footer*/
+
+.external-footer {
+  background-color: #111; 
+  padding: 1em;
+  color: #fff;
+  text-align: center;
+}
+.external-footer a {
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  padding: 0 1em;
+  font-family: 'Droid Sans';
+}
+.external-footer a:hover {
   color: #ffcc00;
 }
