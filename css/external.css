@@ -1,0 +1,81 @@
+﻿
+/* External Website minimal header */
+
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto+Slab:700|Roboto:500,700,400);
+
+
+.external-header {
+  background-color: #111;
+  display: block;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  float: none;
+  width: 100%
+}
+.external-header:before, .external-header:after {
+  display: table;
+  content: " ";
+}
+.external-header:after {
+  clear: both;
+}
+.external-header a {
+  text-decoration: none;
+}
+.external-header a:hover {
+  color: #fff;
+}
+.external-pegasus img{
+  width: 30px;
+  margin-top: 10px;
+  float: left;
+}
+a.external-title {
+  float: left;
+  margin: 0;
+  padding: 15px 5px;
+  font-family: 'Roboto Slab', 'Roboto', sans-serif ;
+  font-size: 30px;
+  font-variant: small-caps;
+  line-height: 20px;
+  color: #ffcc00;
+}
+
+/* SFX workaround */
+.table_563 {
+  margin-top: 60px;
+}
+
+
+/* External Website minimal footer*/
+
+.external-footer {
+  background-color: #111; 
+  padding: 30px 0;
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.external-footer p {
+  margin: 0;
+  padding: 0;
+}
+.external-footer a {
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  padding: 0 1em;
+  font-family: 'Droid Sans';
+  font-size: 14px;
+}
+.external-footer a:hover {
+  color: #ffcc00;
+}

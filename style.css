@@ -6,10 +6,10 @@ Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
 
-Version: 1.5.0
+Version: 1.5.1
 
 */
-@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Bitter:700|Roboto:500,700,400);
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto+Slab:700|Roboto:500,700,400);
 
 .library-body {
   font-family: "Droid Sans", sans-serif;
@@ -251,14 +251,14 @@ footer ul li a:hover { text-decoration: none;}
 .navbar-library .navbar-brand {
 	color: #222;
 	height: auto;
-  font-family: 'Bitter', 'Roboto', sans-serif ;
+  font-family: 'Roboto Slab', 'Roboto', sans-serif ;
   font-size: 2.5em;
   font-variant: small-caps;
   margin: .25em 0 .35em;
 }
 @media (min-width: 768px) {
   .navbar-library .navbar-brand {
-    font-size: 3em;
+    font-size: 2.75em;
   }
 }
 
@@ -282,6 +282,7 @@ footer ul li a:hover { text-decoration: none;}
 .navbar-library .navbar-nav > li > a {
 	color: #222;
 	text-transform: uppercase;
+  font-weight: 700;
 }
 .navbar-library .navbar-nav > li > a:hover, .navbar-library .navbar-nav > li > a:focus {
 	color: #fff;
@@ -981,44 +982,4 @@ footer ul li a:hover { text-decoration: none;}
 .gform_wrapper .radio {
   margin-top: 0;
   margin-bottom: 0;
-}
-
-/* External Website minimal header */
-
-.external-header {
-  background-color: #111;
-  display: block;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-
-}
-.external-header:before, .external-header:after {
-  display: table;
-  content: " ";
-}
-.external-header:after {
-  clear: both;
-}
-.external-header a {
-  text-decoration: none;
-}
-.external-header a:hover {
-  color: #fff;
-}
-.external-pegasus {
-  width: 30px;
-  margin-top: 10px;
-  float: left;
-}
-.external-title {
-  float: left;
-  margin: 0;
-  padding: 15px 5px;
-  font-family: 'Bitter', 'Roboto', sans-serif ;
-  font-size: 30px;
-  font-variant: small-caps;
-  line-height: 20px;
-  color: #ffcc00;
 }
