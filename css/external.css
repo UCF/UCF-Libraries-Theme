@@ -56,9 +56,17 @@ a.external-title {
 
 .external-footer {
   background-color: #111; 
-  padding: 1em;
+  padding: 30px 0;
   color: #fff;
   text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.external-footer p {
+  margin: 0;
+  padding: 0;
 }
 .external-footer a {
   color: #fff;
@@ -66,6 +74,7 @@ a.external-title {
   display: inline-block;
   padding: 0 1em;
   font-family: 'Droid Sans';
+  font-size: 14px;
 }
 .external-footer a:hover {
   color: #ffcc00;
