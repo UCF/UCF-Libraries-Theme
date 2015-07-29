@@ -153,7 +153,7 @@ function search_videos( $form ) {
     <div class="input-group">
       <input class="form-control" id="video_box" type="text" name="t1" size="40" placeholder="Search UCF\'s Video Collections" value="">
       <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
       </span>
     </div>
     <div class="input-group" style="margin-top: .5em;">
