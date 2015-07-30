@@ -1,7 +1,10 @@
-﻿
-/* External Website minimal header */
+﻿/* /////////////////////////////////////////////////////////
 
-@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto+Slab:700|Roboto:500,700,400);
+ External Website minimal header 
+ 
+ ////////////////////////////////////////////////////////// */
+
+@import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto+Slab:700|Roboto:500,700,400');
 
 
 .external-header {
@@ -11,7 +14,7 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  position: fixed;
+  position: absolute;
   top: 0px;
   left: 0px;
   float: none;
@@ -51,19 +54,27 @@ a.external-title {
   margin-top: 60px;
 }
 
+/* Guides workaround */
+#s-lib-public-header, .s-lib-header {
+  padding-top: 75px;
+}
 
-/* External Website minimal footer*/
+/* //////////////////////////////////////////////////
+
+ External Website minimal footer 
+ 
+ ///////////////////////////////////////////////////*/
 
 .external-footer {
   background-color: #111; 
-  padding: 30px 0;
+  padding: 20px 0;
   color: #fff;
   text-align: center;
-  position: absolute;
+/*  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-}
+*/}
 .external-footer p {
   margin: 0;
   padding: 0;
@@ -78,4 +89,52 @@ a.external-title {
 }
 .external-footer a:hover {
   color: #ffcc00;
+}
+
+/* //////////////////////////////////////////////////
+
+  EBSCO Header include begins
+  
+///////////////////////////////////////////////////// */
+
+#toolbarControl {
+  position: fixed;
+  top: 50px;
+  right: 0px;
+  font-weight: bold;
+  border-bottom-width: 0;
+  margin-bottom: 50px;
+  z-index: 9;
+}
+@media (min-width: 450px) {
+  #toolbarControl {
+    top: 18px;
+    right: 10px;
+  }
+}
+
+#header {
+  position: relative;
+  margin: 60px auto auto auto;
+}
+.searching {
+  font-family: 'Roboto Slab', 'Roboto', sans-serif;
+  font-size: 200%;
+}
+#footerControl {
+  z-index: 1;
+}
+.guest-login {
+    z-index: 7;
+    top: 50px;
+    }
+.logo-img, 
+.basic .branding-Beside .logo-img, 
+.basic .branding-Beside .logo, 
+.logo-wrapper .logo-image, 
+.logo-image img, .customerLogo {
+  display: none;
+}
+.branding-container {
+  padding: 10px 0;
 }
