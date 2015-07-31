@@ -371,6 +371,31 @@ footer ul li a:hover { text-decoration: none;}
   content: "\f19c";
 }
 
+/* Social Media icons */
+.share-btn-group {
+  float: right;
+  margin-top: -40px;
+  font-size: 1.25em;
+}
+.share-btn-group a{
+  color: #333;
+}
+.share-btn-group a:hover{
+  text-decoration: none;
+}
+.facebook-btn:hover {
+  color: #3b5998;
+}
+.twitter-btn:hover {
+  color: #00aced;
+}
+.gplus-btn:hover {
+  color: #dd4b39;
+}
+.email-btn:hover {
+  color: #ffcc00;
+}
+
 
 /* Image alignment */
 .aligncenter, .alignright, .alignleft, .floatleft, .size-full {

@@ -226,6 +226,15 @@ function discovery_feed() {
   google.setOnLoadCallback(initialize);
 }
 
+// Share Button
+//=========================================
+
+function share_button(url, winWidth, winHeight) {
+  var winTop = (screen.height / 2) - (winHeight / 2);
+  var winLeft = (screen.width / 2) - (winWidth / 2);
+  window.open(url, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+}
+
 // Link to anchor within a tab
 //============================
 
