@@ -153,13 +153,14 @@ function search_videos( $form ) {
     <div class="input-group">
       <input class="form-control" id="video_box" type="text" name="t1" size="40" placeholder="Search UCF\'s Video Collections" value="">
       <span class="input-group-btn">
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
       </span>
     </div>
     <div class="input-group" style="margin-top: .5em;">
       <label class="checkbox-inline"><input type="checkbox" name="fa" value="Feature or Motion picture"> Feature films</label>
       <label class="checkbox-inline"><input type="checkbox" name="fa" value="Educational"> Educational films</label>
       <label class="checkbox-inline"><input type="checkbox" name="fa" value="Documentary"> Documentary films</label>
+      <label class="checkbox-inline"><input type="checkbox" name="fa" value="Streaming Video"> Streaming videos</label>
     </div>
   </form>';
   return $form;
@@ -372,7 +373,7 @@ function recent_posts_function($atts){
               <div class="news-post-title">
                 <header>
                   <h3><a href="'.get_permalink().'">'.get_the_title().'</a></h3>
-                  <span class="news-post-category">'.trim($output, $separator).' - '.get_the_time('F jS, Y').'</span>
+                  <span class="news-post-category">'.trim($output, $separator).' - <i class="fa fa-calendar"></i> '.get_the_time('F jS, Y').'</span>
                 </header>
               </div>
               <p>'.get_the_excerpt().'</p>

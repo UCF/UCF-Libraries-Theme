@@ -37,7 +37,7 @@ $(document).ready(function() {
 	 $directory = get_template_directory_uri().'/images/';
  	 echo "var directory = '$directory';";
 	 ?>
-    var images = ['bg-01-main.jpg', 'bg-02-rosen.jpg', 'bg-03-glass.jpg'];
+    var images = ['bg-01-main.jpg', 'bg-02-rosen.jpg', 'bg-03-glass.jpg', 'bg-05-lake-sumter.jpg', 'bg-06-palm-bay.jpg'];
     $('.background-image').css({'background-image': 'url('+ directory + images[Math.floor(Math.random() * images.length)] + ')'});
    });
 </script>
