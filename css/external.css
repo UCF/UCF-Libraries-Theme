@@ -16,6 +16,7 @@ body {
 .external-header {
   background-color: #111;
   display: block;
+  box-sizing: border-box;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
