@@ -1,10 +1,16 @@
-﻿/* /////////////////////////////////////////////////////////
+﻿
+/* /////////////////////////////////////////////////////////
 
  External Website minimal header 
  
  ////////////////////////////////////////////////////////// */
 
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto+Slab:700|Roboto:500,700,400');
+
+body {
+  background-color: #fff;
+  background-image: none;
+}
 
 
 .external-header {
@@ -57,6 +63,12 @@ a.external-title {
 /* Guides workaround */
 #s-lib-public-header, .s-lib-header {
   padding-top: 75px;
+}
+
+/* Mango body container */
+.mango-container {
+  margin: 1em 5%;
+  overflow: auto;
 }
 
 /* //////////////////////////////////////////////////
