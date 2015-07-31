@@ -160,7 +160,7 @@ function search_videos( $form ) {
       <label class="checkbox-inline"><input type="checkbox" name="fa" value="Feature or Motion picture"> Feature films</label>
       <label class="checkbox-inline"><input type="checkbox" name="fa" value="Educational"> Educational films</label>
       <label class="checkbox-inline"><input type="checkbox" name="fa" value="Documentary"> Documentary films</label>
-      <label class="checkbox-inline"><input type="checkbox" name="fa" value="ONLINE"> Streaming videos</label>
+      <label class="checkbox-inline"><input type="checkbox" name="fa" value="Streaming Video"> Streaming videos</label>
     </div>
   </form>';
   return $form;
