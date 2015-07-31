@@ -380,7 +380,7 @@ footer ul li a:hover { text-decoration: none;}
 .share-btn-group a{
   color: #333;
 }
-.share-btn-group a:hover{
+.share-btn-group a:hover, .share-btn-group a:focus{
   text-decoration: none;
 }
 .facebook-btn:hover {
