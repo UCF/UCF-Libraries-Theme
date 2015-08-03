@@ -25,7 +25,8 @@ body {
   top: 0px;
   left: 0px;
   float: none;
-  width: 100%
+  width: 100%;
+  height: 50px;
 }
 .external-header:before, .external-header:after {
   display: table;
@@ -42,6 +43,7 @@ body {
 }
 .external-pegasus img{
   width: 30px;
+  height: 30px;
   margin-top: 10px;
   float: left;
 }
@@ -58,7 +60,7 @@ a.external-title {
 
 /* SFX workaround */
 .table_563 {
-  margin-top: 60px;
+  margin-top: 75px;
 }
 
 /* Guides workaround */
