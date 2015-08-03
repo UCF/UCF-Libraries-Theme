@@ -301,6 +301,9 @@ function tab_container($atts, $content = null) {
     $id = str_replace('.', '', $id);
     $id = str_replace('&amp;', '', $id);
     $id = str_replace('&', '', $id);
+    $id = str_replace('/', '', $id);
+    $id = str_replace('(', '', $id);
+    $id = str_replace(')', '', $id);
     if ($icons[$i] != '') {
       $icon = '<span class="glyphicon glyphicon-'.$icons[$i].'"></span>';
     }
@@ -329,6 +332,9 @@ function tab_pane($atts, $content = null) {
   $name = str_replace('.', '', $name);
   $name = str_replace('&amp;', '', $name);
   $name = str_replace('&', '', $name);
+  $name = str_replace('/', '', $name);
+  $name = str_replace('(', '', $name);
+  $name = str_replace(')', '', $name);
   return '<div role="tabpanel" class="tab-pane '.$active.'" id="'.$name.'">'.do_shortcode($content).'</div>';
 }
 add_shortcode('tab-pane', 'tab_pane');
