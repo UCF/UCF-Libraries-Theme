@@ -566,6 +566,7 @@ add_shortcode('instruction-calendar', 'instruction_calendar');
 function hours_week_calendar( $atts ) {
   extract(shortcode_atts( array(
     'id' => '0',
+    'weeks' => '16',
   ), $atts ));
   return '
   <script src="https://api3.libcal.com/js/hours_grid.js?002"></script>
@@ -573,7 +574,7 @@ function hours_week_calendar( $atts ) {
   <div id="s-lc-whw'.$id.'"></div>
   <script>
   $(function(){
-  var week'.$id.' = new $.LibCalWeeklyGrid( $("#s-lc-whw'.$id.'"), { iid: 246, lid: '.$id.',  weeks: 52 });
+  var week'.$id.' = new $.LibCalWeeklyGrid( $("#s-lc-whw'.$id.'"), { iid: 246, lid: '.$id.',  weeks: '.$weeks.' });
   });
   </script>';
 }
