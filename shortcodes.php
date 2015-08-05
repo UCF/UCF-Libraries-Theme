@@ -301,6 +301,9 @@ function tab_container($atts, $content = null) {
     $id = str_replace('.', '', $id);
     $id = str_replace('&amp;', '', $id);
     $id = str_replace('&', '', $id);
+    $id = str_replace('/', '', $id);
+    $id = str_replace('(', '', $id);
+    $id = str_replace(')', '', $id);
     if ($icons[$i] != '') {
       $icon = '<span class="glyphicon glyphicon-'.$icons[$i].'"></span>';
     }
@@ -329,6 +332,9 @@ function tab_pane($atts, $content = null) {
   $name = str_replace('.', '', $name);
   $name = str_replace('&amp;', '', $name);
   $name = str_replace('&', '', $name);
+  $name = str_replace('/', '', $name);
+  $name = str_replace('(', '', $name);
+  $name = str_replace(')', '', $name);
   return '<div role="tabpanel" class="tab-pane '.$active.'" id="'.$name.'">'.do_shortcode($content).'</div>';
 }
 add_shortcode('tab-pane', 'tab_pane');
@@ -560,6 +566,7 @@ add_shortcode('instruction-calendar', 'instruction_calendar');
 function hours_week_calendar( $atts ) {
   extract(shortcode_atts( array(
     'id' => '0',
+    'weeks' => '16',
   ), $atts ));
   return '
   <script src="https://api3.libcal.com/js/hours_grid.js?002"></script>
@@ -567,7 +574,7 @@ function hours_week_calendar( $atts ) {
   <div id="s-lc-whw'.$id.'"></div>
   <script>
   $(function(){
-  var week'.$id.' = new $.LibCalWeeklyGrid( $("#s-lc-whw'.$id.'"), { iid: 246, lid: '.$id.',  weeks: 52 });
+  var week'.$id.' = new $.LibCalWeeklyGrid( $("#s-lc-whw'.$id.'"), { iid: 246, lid: '.$id.',  weeks: '.$weeks.' });
   });
   </script>';
 }
