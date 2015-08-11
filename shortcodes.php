@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
 * Website search
@@ -176,7 +176,7 @@ add_shortcode('search-videos', 'search_videos');
 function search_scua($form) {
     $form = '
       <form role="form" class="search search-scua" id="advanced" name="searchAdv" action="http://cf.catalog.fcla.edu/cf.jsp?ADV=S" target="_blank">
-        
+
         <input name="ADV" type="hidden" value="S">
         <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
         <label for="s" class="sr-only">Search</label>
@@ -221,7 +221,7 @@ function hompage_tab_container( $atts, $content = null ) {
   extract(shortcode_atts( array(
       'names' => 'placehold',
   ), $atts ));
-  $content = cleanup(str_replace('<br />', '', $content));  
+  $content = cleanup(str_replace('<br />', '', $content));
   $ids = explode(", ", $names);
   $output = '<div id="tabs">
               <ul>';
@@ -347,7 +347,7 @@ function wp_sitemap_page(){
 add_shortcode('sitemap', 'wp_sitemap_page');
 
 
-/** 
+/**
 * Recent posts shortcode
 * Shows the 3 most recent news stories published.
 *
@@ -441,7 +441,7 @@ add_shortcode('youtube', 'youtube_video');
 
 /**
 * Temporary Library Map
-* A temporary availability map for the library site until a new one is made 
+* A temporary availability map for the library site until a new one is made
 *
 * Example:
 * [map]
@@ -451,7 +451,7 @@ function interactive_map($atts) {
       'width' => '100%',
   ), $atts ));
   return '<div class="google-maps">
-             <iframe src="http://libdevelop.net.ucf.edu/Web/Status/Standard/Main/IncludeMap.php" frameborder="0"></iframe>
+             <iframe src="http://libweb.net.ucf.edu/Web/Status/Standard/Main/IncludeMap.php" frameborder="0"></iframe>
           </div>';
 }
 add_shortcode('interactive-map', 'interactive_map');
@@ -558,9 +558,9 @@ add_shortcode('instruction-calendar', 'instruction_calendar');
 
 /**
 * Hours Weekly Calendar Shortcode
-* Displays the weekly hours for a given library ID. Defaults to 0 to show all Libraries. 
+* Displays the weekly hours for a given library ID. Defaults to 0 to show all Libraries.
 *
-*Example: 
+*Example:
 *[hours-calendar id="0"]
 **/
 function hours_week_calendar( $atts ) {
@@ -675,7 +675,7 @@ function library_events($atts) {
           </ul>
         </article>';
       if(++$i == $number) break;
-    } 
+    }
   } else {
     $events_list = '<p>Unable to load events.</p>';
   }
@@ -778,7 +778,7 @@ function ask_chat() {
   $output = '
 <div class="libraryh3lp" style="display: none;" jid="mainlibrary@chat.libraryh3lp.com">
   <iframe src="https://libraryh3lp.com/chat/mainlibrary@chat.libraryh3lp.com?skin=24425&amp;identity=Librarian&sounds=true" frameborder="0" style="width: 99%; height: 300px; border: 1px solid #ccc; border-radius: 4px;"></iframe>
-  <p style="text-align: center">Your chat will be disconnected 
+  <p style="text-align: center">Your chat will be disconnected
   if you leave this page during a conversation.<br>
 </div>
 <div class="libraryh3lp" style="display: none;">
@@ -812,7 +812,7 @@ add_shortcode('ask-chat','ask_chat');
 function alert_message() {
   $output = '';
   global $post;
-  if(get_post_meta($post->ID, 'success', true) || get_post_meta($post->ID, 'info', true) || get_post_meta($post->ID, 'warning', true) || get_post_meta($post->ID, 'danger', true)): 
+  if(get_post_meta($post->ID, 'success', true) || get_post_meta($post->ID, 'info', true) || get_post_meta($post->ID, 'warning', true) || get_post_meta($post->ID, 'danger', true)):
     if(get_post_meta($post->ID, 'success', true)):
       $success = get_post_meta($post->ID, 'success', true);
       $output .= '
@@ -895,7 +895,7 @@ add_shortcode('guide-list', 'guide_list');
 /**
 * Discovery Rss Feed
 * Inserts Discovery Feed for ScholCom
-* 
+*
 *[discovery-feed]
 *
 **/
@@ -929,7 +929,7 @@ function lending_login() {
     </div>
     <div class="form-group">
       <label class="col-sm-2 control-label" for="Password">Password:</label>
-      <div class="col-sm-10"> 
+      <div class="col-sm-10">
         <input type="password" class="form-control" size="15" name="Password" id="Password" placeholder="Password">
       </div>
     </div>
