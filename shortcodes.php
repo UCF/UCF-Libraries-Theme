@@ -451,7 +451,7 @@ function interactive_map($atts) {
       'width' => '100%',
   ), $atts ));
   return '<div class="google-maps">
-             <iframe src="http://libdevelop.net.ucf.edu/Web/Status/Standard/Main/IncludeMap.php" frameborder="0"></iframe>
+             <iframe src="http://libweb.net.ucf.edu/Web/Status/Standard/Main/IncludeMap.php" frameborder="0"></iframe>
           </div>';
 }
 add_shortcode('interactive-map', 'interactive_map');
