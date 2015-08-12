@@ -62,6 +62,40 @@ a.external-title {
 .table_563 {
   margin-top: 75px;
 }
+#sfx_header {
+  padding: 0 1em;
+}
+
+#sfx_header ul {
+  clear: both;
+  overflow: auto;
+  margin-bottom: -3em;
+  font-size: .7em;
+}
+
+#sfx_header ul li{
+  display: inline;
+  padding: .5em 1em 0;
+  text-align: right;
+  float: right;
+}
+
+.sfx-menu {
+  position: relative;
+  top: 45px;
+}
+.sfx-title {
+  position: relative;
+  top: 75px;
+  color: #636363;
+  font-size: 12px;
+  padding: 10px;
+}
+.sfx-title p {
+  padding: 0;
+  margin: 0;
+}
+
 
 /* Guides workaround */
 #s-lib-public-header, .s-lib-header {
@@ -152,4 +186,18 @@ a.external-title {
 }
 .branding-container {
   padding: 10px 0;
+}
+
+/* /////////////////////////////////////////////////////
+
+Illiad Header include begins
+
+///////////////////////////////////////////////////// */
+
+.illiad-header {
+  position: relative;
+}
+
+.illiad-main {
+  margin: 0 2%;
 }
