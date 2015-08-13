@@ -657,6 +657,7 @@ function library_events($atts) {
   $json_o = json_decode($string);
   $events_list = '';
   $i = 0;
+  date_default_timezone_set('America/New_York');
   if ($json_o != null) {
     foreach ($json_o as $event) {
       $date = strtotime($event->starts);
