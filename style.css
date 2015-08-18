@@ -752,9 +752,12 @@ footer ul li a:hover { text-decoration: none;}
 	font-weight: bold;
 	margin: 0;
 }
-.news-post-category, .news-post-category a {
+.news-post-category, .news-post-category a, .news-post-date {
 	color: #999;
 	font-size: 13px;
+}
+.news-post-date {
+	float: right;
 }
 .news-post-image img {
 	max-width: 100px;
