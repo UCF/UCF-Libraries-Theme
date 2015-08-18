@@ -379,7 +379,8 @@ function recent_posts_function($atts){
               <div class="news-post-title">
                 <header>
                   <h3><a href="'.get_permalink().'">'.get_the_title().'</a></h3>
-                  <span class="news-post-category">'.trim($output, $separator).' - <i class="fa fa-calendar"></i> '.get_the_time('F jS, Y').'</span>
+                  <span class="news-post-category">'.trim($output, $separator).'</span>
+                  <span class="news-post-date">Posted: <i class="fa fa-calendar"></i> '.get_the_time('F jS, Y').'</span>
                 </header>
               </div>
               <p>'.get_the_excerpt().'</p>
