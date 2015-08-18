@@ -99,8 +99,9 @@ function fbShare(url, title, descr, image, winWidth, winHeight) {
 								<div class="news-post-title">
 									<header>
 					                  <h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
-					                  <span class="news-post-category"><?php echo trim($output, $separator).' - <i class="fa fa-calendar"></i> '.get_the_time('F jS, Y'); ?></span>
-									</header>
+					                  <span class="news-post-category"><?php echo trim($output, $separator); ?></span>
+                					  <span class="news-post-date">Posted: <i class="fa fa-calendar"></i> <?php echo get_the_time('F jS, Y'); ?></span>
+                					</header>
 								</div>
 								<p><?php the_content(__('(more...)')); ?></p>
 								<p><?php comments_template( $file, $separate_comments ); ?></p>
