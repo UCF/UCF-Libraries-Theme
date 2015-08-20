@@ -775,6 +775,12 @@ footer ul li a:hover { text-decoration: none;}
 	vertical-align: middle;
 	padding: .5em 1em;
 }
+
+@media (max-width: 480px) {
+	.news-post-image {
+		display: none;
+	}
+}
 .news-post-text {
 	width: 100%;
 }
