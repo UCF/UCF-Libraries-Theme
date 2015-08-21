@@ -158,9 +158,9 @@ function search_videos( $form ) {
     </div>
     <div class="input-group" style="margin-top: .5em;">
       <label class="checkbox-inline"><input type="checkbox" name="fa" value="Feature or Motion picture"> Feature films</label>
-      <label class="checkbox-inline"><input type="checkbox" name="fa" value="Educational"> Educational films</label>
-      <label class="checkbox-inline"><input type="checkbox" name="fa" value="Documentary"> Documentary films</label>
-      <label class="checkbox-inline"><input type="checkbox" name="fa" value="Streaming Video"> Streaming videos</label>
+      <label class="checkbox-inline"><input type="checkbox" name="fa" value="Educational"> Educational</label>
+      <label class="checkbox-inline"><input type="checkbox" name="fa" value="Documentary"> Documentary</label>
+      <label class="checkbox-inline"><input type="checkbox" name="fa" value="Streaming Video"> Streaming</label>
     </div>
   </form>';
   return $form;
