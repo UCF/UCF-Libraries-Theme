@@ -351,16 +351,17 @@ add_shortcode('sitemap', 'wp_sitemap_page');
 * Recent posts shortcode
 * Shows the 3 most recent news stories published.
 *
-*Example: [recent-posts posts="3"]
+*Example: [recent-posts posts="3" category_id="6"] (Requires looking up the category ID in wordpress admin)
 *
 **/
 function recent_posts_function($atts){
    extract(shortcode_atts(array(
       'posts' => 3,
+      'category_id' => -0,
    ), $atts));
 
    $return_string = '<div class="news">';
-   query_posts(array('orderby' => 'date', 'order' => 'DESC' , 'showposts' => $posts));
+   query_posts(array('orderby' => 'date', 'order' => 'DESC' , 'showposts' => $posts, 'cat' => $category_id));
    if (have_posts()) :
       while (have_posts()) : the_post();
         $categories = get_the_category();
