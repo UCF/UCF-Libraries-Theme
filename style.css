@@ -532,13 +532,25 @@ footer ul li a:hover { text-decoration: none;}
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
 	width: 100%;
 }
-@media (min-width: 550px) {
+.home.page .checkbox-inline, .home.page .radio-inline {
+  display: block;
+}
+.home.page .checkbox-inline+.checkbox-inline, .home.page .radio-inline+.radio-inline {
+    margin-left: 0;
+}
+@media (min-width: 625px) {
 	.ui-tabs .ui-tabs-nav li {
 		width: auto;
 	}
 	.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
 		width: auto;
 	}
+  .home.page .checkbox-inline, .home.page .radio-inline {
+    display: inline-block;
+  }
+  .home.page .checkbox-inline+.checkbox-inline, .home.page .radio-inline+.radio-inline {
+    margin-left: 10px;
+  }
 }
 @media (min-width: 768px) {
   .ui-tabs .ui-tabs-nav li {
@@ -547,6 +559,12 @@ footer ul li a:hover { text-decoration: none;}
   .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
     width: 100%;
   }
+  .home.page .checkbox-inline, .home.page .radio-inline {
+    display: block;
+  }
+  .home.page .checkbox-inline+.checkbox-inline, .home.page .radio-inline+.radio-inline {
+    margin-left: 0;
+  }
 }
 @media (min-width: 992px) {
   .ui-tabs .ui-tabs-nav li {
@@ -554,6 +572,12 @@ footer ul li a:hover { text-decoration: none;}
   }
   .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
     width: auto;
+  }
+  .home.page .checkbox-inline, .home.page .radio-inline {
+    display: inline-block;
+  }
+  .home.page .checkbox-inline+.checkbox-inline, .home.page .radio-inline+.radio-inline {
+    margin-left: 10px;
   }
 }
 
