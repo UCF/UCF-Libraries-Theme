@@ -6,7 +6,7 @@ Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
 
-Version: 1.5.7
+Version: 1.5.8
 
 */
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto+Slab:700|Roboto:500,700,400);
@@ -57,8 +57,8 @@ h1 { margin: 1em 0;}
 
 /*Misc*/
 
-p, p a { 
-	word-wrap: break-word; 
+p, p a {
+	word-wrap: break-word;
     word-break: break-word;
 
 -webkit-hyphens: auto;
@@ -191,7 +191,7 @@ footer ul li a:hover { text-decoration: none;}
   margin-top: 1rem;
 	border-top: 1px solid #e7c5a3;
   padding: 1.5rem 0;
-  
+
 }
 .my-account a {
   color: #fff;
@@ -241,11 +241,11 @@ footer ul li a:hover { text-decoration: none;}
 .nav-tabs>li>a {
   background-color: #eee;
   border: 1px solid #ddd;
-  border-bottom-color: transparent;  
+  border-bottom-color: transparent;
 }
 .nav-tabs>li>a:hover {
   background-color: #fff;
-  border-bottom-color: transparent;  
+  border-bottom-color: transparent;
 }
 
 .navbar-library {
@@ -1022,13 +1022,13 @@ footer ul li a:hover { text-decoration: none;}
 .gform_wrapper.gf_browser_chrome ul.gform_fields li.gfield div.ginput_complex span.ginput_left select,
 .gform_wrapper.gf_browser_chrome ul.gform_fields li.gfield div.ginput_complex span.ginput_right select,
 .gform_wrapper.gf_browser_chrome ul.gform_fields li.gfield input[type=radio],
-.gform_wrapper.gf_browser_chrome ul.gform_fields li.gfield select, 
+.gform_wrapper.gf_browser_chrome ul.gform_fields li.gfield select,
 .gform_wrapper.gf_browser_gecko .gfield_checkbox li input,
 .gform_wrapper.gf_browser_gecko .gfield_checkbox li input[type="checkbox"],
 .gform_wrapper.gf_browser_gecko .gfield_radio li input[type="radio"],
 .gf_browser_ie.gform_wrapper .gfield_checkbox li input,
 .gf_browser_ie.gform_wrapper .gfield_checkbox li input[type=checkbox],
-.gf_browser_ie.gform_wrapper .gfield_radio li input[type=radio] { 
+.gf_browser_ie.gform_wrapper .gfield_radio li input[type=radio] {
 	 margin-left: .063em;
 }
 
@@ -1039,7 +1039,7 @@ footer ul li a:hover { text-decoration: none;}
 }
 .gf_browser_ie.gform_wrapper .gform_body .gfield .gfield_checkbox li input,
 .gf_browser_ie.gform_wrapper .gform_body .gfield .gfield_checkbox li input[type=checkbox],
-.gf_browser_ie.gform_wrapper .gform_body .gfield .gfield_radio li input[type=radio] { 
+.gf_browser_ie.gform_wrapper .gform_body .gfield .gfield_radio li input[type=radio] {
 	margin-top: .25em;
 }
 
