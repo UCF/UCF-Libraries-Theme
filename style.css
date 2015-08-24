@@ -6,7 +6,7 @@ Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
 
-Version: 1.5.3
+Version: 1.5.7
 
 */
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto+Slab:700|Roboto:500,700,400);
@@ -57,7 +57,14 @@ h1 { margin: 1em 0;}
 
 /*Misc*/
 
-p, p a { word-wrap: break-word; }
+p, p a { 
+	word-wrap: break-word; 
+    word-break: break-word;
+
+-webkit-hyphens: auto;
+   -moz-hyphens: auto;
+        hyphens: auto;
+}
 
 
 img {
@@ -525,13 +532,25 @@ footer ul li a:hover { text-decoration: none;}
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
 	width: 100%;
 }
-@media (min-width: 550px) {
+.home.page .checkbox-inline, .home.page .radio-inline {
+  display: block;
+}
+.home.page .checkbox-inline+.checkbox-inline, .home.page .radio-inline+.radio-inline {
+    margin-left: 0;
+}
+@media (min-width: 625px) {
 	.ui-tabs .ui-tabs-nav li {
 		width: auto;
 	}
 	.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
 		width: auto;
 	}
+  .home.page .checkbox-inline, .home.page .radio-inline {
+    display: inline-block;
+  }
+  .home.page .checkbox-inline+.checkbox-inline, .home.page .radio-inline+.radio-inline {
+    margin-left: 10px;
+  }
 }
 @media (min-width: 768px) {
   .ui-tabs .ui-tabs-nav li {
@@ -540,6 +559,12 @@ footer ul li a:hover { text-decoration: none;}
   .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
     width: 100%;
   }
+  .home.page .checkbox-inline, .home.page .radio-inline {
+    display: block;
+  }
+  .home.page .checkbox-inline+.checkbox-inline, .home.page .radio-inline+.radio-inline {
+    margin-left: 0;
+  }
 }
 @media (min-width: 992px) {
   .ui-tabs .ui-tabs-nav li {
@@ -547,6 +572,12 @@ footer ul li a:hover { text-decoration: none;}
   }
   .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
     width: auto;
+  }
+  .home.page .checkbox-inline, .home.page .radio-inline {
+    display: inline-block;
+  }
+  .home.page .checkbox-inline+.checkbox-inline, .home.page .radio-inline+.radio-inline {
+    margin-left: 10px;
   }
 }
 
@@ -752,9 +783,12 @@ footer ul li a:hover { text-decoration: none;}
 	font-weight: bold;
 	margin: 0;
 }
-.news-post-category, .news-post-category a {
+.news-post-category, .news-post-category a, .news-post-date {
 	color: #999;
 	font-size: 13px;
+}
+.news-post-date {
+	float: right;
 }
 .news-post-image img {
 	max-width: 100px;
@@ -764,6 +798,12 @@ footer ul li a:hover { text-decoration: none;}
 	display: table-cell;
 	vertical-align: middle;
 	padding: .5em 1em;
+}
+
+@media (max-width: 480px) {
+	.news-post-image {
+		display: none;
+	}
 }
 .news-post-text {
 	width: 100%;
