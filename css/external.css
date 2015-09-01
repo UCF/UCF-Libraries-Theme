@@ -79,6 +79,11 @@ body {
   text-decoration: none;
   color: #222;
 }
+.lib-header a:hover {
+  color: #fff;
+  background-color: transparent;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
 .lib-container {
   padding-right: 15px;
   padding-left: 15px;
