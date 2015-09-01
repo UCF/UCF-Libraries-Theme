@@ -59,6 +59,10 @@ a.external-title {
 }
 
 /* New New Header */
+body {
+  margin: 0 !important;
+}
+
 .lib-header {
   background: #ffcc00;
 /* Old browsers */background: -moz-linear-gradient(top, #ffcc00 0%, #e5af00 100%); /* FF3.6+ */;
