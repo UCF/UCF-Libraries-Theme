@@ -751,7 +751,7 @@ function computer_availability() {
           <div class="col-sm-3"><span class="floor-name">'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</span></div>
           <div class="col-sm-9">
             <div class="progress">
-              <div class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 2.5em; width: '.$percent_available.'%;">
+              <div class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em; width: '.$percent_available.'%;">
                 '.$machines_available.' / '.$machines_total.'
               </div>
             </div>
