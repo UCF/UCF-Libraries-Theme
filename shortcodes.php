@@ -114,9 +114,9 @@ function search_catalog( $form ){
           <select id="avli" name="avli" class="form-control">
             <option value="" selected="selected">Any Locations</option>
             <option value="CFORLANDO">John C. Hitt</option>
+            <option value="CFRO*">Rosen</option>
             <option value="CFC*">CMC</option>
             <option value="CFHSL*">Health Sciences Library</option>
-            <option value="CFRO*">Rosen</option>
             <option value="CFSAL*">Altamonte Springs</option>
             <option value="CFBCC*">Cocoa</option>
             <option value="CFDBG*">Daytona Beach</option>
@@ -125,6 +125,7 @@ function search_catalog( $form ){
             <option value="CFBPC*">Palm Bay</option>
             <option value="CFSLM*">Sanford/Lake Mary</option>
             <option value="CFSOUTHLAKE">South Lake</option>
+            <option value="CFOSC*">Valencia Osceola</option>
             <option value="CFMTW*">Valencia West</option>
           </select>
         </div>
