@@ -699,7 +699,7 @@ add_shortcode('library-events', 'library_events');
 *
 **/
 function computer_availability() {
-  $string = wp_remote_get('http://library.ucf.edu/Web/Db.php?q=publicStatusPCs&format=json&l=1', array(
+  $string = wp_remote_get('http://libweb.net.ucf.edu/Web/Db.php?q=publicStatusPCs&format=json&l=1', array(
     'user-agent' => 'DummyAgentForDetectMobileBrowser.php',
     ));
   $json_o = json_decode($string['body']);
@@ -762,7 +762,7 @@ function computer_availability() {
     }
     $computers_list .= '</div>';
   } else {
-    $computers_list = '<p>Unable to determin computer availability.</p>';
+    $computers_list = '<p>Unable to determine computer availability.</p>';
   }
   return $computers_list;
   //return '<pre>'.$string['body'].'</pre>';
@@ -947,4 +947,35 @@ function lending_login() {
 return $output;
 }
 add_shortcode('lending-login', 'lending_login');
+
+
+/**
+* Job App Hiring Status
+* Gives the status of all departments on whether or not they are hiring.
+*
+* [hiring-status]
+*
+**/
+function hiring_status() {
+  $string = file_get_contents('http://lib200002.net.ucf.edu:8080/public/jobapplication/JSONUtils/HiringDepartments');
+  $json_o = json_decode($string);
+  if ($json_o != null) {
+    $hiring_list = '<dl class="dl-horizontal hiring-list">';
+    foreach ($json_o as $department) if ($department->name != 'Anywhere') {
+      if ($department->isHiring == 'true') {
+        $hiring = '<i class="fa fa-check-circle"></i> is hiring.';
+      } elseif ($department->isHiring == 'false'){
+        $hiring = '<i class="fa fa-times-circle"></i> is not hiring.';
+      } else {
+        $hiring = 'uh, what?';
+      }
+      $hiring_list .= '<dt>'.$department->name.':</dt><dd>'.$hiring.'</dd>';
+    }
+    $hiring_list .= '</dl>';
+  } else {
+    $hiring_list = '<p>Unable to determine hiring status.</p>';
+  }
+  return $hiring_list;
+}
+add_shortcode('hiring-status', 'hiring_status');
 ?>
