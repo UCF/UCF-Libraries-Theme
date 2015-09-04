@@ -369,12 +369,16 @@ footer ul li a:hover { text-decoration: none;}
 
 .dl-horizontal.hiring-list dt{
   width: 300px;
-  font-weight: 300;
-
+}
+  .dl-horizontal.hiring-list dd {
+    margin-left: 0;
+    margin-bottom: .5em;
 }
 
-.dl-horizontal.hiring-list dd {
-  margin-left: 315px;
+@media (min-width: 768px) {
+  .dl-horizontal.hiring-list dd {
+    margin-left: 315px;
+  }
 }
 .dl-horizontal.hiring-list dd .fa-check-circle {
   color: #5cb85c;
