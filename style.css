@@ -362,6 +362,27 @@ footer ul li a:hover { text-decoration: none;}
   .floor-name { font-size: 24px; }
 }
 
+/* Hiring Status */
+.dl-horizontal.hiring-list {
+  font-size: 1.5em;
+}
+
+.dl-horizontal.hiring-list dt{
+  width: 300px;
+  font-weight: 300;
+
+}
+
+.dl-horizontal.hiring-list dd {
+  margin-left: 315px;
+}
+.dl-horizontal.hiring-list dd .fa-check-circle {
+  color: #5cb85c;
+}
+.dl-horizontal.hiring-list dd .fa-times-circle {
+  color: #f2dede;
+}
+
 /* Font Awesome Icons for Menu */
 .menu-icon {
   display: inline-block;
