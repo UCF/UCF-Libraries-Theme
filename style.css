@@ -370,7 +370,7 @@ footer ul li a:hover { text-decoration: none;}
 .dl-horizontal.hiring-list dt{
   width: 300px;
 }
-  .dl-horizontal.hiring-list dd {
+.dl-horizontal.hiring-list dd {
     margin-left: 0;
     margin-bottom: .5em;
 }
@@ -378,6 +378,7 @@ footer ul li a:hover { text-decoration: none;}
 @media (min-width: 768px) {
   .dl-horizontal.hiring-list dd {
     margin-left: 315px;
+    margin-bottom: .25em;
   }
 }
 .dl-horizontal.hiring-list dd .fa-check-circle {
