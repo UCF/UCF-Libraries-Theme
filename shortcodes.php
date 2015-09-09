@@ -978,4 +978,16 @@ function hiring_status() {
   return $hiring_list;
 }
 add_shortcode('hiring-status', 'hiring_status');
+
+function databases() {
+  return '
+  <script>
+    springshare_widget_config_1441806520859 = { path: \'subjects\' };
+  </script>
+  <div id="s-lg-widget-1441806520859"></div>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?\'http\':\'https\';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://lgapi.libapps.com/widgets.php?site_id=626&widget_type=4&load_type=2&widget_embed_type=1&output_format=1&list_format=1&drop_text=Select+a+Subject...&sort_type=0&widget_title=Subject+List&widget_height=250&widget_width=100%25&widget_link_color=2954d1&guide_published=1&show_guides=3&window_target=2&config_id=1441806520859";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","s-lg-widget-script-1441806520859");</script>
+  ';
+}
+add_shortcode('databases','databases');
+
 ?>
