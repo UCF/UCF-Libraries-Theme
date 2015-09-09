@@ -969,7 +969,8 @@ function hiring_status() {
       } else {
         $hiring = 'uh, what?';
       }
-      $hiring_list .= '<dt>'.$department->name.':</dt><dd>'.$hiring.'</dd>';
+      $id = str_replace(' ', '-', $department->name);
+      $hiring_list .= '<dt><a href="#'.$id.'">'.$department->name.'</a>:</dt><dd>'.$hiring.'</dd>';
     }
     $hiring_list .= '</dl>';
   } else {
