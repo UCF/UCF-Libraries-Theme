@@ -38,7 +38,7 @@ function OneSearchform( $form ) {
       <div class="input-group">
         <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search Databases, Articles, and Catalog" results="5" size="60" type="text" x-webkit-speech="" >
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+          <button type="submit" class="btn btn-primary" onclick="ga(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearchtext\').val(), \'QuickSearch\');"><span class="glyphicon glyphicon-search"></span></button>
         </span>
 
       </div>
@@ -71,9 +71,9 @@ function onesearch_articles( $form ){
       <input name="guidedField_3" type="hidden" value="">
       <input name="doctype" type="hidden" value="160MN">
       <div class="input-group">
-        <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" name="bQuery" placeholder="Search Articles" results="5" type="text" x-webkit-speech="">
+        <input id="ebscohostsearcharticletext" autosave="UCFLibrary SiteSearch" class="form-control" name="bQuery" placeholder="Search Articles" results="5" type="text" x-webkit-speech="">
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+          <button type="submit" class="btn btn-primary" onclick="ga(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearcharticletext\').val(), \'QuickSearch\');"><span class="glyphicon glyphicon-search"></span></button>
         </span>
       </div>
     </form>
@@ -93,9 +93,9 @@ function search_catalog( $form ){
     <form role="form" class="search search-catalog"  id="advanced" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp?ADV=S" target="_blank">
       <label for="st" class="sr-only">Search catalog</label>
       <div class="input-group">
-        <input id="box" type="text" name="t1" value="" placeholder="Search the Catalog" class="form-control" />
+        <input id="catalog_search" type="text" name="t1" value="" placeholder="Search the Catalog" class="form-control" />
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+          <button type="submit" class="btn btn-primary" onclick="ga(\'send\', \'event\', \'outbound-search\', $(\'#catalog_search\').val(), \'Catalog Search\');"><span class="glyphicon glyphicon-search"></span></button>
         </span>
       </div>
       <div class="row" style="margin-top: 1.5em;">
@@ -152,9 +152,9 @@ function search_videos( $form ) {
     <input name="ADV" type="hidden" value="S">
     <input type="hidden" name="fa" value="Video all formats">
     <div class="input-group">
-      <input class="form-control" id="video_box" type="text" name="t1" size="40" placeholder="Search UCF\'s Video Collections" value="">
+      <input class="form-control" id="video_search" type="text" name="t1" size="40" placeholder="Search UCF\'s Video Collections" value="">
       <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+        <button type="submit" class="btn btn-primary" onclick="ga(\'send\', \'event\', \'outbound-search\', $(\'#video_search\').val(), \'Video Search\');"><span class="glyphicon glyphicon-search"></span></button>
       </span>
     </div>
     <div class="input-group" style="margin-top: .5em;">
@@ -182,9 +182,9 @@ function search_scua($form) {
         <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
         <label for="s" class="sr-only">Search</label>
         <div class="input-group">
-          <input id="box" name="t1" class="form-control" type="search" placeholder="Special Collections Search" />
+          <input id="scua_search" name="t1" class="form-control" type="search" placeholder="Special Collections Search" />
           <span class="input-group-btn">
-                  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                  <button type="submit" class="btn btn-primary" onclick="ga(\'send\', \'event\', \'outbound-search\', $(\'#scua_search\').val(), \'SCUA Search\');"><span class="glyphicon glyphicon-search"></span></button>
               </span>
         </div>
       </form>
