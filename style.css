@@ -6,7 +6,7 @@ Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
 
-Version: 1.5.12
+Version: 1.5.13
 
 */
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto+Slab:700|Roboto:500,700,400);
@@ -360,6 +360,32 @@ footer ul li a:hover { text-decoration: none;}
 }
 @media (min-width: 992px) {
   .floor-name { font-size: 24px; }
+}
+
+/* Hiring Status */
+.dl-horizontal.hiring-list {
+  font-size: 1.25em;
+}
+
+.dl-horizontal.hiring-list dt{
+  width: 250px;
+}
+.dl-horizontal.hiring-list dd {
+    margin-left: 0;
+    margin-bottom: .5em;
+}
+
+@media (min-width: 768px) {
+  .dl-horizontal.hiring-list dd {
+    margin-left: 260px;
+    margin-bottom: .25em;
+  }
+}
+.dl-horizontal.hiring-list dd .fa-check-circle {
+  color: #5cb85c;
+}
+.dl-horizontal.hiring-list dd .fa-times-circle {
+  color: #f2dede;
 }
 
 /* Font Awesome Icons for Menu */

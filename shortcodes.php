@@ -38,7 +38,7 @@ function OneSearchform( $form ) {
       <div class="input-group">
         <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search Databases, Articles, and Catalog" results="5" size="60" type="text" x-webkit-speech="" >
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+          <button type="submit" class="btn btn-primary" onclick="ga(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearchtext\').val(), \'QuickSearch\');"><span class="glyphicon glyphicon-search"></span></button>
         </span>
 
       </div>
@@ -71,9 +71,9 @@ function onesearch_articles( $form ){
       <input name="guidedField_3" type="hidden" value="">
       <input name="doctype" type="hidden" value="160MN">
       <div class="input-group">
-        <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" name="bQuery" placeholder="Search Articles" results="5" type="text" x-webkit-speech="">
+        <input id="ebscohostsearcharticletext" autosave="UCFLibrary SiteSearch" class="form-control" name="bQuery" placeholder="Search Articles" results="5" type="text" x-webkit-speech="">
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+          <button type="submit" class="btn btn-primary" onclick="ga(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearcharticletext\').val(), \'QuickSearch\');"><span class="glyphicon glyphicon-search"></span></button>
         </span>
       </div>
     </form>
@@ -93,9 +93,9 @@ function search_catalog( $form ){
     <form role="form" class="search search-catalog"  id="advanced" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp?ADV=S" target="_blank">
       <label for="st" class="sr-only">Search catalog</label>
       <div class="input-group">
-        <input id="box" type="text" name="t1" value="" placeholder="Search the Catalog" class="form-control" />
+        <input id="catalog_search" type="text" name="t1" value="" placeholder="Search the Catalog" class="form-control" />
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+          <button type="submit" class="btn btn-primary" onclick="ga(\'send\', \'event\', \'outbound-search\', $(\'#catalog_search\').val(), \'Catalog Search\');"><span class="glyphicon glyphicon-search"></span></button>
         </span>
       </div>
       <div class="row" style="margin-top: 1.5em;">
@@ -152,9 +152,9 @@ function search_videos( $form ) {
     <input name="ADV" type="hidden" value="S">
     <input type="hidden" name="fa" value="Video all formats">
     <div class="input-group">
-      <input class="form-control" id="video_box" type="text" name="t1" size="40" placeholder="Search UCF\'s Video Collections" value="">
+      <input class="form-control" id="video_search" type="text" name="t1" size="40" placeholder="Search UCF\'s Video Collections" value="">
       <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+        <button type="submit" class="btn btn-primary" onclick="ga(\'send\', \'event\', \'outbound-search\', $(\'#video_search\').val(), \'Video Search\');"><span class="glyphicon glyphicon-search"></span></button>
       </span>
     </div>
     <div class="input-group" style="margin-top: .5em;">
@@ -182,9 +182,9 @@ function search_scua($form) {
         <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
         <label for="s" class="sr-only">Search</label>
         <div class="input-group">
-          <input id="box" name="t1" class="form-control" type="search" placeholder="Special Collections Search" />
+          <input id="scua_search" name="t1" class="form-control" type="search" placeholder="Special Collections Search" />
           <span class="input-group-btn">
-                  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                  <button type="submit" class="btn btn-primary" onclick="ga(\'send\', \'event\', \'outbound-search\', $(\'#scua_search\').val(), \'SCUA Search\');"><span class="glyphicon glyphicon-search"></span></button>
               </span>
         </div>
       </form>
@@ -695,18 +695,29 @@ add_shortcode('library-events', 'library_events');
 * Lists the number of available computers per floor
 *
 * Example:
-* [computer-availability]
+* [computer-availability id="1"]
 *
 **/
-function computer_availability() {
-  $string = wp_remote_get('http://library.ucf.edu/Web/Db.php?q=publicStatusPCs&format=json&l=1', array(
+function computer_availability($atts) {
+   extract(shortcode_atts(array(
+      'id' => '1',
+   ), $atts));
+  $string = wp_remote_get('http://libweb.net.ucf.edu/Web/Db.php?q=publicStatusPCs&format=json&l='.$id, array(
     'user-agent' => 'DummyAgentForDetectMobileBrowser.php',
     ));
   $json_o = json_decode($string['body']);
   if ($json_o != null) {
     $computers_list = '<div class="computer-availability">';
-    $i = 1;
-    while ( $i < 6 ) {
+    if ($id == '1') {
+      $i = 1;
+      $floors = 5;
+    } elseif ($id == '5' || $id == '13') {
+      $i = 1;
+      $floors = 1;
+    } else{
+
+    }
+    while ( $i <= $floors ) {
       $machines_in_use = 0;
       $machines_total = 0;
       $machines_available = 0;
@@ -762,7 +773,7 @@ function computer_availability() {
     }
     $computers_list .= '</div>';
   } else {
-    $computers_list = '<p>Unable to determin computer availability.</p>';
+    $computers_list = '<p>Unable to determine computer availability.</p>';
   }
   return $computers_list;
   //return '<pre>'.$string['body'].'</pre>';
@@ -947,4 +958,51 @@ function lending_login() {
 return $output;
 }
 add_shortcode('lending-login', 'lending_login');
+
+
+/**
+* Job App Hiring Status
+* Gives the status of all departments on whether or not they are hiring.
+*
+* [hiring-status]
+*
+**/
+function hiring_status($atts) {
+  extract(shortcode_atts(array(
+      'url' => '',
+  ), $atts));
+  $string = file_get_contents('http://lib200002.net.ucf.edu:8080/public/jobapplication/JSONUtils/HiringDepartments');
+  $json_o = json_decode($string);
+  if ($json_o != null) {
+    $hiring_list = '<dl class="dl-horizontal hiring-list">';
+    foreach ($json_o as $department) if ($department->name != 'Anywhere') {
+      if ($department->isHiring == 'true') {
+        $hiring = '<i class="fa fa-check-circle"></i> is hiring.';
+      } elseif ($department->isHiring == 'false'){
+        $hiring = '<i class="fa fa-times-circle"></i> is not hiring.';
+      } else {
+        $hiring = 'uh, what?';
+      }
+      $id = str_replace(' ', '-', $department->name);
+      $hiring_list .= '<dt><a href="'.$url.'#'.$id.'">'.$department->name.'</a>:</dt><dd>'.$hiring.'</dd>';
+    }
+    $hiring_list .= '</dl>';
+  } else {
+    $hiring_list = '<p>Unable to determine hiring status.</p>';
+  }
+  return $hiring_list;
+}
+add_shortcode('hiring-status', 'hiring_status');
+
+function databases() {
+  return '
+  <script>
+    springshare_widget_config_1441806520859 = { path: \'subjects\' };
+  </script>
+  <div id="s-lg-widget-1441806520859"></div>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?\'http\':\'https\';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://lgapi.libapps.com/widgets.php?site_id=626&widget_type=4&load_type=2&widget_embed_type=1&output_format=1&list_format=1&drop_text=Select+a+Subject...&sort_type=0&widget_title=Subject+List&widget_height=250&widget_width=100%25&widget_link_color=2954d1&guide_published=1&show_guides=3&window_target=2&config_id=1441806520859";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","s-lg-widget-script-1441806520859");</script>
+  ';
+}
+add_shortcode('databases','databases');
+
 ?>
