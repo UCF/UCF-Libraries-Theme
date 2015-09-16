@@ -967,7 +967,10 @@ add_shortcode('lending-login', 'lending_login');
 * [hiring-status]
 *
 **/
-function hiring_status() {
+function hiring_status($atts) {
+  extract(shortcode_atts(array(
+      'url' => '',
+  ), $atts));
   $string = file_get_contents('http://lib200002.net.ucf.edu:8080/public/jobapplication/JSONUtils/HiringDepartments');
   $json_o = json_decode($string);
   if ($json_o != null) {
@@ -981,7 +984,7 @@ function hiring_status() {
         $hiring = 'uh, what?';
       }
       $id = str_replace(' ', '-', $department->name);
-      $hiring_list .= '<dt><a href="#'.$id.'">'.$department->name.'</a>:</dt><dd>'.$hiring.'</dd>';
+      $hiring_list .= '<dt><a href="'.$url.'#'.$id.'">'.$department->name.'</a>:</dt><dd>'.$hiring.'</dd>';
     }
     $hiring_list .= '</dl>';
   } else {
