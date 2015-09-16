@@ -695,18 +695,29 @@ add_shortcode('library-events', 'library_events');
 * Lists the number of available computers per floor
 *
 * Example:
-* [computer-availability]
+* [computer-availability id="1"]
 *
 **/
-function computer_availability() {
-  $string = wp_remote_get('http://libweb.net.ucf.edu/Web/Db.php?q=publicStatusPCs&format=json&l=1', array(
+function computer_availability($atts) {
+   extract(shortcode_atts(array(
+      'id' => '1',
+   ), $atts));
+  $string = wp_remote_get('http://libweb.net.ucf.edu/Web/Db.php?q=publicStatusPCs&format=json&l='.$id, array(
     'user-agent' => 'DummyAgentForDetectMobileBrowser.php',
     ));
   $json_o = json_decode($string['body']);
   if ($json_o != null) {
     $computers_list = '<div class="computer-availability">';
-    $i = 1;
-    while ( $i < 6 ) {
+    if ($id == '1') {
+      $i = 1;
+      $floors = 5;
+    } elseif ($id == '5' || $id == '13') {
+      $i = 1;
+      $floors = 1;
+    } else{
+
+    }
+    while ( $i <= $floors ) {
       $machines_in_use = 0;
       $machines_total = 0;
       $machines_available = 0;
