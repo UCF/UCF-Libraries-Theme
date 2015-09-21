@@ -981,7 +981,7 @@ function hiring_status($atts) {
       } elseif ($department->isHiring == 'false'){
         $hiring = '<i class="fa fa-times-circle"></i> is not hiring.';
       } else {
-        $hiring = 'uh, what?';
+        $hiring = 'could not determine.';
       }
       $id = str_replace(' ', '-', $department->name);
       $hiring_list .= '<dt><a href="'.$url.'#'.$id.'">'.$department->name.'</a>:</dt><dd>'.$hiring.'</dd>';
