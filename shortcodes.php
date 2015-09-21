@@ -964,14 +964,14 @@ add_shortcode('lending-login', 'lending_login');
 * Job App Hiring Status
 * Gives the status of all departments on whether or not they are hiring.
 *
-* [hiring-status]
+* [hiring-status url="http://library.ucf.edu/jobs/faq/"]
 *
 **/
 function hiring_status($atts) {
   extract(shortcode_atts(array(
       'url' => '',
   ), $atts));
-  $string = file_get_contents('http://lib200002.net.ucf.edu:8080/public/jobapplication/JSONUtils/HiringDepartments');
+  $string = file_get_contents('https://apps.library.ucf.edu/public/jobapplication/JSONUtils/HiringDepartments');
   $json_o = json_decode($string);
   if ($json_o != null) {
     $hiring_list = '<dl class="dl-horizontal hiring-list">';
