@@ -977,14 +977,10 @@ function hiring_status($atts) {
     $hiring_list = '<dl class="dl-horizontal hiring-list">';
     foreach ($json_o as $department) if ($department->name != 'Anywhere') {
       if ($department->isHiring == 'true') {
-        $hiring = '<i class="fa fa-check-circle"></i> is hiring.';
-      } elseif ($department->isHiring == 'false'){
-        $hiring = '<i class="fa fa-times-circle"></i> is not hiring.';
-      } else {
-        $hiring = 'could not determine.';
-      }
-      $id = str_replace(' ', '-', $department->name);
-      $hiring_list .= '<dt><a href="'.$url.'#'.$id.'">'.$department->name.'</a>:</dt><dd>'.$hiring.'</dd>';
+        $hiring = '<i class="fa fa-check-circle"></i> is actively seeking applications.';
+        $id = str_replace(' ', '-', $department->name);
+        $hiring_list .= '<dt><a href="'.$url.'#'.$id.'">'.$department->name.'</a>:</dt><dd>'.$hiring.'</dd>';
+      } 
     }
     $hiring_list .= '</dl>';
   } else {
