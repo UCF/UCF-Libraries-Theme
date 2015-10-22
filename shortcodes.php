@@ -73,7 +73,7 @@ function onesearch_articles( $form ){
       <div class="input-group">
         <input id="ebscohostsearcharticletext" autosave="UCFLibrary SiteSearch" class="form-control" name="bQuery" placeholder="Search Articles" results="5" type="text" x-webkit-speech="">
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearcharticletext\').val(), \'QuickSearch\');"><span class="glyphicon glyphicon-search"></span></button>
+          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearcharticletext\').val(), \'Article Search\');"><span class="glyphicon glyphicon-search"></span></button>
         </span>
       </div>
     </form>
