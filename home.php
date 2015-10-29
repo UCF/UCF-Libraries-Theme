@@ -53,11 +53,7 @@ function fbShare(url, title, descr, image, winWidth, winHeight) {
 					<?php get_sidebar(); ?>
 				</div>
 				<div class="col-sm-9">
-					<div class="grid">
-					<div class="grid-sizer"></div>
-					<div class="gutter-sizer"></div>
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-					<div class="grid-item">
 						<?php	
 							$categories = get_the_category();
 					        $separator = ', ';
@@ -112,7 +108,6 @@ function fbShare(url, title, descr, image, winWidth, winHeight) {
 								</div>
 							</div>
 						</article>
-					</div>
 					<?php endwhile; else: ?>
 					</div>
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
@@ -121,14 +116,4 @@ function fbShare(url, title, descr, image, winWidth, winHeight) {
 		</div>
 	</div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
-<script>
-$('.grid').masonry({
-  // options
-  columnWidth: '.grid-sizer',
-  gutter: '.gutter-sizer',
-  itemSelector: '.grid-item',
-  percentPosition: true
-});
-</script>
 <?php get_footer(); ?>
