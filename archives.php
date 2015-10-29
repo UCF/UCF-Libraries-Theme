@@ -37,12 +37,5 @@
 		</div>
 	</div>
 </div>
-<div id="delimiter"></div>]
-<script>
-$('.grid').masonry({
-  // options
-  itemSelector: '.grid-item',
-  columnWidth: 200
-});
-</script>
+
 <?php get_footer(); ?>

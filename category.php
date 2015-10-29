@@ -20,11 +20,7 @@
 				</div>
 				<div class="col-sm-9">
 					<h2 class="subpage-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'category' ) ); echo $term->name; ?></h2>
-					<div class="grid">
-					<div class="grid-sizer"></div>
-					<div class="gutter-sizer"></div>
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-					<div class="grid-item">
 						<?php	
 							$categories = get_the_category();
 					        $separator = ', ';
@@ -37,49 +33,48 @@
 				        ?>
 						<article>
 							<div class="card">
-							<?php if (has_post_thumbnail()): ?>
-								<div class="post-header-img"><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('full'); ?></a></div>
-							<?php endif; ?>
-								<div class="news-post-content">
-									<div class="share-btn-group">
-		 								<a class="share-btn facebook-btn" href="javascript:share_button('http://www.facebook.com/sharer.php?u=<?php echo get_permalink(); ?>', 520, 350)">
-											<span class="fa-stack fa-lg">
-												<i class="fa fa-circle fa-stack-2x"></i>
-												<i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-											</span>
-										</a>
-										<a class="share-btn twitter-btn" href="javascript:share_button('http://twitter.com/share?url=<?php echo get_permalink(); ?>&text=<?php echo get_the_title(); ?>', 500, 500)">
-											<span class="fa-stack fa-lg">
-												<i class="fa fa-circle fa-stack-2x"></i>
-												<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-											</span>
-										</a>
-										<a class="share-btn gplus-btn" href="javascript:share_button('https://plus.google.com/share?url=<?php echo get_permalink(); ?>', 500, 500)">
-											<span class="fa-stack fa-lg">
-												<i class="fa fa-circle fa-stack-2x"></i>
-												<i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
-											</span>
-										</a>
-										<a class="share-btn email-btn" href="mailto:?subject=<?php echo get_the_title(); ?>&body=<?php echo get_the_title(); ?> <?php echo get_permalink(); ?>">
-											<span class="fa-stack fa-lg">
-												<i class="fa fa-circle fa-stack-2x"></i>
-												<i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-											</span>
-										</a>		
+								<?php if (has_post_thumbnail()): ?>
+									<div class="post-header-img"><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('full'); ?></a></div>
+								<?php endif; ?>
+									<div class="news-post-content">
+										<div class="share-btn-group">
+			 								<a class="share-btn facebook-btn" href="javascript:share_button('http://www.facebook.com/sharer.php?u=<?php echo get_permalink(); ?>', 520, 350)">
+												<span class="fa-stack fa-lg">
+													<i class="fa fa-circle fa-stack-2x"></i>
+													<i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+												</span>
+											</a>
+											<a class="share-btn twitter-btn" href="javascript:share_button('http://twitter.com/share?url=<?php echo get_permalink(); ?>&text=<?php echo get_the_title(); ?>', 500, 500)">
+												<span class="fa-stack fa-lg">
+													<i class="fa fa-circle fa-stack-2x"></i>
+													<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+												</span>
+											</a>
+											<a class="share-btn gplus-btn" href="javascript:share_button('https://plus.google.com/share?url=<?php echo get_permalink(); ?>', 500, 500)">
+												<span class="fa-stack fa-lg">
+													<i class="fa fa-circle fa-stack-2x"></i>
+													<i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+												</span>
+											</a>
+											<a class="share-btn email-btn" href="mailto:?subject=<?php echo get_the_title(); ?>&body=<?php echo get_the_title(); ?> <?php echo get_permalink(); ?>">
+												<span class="fa-stack fa-lg">
+													<i class="fa fa-circle fa-stack-2x"></i>
+													<i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+												</span>
+											</a>		
+										</div>
+										<div class="news-post-title">
+											<header>
+							                  <h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+							                  <span class="news-post-category"><?php echo trim($output, $separator); ?></span>
+		                					  <span class="news-post-date">Posted: <i class="fa fa-calendar"></i> <?php echo get_the_time('F jS, Y'); ?></span>
+				                  			</header>
+										</div>
+										<p><?php the_content(__('(more...)')); ?></p>
+										<p><?php comments_template( $file, $separate_comments ); ?></p>
 									</div>
-									<div class="news-post-title">
-										<header>
-						                  <h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
-						                  <span class="news-post-category"><?php echo trim($output, $separator); ?></span>
-	                					  <span class="news-post-date">Posted: <i class="fa fa-calendar"></i> <?php echo get_the_time('F jS, Y'); ?></span>
-			                  			</header>
-									</div>
-									<p><?php the_content(__('(more...)')); ?></p>
-									<p><?php comments_template( $file, $separate_comments ); ?></p>
-								</div>
 							</div>
 						</article>
-					</div>
 					<?php endwhile; else: ?>
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 				</div>
@@ -87,14 +82,5 @@
 		</div>
 	</div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
-<script>
-$('.grid').masonry({
-  // options
-  columnWidth: '.grid-sizer',
-  gutter: '.gutter-sizer',
-  itemSelector: '.grid-item',
-  percentPosition: true
-});
-</script>
+
 <?php get_footer(); ?>
