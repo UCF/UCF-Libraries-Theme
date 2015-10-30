@@ -1051,6 +1051,7 @@ function referral_message($atts, $content = null) {
   extract(shortcode_atts( array(
       'url' => '',
   ), $atts )); 
+  $referral_url = '';
   $referral_url = $_SERVER['HTTP_REFERER'];
   if ($url == $referral_url) {
     return '<!-- URL match! -->
