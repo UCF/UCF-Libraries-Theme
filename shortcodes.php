@@ -1015,8 +1015,12 @@ function referral_message($atts, $content = null) {
       'url' => '',
   ), $atts )); 
   $referral_url = $_SERVER['HTTP_REFERER'];
+  if (strpos($referral_url, 'https://') == 0) {
+        $referral_url = 'http://' . substr($referral_url, 7);
+  }  
   if ($url == $referral_url) {
     return '<!-- URL match! -->
+      <p>'.$referral_url.'</p>
       <script>
         $(document).ready(function() {
           $(\'#modal_match\').modal(\'show\');
@@ -1025,6 +1029,7 @@ function referral_message($atts, $content = null) {
     ';
   } else {
     return '<!-- No URL match! -->
+      <p>'.$referral_url.'</p>
       <script>
         $(document).ready(function() {
           $(\'#modal_no_match\').modal(\'show\');
