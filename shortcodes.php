@@ -1001,4 +1001,38 @@ function databases() {
 }
 add_shortcode('databases','databases');
 
+
+/**
+* Referral page notification
+* Detects if the referral url matches the url set and shows a different modal if the match was successful or not
+* Modals must be made in wordpress, modal ids must be either modal_match or modal_no_match.
+*
+* [referral-message url="url you wish to match against"]
+*
+**/
+function referral_message($atts, $content = null) {
+  extract(shortcode_atts( array(
+      'url' => '',
+  ), $atts )); 
+  $referral_url = $_SERVER['HTTP_REFERER'];
+  if ($url == $referral_url) {
+    return '<!-- URL match! -->
+      <script>
+        $(document).ready(function() {
+          $(\'#modal_match\').modal(\'show\');
+        });
+      </script>
+    ';
+  } else {
+    return '<!-- No URL match! -->
+      <script>
+        $(document).ready(function() {
+          $(\'#modal_no_match\').modal(\'show\');
+        });
+      </script>
+    ';
+  }
+}
+add_shortcode('referral-message', 'referral_message');
+
 ?>
