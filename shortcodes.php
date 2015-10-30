@@ -1016,7 +1016,7 @@ function referral_message($atts, $content = null) {
   ), $atts )); 
   $referral_url = $_SERVER['HTTP_REFERER'];
   if (strpos($referral_url, 'https://') == 0) {
-        $referral_url = 'http://' . substr($referral_url, 7);
+        $referral_url = 'http://' . substr($referral_url, 8);
   }  
   if ($url == $referral_url) {
     return '<!-- URL match! -->
