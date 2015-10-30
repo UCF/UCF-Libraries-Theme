@@ -1028,7 +1028,7 @@ function modal_window($atts, $content = null) {
             '.do_shortcode($content).'
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -1054,7 +1054,7 @@ function referral_message($atts, $content = null) {
   $referral_url = $_SERVER['HTTP_REFERER'];
   if ($url == $referral_url) {
     return '<!-- URL match! -->
-      <p>'.$referral_url.'</p>
+      <!-- Referral URL = '.$referral_url.'-->
       <script>
         $(document).ready(function() {
           $(\'#modal_match\').modal(\'show\');
@@ -1063,7 +1063,7 @@ function referral_message($atts, $content = null) {
     ';
   } else {
     return '<!-- No URL match! -->
-      <p>'.$referral_url.'</p>
+      <!-- Referral URL = '.$referral_url.'-->
       <script>
         $(document).ready(function() {
           $(\'#modal_no_match\').modal(\'show\');
