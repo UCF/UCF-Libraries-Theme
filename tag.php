@@ -79,6 +79,7 @@
 					</article>
 					<?php endwhile; else: ?>
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
+					<?php wpbeginner_numeric_posts_nav(); ?>					
 				</div>
 			</div>
 		</div>

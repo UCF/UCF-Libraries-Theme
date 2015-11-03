@@ -111,6 +111,7 @@ function fbShare(url, title, descr, image, winWidth, winHeight) {
 					<?php endwhile; else: ?>
 					</div>
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
+					<?php wpbeginner_numeric_posts_nav(); ?>
 				</div>
 			</div>
 		</div>
