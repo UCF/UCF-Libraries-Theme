@@ -69,8 +69,9 @@
                 					  <span class="news-post-date">Posted: <i class="fa fa-calendar"></i> <?php echo get_the_time('F jS, Y'); ?></span>
                						</header>
 								</div>
-								<p><?php the_content(__('(more...)')); ?></p>
-								<p><?php comments_template( $file, $separate_comments ); ?></p>
+								<?php the_content(__('(more...)')); ?>
+								<div class="clearfix"></div>
+								<?php comments_template( $file, $separate_comments ); ?>
 							</div>
 						</div>
 					</article>
