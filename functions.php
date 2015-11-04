@@ -464,14 +464,22 @@ function mawaha_filter_allowed_html($allowed, $context){
         $allowed['a']['data-target'] = true;
         $allowed['a']['aria-label'] = true;
         $allowed['a']['aria-labelledby'] = true;
+        $allowed['a']['aria-hidden'] = true;
         $allowed['button']['data-toggle'] = true;
         $allowed['button']['data-dismiss'] = true;
         $allowed['button']['data-placement'] = true;
         $allowed['button']['data-target'] = true;
         $allowed['button']['aria-label'] = true;
         $allowed['button']['aria-labelledby'] = true;
-        $allowed['div']['data-placement'] = true;    
-        
+        $allowed['button']['aria-hidden'] = true;
+        $allowed['div']['data-placement'] = true;   
+        $allowed['div']['aria-labelledby'] = true;
+        $allowed['div']['aria-hidden'] = true;
+        $allowed['span']['aria-hidden'] = true;
+
+
+ aria-hidden
+
     }
  
     return $allowed;
