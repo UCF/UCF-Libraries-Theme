@@ -458,7 +458,20 @@ function mawaha_filter_allowed_html($allowed, $context){
     if ($context === 'post')
     {
             // Example case
-        $allowed['a']['data-reveal-id'] = true;
+        $allowed['a']['data-toggle'] = true;
+        $allowed['a']['data-dismiss'] = true;
+        $allowed['a']['data-placement'] = true;
+        $allowed['a']['data-target'] = true;
+        $allowed['a']['aria-label'] = true;
+        $allowed['a']['aria-labelledby'] = true;
+        $allowed['button']['data-toggle'] = true;
+        $allowed['button']['data-dismiss'] = true;
+        $allowed['button']['data-placement'] = true;
+        $allowed['button']['data-target'] = true;
+        $allowed['button']['aria-label'] = true;
+        $allowed['button']['aria-labelledby'] = true;
+        $allowed['div']['data-placement'] = true;    
+        
     }
  
     return $allowed;
