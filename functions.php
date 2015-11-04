@@ -477,9 +477,6 @@ function mawaha_filter_allowed_html($allowed, $context){
         $allowed['div']['aria-hidden'] = true;
         $allowed['span']['aria-hidden'] = true;
 
-
- aria-hidden
-
     }
  
     return $allowed;
