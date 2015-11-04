@@ -443,4 +443,26 @@ function wpbeginner_numeric_posts_nav() {
 
 }
 
+/**
+* Allow html 
+* This will allow defined html 5 data attributes to html tags
+*
+**/
+function mawaha_filter_allowed_html($allowed, $context){
+ 
+    if (is_array($context))
+    {
+        return $allowed;
+    }
+ 
+    if ($context === 'post')
+    {
+            // Example case
+        $allowed['a']['data-reveal-id'] = true;
+    }
+ 
+    return $allowed;
+}
+add_filter('wp_kses_allowed_html', 'mawaha_filter_allowed_html', 10, 2);
+
 ?>
