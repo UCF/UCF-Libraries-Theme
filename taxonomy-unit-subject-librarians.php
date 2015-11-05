@@ -3,16 +3,18 @@
 Description: Taxonomy archive page.
 */
 ?>
- <?php
-	global $wp_query;
-	query_posts(
-	   array_merge(
-	      $wp_query->query,
-	      array(
-	      	'orderby' => 'title',
-	      	'order' => 'ASC')
-   )
-);
+<?php
+  global $wp_query;
+  query_posts(
+    array_merge(
+      $wp_query->query,
+      array(
+        'orderby' => 'title',
+        'order' => 'ASC',
+        'posts_per_page' => 200
+      )
+    )
+  );
 ?>
 
 <?php get_header(); ?>

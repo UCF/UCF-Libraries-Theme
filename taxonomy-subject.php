@@ -1,18 +1,20 @@
 <?php
 /*
-Description: Taxonomy archive page.
+Description: Taxonomy Subject archive page.
 */
 ?>
  <?php
 	global $wp_query;
 	query_posts(
-	   array_merge(
-	      $wp_query->query,
-	      array(
-	      	'orderby' => 'title',
-	      	'order' => 'ASC')
-   )
-);
+    array_merge(
+      $wp_query->query,
+      array(
+        'orderby' => 'title',
+        'order' => 'ASC',
+        'posts_per_page' => 200
+      )
+	  )
+  );
 ?>
 <?php
 

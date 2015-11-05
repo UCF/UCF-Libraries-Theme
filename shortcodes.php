@@ -1001,4 +1001,78 @@ function databases() {
 }
 add_shortcode('databases','databases');
 
+/**
+* Modal Window
+* Adds a modal window onto a page.
+*
+* [modal-window id="modal_name" title="Modal Title"]
+*   Body content for modal
+* [/modal-window]
+*
+**/
+function modal_window($atts, $content = null) {
+  extract(shortcode_atts( array(
+      'id' => '',
+      'title' => '',
+  ), $atts ));
+  $output = '
+    <!-- Modal -->
+    <div class="modal fade" id="'.$id.'" tabindex="-1" role="dialog" aria-labelledby="'.$id.'Label">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="'.$id.'Label">'.$title.'</h4>
+          </div>
+          <div class="modal-body">
+            '.do_shortcode($content).'
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  ';
+  return $output;
+}
+add_shortcode('modal-window', 'modal_window');
+
+
+/**
+* Referral page notification
+* Detects if the referral url matches the url set and shows a different modal if the match was successful or not
+* Modals must be made in wordpress, modal ids must be either modal_match or modal_no_match.
+*
+* [referral-message url="url you wish to match against"]
+*
+**/
+function referral_message($atts, $content = null) {
+  extract(shortcode_atts( array(
+      'url' => '',
+  ), $atts )); 
+  $referral_url = '';
+  $referral_url = $_SERVER['HTTP_REFERER'];
+  if ($url == $referral_url) {
+    return '<!-- URL match! -->
+      <!-- Referral URL = '.$referral_url.'-->
+      <script>
+        $(document).ready(function() {
+          $(\'#modal_match\').modal(\'show\');
+        });
+      </script>
+    ';
+  } else {
+    return '<!-- No URL match! -->
+      <!-- Referral URL = '.$referral_url.'-->
+      <script>
+        $(document).ready(function() {
+          $(\'#modal_no_match\').modal(\'show\');
+        });
+      </script>
+    ';
+  }
+}
+add_shortcode('referral-message', 'referral_message');
+
 ?>

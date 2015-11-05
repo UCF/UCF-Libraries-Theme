@@ -6,19 +6,21 @@ Description: Taxonomy archive page.
  <?php
 	global $wp_query;
 	query_posts(
-	   array_merge(
-	      $wp_query->query,
-	      array(
-	      	'orderby' => 'title',
-	      	'order' => 'ASC')
-   )
-);
+    array_merge(
+      $wp_query->query,
+      array(
+        'orderby' => 'title',
+        'order' => 'ASC',
+        'posts_per_page' => 200
+      )
+	  )
+  );
 ?>
 
 <?php get_header(); ?>
 <div id="main">
 	<div id="content" class="container">
-	 <!-- archive-staff.php -->
+	 <!-- taxonomy.php -->
 		<div class="row">
 			<div class="col-sm-8">
 				<header><h1>Staff Directory</h1></header>
