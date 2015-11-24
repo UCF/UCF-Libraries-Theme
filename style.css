@@ -105,6 +105,13 @@ dl.menu-list dd, dl.list-spaced dd { margin-bottom: 1.5em; }
 }
 
 .unavailable {color: #f00;}
+
+/* Google Search override */
+
+#Search_Results .gsc-selected-option-container.gsc-inline-block {
+    width: auto!important;
+}
+
 /*test*/
 
 /* Masonry Settings */
