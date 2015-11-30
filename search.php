@@ -6,13 +6,10 @@ $results_count = $wp_query->found_posts;
     <div class="jumbotron">
         <div class="container">
         	<div class="row">
-                <div class="col-sm-9">
-    		        <h1>Search <span class="keyword">&ldquo;<?php the_search_query(); ?>&rdquo;</span></h1>
-    		    </div>
-                <div class="col-sm-3">
-                    <?php get_search_form(); ?>
-                </div>
+            <div class="col-sm-12">
+              <?php get_search_form(); ?>
             </div>
+          </div>
         </div> <!-- .container -->
     </div> <!-- .jumbotron -->
     <div class="container">
