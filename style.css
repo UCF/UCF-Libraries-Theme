@@ -109,9 +109,11 @@ dl.menu-list dd, dl.list-spaced dd { margin-bottom: 1.5em; }
 /* Google Search override */
 
 #Search_Results .gsc-selected-option-container.gsc-inline-block {
-    width: auto!important;
+  width: auto!important;
 }
-
+#Search_Results .cse .gsc-control-cse, #Search_Results .gsc-control-cse {
+  padding: 0;
+}
 /*test*/
 
 /* Masonry Settings */
