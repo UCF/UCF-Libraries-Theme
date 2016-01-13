@@ -964,25 +964,30 @@ add_shortcode('lending-login', 'lending_login');
 * Job App Hiring Status
 * Gives the status of all departments on whether or not they are hiring.
 *
-* [hiring-status url="http://library.ucf.edu/jobs/faq/"]
-*
+* [hiring-status]
+* Requires <div class="collapse" id="Department-Name">...</div> on the page for each department in the system, or else the link will do nothing.
 **/
 function hiring_status($atts) {
-  extract(shortcode_atts(array(
-      'url' => '',
-  ), $atts));
-  $string = file_get_contents('https://apps.library.ucf.edu/public/jobapplication/JSONUtils/HiringDepartments');
+  $string = @file_get_contents('https://apps.library.ucf.edu/public/jobapplication/JSONUtils/HiringDepartments');
   $json_o = json_decode($string);
   if ($json_o != null) {
-    $hiring_list = '<dl class="dl-horizontal hiring-list">';
-    foreach ($json_o as $department) if ($department->name != 'Anywhere') {
-      if ($department->isHiring == 'true') {
-        $hiring = '<i class="fa fa-check-circle"></i> is actively seeking applications.';
-        $id = str_replace(' ', '-', $department->name);
-        $hiring_list .= '<dt><a href="'.$url.'#'.$id.'">'.$department->name.'</a>:</dt><dd>'.$hiring.'</dd>';
-      } 
+    if (!empty($json_o) || $json_o != false) {
+      $hiring_list = '<dl class="dl-horizontal hiring-list">';
+      foreach ($json_o as $department) if ($department->name != 'Anywhere') {
+        if ($department->isHiring == 'true') {
+          $hiring = '<i class="fa fa-check-circle"></i> is actively seeking applications.';
+          $id = $department->name;
+          $id = str_replace(' ', '-', $id);
+          $id = str_replace('(', '', $id);
+          $id = str_replace(')', '', $id);
+          //$hiring_list .= '<dt><a href="'.$url.'#'.$id.'">'.$department->name.'</a>:</dt><dd>'.$hiring.'</dd>';
+          $hiring_list .= '<dt><a role="button" data-toggle="collapse" href="#'.$id.'" aria-expanded="false" aria-controls="collapseExample">'.$department->name.'</a>:</dt><dd>'.$hiring.'</dd>';
+        } 
+      }
+      $hiring_list .= '</dl>';
+    } else {
+      $hiring_list = 'Currently, there are no departments actively hiring. You may still submit an application to be considered for future positions.';
     }
-    $hiring_list .= '</dl>';
   } else {
     $hiring_list = '<p>Unable to determine hiring status.</p>';
   }
