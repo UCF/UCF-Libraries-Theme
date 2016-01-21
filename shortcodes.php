@@ -973,6 +973,7 @@ function hiring_status($atts) {
   if ($json_o != null) {
     if (!empty($json_o) || $json_o != false) {
       $hiring_list = '<dl class="dl-horizontal hiring-list">';
+      $hiring = 0;
       foreach ($json_o as $department) if ($department->name != 'Anywhere') {
         if ($department->isHiring == 'true') {
           $hiring = '<i class="fa fa-check-circle"></i> is actively seeking applications.';
@@ -982,11 +983,15 @@ function hiring_status($atts) {
           $id = str_replace(')', '', $id);
           //$hiring_list .= '<dt><a href="'.$url.'#'.$id.'">'.$department->name.'</a>:</dt><dd>'.$hiring.'</dd>';
           $hiring_list .= '<dt><a role="button" data-toggle="collapse" href="#'.$id.'" aria-expanded="false" aria-controls="collapseExample">'.$department->name.'</a>:</dt><dd>'.$hiring.'</dd>';
+          $hiring = 1;
         } 
       }
       $hiring_list .= '</dl>';
+      if ($hiring == 0) {
+        $hiring_list = '<p><strong>Currently, there are no departments actively hiring. You may still submit an application to be considered for future positions.</strong></p>';
+      }
     } else {
-      $hiring_list = 'Currently, there are no departments actively hiring. You may still submit an application to be considered for future positions.';
+      $hiring_list = '<p>Currently, there are no departments actively hiring. You may still submit an application to be considered for future positions.</p>';
     }
   } else {
     $hiring_list = '<p>Unable to determine hiring status.</p>';
