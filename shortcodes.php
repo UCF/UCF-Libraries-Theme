@@ -986,7 +986,8 @@ function hiring_status($atts) {
           $hiring = 1;
         } 
       }
-      $hiring_list .= '</dl>';
+      $hiring_list .= '</dl>
+                        <p>(Click on a Department listed above to see a brief description and general work duties.)</p>';
       if ($hiring == 0) {
         $hiring_list = '<p><strong>Currently, there are no departments actively hiring. You may still submit an application to be considered for future positions.</strong></p>';
       }
