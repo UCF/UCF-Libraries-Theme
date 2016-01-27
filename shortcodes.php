@@ -1012,6 +1012,57 @@ function databases() {
 }
 add_shortcode('databases','databases');
 
+
+/**
+* STARS Readership map
+* Embeds a map from stars.library.ucf.edu that shows recent readership
+*
+* [stars-map]
+*
+**/
+
+function stars_map() {
+  $url = site_url();
+  $output = '
+    <div id="rdr-embed" data-width="100%" data-height="768" style="width=100%; max-width:1024px; margin: 0 auto; border=0;"></div>
+    <script> 
+       window.rdrAsync = function() { 
+         RDR.init({ 
+           mapContext: "7014507", 
+           datastreamHost: "datastream.bepress.com", 
+           datastreamPort: "443", 
+           datastreamStaticRoot: "//assets.bepress.com/current/", 
+           colorCode: "custom", 
+           customColor: "", 
+           customSaturation: "0", 
+           customLightness: "0", 
+           institution_title: "University of Central Florida", 
+           site_title: "STARS",  
+           site_link: "http://stars.library.ucf.edu", 
+           instCountryCode: "us", 
+           instCity: "Orlando", 
+           instRegion: "Florida", 
+           instCountry: "United States", 
+           origin: "'.$url.'", 
+           refreshRate: 3600000, 
+           homepageMap: 1, 
+           publicationMap: 0,  
+           embedMap: 1, 
+           largeMap: 1, 
+           zoom: 2, 
+           minZoom: 2, 
+           stats_host: "https://www.bepress.com", 
+         }); 
+       }; 
+     </script> 
+     <script src="https://assets.bepress.com/current/shared/embed/rdr.js" async="true"></script>
+  ';
+  return $output;
+}
+add_shortcode('stars-map', 'stars_map');
+
+
+
 /**
 * Modal Window
 * Adds a modal window onto a page.
