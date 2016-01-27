@@ -1024,7 +1024,7 @@ add_shortcode('databases','databases');
 function stars_map() {
   $url = site_url();
   $output = '
-    <div id="rdr-embed" data-width="100%" data-height="768" style="width=100%; max-width:1024px; margin: 0 auto; border=0;"></div>
+    <div id="rdr-embed" data-width="100%" data-height="445" style="width=100%; max-width:666px; border=0; margin:0 auto;"></div>
     <script> 
        window.rdrAsync = function() { 
          RDR.init({ 
@@ -1048,9 +1048,8 @@ function stars_map() {
            homepageMap: 1, 
            publicationMap: 0,  
            embedMap: 1, 
-           largeMap: 1, 
-           zoom: 2, 
-           minZoom: 2, 
+           zoom: 1, 
+           minZoom: 1, 
            stats_host: "https://www.bepress.com", 
          }); 
        }; 
