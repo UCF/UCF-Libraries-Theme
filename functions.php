@@ -24,14 +24,7 @@ add_filter('widget_text', 'do_shortcode');
 * Adds https support to wp_upload_dir()
 **/
 
-$baseurl = $url; 
-if ( is_ssl() ) {
-    $baseurl = str_replace( 'http://', 'https://', $url ); 
-}
-else {
-    $baseurl = $url; 
-}
-
+$baseurl = $url = set_url_scheme( $url ); 
 
 /**
  * Strings passed to this function will be modified under the assumption that
