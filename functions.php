@@ -21,10 +21,19 @@ add_filter('widget_text', 'do_shortcode');
 
 /**
 * SSL URL fixer
-* Adds https support to wp_upload_dir()
+* Fix for broken srcset urls
 **/
 
-$baseurl = $url = set_url_scheme( $url ); 
+//wordpress 4.4 srcset ssl fix
+function ssl_srcset( $sources ) {
+  foreach ( $sources as &$source ) {
+    $source['url'] = set_url_scheme( $source['url'] );
+  }
+
+  return $sources;
+}
+add_filter( 'wp_calculate_image_srcset', 'ssl_srcset' );
+
 
 /**
  * Strings passed to this function will be modified under the assumption that
