@@ -978,6 +978,8 @@ function hiring_status($atts) {
         if ($department->isHiring == 'true') {
           $hiring = '<i class="fa fa-check-circle"></i> is actively seeking applications.';
           $id = $department->name;
+          $id = str_replace('&', '', $id);
+          $id = str_replace('  ', ' ', $id);
           $id = str_replace(' ', '-', $id);
           $id = str_replace('(', '', $id);
           $id = str_replace(')', '', $id);

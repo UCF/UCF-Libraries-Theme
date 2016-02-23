@@ -19,6 +19,21 @@ add_shortcode('debug', 'debug');
 //Allow shortcodes in widget text area
 add_filter('widget_text', 'do_shortcode');
 
+/**
+* SSL URL fixer
+* Fix for broken srcset urls
+**/
+
+//wordpress 4.4 srcset ssl fix
+function ssl_srcset( $sources ) {
+  foreach ( $sources as &$source ) {
+    $source['url'] = set_url_scheme( $source['url'] );
+  }
+
+  return $sources;
+}
+add_filter( 'wp_calculate_image_srcset', 'ssl_srcset' );
+
 
 /**
  * Strings passed to this function will be modified under the assumption that
