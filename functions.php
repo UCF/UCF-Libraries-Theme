@@ -19,6 +19,19 @@ add_shortcode('debug', 'debug');
 //Allow shortcodes in widget text area
 add_filter('widget_text', 'do_shortcode');
 
+/**
+* SSL URL fixer
+* Adds https support to wp_upload_dir()
+**/
+
+$baseurl = $url; 
+if ( is_ssl() ) {
+    $baseurl = str_replace( 'http://', 'https://', $url ); 
+}
+else {
+    $baseurl = $url; 
+}
+
 
 /**
  * Strings passed to this function will be modified under the assumption that
