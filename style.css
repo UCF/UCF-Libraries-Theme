@@ -441,6 +441,7 @@ footer ul li a:hover { text-decoration: none;}
   color: #333;
 }
 .social-btn-group {
+  margin-top: .5em;
   text-align: center;
   font-size: 4em;
 }
@@ -458,7 +459,7 @@ footer ul li a:hover { text-decoration: none;}
   color: #00aced;
 }
 .gplus-btn:hover {
-  color: #dd4b39;
+  color: #DC4E41;
 }
 .email-btn:hover {
   color: #ffcc00;
