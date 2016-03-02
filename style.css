@@ -197,6 +197,7 @@ footer ul li a:hover { text-decoration: none;}
 	font-size: 1.25em;
 }
 
+
 .Find  .footer-title {border-bottom: 1px solid #d6ebc2;}
 .Find  a {color: #d6ebc2;}
 .Find  a:hover {background-color: rgba(111,169,56,0.8);}
@@ -436,10 +437,18 @@ footer ul li a:hover { text-decoration: none;}
   margin-top: -40px;
   font-size: 1.25em;
 }
-.share-btn-group a{
+.share-btn-group a {
   color: #333;
 }
-.share-btn-group a:hover, .share-btn-group a:focus{
+.social-btn-group {
+  text-align: center;
+  font-size: 4em;
+}
+.social-btn-group a {
+  color: #fff;
+
+}
+.share-btn-group a:hover, .share-btn-group a:focus, .social-btn-group a:hover, .social-btn-group a:focus{
   text-decoration: none;
 }
 .facebook-btn:hover {
@@ -453,6 +462,9 @@ footer ul li a:hover { text-decoration: none;}
 }
 .email-btn:hover {
   color: #ffcc00;
+}
+.youtube-btn:hover {
+  color: #cd201f;
 }
 
 
