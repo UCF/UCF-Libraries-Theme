@@ -373,10 +373,15 @@ function recent_posts_function($atts){
             $output .= '<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '">'.$category->cat_name.'</a>'.$separator;
           }
         }
+        if(get_post_meta(get_the_ID(), 'thumbnail', true)){
+          $thumbnail = '<img class="homepage-thumbnail" src="'.get_post_meta(get_the_ID() , 'thumbnail', true).'">';
+        } else {
+          $thumbnail = get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail'));
+        }
          $return_string .=
          '<article>
          <div class="news-post card">
-            <div class="news-post-image"><a href="'.get_permalink().'">'.get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail')).'</a></div>
+            <div class="news-post-image"><a href="'.get_permalink().'">'.$thumbnail.'</a></div>
             <div class="news-post-text">
               <div class="news-post-title">
                 <header>

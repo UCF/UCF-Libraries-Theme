@@ -6,7 +6,7 @@ Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
 
-Version: 1.8.3
+Version: 1.9.0
 
 */
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto+Slab:700|Roboto:500,700,400);
@@ -196,6 +196,7 @@ footer ul li a:hover { text-decoration: none;}
 	margin-bottom: 1rem;
 	font-size: 1.25em;
 }
+
 
 .Find  .footer-title {border-bottom: 1px solid #d6ebc2;}
 .Find  a {color: #d6ebc2;}
@@ -436,10 +437,19 @@ footer ul li a:hover { text-decoration: none;}
   margin-top: -40px;
   font-size: 1.25em;
 }
-.share-btn-group a{
+.share-btn-group a {
   color: #333;
 }
-.share-btn-group a:hover, .share-btn-group a:focus{
+.social-btn-group {
+  margin-top: .5em;
+  text-align: center;
+  font-size: 4em;
+}
+.social-btn-group a {
+  color: #fff;
+
+}
+.share-btn-group a:hover, .share-btn-group a:focus, .social-btn-group a:hover, .social-btn-group a:focus{
   text-decoration: none;
 }
 .facebook-btn:hover {
@@ -449,10 +459,13 @@ footer ul li a:hover { text-decoration: none;}
   color: #00aced;
 }
 .gplus-btn:hover {
-  color: #dd4b39;
+  color: #DC4E41;
 }
 .email-btn:hover {
   color: #ffcc00;
+}
+.youtube-btn:hover {
+  color: #cd201f;
 }
 
 
