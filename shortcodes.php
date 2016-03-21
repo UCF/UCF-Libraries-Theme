@@ -613,7 +613,7 @@ add_shortcode('hours-calendar', 'hours_week_calendar');
 *
 **/
 function hours_today_homepage( $atts ) {
-  $string = file_get_contents('http://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
+  $string = file_get_contents('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
   $json_o = json_decode($string);
   if ($json_o != null) {
     $hours_list = '<dl class="dl-horizontal homepage">';
