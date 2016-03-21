@@ -648,7 +648,7 @@ function hours_today_single( $atts ) {
   extract(shortcode_atts( array(
     'id' => '1206',
   ), $atts ));
-  $string = file_get_contents('http://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
+  $string = file_get_contents('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
   $json_o = json_decode($string);
   $hours = '';
   if ($json_o != null) {
