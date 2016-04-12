@@ -364,6 +364,10 @@ footer ul li a:hover { text-decoration: none;}
 	background-color: #e7e7e7;
 }
 
+.carousel-inner>.item>a>img, .carousel-inner>.item>img {
+    width: 100%;
+}
+
 /* Computer Availability */
 
 .computer-availability .progress {
