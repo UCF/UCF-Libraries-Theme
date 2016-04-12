@@ -1036,6 +1036,65 @@ add_shortcode('databases','databases');
 
 
 /**
+* Image slider
+* Places a bootstrap image slider onto the page
+*
+* [image-slider id="id" number="3"]
+* <div class="item active">
+*   <img src="" alt="" />
+*   <div class="carousel-caption">Caption #1</div>
+* </div>
+* <div class="item">
+*   <img src="" alt="" />
+*   <div class="carousel-caption">Caption #2</div>
+* </div>
+* <div class="item">
+*   <img src="" alt="" />
+*   <div class="carousel-caption">Caption #3</div>
+* </div>
+* [/image-slider]
+**/
+
+function image_slider($atts, $content = null) {
+    extract(shortcode_atts( array(
+      'id' => 'image_slider',
+      'number' => 3,
+  ), $atts ));
+  $content = str_replace('<p>', '', $content);
+  $content = str_replace('</p>', '', $content);
+  $content = str_replace('<br>', '', $content);
+  $content = str_replace('<br />', '', $content);
+  $output =' 
+    <div id="'.$id.'" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#'.$id.'" data-slide-to="0" class="active"></li>';
+  for ($i=1; $i < $number; $i++) { 
+    $output .= '<li data-target="#'.$id.'" data-slide-to="'.$i.'"></li>';
+  }
+  $output .='     
+      </ol>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+      '.shortcode_unautop( $content ).'
+      </div>
+      <!-- Controls -->
+      <a class="left carousel-control" href="#'.$id.'" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#'.$id.'" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+   ';
+   return $output;
+}
+add_shortcode('image-slider', 'image_slider');
+
+
+/**
 * STARS Readership map
 * Embeds a map from stars.library.ucf.edu that shows recent readership
 *
