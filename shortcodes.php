@@ -1040,6 +1040,19 @@ add_shortcode('databases','databases');
 * Places a bootstrap image slider onto the page
 *
 * [image-slider id="id" number="3"]
+* <div class="item active">
+*   <img src="" alt="" />
+*   <div class="carousel-caption">Caption #1</div>
+* </div>
+* <div class="item">
+*   <img src="" alt="" />
+*   <div class="carousel-caption">Caption #2</div>
+* </div>
+* <div class="item">
+*   <img src="" alt="" />
+*   <div class="carousel-caption">Caption #3</div>
+* </div>
+* [/image-slider]
 **/
 
 function image_slider($atts, $content = null) {
