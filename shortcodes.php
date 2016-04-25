@@ -215,6 +215,7 @@ add_shortcode('search-scua', 'search_scua');
 *   [homepage-tab-pane name="Four"]
 *    Content
 *   [/homepage-tab-pane]
+* [/homepage-tab-container]
 **/
 
 // Homepage Searchbox Shortcode
@@ -628,13 +629,6 @@ function hours_today_homepage( $atts ) {
 }
 add_shortcode('hours-today-homepage', 'hours_today_homepage');
 
-
-
-function ajax_test () {
-
-
-}
-add_shortcode('ajax-test', 'ajax_test');
 
 /**
 * Single Department Today's Hours
