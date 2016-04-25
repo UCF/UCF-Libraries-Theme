@@ -695,7 +695,7 @@ function library_events($atts) {
       if(++$i == $number) break;
     }
   } else {
-    $events_list = '<p>Unable to load events.</p>';
+    $events_list = '<p style="margin: 1em;"><strong>No events available.</strong></p>';
   }
 
   return $events_list;
