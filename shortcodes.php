@@ -34,11 +34,11 @@ function OneSearchform( $form ) {
       <input name="groupid" type="hidden" value="main">
       <input name="profile" type="hidden" value="eds">
       <input name="guidedField_3" type="hidden" value="">
-      <label class="sr-only" for="s">Search All</label>
+      <label class="sr-only" for="ebscohostsearchtext">Search All</label>
       <div class="input-group">
-        <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search Databases, Articles, and Catalog" results="5" size="60" type="text" x-webkit-speech="" >
+        <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="QuickSearch" placeholder="Search Databases, Articles, and Catalog" results="5" size="60" type="text" x-webkit-speech="" >
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearchtext\').val(), \'QuickSearch\');"><span class="glyphicon glyphicon-search"></span></button>
+          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearchtext\').val(), \'QuickSearch\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
         </span>
 
       </div>
@@ -58,7 +58,7 @@ add_shortcode('OneSearch', 'OneSearchform');
 function onesearch_articles( $form ){
   $form = '
     <form role="form" class="search search-articles" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
-      <label for="bQuery" class="sr-only">Search</label>
+      <label for="ebscohostsearcharticletext" class="sr-only">Search</label>
       <input name="direct" type="hidden" value="true">
       <input name="site" type="hidden" value="ehost-live">
       <input name="scope" type="hidden" value="site">
@@ -71,9 +71,9 @@ function onesearch_articles( $form ){
       <input name="guidedField_3" type="hidden" value="">
       <input name="doctype" type="hidden" value="160MN">
       <div class="input-group">
-        <input id="ebscohostsearcharticletext" autosave="UCFLibrary SiteSearch" class="form-control" name="bQuery" placeholder="Search Articles" results="5" type="text" x-webkit-speech="">
+        <input id="ebscohostsearcharticletext" autosave="UCFLibrary SiteSearch" class="form-control" name="Articles" placeholder="Search Articles" results="5" type="text" x-webkit-speech="">
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearcharticletext\').val(), \'Article Search\');"><span class="glyphicon glyphicon-search"></span></button>
+          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearcharticletext\').val(), \'Article Search\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
         </span>
       </div>
     </form>
@@ -91,16 +91,16 @@ add_shortcode('onesearch-articles', 'onesearch_articles');
 function search_catalog( $form ){
   $form = '
     <form role="form" class="search search-catalog"  id="advanced" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp?ADV=S" target="_blank">
-      <label for="st" class="sr-only">Search catalog</label>
+      <label for="catalog_search" class="sr-only">Search catalog</label>
       <div class="input-group">
         <input id="catalog_search" type="text" name="t1" value="" placeholder="Search the Catalog" class="form-control" />
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#catalog_search\').val(), \'Catalog Search\');"><span class="glyphicon glyphicon-search"></span></button>
+          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#catalog_search\').val(), \'Catalog Search\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
         </span>
       </div>
       <div class="row" style="margin-top: 1.5em;">
         <div class="col-sm-6">
-          <label for="ix" class="sr-only">Choose Type</label>
+          <label for="catsearch" class="sr-only">Choose Type</label>
           <select title="index" id="catsearch" name="k1" class="form-control">
             <option value="kw" selected="">Any Field</option>
             <option value="ti">Title</option>
@@ -111,6 +111,7 @@ function search_catalog( $form ){
           </select>
         </div>
         <div class="col-sm-6">
+          <label for="avli" class="sr-only">Choose Location</label>
           <select id="avli" name="avli" class="form-control">
             <option value="" selected="selected">Any Locations</option>
             <option value="CFORLANDO">John C. Hitt</option>
@@ -147,14 +148,14 @@ add_shortcode('search-catalog', 'search_catalog');
 function search_videos( $form ) {
   $form = '
   <form role="form" class="search search-videos" id="advanced_video" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp" target="_blank">
-    <label for="t1" class="sr-only">Find DVDs, streaming videos, and VHS</label>
+    <label for="video_search" class="sr-only">Find DVDs, streaming videos, and VHS</label>
     <input type="hidden" name="k1" value="kw">
     <input name="ADV" type="hidden" value="S">
     <input type="hidden" name="fa" value="Video all formats">
     <div class="input-group">
-      <input class="form-control" id="video_search" type="text" name="t1" size="40" placeholder="Search UCF\'s Video Collections" value="">
+      <input class="form-control" id="video_search" type="text" name="video_search" size="40" placeholder="Search UCF\'s Video Collections" value="">
       <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#video_search\').val(), \'Video Search\');"><span class="glyphicon glyphicon-search"></span></button>
+        <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#video_search\').val(), \'Video Search\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
       </span>
     </div>
     <div class="input-group" style="margin-top: .5em;">
@@ -180,12 +181,12 @@ function search_scua($form) {
 
         <input name="ADV" type="hidden" value="S">
         <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
-        <label for="s" class="sr-only">Search</label>
+        <label for="scua_search" class="sr-only">Search</label>
         <div class="input-group">
-          <input id="scua_search" name="t1" class="form-control" type="search" placeholder="Special Collections Search" />
+          <input id="scua_search" name="scua_search" class="form-control" type="search" placeholder="Special Collections Search" />
           <span class="input-group-btn">
-                  <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#scua_search\').val(), \'SCUA Search\');"><span class="glyphicon glyphicon-search"></span></button>
-              </span>
+          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#scua_search\').val(), \'SCUA Search\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
+          </span>
         </div>
       </form>
     ';
@@ -215,6 +216,7 @@ add_shortcode('search-scua', 'search_scua');
 *   [homepage-tab-pane name="Four"]
 *    Content
 *   [/homepage-tab-pane]
+* [/homepage-tab-container]
 **/
 
 // Homepage Searchbox Shortcode
@@ -629,13 +631,6 @@ function hours_today_homepage( $atts ) {
 add_shortcode('hours-today-homepage', 'hours_today_homepage');
 
 
-
-function ajax_test () {
-
-
-}
-add_shortcode('ajax-test', 'ajax_test');
-
 /**
 * Single Department Today's Hours
 * Display the hours for a single department
@@ -1033,6 +1028,65 @@ function databases() {
   ';
 }
 add_shortcode('databases','databases');
+
+
+/**
+* Image slider
+* Places a bootstrap image slider onto the page
+*
+* [image-slider id="id" number="3"]
+* <div class="item active">
+*   <img src="" alt="" />
+*   <div class="carousel-caption">Caption #1</div>
+* </div>
+* <div class="item">
+*   <img src="" alt="" />
+*   <div class="carousel-caption">Caption #2</div>
+* </div>
+* <div class="item">
+*   <img src="" alt="" />
+*   <div class="carousel-caption">Caption #3</div>
+* </div>
+* [/image-slider]
+**/
+
+function image_slider($atts, $content = null) {
+    extract(shortcode_atts( array(
+      'id' => 'image_slider',
+      'number' => 3,
+  ), $atts ));
+  $content = str_replace('<p>', '', $content);
+  $content = str_replace('</p>', '', $content);
+  $content = str_replace('<br>', '', $content);
+  $content = str_replace('<br />', '', $content);
+  $output =' 
+    <div id="'.$id.'" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#'.$id.'" data-slide-to="0" class="active"></li>';
+  for ($i=1; $i < $number; $i++) { 
+    $output .= '<li data-target="#'.$id.'" data-slide-to="'.$i.'"></li>';
+  }
+  $output .='     
+      </ol>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+      '.shortcode_unautop( $content ).'
+      </div>
+      <!-- Controls -->
+      <a class="left carousel-control" href="#'.$id.'" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#'.$id.'" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+   ';
+   return $output;
+}
+add_shortcode('image-slider', 'image_slider');
 
 
 /**

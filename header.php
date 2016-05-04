@@ -9,7 +9,7 @@
  * @since UCF Library Theme
  */
 ?><!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<title><?php wp_title( '', true, 'right' ); ?></title>
 		<meta name="viewport" content="width=device-width">
