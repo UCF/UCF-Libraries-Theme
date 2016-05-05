@@ -36,7 +36,7 @@ function OneSearchform( $form ) {
       <input name="guidedField_3" type="hidden" value="">
       <label class="sr-only" for="ebscohostsearchtext">Search All</label>
       <div class="input-group">
-        <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="QuickSearch" placeholder="Search Databases, Articles, and Catalog" results="5" size="60" type="text" x-webkit-speech="" >
+        <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search Databases, Articles, and Catalog" results="5" size="60" type="text" x-webkit-speech="" >
         <span class="input-group-btn">
           <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearchtext\').val(), \'QuickSearch\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
         </span>
@@ -71,7 +71,7 @@ function onesearch_articles( $form ){
       <input name="guidedField_3" type="hidden" value="">
       <input name="doctype" type="hidden" value="160MN">
       <div class="input-group">
-        <input id="ebscohostsearcharticletext" autosave="UCFLibrary SiteSearch" class="form-control" name="Articles" placeholder="Search Articles" results="5" type="text" x-webkit-speech="">
+        <input id="ebscohostsearcharticletext" autosave="UCFLibrary SiteSearch" class="form-control" name="bQuery" placeholder="Search Articles" results="5" type="text" x-webkit-speech="">
         <span class="input-group-btn">
           <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearcharticletext\').val(), \'Article Search\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
         </span>
@@ -153,7 +153,7 @@ function search_videos( $form ) {
     <input name="ADV" type="hidden" value="S">
     <input type="hidden" name="fa" value="Video all formats">
     <div class="input-group">
-      <input class="form-control" id="video_search" type="text" name="video_search" size="40" placeholder="Search UCF\'s Video Collections" value="">
+      <input class="form-control" id="video_search" type="text" name="t1" size="40" placeholder="Search UCF\'s Video Collections" value="">
       <span class="input-group-btn">
         <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#video_search\').val(), \'Video Search\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
       </span>
@@ -183,7 +183,7 @@ function search_scua($form) {
         <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
         <label for="scua_search" class="sr-only">Search</label>
         <div class="input-group">
-          <input id="scua_search" name="scua_search" class="form-control" type="search" placeholder="Special Collections Search" />
+          <input id="scua_search" name="t1" class="form-control" type="search" placeholder="Special Collections Search" />
           <span class="input-group-btn">
           <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#scua_search\').val(), \'SCUA Search\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
           </span>
