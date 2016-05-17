@@ -369,6 +369,106 @@ function subject_init() {
 }
 
 
+/**
+* Technology Lending Custom Post Type
+**/
+add_action( 'init', 'register_tech_lending' );
+
+function register_tech_lending() {
+
+    $labels = array(
+        'name' => _x( 'Tech', 'tech' ),
+        'singular_name' => _x( 'Staff', 'tech' ),
+        'add_new' => _x( 'Add New', 'tech' ),
+        'add_new_item' => _x( 'Add New Tech Item', 'tech' ),
+        'edit_item' => _x( 'Edit Tech Item', 'tech' ),
+        'new_item' => _x( 'New Tech Item', 'tech' ),
+        'view_item' => _x( 'View Tech Item', 'tech' ),
+        'search_items' => _x( 'Search Tech Items', 'tech' ),
+        'not_found' => _x( 'No tech item found', 'tech' ),
+        'not_found_in_trash' => _x( 'No tech found in Trash', 'tech' ),
+        'parent_item_colon' => _x( 'Parent Tech:', 'tech' ),
+        'menu_name' => _x( 'Tech Lending', 'tech' ),
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'hierarchical' => true,
+        'description' => 'Tech names and descriptions',
+        'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions'),
+        'taxonomies' => array( 'tech-type', 'loan-period'),
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_position' => 21,
+        'show_in_nav_menus' => true,
+        'publicly_queryable' => true,
+        'exclude_from_search' => false,
+        'has_archive' => true,
+        'query_var' => true,
+        'can_export' => true,
+        'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
+        'capability_type' => 'post'
+    );
+
+    register_post_type( 'tech', $args );
+}
+// Tech Type Taxonomy
+add_action( 'init', 'tech_type_init' );
+
+function tech_type_init() {
+  register_taxonomy('tech-type',array('tech'), array(
+
+    'hierarchical' => true,
+    'labels' => array(
+    'name' => _x( 'Tech Type', 'taxonomy general name' ),
+    'singular_name' => _x( 'Tech Type', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Tech Type' ),
+    'all_items' => __( 'All Tech Types' ),
+    'parent_item' => __( 'Parent Tech Type' ),
+    'parent_item_colon' => __( 'Parent Tech Type:' ),
+    'edit_item' => __( 'Edit Tech Type' ),
+    'update_item' => __( 'Update Tech Type' ),
+    'add_new_item' => __( 'Add New Tech Type' ),
+    'new_item_name' => __( 'New Tech Type Name' ),
+    'menu_name' => __( 'Tech Type' ),
+  ),
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'technology-lending/tech-type/', 'with_front' => false ),
+  ));
+}
+
+
+// Checkout Time Taxonomy
+add_action( 'init', 'loan_period_init' );
+
+function loan_period_init() {
+  register_taxonomy('loan-period',array('tech'), array(
+
+    'hierarchical' => false,
+    'labels' => array(
+    'name' => _x( 'Loan Period', 'taxonomy general name' ),
+    'singular_name' => _x( 'Loan Period', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Loan Periods' ),
+    'all_items' => __( 'All Loan Periods' ),
+    'parent_item' => __( 'Parent Loan Period' ),
+    'parent_item_colon' => __( 'Parent Loan Period:' ),
+    'edit_item' => __( 'Edit Loan Period' ),
+    'update_item' => __( 'Update Loan Period' ),
+    'add_new_item' => __( 'Add New Loan Period' ),
+    'new_item_name' => __( 'New Loan Period Name' ),
+    'menu_name' => __( 'Loan Period' ),
+  ),
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'technology-lending/%loan-period%/', 'with_front' => false ),
+  ));
+}
+
+
 //Adding in Featured image feature
 if ( function_exists( 'add_theme_support' ) ) {
   add_theme_support( 'post-thumbnails' );
