@@ -30,7 +30,7 @@ Description: Archive tech page.
 		<div id="content" class="container">
 			<div class="row">
 				<div class="col-sm-3">
-					<?php get_sidebar('staff'); ?>
+					<?php get_sidebar('tech'); ?>
 				</div><!-- col-sm-3 -->
 				<div class="col-sm-9">
 					<h2 class="subpage-title">All Technology</h2>

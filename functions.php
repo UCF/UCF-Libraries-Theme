@@ -370,7 +370,7 @@ function subject_init() {
 
 
 /**
-* Technology Lending Custom Post Type
+* Technology Lending Custom Post Type & Taxonomies
 **/
 
 function register_technology_lending_entities() {
@@ -465,8 +465,7 @@ function register_technology_lending_entities() {
 
 add_action( 'init', 'register_technology_lending_entities' );
 
-
-// Slug rewrite 
+// Slug rewrite for technology lending custom post type and taxonomies
 function generate_taxonomy_rewrite_rules( $wp_rewrite ) {
   $rules = array();
   $post_types = get_post_types( array( 'name' => 'tech', 'public' => true, '_builtin' => false ), 'objects' );
@@ -489,6 +488,7 @@ function generate_taxonomy_rewrite_rules( $wp_rewrite ) {
   $wp_rewrite->rules = $rules + $wp_rewrite->rules;
 }
 add_action('generate_rewrite_rules', 'generate_taxonomy_rewrite_rules');
+
 
 
 //Adding in Featured image feature

@@ -26,7 +26,7 @@ Description: tech type archive page.
 	 <!-- taxonomy.php -->
 		<div class="row">
 			<div class="col-sm-8">
-				<header><h1>Staff Directory</h1></header>
+				<header><h1>Technology Lending</h1></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div><!-- col-sm-8 -->
 			<div class="col-sm-4">
@@ -38,7 +38,7 @@ Description: tech type archive page.
 		<div id="content" class="container">
 			<div class="row">
 				<div class="col-sm-3">
-					<?php get_sidebar('staff'); ?>
+					<?php get_sidebar('tech'); ?>
 				</div><!-- col-sm-3 -->
 				<div class="col-sm-9">
 					<h2 class="subpage-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h2>
