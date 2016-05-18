@@ -372,13 +372,13 @@ function subject_init() {
 /**
 * Technology Lending Custom Post Type
 **/
-add_action( 'init', 'register_tech_lending' );
 
-function register_tech_lending() {
+function register_technology_lending_entities() {
 
-    $labels = array(
+  //Technology Lending Custom Post Type
+    $technology_labels = array(
         'name' => _x( 'Tech', 'tech' ),
-        'singular_name' => _x( 'Staff', 'tech' ),
+        'singular_name' => _x( 'Tech', 'tech' ),
         'add_new' => _x( 'Add New', 'tech' ),
         'add_new_item' => _x( 'Add New Tech Item', 'tech' ),
         'edit_item' => _x( 'Edit Tech Item', 'tech' ),
@@ -391,12 +391,12 @@ function register_tech_lending() {
         'menu_name' => _x( 'Tech Lending', 'tech' ),
     );
 
-    $args = array(
-        'labels' => $labels,
+    $technology_args = array(
+        'labels' => $technology_labels,
         'hierarchical' => true,
         'description' => 'Tech names and descriptions',
         'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions'),
-        'taxonomies' => array( 'tech-type', 'loan-period'),
+        'taxonomies' => array( 'tech_type', 'loan_period'),
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
@@ -410,63 +410,85 @@ function register_tech_lending() {
         'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
         'capability_type' => 'post'
     );
+    register_post_type( 'tech', $technology_args );
 
-    register_post_type( 'tech', $args );
+  // Tech Type Taxonomy
+    $tech_type_labels = array(
+        'name' => _x( 'Tech Type', 'taxonomy general name' ),
+        'singular_name' => _x( 'Tech Type', 'taxonomy singular name' ),
+        'search_items' =>  __( 'Search Tech Type' ),
+        'all_items' => __( 'All Tech Types' ),
+        'parent_item' => __( 'Parent Tech Type' ),
+        'parent_item_colon' => __( 'Parent Tech Type:' ),
+        'edit_item' => __( 'Edit Tech Type' ),
+        'update_item' => __( 'Update Tech Type' ),
+        'add_new_item' => __( 'Add New Tech Type' ),
+        'new_item_name' => __( 'New Tech Type Name' ),
+        'menu_name' => __( 'Tech Type' ),
+    );
+
+    $tech_type_args = array(
+      'hierarchical' => true,
+      'labels' => $tech_type_labels,
+      'show_ui' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
+    );
+    register_taxonomy('tech_type',array('tech'), $tech_type_args );
+
+  // Loan Period Taxonomy
+    $loan_period_labels = array(
+      'name' => _x( 'Loan Period', 'taxonomy general name' ),
+      'singular_name' => _x( 'Loan Period', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Search Loan Periods' ),
+      'all_items' => __( 'All Loan Periods' ),
+      'parent_item' => __( 'Parent Loan Period' ),
+      'parent_item_colon' => __( 'Parent Loan Period:' ),
+      'edit_item' => __( 'Edit Loan Period' ),
+      'update_item' => __( 'Update Loan Period' ),
+      'add_new_item' => __( 'Add New Loan Period' ),
+      'new_item_name' => __( 'New Loan Period Name' ),
+      'menu_name' => __( 'Loan Period' ),
+    );
+
+    $loan_period_args = array(
+      'hierarchical' => true,
+      'labels' => $loan_period_labels,
+      'show_ui' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
+    );
+    register_taxonomy('loan_period',array('tech'), $loan_period_args );
 }
-// Tech Type Taxonomy
-add_action( 'init', 'tech_type_init' );
 
-function tech_type_init() {
-  register_taxonomy('tech-type',array('tech'), array(
+add_action( 'init', 'register_technology_lending_entities' );
 
-    'hierarchical' => true,
-    'labels' => array(
-    'name' => _x( 'Tech Type', 'taxonomy general name' ),
-    'singular_name' => _x( 'Tech Type', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Tech Type' ),
-    'all_items' => __( 'All Tech Types' ),
-    'parent_item' => __( 'Parent Tech Type' ),
-    'parent_item_colon' => __( 'Parent Tech Type:' ),
-    'edit_item' => __( 'Edit Tech Type' ),
-    'update_item' => __( 'Update Tech Type' ),
-    'add_new_item' => __( 'Add New Tech Type' ),
-    'new_item_name' => __( 'New Tech Type Name' ),
-    'menu_name' => __( 'Tech Type' ),
-  ),
-    'show_ui' => true,
-    'show_admin_column' => true,
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'technology-lending/tech-type/', 'with_front' => false ),
-  ));
+
+// Slug rewrite 
+function generate_taxonomy_rewrite_rules( $wp_rewrite ) {
+  $rules = array();
+  $post_types = get_post_types( array( 'name' => 'tech', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies = get_taxonomies( array( 'name' => 'tech_type', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies += get_taxonomies( array( 'name' => 'loan_period', 'public' => true, '_builtin' => false ), 'objects' );
+
+  foreach ( $post_types as $post_type ) {
+    $post_type_name = $post_type->name; // 'developer'
+    $post_type_slug = $post_type->rewrite['slug']; // 'developers'
+
+    foreach ( $taxonomies as $taxonomy ) {
+      if ( $taxonomy->object_type[0] == $post_type_name ) {
+        $terms = get_categories( array( 'type' => $post_type_name, 'taxonomy' => $taxonomy->name, 'hide_empty' => 0 ) );
+        foreach ( $terms as $term ) {
+          $rules[$post_type_slug . '/' . $term->slug . '/?$'] = 'index.php?' . $term->taxonomy . '=' . $term->slug;
+        }
+      }
+    }
+  }
+  $wp_rewrite->rules = $rules + $wp_rewrite->rules;
 }
-
-
-// Checkout Time Taxonomy
-add_action( 'init', 'loan_period_init' );
-
-function loan_period_init() {
-  register_taxonomy('loan-period',array('tech'), array(
-
-    'hierarchical' => false,
-    'labels' => array(
-    'name' => _x( 'Loan Period', 'taxonomy general name' ),
-    'singular_name' => _x( 'Loan Period', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Loan Periods' ),
-    'all_items' => __( 'All Loan Periods' ),
-    'parent_item' => __( 'Parent Loan Period' ),
-    'parent_item_colon' => __( 'Parent Loan Period:' ),
-    'edit_item' => __( 'Edit Loan Period' ),
-    'update_item' => __( 'Update Loan Period' ),
-    'add_new_item' => __( 'Add New Loan Period' ),
-    'new_item_name' => __( 'New Loan Period Name' ),
-    'menu_name' => __( 'Loan Period' ),
-  ),
-    'show_ui' => true,
-    'show_admin_column' => true,
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'technology-lending/%loan-period%/', 'with_front' => false ),
-  ));
-}
+add_action('generate_rewrite_rules', 'generate_taxonomy_rewrite_rules');
 
 
 //Adding in Featured image feature
