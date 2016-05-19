@@ -34,7 +34,18 @@ Description: Archive tech page.
 				</div><!-- col-sm-3 -->
 				<div class="col-sm-9">
 					<h2 class="subpage-title">All Technology</h2>
-					<div class="directory row">
+          <div class="btn-group" data-toggle="buttons" style="margin-bottom: 1em">
+            <label class="btn btn-primary view-button active">
+              <input type="radio" name="views" autocomplete="off" value="grid" checked><i class="fa fa-th"></i> Grid
+            </label>
+            <label class="btn btn-primary view-button">
+              <input type="radio" name="views"  autocomplete="off" value="list"> <i class="fa fa-list-ul"></i> List
+            </label>
+          </div>
+          <div id="list_view" class="view">
+            <p>Put list view code here.</p>
+          </div>
+					<div id="grid_view" class="directory row view view-active">
   					<?php $i = 0; ?>
   					<?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
   						<?php $i++; ?>
@@ -43,30 +54,16 @@ Description: Archive tech page.
   			    			<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
     							<div class="caption">
     								<h3><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h3>
-    								<?php if(get_post_meta($post->ID, 'title', true) ||
-    									 get_post_meta($post->ID, 'room', true) ||
-    									 get_post_meta($post->ID, 'phone', true) ||
-    									 get_post_meta($post->ID, 'email', true)
+    								<?php if(get_the_term_list( $post->ID, 'loan_period', true) ||
+    									 get_post_meta($post->ID, 'availability', true)
     								): ?>
     								<ul>
-  										<?php if(get_post_meta($post->ID, 'title', true)): ?>
-  											<li><span class="glyphicon glyphicon-user" data-toggle="tooltip" data-placement="right" title="Position"></span> <?php echo get_post_meta($post->ID, 'title', true); ?></li>
+  										<?php if(get_the_term_list( $post->ID, 'loan_period', true)): ?>
+  											<li><i class="fa fa-hourglass" data-toggle="tooltip" data-placement="right" title="Loan Period"></i><?php echo get_the_term_list( $post->ID, 'loan_period', '', ', ', '' ); ?></li>
   										<?php endif; ?>
 
-  										<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
-  											<li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
-  										<?php endif; ?>
-
-  										<?php if(get_post_meta($post->ID, 'room', true)): ?>
-  											<li><span class="glyphicon glyphicon-map-marker" data-toggle="tooltip" data-placement="right" title="Location"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
-  										<?php endif; ?>
-
-  										<?php if(get_post_meta($post->ID, 'phone', true)): ?>
-  											<li><span class="glyphicon glyphicon-phone-alt" data-toggle="tooltip" data-placement="right" title="Phone"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
-  										<?php endif; ?>
-
-  										<?php if(get_post_meta($post->ID, 'email', true)): ?>
-  											<li><span class="glyphicon glyphicon-envelope" data-toggle="tooltip" data-placement="right" title="Email"></span><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"> <span class="ellipsis"> <?php echo get_post_meta($post->ID, 'email', true); ?></span></a></li>
+  										<?php if(get_post_meta($post->ID, 'availability', true)): ?>
+  											<li><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_post_meta($post->ID, 'availability', true); ?>">Check Availability</li>
   										<?php endif; ?>
     								</ul>
       							<?php endif; ?>
@@ -91,4 +88,5 @@ Description: Archive tech page.
   	</div><!-- container -->
   </div><!-- background-color-gray -->
 </div><!-- main -->
+
 <?php get_footer(); ?>
