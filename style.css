@@ -601,7 +601,9 @@ footer ul li a:hover { text-decoration: none;}
 
 .staff-thumbnail { width: 100%; height: auto;}
 
-/* Technology Lending
+/* Technology Lending */
+
+.list-thumbnail { max-width: 25px; }
 
 /* jquery ui tabs override */
 
