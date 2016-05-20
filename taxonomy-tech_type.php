@@ -43,7 +43,59 @@ Description: tech type archive page.
 				<div class="col-sm-9">
 					<h2 class="subpage-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h2>
 					<?php echo term_description( ) ?>
-					<div class="directory row">
+          <?php dynamic_sidebar( 'test' ); ?>
+          <div class="btn-group" data-toggle="buttons" style="margin-bottom: 1em">
+            <label class="btn btn-primary view-button active">
+              <input type="radio" name="views" autocomplete="off" value="grid" checked><i class="fa fa-th"></i> Grid
+            </label>
+            <label class="btn btn-primary view-button">
+              <input type="radio" name="views"  autocomplete="off" value="list"> <i class="fa fa-th-list"></i> List
+            </label>
+          </div>
+          <div id="list_view" class="view">
+            <div class="card">
+              <div class="table-responsive">
+                <table class="table table-striped" style="text-align: left;">
+                  <tbody>
+                    <tr>
+                      <th></th>
+                      <th><i class="fa fa-exclamation-circle"></i> Item Name</th>
+                      <th><i class="fa fa-hourglass"></i> Loan Period</th>
+                      <th><i class="fa fa-users" aria-hidden="true"></i> Eligible Users</th>
+                      <th><i class="fa fa-question-circle"></i> Availability</th>
+                    </tr>
+                  <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                    <tr>
+                      <td><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('thumbnail', array('class' => 'list-thumbnail')); ?></a></td>
+                      <td><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></td>
+                      <td>
+                        <?php 
+                          if(get_the_term_list( $post->ID, 'loan_period', true)): 
+                            echo get_the_term_list( $post->ID, 'loan_period', '', ', ', '' ); 
+                          endif;
+                        ?>
+                      </td>
+                      <td></td>
+                      <td>
+                        <?php if(get_post_meta($post->ID, 'availability', true)): ?>
+                          <a href="<?php echo get_post_meta($post->ID, 'availability', true); ?>">Check Availability</a></li>
+                        <?php endif; ?>
+                      </td>
+                    </tr>
+                  <?php endwhile; else: ?>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  <?php endif; ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="grid_view" class="directory row view view-active">
 					 <?php $i = 0; ?>
 					 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 							<?php $i++; ?>
