@@ -16,6 +16,12 @@
 					<?php taxonomy_term_list('loan_period'); ?>
 				</div>
 			</div>
+			<div class="sidebar-collapse">
+				<h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Eligible_User" aria-expanded="true" aria-controls="Unit"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span>Eligible User</a></h4>
+				<div class="collapse in" id="Eligible_User">
+					<?php taxonomy_term_list('eligible_user'); ?>
+				</div>
+			</div>
 		</div><!-- .widget-area -->
 	</div>
 </aside>

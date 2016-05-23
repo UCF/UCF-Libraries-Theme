@@ -52,7 +52,7 @@ Description: Archive tech page.
                       <th></th>
                       <th><i class="fa fa-exclamation-circle"></i> Item Name</th>
                       <th><i class="fa fa-hourglass"></i> Loan Period</th>
-                      <th><i class="fa fa-users" aria-hidden="true"></i> Eligible Users</th>
+                      <th><i class="fa fa-users"></i> Eligible Users</th>
                       <th><i class="fa fa-question-circle"></i> Availability</th>
                     </tr>
                   <?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
@@ -66,7 +66,13 @@ Description: Archive tech page.
                           endif;
                         ?>
                       </td>
-                      <td></td>
+                      <td>
+                        <?php 
+                          if(get_the_term_list( $post->ID, 'eligible_user', true)): 
+                            echo get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' ); 
+                          endif;
+                        ?>
+                      </td>
                       <td>
                         <?php if(get_post_meta($post->ID, 'availability', true)): ?>
                           <a href="<?php echo get_post_meta($post->ID, 'availability', true); ?>">Check Availability</a></li>
@@ -102,7 +108,9 @@ Description: Archive tech page.
   										<?php if(get_the_term_list( $post->ID, 'loan_period', true)): ?>
   											<li><i class="fa fa-hourglass" data-toggle="tooltip" data-placement="right" title="Loan Period"></i><?php echo get_the_term_list( $post->ID, 'loan_period', '', ', ', '' ); ?></li>
   										<?php endif; ?>
-
+                      <?php if(get_the_term_list( $post->ID, 'eligible_user', true)): ?>
+                        <li><i class="fa fa-users" data-toggle="tooltip" data-placement="right" title="Eligible Users"></i><?php echo get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' ); ?></li>
+                      <?php endif; ?>
   										<?php if(get_post_meta($post->ID, 'availability', true)): ?>
   											<li><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_post_meta($post->ID, 'availability', true); ?>">Check Availability</a></li>
   										<?php endif; ?>

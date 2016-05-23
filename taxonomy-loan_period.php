@@ -61,7 +61,7 @@ Description: tech type archive page.
                       <th></th>
                       <th><i class="fa fa-exclamation-circle"></i> Item Name</th>
                       <th><i class="fa fa-hourglass"></i> Loan Period</th>
-                      <th><i class="fa fa-users" aria-hidden="true"></i> Eligible Users</th>
+                      <th><i class="fa fa-users"></i> Eligible Users</th>
                       <th><i class="fa fa-question-circle"></i> Availability</th>
                     </tr>
                   <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -75,7 +75,12 @@ Description: tech type archive page.
                           endif;
                         ?>
                       </td>
-                      <td></td>
+                      <td>
+                        <?php 
+                          if(get_the_term_list( $post->ID, 'eligible_user', true)): 
+                            echo get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' ); 
+                          endif;
+                        ?>                      </td>
                       <td>
                         <?php if(get_post_meta($post->ID, 'availability', true)): ?>
                           <a href="<?php echo get_post_meta($post->ID, 'availability', true); ?>">Check Availability</a></li>
@@ -105,14 +110,16 @@ Description: tech type archive page.
   								<div class="caption">
   								  <h3><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h3>
                     <?php if(get_the_term_list( $post->ID, 'loan_period', true) ||
+                      get_the_term_list( $post->ID, 'eligible_user', true) ||
                       get_post_meta($post->ID, 'availability', true)
                     ): ?>
       								<ul>
                       <?php if(get_the_term_list( $post->ID, 'loan_period', true)): ?>
                         <li><i class="fa fa-hourglass" data-toggle="tooltip" data-placement="right" title="Loan Period"></i><?php echo get_the_term_list( $post->ID, 'loan_period', '', ', ', '' ); ?></li>
                       <?php endif; ?>
-
-                      <?php if(get_post_meta($post->ID, 'availability', true)): ?>
+                      <?php if(get_the_term_list( $post->ID, 'eligible_user', true)): ?>
+                        <li><i class="fa fa-users" data-toggle="tooltip" data-placement="right" title="Eligible Users"></i><?php echo get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' ); ?></li>
+                      <?php endif; ?>                      <?php if(get_post_meta($post->ID, 'availability', true)): ?>
                         <li><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_post_meta($post->ID, 'availability', true); ?>">Check Availability</li>
                       <?php endif; ?>
       								</ul>
