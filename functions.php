@@ -461,6 +461,31 @@ function register_technology_lending_entities() {
       'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
     );
     register_taxonomy('loan_period',array('tech'), $loan_period_args );
+
+  // Eligible User Taxonomy
+    $eligible_user_labels = array(
+      'name' => _x( 'Eligible User', 'taxonomy general name' ),
+      'singular_name' => _x( 'Eligible User', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Search Eligible Users' ),
+      'all_items' => __( 'All Eligible Users' ),
+      'parent_item' => __( 'Parent Eligible User' ),
+      'parent_item_colon' => __( 'Parent Eligible User:' ),
+      'edit_item' => __( 'Edit Eligible User' ),
+      'update_item' => __( 'Update Eligible User' ),
+      'add_new_item' => __( 'Add New Eligible User' ),
+      'new_item_name' => __( 'New Eligible User Name' ),
+      'menu_name' => __( 'Eligible User' ),
+    );
+
+    $eligible_user_args = array(
+      'hierarchical' => true,
+      'labels' => $eligible_user_labels,
+      'show_ui' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
+    );
+    register_taxonomy('eligible_user',array('tech'), $eligible_user_args );
 }
 
 add_action( 'init', 'register_technology_lending_entities' );
@@ -471,6 +496,7 @@ function generate_taxonomy_rewrite_rules( $wp_rewrite ) {
   $post_types = get_post_types( array( 'name' => 'tech', 'public' => true, '_builtin' => false ), 'objects' );
   $taxonomies = get_taxonomies( array( 'name' => 'tech_type', 'public' => true, '_builtin' => false ), 'objects' );
   $taxonomies += get_taxonomies( array( 'name' => 'loan_period', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies += get_taxonomies( array( 'name' => 'eligible_user', 'public' => true, '_builtin' => false ), 'objects' );
 
   foreach ( $post_types as $post_type ) {
     $post_type_name = $post_type->name; // 'developer'
