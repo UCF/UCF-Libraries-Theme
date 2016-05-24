@@ -62,6 +62,7 @@ Description: tech type archive page.
                       <th><i class="fa fa-exclamation-circle"></i> Item Name</th>
                       <th><i class="fa fa-hourglass"></i> Loan Period</th>
                       <th><i class="fa fa-users"></i> Eligible Users</th>
+                      <th><i class="fa fa-university"></i> Library</th>
                       <th><i class="fa fa-question-circle"></i> Availability</th>
                     </tr>
                   <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -83,6 +84,13 @@ Description: tech type archive page.
                         ?>                        
                       </td>
                       <td>
+                        <?php 
+                          if(get_the_term_list( $post->ID, 'library', true)): 
+                            echo get_the_term_list( $post->ID, 'library', '', ', ', '' ); 
+                          endif;
+                        ?>
+                      </td> 
+                      <td>
                         <?php if(get_post_meta($post->ID, 'availability', true)): ?>
                           <a href="<?php echo get_post_meta($post->ID, 'availability', true); ?>">Check Availability</a></li>
                         <?php endif; ?>
@@ -94,6 +102,8 @@ Description: tech type archive page.
                       <td></td>
                       <td></td>
                       <td></td>
+                      <td></td>
+                      <td></td>                      
                     </tr>
                   <?php endif; ?>
                   </tbody>
@@ -107,26 +117,30 @@ Description: tech type archive page.
 							<?php $i++; ?>
 							<div class="col-xs-6 col-md-4 col-lg-3">
 				    		<div class="thumbnail">
-  				    			<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
-  									<div class="caption">
-  										<h3><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h3>
-  										 <?php if(get_the_term_list( $post->ID, 'loan_period', true) ||
-                         get_post_meta($post->ID, 'availability', true)
-                      ): ?>
-
-    										<ul>
-                            <?php if(get_the_term_list( $post->ID, 'loan_period', true)): ?>
-                              <li><i class="fa fa-hourglass" data-toggle="tooltip" data-placement="right" title="Loan Period"></i><?php echo get_the_term_list( $post->ID, 'loan_period', '', ', ', '' ); ?></li>
-                            <?php endif; ?>
-                            <?php if(get_the_term_list( $post->ID, 'eligible_user', true)): ?>
-                              <li><i class="fa fa-users" data-toggle="tooltip" data-placement="right" title="Eligible Users"></i><?php echo get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' ); ?></li>
-                            <?php endif; ?>
-                            <?php if(get_post_meta($post->ID, 'availability', true)): ?>
-                              <li><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_post_meta($post->ID, 'availability', true); ?>">Check Availability</li>
-                            <?php endif; ?>
-    										</ul>
-  										<?php endif; ?>
-  									</div><!-- caption -->
+  				    		<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
+  								<div class="caption">
+    								<h3><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h3>
+  									<?php if(get_the_term_list( $post->ID, 'loan_period', true) ||
+                      get_the_term_list( $post->ID, 'eligible_user', true) ||
+                      get_the_term_list( $post->ID, 'library', true) ||
+                      get_post_meta($post->ID, 'availability', true)
+                    ): ?>
+      								<ul>
+                      <?php if(get_the_term_list( $post->ID, 'loan_period', true)): ?>
+                        <li><i class="fa fa-hourglass" data-toggle="tooltip" data-placement="right" title="Loan Period"></i><?php echo get_the_term_list( $post->ID, 'loan_period', '', ', ', '' ); ?></li>
+                      <?php endif; ?>
+                      <?php if(get_the_term_list( $post->ID, 'eligible_user', true)): ?>
+                        <li><i class="fa fa-users" data-toggle="tooltip" data-placement="right" title="Eligible Users"></i><?php echo get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' ); ?></li>
+                      <?php endif; ?>
+                      <?php if(get_the_term_list( $post->ID, 'library', true)): ?>
+                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo get_the_term_list( $post->ID, 'library', '', ', ', '' ); ?></li>
+                      <?php endif; ?>
+                      <?php if(get_post_meta($post->ID, 'availability', true)): ?>
+                        <li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_permalink(); ?>#item_availability">Check Availability</a></li>
+                      <?php endif; ?>
+      						    </ul>
+    								<?php endif; ?>
+  						    </div><!-- caption -->
 								</div><!-- thumbnail -->
 							</div><!-- col-xs-6 col-md-4 col-lg-3 -->
 							<?php if ($i % 4 == 0) : //adds a clearfix every 3 items. ?>

@@ -60,6 +60,7 @@ Description: eligible user taxonomy archive.
                       <th><i class="fa fa-exclamation-circle"></i> Item Name</th>
                       <th><i class="fa fa-hourglass"></i> Loan Period</th>
                       <th><i class="fa fa-users"></i> Eligible Users</th>
+                      <th><i class="fa fa-university"></i> Library</th>
                       <th><i class="fa fa-question-circle"></i> Availability</th>
                     </tr>
                   <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -78,10 +79,18 @@ Description: eligible user taxonomy archive.
                           if(get_the_term_list( $post->ID, 'eligible_user', true)): 
                             echo get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' ); 
                           endif;
-                        ?>                      </td>
+                        ?>
+                      </td>
+                      <td>
+                        <?php 
+                          if(get_the_term_list( $post->ID, 'library', true)): 
+                            echo get_the_term_list( $post->ID, 'library', '', ', ', '' ); 
+                          endif;
+                        ?>
+                      </td> 
                       <td>
                         <?php if(get_post_meta($post->ID, 'availability', true)): ?>
-                          <a href="<?php echo get_post_meta($post->ID, 'availability', true); ?>">Check Availability</a></li>
+                          <a href="<?php echo get_permalink(); ?>#item_availability">Check Availability</a></li>
                         <?php endif; ?>
                       </td>
                     </tr>
@@ -91,6 +100,8 @@ Description: eligible user taxonomy archive.
                       <td></td>
                       <td></td>
                       <td></td>
+                      <td></td>   
+                      <td></td>                                         
                     </tr>
                   <?php endif; ?>
                   </tbody>
@@ -109,6 +120,7 @@ Description: eligible user taxonomy archive.
   								  <h3><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h3>
                     <?php if(get_the_term_list( $post->ID, 'loan_period', true) ||
                       get_the_term_list( $post->ID, 'eligible_user', true) ||
+                      get_the_term_list( $post->ID, 'library', true) ||
                       get_post_meta($post->ID, 'availability', true)
                     ): ?>
       								<ul>
@@ -117,8 +129,12 @@ Description: eligible user taxonomy archive.
                       <?php endif; ?>
                       <?php if(get_the_term_list( $post->ID, 'eligible_user', true)): ?>
                         <li><i class="fa fa-users" data-toggle="tooltip" data-placement="right" title="Eligible Users"></i><?php echo get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' ); ?></li>
-                      <?php endif; ?>                      <?php if(get_post_meta($post->ID, 'availability', true)): ?>
-                        <li><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_post_meta($post->ID, 'availability', true); ?>">Check Availability</li>
+                      <?php endif; ?>
+                      <?php if(get_the_term_list( $post->ID, 'library', true)): ?>
+                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo get_the_term_list( $post->ID, 'library', '', ', ', '' ); ?></li>
+                      <?php endif; ?>
+                      <?php if(get_post_meta($post->ID, 'availability', true)): ?>
+                        <li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_permalink(); ?>#item_availability">Check Availability</a></li>
                       <?php endif; ?>
       								</ul>
   									<?php endif; ?>
