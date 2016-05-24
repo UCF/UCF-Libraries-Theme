@@ -68,8 +68,8 @@ Description: Single technology page.
 						<?php the_content(__('(more...)')); ?>
 						<div class="card" style="padding:1em;">
 							<h3 id="item_availability">Item Availability</h3>
-							<p>There are <span class="total-items-available"></span> <?php friendly_name(); ?>s available for checkout.</p>
 							<?php if(get_post_meta($post->ID, 'availability', true)): ?>
+								<p>There are <span class="total-items-available"></span> <?php friendly_name(); ?>s available for checkout.</p>
 								<div class="table-responsive">
 									<?php
 										$url = get_post_meta($post->ID, 'availability', true);
