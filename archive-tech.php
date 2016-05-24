@@ -34,7 +34,7 @@ Description: Archive tech page.
 				</div><!-- col-sm-3 -->
 				<div class="col-sm-9">
 					<h2 class="subpage-title">All Technology</h2>
-          <?php dynamic_sidebar( 'test' ); ?>
+          <?php dynamic_sidebar( 'technology-lending' ); ?>
           <div class="btn-group" data-toggle="buttons" style="margin-bottom: 1em">
             <label class="btn btn-primary view-button active">
               <input type="radio" name="views" autocomplete="off" value="grid" checked><i class="fa fa-th"></i> Grid
