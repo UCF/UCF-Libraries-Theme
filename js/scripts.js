@@ -235,23 +235,14 @@ function share_button(url, winWidth, winHeight) {
   window.open(url, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
 }
 
-// Link to anchor within a tab
-//============================
 
+// Grid / List View Toggle
+//=========================================
 
-// Ajax test
-//=============
-// (function($) {
-//     var url = 'http://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json';
-//     $.ajax({
-//        type: 'GET',
-//         url: url,
-//         async: false,
-//         contentType: "application/json",
-//         dataType: 'jsonp'
-//     });
-// })(jQuery);
-
-// $.each( locations, function(key, val) {
-//     $('#json_test').html('<p> Key: ' + key + '</p><p> Val:' + val + '</p>');
-// });
+$(document).ready( function() {
+  $('.view-button').click(function() {
+    var test = $(this).children("input[name$='views']").val();
+    $('.view').removeClass('view-active');
+    $('#' + test + '_view').addClass('view-active');
+  });
+});

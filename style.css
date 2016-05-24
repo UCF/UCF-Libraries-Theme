@@ -528,8 +528,23 @@ footer ul li a:hover { text-decoration: none;}
     width: 100% !important;
     height: 100% !important;
 }
+/* Grid / List view swapper */
 
-/* Single Person page */
+.view {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+}
+.view-active {
+  height: 100%;
+  visibility: visible;
+  opacity: 100;
+  transition-property: opacity, visibility;
+  transition-timing-function: ease;
+  transition-duration: 255ms;
+}
+
 
 /*Staff Directories*/
 .primary {
@@ -585,6 +600,10 @@ footer ul li a:hover { text-decoration: none;}
 }
 
 .staff-thumbnail { width: 100%; height: auto;}
+
+/* Technology Lending */
+
+.list-thumbnail { max-width: 25px; }
 
 /* jquery ui tabs override */
 
