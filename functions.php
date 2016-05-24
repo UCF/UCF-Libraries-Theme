@@ -486,6 +486,31 @@ function register_technology_lending_entities() {
       'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
     );
     register_taxonomy('eligible_user',array('tech'), $eligible_user_args );
+
+  // Library Taxonomy
+    $library_labels = array(
+      'name' => _x( 'Library', 'taxonomy general name' ),
+      'singular_name' => _x( 'Library', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Search Librarys' ),
+      'all_items' => __( 'All Librarys' ),
+      'parent_item' => __( 'Parent Library' ),
+      'parent_item_colon' => __( 'Parent Library:' ),
+      'edit_item' => __( 'Edit Library' ),
+      'update_item' => __( 'Update Library' ),
+      'add_new_item' => __( 'Add New Library' ),
+      'new_item_name' => __( 'New Library Name' ),
+      'menu_name' => __( 'Library' ),
+    );
+
+    $library_args = array(
+      'hierarchical' => true,
+      'labels' => $library_labels,
+      'show_ui' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
+    );
+    register_taxonomy('library',array('tech'), $library_args );
 }
 
 add_action( 'init', 'register_technology_lending_entities' );
@@ -497,6 +522,7 @@ function generate_taxonomy_rewrite_rules( $wp_rewrite ) {
   $taxonomies = get_taxonomies( array( 'name' => 'tech_type', 'public' => true, '_builtin' => false ), 'objects' );
   $taxonomies += get_taxonomies( array( 'name' => 'loan_period', 'public' => true, '_builtin' => false ), 'objects' );
   $taxonomies += get_taxonomies( array( 'name' => 'eligible_user', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies += get_taxonomies( array( 'name' => 'library', 'public' => true, '_builtin' => false ), 'objects' );
 
   foreach ( $post_types as $post_type ) {
     $post_type_name = $post_type->name; // 'developer'
