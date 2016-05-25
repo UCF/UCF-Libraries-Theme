@@ -53,8 +53,8 @@ Description: Archive staff member page.
                       <th><i class="fa fa-bookmark"></i> Title</th>
                       <th><i class="fa fa-university"></i> Department</th>
 <!--                       <th><i class="fa fa-university"></i> Room</th> -->
-                      <th><span class="glyphicon glyphicon-phone-alt"></span> Phone</th>
-                      <th><span class="glyphicon glyphicon-envelope"></span> Email</th>
+                      <th style="min-width: 10em;"><span class="glyphicon glyphicon-phone-alt"></span> Phone</th>
+                      <th style="min-width: 6em;"><span class="glyphicon glyphicon-envelope"></span> Email</th>
                     </tr>
                   <?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
                     <tr>
