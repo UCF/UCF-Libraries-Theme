@@ -18,59 +18,67 @@ Description: Single staff member page.
 				<div class="header-search"><?php get_search_form(); ?></div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm-3">
-				<?php get_sidebar('staff'); ?>
-			</div>
-			<div class="col-sm-9">
-				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-					<article class="clearfix">
-						<div class="thumbnail single">
-							<div class="row">
-								<div class="col-sm-4">
-									<figure><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></figure>
-								</div>
-								<div class="col-sm-8">
-									<div class="caption">
-									<h2><?php friendly_name(); ?></h2>
-										<?php if(get_post_meta($post->ID, 'title', true) ||
-											 get_post_meta($post->ID, 'room', true) ||
-											 get_post_meta($post->ID, 'phone', true) || 
-											 get_post_meta($post->ID, 'email', true)
-										): ?>
-										<ul>
-											<?php if(get_post_meta($post->ID, 'title', true)): ?>
-												<li><span class="glyphicon glyphicon-user" data-toggle="tooltip" data-placement="right" title="Position"></span> <?php echo get_post_meta($post->ID, 'title', true); ?></li>
-											<?php endif; ?>
+	</div>
+	<div  class="background-color-gray">
+		<div id="content" class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<?php get_sidebar('staff'); ?>
+				</div>
+				<div class="col-sm-9">
+					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+						<article class="clearfix">
+							<div class="thumbnail">
+								<div class="row">
+									<div class="col-sm-4">
+										<figure><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></figure>
+									</div>
+									<div class="col-sm-8">
+										<div class="caption">
+										<h2><?php friendly_name(); ?></h2>
+											<?php if(get_post_meta($post->ID, 'title', true) ||
+												 get_post_meta($post->ID, 'room', true) ||
+												 get_post_meta($post->ID, 'phone', true) || 
+												 get_post_meta($post->ID, 'email', true)
+											): ?>
+											<ul>
+												<?php if(get_post_meta($post->ID, 'title', true)): ?>
+													<li><span class="glyphicon glyphicon-user" data-toggle="tooltip" data-placement="right" title="Position"></span> <?php echo get_post_meta($post->ID, 'title', true); ?></li>
+												<?php endif; ?>
 
-											<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
-												<li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
-											<?php endif; ?>
+												<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
+													<li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
+												<?php endif; ?>
 
-											<?php if(get_post_meta($post->ID, 'room', true)): ?>
-												<li><span class="glyphicon glyphicon-map-marker" data-toggle="tooltip" data-placement="right" title="Location"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
-											<?php endif; ?>
+												<?php if(get_post_meta($post->ID, 'room', true)): ?>
+													<li><span class="glyphicon glyphicon-map-marker" data-toggle="tooltip" data-placement="right" title="Location"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
+												<?php endif; ?>
 
-											<?php if(get_post_meta($post->ID, 'phone', true)): ?>
-												<li><span class="glyphicon glyphicon-phone-alt" data-toggle="tooltip" data-placement="right" title="Phone"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
-											<?php endif; ?>
+												<?php if(get_post_meta($post->ID, 'phone', true)): ?>
+													<li><span class="glyphicon glyphicon-phone-alt" data-toggle="tooltip" data-placement="right" title="Phone"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
+												<?php endif; ?>
 
-											<?php if(get_post_meta($post->ID, 'email', true)): ?>
-												<li><span class="glyphicon glyphicon-envelope" data-toggle="tooltip" data-placement="right" title="Email"></span><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"> <span class="ellipsis"> <?php echo get_post_meta($post->ID, 'email', true); ?></span></a></li>
+												<?php if(get_post_meta($post->ID, 'email', true)): ?>
+													<li><span class="glyphicon glyphicon-envelope" data-toggle="tooltip" data-placement="right" title="Email"></span><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"> <span class="ellipsis"> <?php echo get_post_meta($post->ID, 'email', true); ?></span></a></li>
+												<?php endif; ?>
+											</ul>
 											<?php endif; ?>
-										</ul>
-										<?php endif; ?>
+											<?php if(get_the_term_list( $post->ID, 'unit', true)): ?>
+												<p><?php echo get_the_term_list( $post->ID, 'unit', 'Units &amp; Groups: ', ', ', '' ); ?></p>
+											<?php endif; ?>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<?php if(get_the_term_list( $post->ID, 'unit', true)): ?>
-							<p><?php echo get_the_term_list( $post->ID, 'unit', 'Units &amp; Groups: ', ', ', '' ); ?></p>
+						</article>
+						<?php if($post->post_content != ""): ?>
+							<div class="card" style="padding:1em;">
+								<?php the_content(__('(more...)')); ?>
+							</div>
 						<?php endif; ?>
-					</article>
-					<p><?php the_content(__('(more...)')); ?></p>
-				<?php endwhile; else: ?>
-				<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
+					<?php endwhile; else: ?>
+					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
+				</div>
 			</div>
 		</div>
 	</div>
