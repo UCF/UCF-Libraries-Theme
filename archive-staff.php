@@ -52,7 +52,6 @@ Description: Archive staff member page.
                       <th><span class="glyphicon glyphicon-user"></span> Name</th>
                       <th><i class="fa fa-bookmark"></i> Title</th>
                       <th><i class="fa fa-university"></i> Department</th>
-<!--                       <th><i class="fa fa-university"></i> Room</th> -->
                       <th style="min-width: 10em;"><span class="glyphicon glyphicon-phone-alt"></span> Phone</th>
                       <th style="min-width: 6em;"><span class="glyphicon glyphicon-envelope"></span> Email</th>
                     </tr>
@@ -70,11 +69,6 @@ Description: Archive staff member page.
                           <?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?>
                         <?php endif; ?>
                       </td>
-<!--                       <td>
-                        <?php if(get_post_meta($post->ID, 'room', true)): ?>
-                          <?php echo get_post_meta($post->ID, 'room', true); ?>
-                        <?php endif; ?>
-                      </td>  -->
                       <td>
                         <?php if(get_post_meta($post->ID, 'phone', true)): ?>
                           <?php echo get_post_meta($post->ID, 'phone', true); ?>
@@ -118,7 +112,7 @@ Description: Archive staff member page.
     								): ?>
     								<ul>
   										<?php if(get_post_meta($post->ID, 'title', true)): ?>
-  											<li><span class="glyphicon glyphicon-user" data-toggle="tooltip" data-placement="right" title="Position"></span> <?php echo get_post_meta($post->ID, 'title', true); ?></li>
+  											<li><span class="glyphicon glyphicon-user" data-toggle="tooltip" data-placement="right" title="Title"></span> <?php echo get_post_meta($post->ID, 'title', true); ?></li>
   										<?php endif; ?>
 
   										<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
