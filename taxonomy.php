@@ -125,7 +125,7 @@ Description: Taxonomy archive page.
 
     										<ul>
     												<?php if(get_post_meta($post->ID, 'title', true)): ?>
-    													<li><span class="glyphicon glyphicon-user" data-toggle="tooltip" data-placement="right" title="Position"></span> <?php echo get_post_meta($post->ID, 'title', true); ?></li>
+    													<li><i class="fa fa-bookmark" data-toggle="tooltip" data-placement="right" title="Title"></i><?php echo get_post_meta($post->ID, 'title', true); ?></li>
     												<?php endif; ?>
 
     												<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
