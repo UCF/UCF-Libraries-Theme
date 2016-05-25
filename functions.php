@@ -331,7 +331,7 @@ function register_cpt_staff_entities() {
       'query_var' => true,
       'rewrite' => array( 'slug' => 'subject', 'with_front' => false ),
     );
-    register_taxonomy('subject',array('staff'), $subject_args );
+    register_taxonomy('subject',array('sub'), $subject_args );
 }
 
 add_action( 'init', 'register_cpt_staff_entities' );
@@ -342,7 +342,7 @@ function generate_staff_taxonomy_rewrite_rules( $wp_rewrite ) {
   $rules = array();
   $post_types = get_post_types( array( 'name' => 'staff', 'public' => true, '_builtin' => false ), 'objects' );
   $taxonomies = get_taxonomies( array( 'name' => 'department', 'public' => true, '_builtin' => false ), 'objects' );
-  $taxonomies += get_taxonomies( array( 'name' => 'unit-group', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies += get_taxonomies( array( 'name' => 'unit', 'public' => true, '_builtin' => false ), 'objects' );
 
   foreach ( $post_types as $post_type ) {
     $post_type_name = $post_type->name; // 'developer'
