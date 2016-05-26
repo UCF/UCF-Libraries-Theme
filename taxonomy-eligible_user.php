@@ -40,9 +40,13 @@ Description: eligible user taxonomy archive.
 				</div><!-- col-sm-3 -->
 				<div class="col-sm-9">
 					<h2 class="subpage-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h2>
-					<?php echo term_description( ) ?>
-          <?php dynamic_sidebar( 'technology-lending' ); ?>
-          <div class="btn-group" data-toggle="buttons" style="margin-bottom: 1em">
+          <div class="tech-description">
+            <?php echo term_description( ) ?>
+          </div>
+          <div class="tech-description">
+            <?php dynamic_sidebar( 'technology-lending' ); ?>
+          </div>
+          <div class="btn-group btn-grid-list" data-toggle="buttons">
             <label class="btn btn-primary view-button active">
               <input type="radio" name="views" autocomplete="off" value="grid" checked><i class="fa fa-th"></i> Grid
             </label>
@@ -53,7 +57,7 @@ Description: eligible user taxonomy archive.
           <div id="list_view" class="view">
             <div class="card">
               <div class="table-responsive">
-                <table class="table table-striped" style="text-align: left;">
+                <table class="table table-striped">
                   <tbody>
                     <tr>
                       <th></th>

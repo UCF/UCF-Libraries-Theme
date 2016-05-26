@@ -72,7 +72,7 @@ Description: Single staff member page.
 							</div>
 						</article>
 						<?php if($post->post_content != ""): ?>
-							<div class="card" style="padding:1em;">
+							<div class="card content-area">
 								<?php the_content(__('(more...)')); ?>
 							</div>
 						<?php endif; ?>

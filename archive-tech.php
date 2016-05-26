@@ -30,12 +30,14 @@ Description: Archive tech page.
 		<div id="content" class="container">
 			<div class="row">
 				<div class="col-sm-3">
-					<?php get_sidebar('tech'); ?>
+  				<?php get_sidebar('tech'); ?>
 				</div><!-- col-sm-3 -->
 				<div class="col-sm-9">
 					<h2 class="subpage-title">All Technology</h2>
-          <?php dynamic_sidebar( 'technology-lending' ); ?>
-          <div class="btn-group" data-toggle="buttons" style="margin-bottom: 1em">
+          <div class="tech-description">
+            <?php dynamic_sidebar( 'technology-lending' ); ?>
+          </div>
+          <div class="btn-group btn-grid-list" data-toggle="buttons" style="margin-bottom: 1em">
             <label class="btn btn-primary view-button active">
               <input type="radio" name="views" autocomplete="off" value="grid" checked><i class="fa fa-th"></i> Grid
             </label>
@@ -46,7 +48,7 @@ Description: Archive tech page.
           <div id="list_view" class="view">
             <div class="card">
               <div class="table-responsive">
-                <table class="table table-striped" style="text-align: left;">
+                <table class="table table-striped">
                   <tbody>
                     <tr>
                       <th></th>

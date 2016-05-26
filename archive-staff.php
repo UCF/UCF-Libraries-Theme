@@ -34,7 +34,7 @@ Description: Archive staff member page.
 				</div><!-- col-sm-3 -->
 				<div class="col-sm-9">
 					<h2 class="subpage-title">All Staff</h2>
-          <div class="btn-group" data-toggle="buttons" style="margin-bottom: 1em">
+          <div class="btn-group btn-grid-list" data-toggle="buttons">
             <label class="btn btn-primary view-button active">
               <input type="radio" name="views" autocomplete="off" value="grid" checked><i class="fa fa-th"></i> Grid
             </label>
@@ -45,7 +45,7 @@ Description: Archive staff member page.
           <div id="list_view" class="view">
             <div class="card">
               <div class="table-responsive">
-                <table class="table table-striped" style="text-align: left;">
+                <table class="table table-striped">
                   <tbody>
                     <tr>
                       <th></th>

@@ -40,7 +40,7 @@ Description: Taxonomy archive page.
 				<div class="col-sm-9">
 					<h2 class="subpage-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h2>
 					<?php echo term_description( ) ?>
-          <div class="btn-group" data-toggle="buttons" style="margin-bottom: 1em">
+          <div class="btn-group btn-grid-list" data-toggle="buttons">
             <label class="btn btn-primary view-button active">
               <input type="radio" name="views" autocomplete="off" value="grid" checked><i class="fa fa-th"></i> Grid
             </label>
@@ -51,14 +51,13 @@ Description: Taxonomy archive page.
           <div id="list_view" class="view">
             <div class="card">
               <div class="table-responsive">
-                <table class="table table-striped" style="text-align: left;">
+                <table class="table table-striped">
                   <tbody>
                     <tr>
                       <th></th>
                       <th><span class="glyphicon glyphicon-user"></span> Name</th>
                       <th><i class="fa fa-bookmark"></i> Title</th>
                       <th><i class="fa fa-university"></i> Department</th>
-<!--                       <th><i class="fa fa-university"></i> Room</th> -->
                       <th style="min-width: 10em;"><span class="glyphicon glyphicon-phone-alt"></span> Phone</th>
                       <th style="min-width: 6em;"><span class="glyphicon glyphicon-envelope"></span> Email</th>
                     </tr>
@@ -76,11 +75,6 @@ Description: Taxonomy archive page.
                           <?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?>
                         <?php endif; ?>
                       </td>
-<!--                       <td>
-                        <?php if(get_post_meta($post->ID, 'room', true)): ?>
-                          <?php echo get_post_meta($post->ID, 'room', true); ?>
-                        <?php endif; ?>
-                      </td>  -->
                       <td>
                         <?php if(get_post_meta($post->ID, 'phone', true)): ?>
                           <?php echo get_post_meta($post->ID, 'phone', true); ?>
