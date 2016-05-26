@@ -66,6 +66,7 @@ p, p a, li, li a {
         hyphens: auto;
 }
 
+.hide { display: none; }
 
 img {
   max-width: 100%;		/*Should stop images from breaking pages on mobile*/
@@ -143,8 +144,8 @@ dl.menu-list dd, dl.list-spaced dd { margin-bottom: 1.5em; }
 	border-radius: 2px;
 	overflow: auto;
 	margin: 0 0 2em;
-	font-size: 12px;
 }
+.content-area { padding: 1em; }
 
 /* Side Menu */
 .widget-area .textwidget ul {
@@ -605,8 +606,11 @@ footer ul li a:hover { text-decoration: none;}
 
 .staff-thumbnail { width: 100%; height: auto;}
 
+.btn-grid-list {margin-bottom: 1em;}
+
 /* Technology Lending */
 
+.tech-description {margin-bottom: 1em;}
 .list-thumbnail { max-width: 25px; }
 
 /* jquery ui tabs override */
@@ -929,6 +933,7 @@ footer ul li a:hover { text-decoration: none;}
   padding: 0 1%;
   padding-bottom: 10px;
   margin-bottom: 10px;
+  font-size: 12px;
 }
 .events-homepage li {
   margin: 0;
