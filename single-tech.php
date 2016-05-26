@@ -95,23 +95,33 @@ Description: Single technology page.
 	</div>
 </div>
 <script type="text/javascript">
+// Adds all objects with status "Not Checked Out" and prints them into objects with class .total-items-available
 	function availability_check() {
 		var available_items = 0;
 		$('.table').find('tr').each(function (i, el) {
-        var $tds = $(this).find('td'),
-            due_date = $tds.eq(3).text();
-        if (due_date == 'Not Checked Out'){
-        	available_items++;
-        }
-        // do something with productId, product, Quantity
+	    var $tds = $(this).find('td'),
+	        due_date = $tds.eq(3).text();
+	    if (due_date == 'Not Checked Out'){
+	    	available_items++;
+	    }
     });
     $('.total-items-available').text(available_items);
+	}
+
+// Hides the empty columns that are pulled in from the catalog
+	function hide_empty_cols() {
+		$('.table').find('tr').each(function (i, el) {
+	  	var $tds = $(this).find('td');
+	  	$tds.eq(1).addClass('hide');
+	  	$tds.eq(4).addClass('hide');
+	  });
 	}
 
 	$(document).ready(function(){
 		$('.table-responsive > table').addClass('table table-striped');
 
 		availability_check();
+		hide_empty_cols();
 	});
 </script>
 <?php get_footer(); ?>
