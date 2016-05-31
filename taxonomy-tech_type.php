@@ -59,7 +59,7 @@ Description: tech type archive page.
           <div id="list_view" class="view">
             <div class="card">
               <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped tech-list">
                   <tbody>
                     <tr>
                       <th></th>
@@ -67,6 +67,7 @@ Description: tech type archive page.
                       <th><i class="fa fa-hourglass"></i> Loan Period</th>
                       <th><i class="fa fa-users"></i> Eligible Users</th>
                       <th><i class="fa fa-university"></i> Library</th>
+                      <th><i class="fa fa-usd"></i> Fine Policy</th>
                       <th><i class="fa fa-question-circle"></i> Availability</th>
                     </tr>
                   <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -95,6 +96,11 @@ Description: tech type archive page.
                         ?>
                       </td> 
                       <td>
+                        <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
+                          <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
+                        <?php endif; ?>
+                      </td>
+                      <td>
                         <?php if(get_post_meta($post->ID, 'availability', true)): ?>
                           <a href="<?php echo get_post_meta($post->ID, 'availability', true); ?>">Check Availability</a></li>
                         <?php endif; ?>
@@ -102,6 +108,7 @@ Description: tech type archive page.
                     </tr>
                   <?php endwhile; else: ?>
                     <tr>
+                      <td></td>
                       <td></td>
                       <td></td>
                       <td></td>
@@ -127,6 +134,7 @@ Description: tech type archive page.
   									<?php if(get_the_term_list( $post->ID, 'loan_period', true) ||
                       get_the_term_list( $post->ID, 'eligible_user', true) ||
                       get_the_term_list( $post->ID, 'library', true) ||
+                      get_post_meta($post->ID, 'fine-policy', true) ||
                       get_post_meta($post->ID, 'availability', true)
                     ): ?>
       								<ul>
@@ -138,6 +146,9 @@ Description: tech type archive page.
                       <?php endif; ?>
                       <?php if(get_the_term_list( $post->ID, 'library', true)): ?>
                         <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo get_the_term_list( $post->ID, 'library', '', ', ', '' ); ?></li>
+                      <?php endif; ?>
+                      <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
+                        <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fine Policy"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
                       <?php endif; ?>
                       <?php if(get_post_meta($post->ID, 'availability', true)): ?>
                         <li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_permalink(); ?>#item_availability">Check Availability</a></li>

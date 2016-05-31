@@ -38,6 +38,7 @@ Description: Single technology page.
 											<h2><?php friendly_name(); ?></h2>
 		    								<?php if(get_the_term_list( $post->ID, 'loan_period', true) ||
 		    									 get_the_term_list( $post->ID, 'eligible_user', true) ||
+		    									 get_post_meta($post->ID, 'availability', true) ||
 		    									 get_post_meta($post->ID, 'availability', true)
 		    								): ?>
 												<ul>
@@ -47,7 +48,10 @@ Description: Single technology page.
 		                      <?php if(get_the_term_list( $post->ID, 'eligible_user', true)): ?>
 		                        <li><i class="fa fa-users" data-toggle="tooltip" data-placement="right" title="Eligible Users"></i><?php echo get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' ); ?></li>
 		                      <?php endif; ?>
-		  										<?php if(get_post_meta($post->ID, 'availability', true)): ?>
+		                      <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
+		                        <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fine Policy"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
+		                      <?php endif; ?>
+                      		<?php if(get_post_meta($post->ID, 'availability', true)): ?>
 		  											<li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> There are currently <span class="total-items-available"></span> available.</li>
 		  										<?php endif; ?>
 												</ul>
