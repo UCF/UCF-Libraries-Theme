@@ -613,7 +613,8 @@ footer ul li a:hover { text-decoration: none;}
 
 /* Technology Lending */
 
-.tech-description {margin-bottom: 1em;}
+.tech-description { margin-bottom: 1em; }
+.tech-list td:nth-child(3n), .tech-list th:nth-child(3n) { max-width: 11em; }
 .list-thumbnail { max-width: 25px; }
 
 /* jquery ui tabs override */
