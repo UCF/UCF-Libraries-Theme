@@ -617,6 +617,40 @@ footer ul li a:hover { text-decoration: none;}
 .tech-list td:nth-child(3n), .tech-list th:nth-child(3n) { max-width: 11em; }
 .list-thumbnail { max-width: 25px; }
 
+/* Table Sorter */
+
+th.header { 
+  cursor: pointer;    
+}
+th.header:after { 
+  position: relative;
+  left: 7px;
+  font-family: "FontAwesome";
+  content: "\f0dc";
+}
+th.headerSortUp { 
+  background-color: #ffcc00; 
+} 
+th.headerSortUp:after{
+  position: relative;
+  left: 7px;
+  font-family: "FontAwesome";
+  content: "\f0de";
+}
+th.headerSortDown { 
+  background-color: #ffcc00; 
+} 
+th.headerSortDown:after{
+  position: relative;
+  left: 7px;
+  font-family: "FontAwesome";
+  content: "\f0dd";
+}
+th.header:first-child:after { 
+  content: "";
+}
+
+
 /* jquery ui tabs override */
 
 .ui-widget-content {
