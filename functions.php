@@ -123,11 +123,13 @@ function wpt_register_js() {
     wp_register_script('jquery', "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js", false, null);
     wp_register_script('jquery.ui', "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js", false, null);
     wp_register_script('jquery.bootstrap.min', get_template_directory_uri() . '/js/bootstrap.min.js', 'jquery');
+    wp_register_script('jquery.tablesorter.min', get_template_directory_uri() . '/js/jquery.tablesorter.min.js', 'jquery');
     wp_register_script('jquery.scripts', get_template_directory_uri(). '/js/scripts.js', 'jquery');
 
     wp_enqueue_script('jquery');
     wp_enqueue_script('jquery.ui');
     wp_enqueue_script('jquery.bootstrap.min');
+    wp_enqueue_script('jquery.tablesorter.min');
     wp_enqueue_script('jquery.scripts');
 }
 add_action( 'init', 'wpt_register_js' );
