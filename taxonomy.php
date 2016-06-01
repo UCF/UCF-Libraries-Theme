@@ -51,16 +51,18 @@ Description: Taxonomy archive page.
           <div id="list_view" class="view">
             <div class="card">
               <div class="table-responsive">
-                <table class="table table-striped">
-                  <tbody>
+                <table class="table table-striped table-sorter">
+                  <thead>
                     <tr>
-                      <th></th>
+                      <th class="empty-cell"></th>
                       <th><span class="glyphicon glyphicon-user"></span> Name</th>
                       <th><i class="fa fa-bookmark"></i> Title</th>
                       <th><i class="fa fa-university"></i> Department</th>
                       <th style="min-width: 10em;"><span class="glyphicon glyphicon-phone-alt"></span> Phone</th>
                       <th style="min-width: 6em;"><span class="glyphicon glyphicon-envelope"></span> Email</th>
                     </tr>
+                  </thead>
+                  <tbody>
                   <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                     <tr>
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('thumbnail', array('class' => 'list-thumbnail')); ?></a></td>

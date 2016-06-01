@@ -48,10 +48,10 @@ Description: Archive tech page.
           <div id="list_view" class="view">
             <div class="card">
               <div class="table-responsive">
-                <table class="table table-striped tech-list">
-                  <tbody>
+                <table class="table table-striped table-sorter tech-list">
+                  <thead>
                     <tr>
-                      <th></th>
+                      <th class="empty-cell"></th>
                       <th><i class="fa fa-exclamation-circle"></i> Item Name</th>
                       <th><i class="fa fa-hourglass"></i> Loan Period</th>
                       <th><i class="fa fa-users"></i> Eligible Users</th>
@@ -59,6 +59,8 @@ Description: Archive tech page.
                       <th><i class="fa fa-usd"></i> Fine Policy</th>
                       <th><i class="fa fa-check-circle"></i> Availability</th>
                     </tr>
+                  </thead>
+                  <tbody>
                   <?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
                     <tr>
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('thumbnail', array('class' => 'list-thumbnail')); ?></a></td>
