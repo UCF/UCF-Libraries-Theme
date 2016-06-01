@@ -246,3 +246,11 @@ $(document).ready( function() {
     $('#' + test + '_view').addClass('view-active');
   });
 });
+
+
+// Table Sorter intialize
+// =========================================
+
+$(document).ready(function() { 
+  $(".table-sorter").tablesorter(); 
+}); 
