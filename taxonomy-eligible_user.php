@@ -20,7 +20,7 @@ Description: eligible user taxonomy archive.
 
 <?php get_header(); ?>
 <div id="main">
-	<div id="content" class="container">
+	<div id="title_bar" class="container">
 	 <!-- taxonomy.php -->
 		<div class="row">
 			<div class="col-sm-8">

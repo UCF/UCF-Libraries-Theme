@@ -7,7 +7,7 @@ Description: Single technology page.
 
 <?php get_header(); ?>
 <div id="main">
-	<div id="content" class="container">
+	<div id="title_bar"class="container">
 		<!-- single-tech template. -->
 		<div class="row">
 			<div class="col-sm-8">

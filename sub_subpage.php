@@ -10,7 +10,7 @@ $ancestors = get_ancestors(get_the_ID(), 'page');
 
 <?php get_header(); ?>
 <div id="main">
-	<div id="content" class="container">
+	<div id="title_bar" class="container">
 		<div class="row">
 			<div class="col-sm-8">
 				<header><h1><?php echo get_the_title($ancestors[1]).' - '.get_the_title($post->post_parent);?></h1></header>
@@ -20,6 +20,8 @@ $ancestors = get_ancestors(get_the_ID(), 'page');
 				<div class="header-search"><?php get_search_form(); ?></div>
 			</div>
 		</div>
+	</div>
+	<div id="content" class="container">
 		<div class="row">
 			<div class="col-sm-3">
 				<?php get_sidebar(); ?>

@@ -1,31 +1,6 @@
 <?php get_header(); ?>
 <script>
-//   window.fbAsyncInit = function() {
-//     FB.init({
-//       appId      : '879004742184863',
-//       xfbml      : true,
-//       version    : 'v2.4'
-//     });
-//   };
 
-//   (function(d, s, id){
-//      var js, fjs = d.getElementsByTagName(s)[0];
-//      if (d.getElementById(id)) {return;}
-//      js = d.createElement(s); js.id = id;
-//      js.src = "//connect.facebook.net/en_US/sdk.js";
-//      fjs.parentNode.insertBefore(js, fjs);
-//    }(document, 'script', 'facebook-jssdk'));
-
-//   FB.ui({
-//   method: 'share_open_graph',
-//   action_type: 'og.likes',
-//   action_properties: JSON.stringify({
-//     object:'https://developers.facebook.com/docs/',
-//   })
-// }, function(response){
-//   // Debug response (optional)
-//   console.log(response);
-// });
 function fbShare(url, title, descr, image, winWidth, winHeight) {
   var winTop = (screen.height / 2) - (winHeight / 2);
   var winLeft = (screen.width / 2) - (winWidth / 2);
@@ -34,7 +9,7 @@ function fbShare(url, title, descr, image, winWidth, winHeight) {
 
 </script>
 <div id="main">
-	<div id="content" class="container">
+	<div id="title_bar" class="container">
 	<!-- home.php -->
 		<div class="row">
 			<div class="col-sm-8">

@@ -1,7 +1,7 @@
 
 <?php get_header(); ?>
 <div id="main">
-	<div id="content" class="container">
+	<div id="title_bar" class="container">
 	<!-- tag.php -->
 		<div class="row">
 			<div class="col-sm-8">
