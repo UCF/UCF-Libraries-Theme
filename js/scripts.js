@@ -266,7 +266,7 @@ function widget_area_affix() {
         return (this.top = ( $('#ucfhb').outerHeight(true) + $('.main-header').outerHeight(true) + $('#title_bar').outerHeight(true) + 30 ) )
       },
       bottom: function () {
-        return (this.bottom = ( $('footer').outerHeight(true) + 14 ) )
+        return (this.bottom = ( $('footer').outerHeight(true) + 30 ) )
       }
     }
   })
