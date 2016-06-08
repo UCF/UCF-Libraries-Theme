@@ -6,9 +6,9 @@
 //===================================
 
 
-$(document).ready(function() {
+function header_override() {
   $('#ucfhb-inner').addClass('override');
-});
+}
 
 //COLLAPSING SIDEBAR MENU
 //=======================
@@ -40,7 +40,7 @@ function get_random_string() {
 }
 
 
-$(document).ready(function(){
+function collapse_sidebar(){
   
   //Collapse the sidebar menus when less than 768
   if ($(window).width() < 768){  
@@ -57,7 +57,7 @@ $(document).ready(function(){
   	$(this).find('.menu-toggle').prop('href', '#'+$id);
   });
   
-});
+};
 
 $(window).resize(function(){
   if ($(window).width() >= 768 && !$menus_open){  
@@ -96,7 +96,7 @@ $.extend({
 
 // Links to an anchor inside of a tab and scrolls the page to the anchor. Only works on page that does NOT contain the tabs
 // Example: <a href="library.ucf.edu/?tab=#Tab-One&anchor=#Anchor-3">Link to Anchor-3 inside Tab-One on a different page.</a>
-$(document).ready(function(){
+function tab_linking(){
   var hash = window.location.hash;
   var tab = $.getUrlVar('tab');
   var anchor = $.getUrlVar('anchor');
@@ -125,7 +125,7 @@ $(document).ready(function(){
       }, 10);    
   });
 
-});
+};
 
 
 
@@ -137,21 +137,21 @@ $('.nav-tabs a').on('shown', function (e) {
 
 //Login Modal Launch
 //==================
-$(document).ready(function () {
+function login_modal_launch () {
   $('.login-button').click(function() {
     $('#login_modal').modal('show');
   });
-});
+};
 
 //Enable Tooltips
 //===============
-$(document).ready(function () {
+function enable_tooltips() {
     $('[data-toggle="tooltip"]').tooltip();
-});
+};
 
 // Apply bootstrap styles to gravity forms
 //========================================
-$(document).ready(function () {
+function bootstrap_gravity_forms() {
   $(".gform_wrapper input:text").addClass("form-control");
   $(".gform_wrapper textarea").addClass("form-control");
   $(".gform_wrapper select").addClass("form-control");
@@ -160,19 +160,19 @@ $(document).ready(function () {
     $(this).next('label').andSelf().wrapAll('<div class="radio"/>');
   });
   // $(".gform_wrapper .clear-multi").addClass("form-inline");
-});
+};
 
 // Apply btn class to footer My Account Button
 //============================================
-$(document).ready(function() {
+function my_account_btn() {
   $(".my-account a").addClass("btn btn-primary");
-});
+};
 
 
 // Scroll to Top Button
 //=====================
 
-$(document).ready(function () {
+function scroll_top_btn() {
 
     $(window).scroll(function () {
         if ($(this).scrollTop() > 500) {
@@ -189,7 +189,7 @@ $(document).ready(function () {
         return false;
     });
 
-});
+};
 
 // Scholarly Communication Discovery Feed
 //=======================================
@@ -239,18 +239,53 @@ function share_button(url, winWidth, winHeight) {
 // Grid / List View Toggle
 //=========================================
 
-$(document).ready( function() {
+function grid_list_toggle() {
   $('.view-button').click(function() {
     var test = $(this).children("input[name$='views']").val();
     $('.view').removeClass('view-active');
     $('#' + test + '_view').addClass('view-active');
   });
-});
+};
 
 
 // Table Sorter intialize
 // =========================================
 
-$(document).ready(function() { 
+function table_sorter_init() { 
   $(".table-sorter").tablesorter(); 
-}); 
+}; 
+
+
+// Widget Area Affix
+// =========================================
+
+function widget_area_affix() {
+  $('#widget-area').affix({
+    offset: {
+      top: function () {
+        return (this.top = ( $('#ucfhb').outerHeight(true) + $('.main-header').outerHeight(true) + $('#title_bar').outerHeight(true) + 30 ) )
+      },
+      bottom: function () {
+        return (this.bottom = ( $('footer').outerHeight(true) + 14 ) )
+      }
+    }
+  })
+};
+
+
+// Load all functions when Dom Ready
+// =========================================
+
+$(document).ready( function() {
+  header_override();
+  collapse_sidebar();
+  tab_linking();
+  login_modal_launch();
+  enable_tooltips();
+  bootstrap_gravity_forms();
+  my_account_btn();
+  scroll_top_btn();
+  grid_list_toggle();
+  table_sorter_init();
+  widget_area_affix();
+});
