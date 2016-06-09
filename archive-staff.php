@@ -29,10 +29,10 @@ Description: Archive staff member page.
 	<div  class="background-color-gray">
 		<div id="content" class="container">
 			<div class="row">
-				<div class="col-sm-3">
+				<div id="sidebar" class="col-sm-3">
 					<?php get_sidebar('staff'); ?>
 				</div><!-- col-sm-3 -->
-				<div class="col-sm-9">
+				<div id="content_area" class="col-sm-9">
 					<h2 class="subpage-title">All Staff</h2>
           <div class="btn-group btn-grid-list" data-toggle="buttons">
             <label class="btn btn-primary view-button active">

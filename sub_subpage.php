@@ -23,10 +23,10 @@ $ancestors = get_ancestors(get_the_ID(), 'page');
 	</div>
 	<div id="content" class="container">
 		<div class="row">
-			<div class="col-sm-3">
+			<div id="sidebar" class="col-sm-3">
 				<?php get_sidebar(); ?>
 			</div>
-			<div class="col-sm-9">
+			<div id="content_area" class="col-sm-9">
 				<h2 class="subpage-title"><?php the_title(); ?></h2>
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 				<p><?php the_content(__('(more...)')); ?></p>

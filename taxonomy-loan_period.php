@@ -37,10 +37,10 @@ Description: tech type archive page.
 	<div  class="background-color-gray">
 		<div id="content" class="container">
 			<div class="row">
-				<div class="col-sm-3">
-					<?php get_sidebar('tech'); ?>
-				</div><!-- col-sm-3 -->
-				<div class="col-sm-9">
+        <div id="sidebar" class="col-sm-3">
+          <?php get_sidebar('tech'); ?>
+        </div>
+        <div id="content_area" class="col-sm-9">
 					<h2 class="subpage-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h2>
           <div class="tech-description">
             <?php echo term_description( ) ?>

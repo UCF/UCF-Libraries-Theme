@@ -15,10 +15,10 @@
 	<div  class="background-color-gray">
 		<div id="content" class="container">
 			<div class="row">
-				<div class="col-sm-3">
+				<div id="sidebar" class="col-sm-3">
 					<?php get_sidebar(); ?>
 				</div>
-				<div class="col-sm-9">
+				<div id="content_area" class="col-sm-9">
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					<?php	
 						$categories = get_the_category();
