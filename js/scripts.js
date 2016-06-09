@@ -260,16 +260,18 @@ function table_sorter_init() {
 // =========================================
 
 function widget_area_affix() {
-  $('#widget-area').affix({
-    offset: {
-      top: function () {
-        return (this.top = ( $('#ucfhb').outerHeight(true) + $('.main-header').outerHeight(true) + $('#title_bar').outerHeight(true) + 30 ) )
-      },
-      bottom: function () {
-        return (this.bottom = ( $('footer').outerHeight(true) + 60 ) )
+  if ( $('#sidebar').outerHeight(true) < $('#content_area').outerHeight(true) ) {
+    $('#widget-area').affix({
+      offset: {
+        top: function () {
+          return (this.top = ( $('#ucfhb').outerHeight(true) + $('.main-header').outerHeight(true) + $('#title_bar').outerHeight(true) + 30 ) )
+        },
+        bottom: function () {
+          return (this.bottom = ( $('footer').outerHeight(true) + 60 ) )
+        }
       }
-    }
-  })
+    });
+  };
 };
 
 
