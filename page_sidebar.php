@@ -8,7 +8,7 @@ Description: Use if a page requires a sidebar.
 
 <?php get_header(); ?>
 <div id="main">
-	<div id="content" class="container">
+	<div id="title_bar" class="container">
 	<!-- page_sidebar.php -->
 		<div class="row">
 			<div class="col-sm-8">
@@ -19,6 +19,8 @@ Description: Use if a page requires a sidebar.
 				<div class="header-search"><?php get_search_form(); ?></div>
 			</div>
 		</div>
+	</div>
+	<div id="content" class="container">
 		<div class="row">
 			<div id="sidebar" class="col-sm-3">
 				<?php get_sidebar(); ?>
