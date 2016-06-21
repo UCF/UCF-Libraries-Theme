@@ -104,10 +104,13 @@ Description: Single technology page.
 		var available_items = 0;
 		$('.table').find('tr').each(function (i, el) {
 	    var $tds = $(this).find('td'),
-	        due_date = $tds.eq(3).text();
-	    if (due_date == 'Not Checked Out'){
-	    	available_items++;
-	    }
+	        due_date = $tds.eq(3).text(),
+	        item_status = $tds.eq(2).text();
+	    if (item_status != 'Damaged' && item_status != 'Lost - Patron Billed' && item_status != 'In House Repair') {
+		    if (due_date == 'Not Checked Out') {
+		    	available_items++;
+		    }
+		  }
     });
     $('.total-items-available').text(available_items);
 	}
