@@ -766,12 +766,15 @@ function computer_availability($atts) {
           $floor_number = 'unknown';
           break;
       }
-      if ($percent_available > 65) {
-        $progress_color = 'progress-bar-success';
-      } elseif ($percent_available < 33) {
-        $progress_color = 'progress-bar-danger';
+      if ($machines_available > 0) {
+        if ($percent_available > 33) {
+          $progress_color = 'progress-bar-success';
+        } else {
+          $progress_color = 'progress-bar-warning';
+        }
+        
       } else {
-        $progress_color = 'progress-bar-warning';
+        $progress_color = 'progress-bar-danger';
       }
       $computers_list .= '
         <div class="row">
