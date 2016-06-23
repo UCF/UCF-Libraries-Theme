@@ -142,11 +142,28 @@ Description: Single technology page.
 	}
 
 // Hides the empty columns that are pulled in from the catalog
-	function hide_empty_cols() {
+	function hide_empty() {
+		var row = 0;
 		$('.table').find('tr').each(function (i, el) {
 	  	var $tds = $(this).find('td');
 	  	$tds.eq(1).addClass('hide');
 	  	$tds.eq(4).addClass('hide');
+
+	  	if (row < 2) {
+	  		$(this).addClass('hide');
+	  	}
+	  	if (row == 2) {		
+	  		// Convert this row from tds to ths
+	  		$(this).find('td').each(function (){
+	  			$(this).replaceWith('<th>' + $(this).text() + '</th>'); 
+	  		});
+	  		// Hide newly created ths
+	  		var	$ths = $(this).find('th');
+	  		$ths.eq(1).addClass('hide');
+	  		$ths.eq(4).addClass('hide');
+	  	}
+
+	  	row++;
 	  });
 	}
 
@@ -154,7 +171,7 @@ Description: Single technology page.
 		$('.table-responsive > table').addClass('table table-striped');
 
 		availability_status();
-		hide_empty_cols();
+		hide_empty();
 	});
 </script>
 <?php get_footer(); ?>
