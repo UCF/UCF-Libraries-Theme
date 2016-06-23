@@ -52,7 +52,13 @@ Description: Single technology page.
 		                        <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fine Policy"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
 		                      <?php endif; ?>
                       		<?php if(get_post_meta($post->ID, 'availability', true)): ?>
-		  											<li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> There are currently <span class="total-items-available"></span> available.</li>
+		  											<li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> 
+		  												<div class="progress">
+									              <div id="item_availability_bar" class="progress-bar " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;">
+									                <span class="total-items-available"></span> / <span class="total-items"></span>
+									              </div>
+									            </div>
+		  											</li>
 		  										<?php endif; ?>
 												</ul>
 												<?php endif; ?>
@@ -73,7 +79,7 @@ Description: Single technology page.
 						<div class="card" style="padding:1em;">
 							<h3 id="item_availability">Item Availability</h3>
 							<?php if(get_post_meta($post->ID, 'availability', true)): ?>
-								<p>There are <span class="total-items-available"></span> <?php friendly_name(); ?>s available for checkout.</p>
+								<p>There are <strong><span class="total-items-available"></span> <?php friendly_name(); ?>s available</strong> for checkout.</p>
 								<div class="table-responsive">
 									<?php
 										$url = get_post_meta($post->ID, 'availability', true);
@@ -100,8 +106,10 @@ Description: Single technology page.
 </div>
 <script type="text/javascript">
 // Adds all objects with status "Not Checked Out" and prints them into objects with class .total-items-available
-	function availability_check() {
-		var available_items = 0;
+	function availability_status() {
+		var available_items = 0,
+				total_items = 0,
+				percent_available = 0;
 		$('.table').find('tr').each(function (i, el) {
 	    var $tds = $(this).find('td'),
 	        due_date = $tds.eq(3).text(),
@@ -111,8 +119,26 @@ Description: Single technology page.
 		    	available_items++;
 		    }
 		  }
+		  total_items++;
     });
+    total_items = total_items - 3;
+    percent_available = Math.round((available_items / total_items) * 100);
+    
+    if (available_items > 0) {
+      $('#item_availability_bar').addClass('progress-bar-success');
+    } else {
+      $('#item_availability_bar').addClass('progress-bar-warning');
+    }
+
+    $('#item_availability_bar').css('width', percent_available+'%').attr('aria-valuenow', percent_available);   
     $('.total-items-available').text(available_items);
+    $('.total-items').text(total_items);
+
+	}
+
+// Availability Bar
+	function availability_bar() {
+
 	}
 
 // Hides the empty columns that are pulled in from the catalog
@@ -127,7 +153,7 @@ Description: Single technology page.
 	$(document).ready(function(){
 		$('.table-responsive > table').addClass('table table-striped');
 
-		availability_check();
+		availability_status();
 		hide_empty_cols();
 	});
 </script>
