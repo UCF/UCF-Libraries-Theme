@@ -464,6 +464,28 @@ function youtube_video($atts) {
 }
 add_shortcode('youtube', 'youtube_video');
 
+
+/**
+* Vimeo shortcode
+* Create embedded vimeo links that are responsive.
+*
+* Example:
+* [vimeo id="" width ="50%"]
+**/
+function vimeo_video($atts) {
+  extract(shortcode_atts( array(
+      'id' => '171786784',
+      'width' => '100%',
+  ), $atts ));
+  return '
+    <div class="responsive-wrapper" style="max-width: '.$width.';">
+      <div class="responsive-container vimeo">
+        <iframe src="https://player.vimeo.com/video/'.$id.'" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+    </div>';
+}
+add_shortcode('vimeo', 'vimeo_video');
+
 /**
 * Temporary Library Map
 * A temporary availability map for the library site until a new one is made
