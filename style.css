@@ -6,7 +6,7 @@ Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
 
-Version: 1.9.5
+Version: 1.9.6
 
 */
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto+Slab:700|Roboto:500,700,400);
@@ -68,9 +68,14 @@ p, p a, li, li a {
 
 
 img {
-  max-width: 100%;		/*Should stop images from breaking pages on mobile*/
+  max-width: 100%;		/* Should stop images from breaking pages on mobile*/
   height: auto;
 }
+
+img.media-object {    /* Stops media object images from breaking from img max-width:100%; */
+  max-width: none;
+}
+
 .capitalize { text-transform: capitalize;}
 .ellipsis { display: block; overflow: hidden; text-overflow: ellipsis;}
 
