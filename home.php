@@ -43,8 +43,10 @@ function fbShare(url, title, descr, image, winWidth, winHeight) {
 						<div class="card">
 						<?php if (has_post_thumbnail()): ?>
 							<div class="post-header-img"><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('full'); ?></a></div>
+						<?php else: ?>
+							<div class="post-header-img"><img src="<?php echo(get_template_directory_uri()) ?>/images/generic-default-banner.jpg"></div>
 						<?php endif; ?>
-							<div class="news-post-content">
+						<div class="news-post-content">
 								<div class="share-btn-group">
 	 								<a class="share-btn facebook-btn" href="javascript:share_button('http://www.facebook.com/sharer.php?u=<?php echo get_permalink(); ?>', 520, 350)">
 										<span class="fa-stack fa-lg">
