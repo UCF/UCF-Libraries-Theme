@@ -483,6 +483,9 @@ footer ul li a:hover { text-decoration: none;}
 .tumblr-btn:hover {
   color: #32506d;
 }
+.vimeo-btn:hover {
+  color: #1ab7ea;
+}
 
 /* Image alignment */
 .aligncenter, .alignright, .alignleft, .floatleft, .size-full {
