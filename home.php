@@ -1,31 +1,6 @@
 <?php get_header(); ?>
 <script>
-//   window.fbAsyncInit = function() {
-//     FB.init({
-//       appId      : '879004742184863',
-//       xfbml      : true,
-//       version    : 'v2.4'
-//     });
-//   };
 
-//   (function(d, s, id){
-//      var js, fjs = d.getElementsByTagName(s)[0];
-//      if (d.getElementById(id)) {return;}
-//      js = d.createElement(s); js.id = id;
-//      js.src = "//connect.facebook.net/en_US/sdk.js";
-//      fjs.parentNode.insertBefore(js, fjs);
-//    }(document, 'script', 'facebook-jssdk'));
-
-//   FB.ui({
-//   method: 'share_open_graph',
-//   action_type: 'og.likes',
-//   action_properties: JSON.stringify({
-//     object:'https://developers.facebook.com/docs/',
-//   })
-// }, function(response){
-//   // Debug response (optional)
-//   console.log(response);
-// });
 function fbShare(url, title, descr, image, winWidth, winHeight) {
   var winTop = (screen.height / 2) - (winHeight / 2);
   var winLeft = (screen.width / 2) - (winWidth / 2);
@@ -34,7 +9,7 @@ function fbShare(url, title, descr, image, winWidth, winHeight) {
 
 </script>
 <div id="main">
-	<div id="content" class="container">
+	<div id="title_bar" class="container">
 	<!-- home.php -->
 		<div class="row">
 			<div class="col-sm-8">
@@ -49,10 +24,10 @@ function fbShare(url, title, descr, image, winWidth, winHeight) {
 	<div  class="background-color-gray">
 		<div id="content" class="container">
 			<div class="row">
-				<div class="col-sm-3">
+				<div id="sidebar" class="col-sm-3">
 					<?php get_sidebar(); ?>
 				</div>
-				<div class="col-sm-9">
+				<div id="content_area" class="col-sm-9">
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					<?php	
 						$categories = get_the_category();
@@ -68,8 +43,10 @@ function fbShare(url, title, descr, image, winWidth, winHeight) {
 						<div class="card">
 						<?php if (has_post_thumbnail()): ?>
 							<div class="post-header-img"><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('full'); ?></a></div>
+						<?php else: ?>
+							<div class="post-header-img"><img src="<?php echo(get_template_directory_uri()) ?>/images/generic-default-banner.jpg"></div>
 						<?php endif; ?>
-							<div class="news-post-content">
+						<div class="news-post-content">
 								<div class="share-btn-group">
 	 								<a class="share-btn facebook-btn" href="javascript:share_button('http://www.facebook.com/sharer.php?u=<?php echo get_permalink(); ?>', 520, 350)">
 										<span class="fa-stack fa-lg">

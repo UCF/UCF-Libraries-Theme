@@ -15,7 +15,7 @@ Description: Archive staff member page.
 
 <?php get_header(); ?>
 <div id="main">
-	<div id="content" class="container">
+	<div id="title_bar" class="container">
 		<div class="row">
 			<div class="col-sm-8">
 				<header><h1>Staff Directory</h1></header>
@@ -29,12 +29,76 @@ Description: Archive staff member page.
 	<div  class="background-color-gray">
 		<div id="content" class="container">
 			<div class="row">
-				<div class="col-sm-3">
+				<div id="sidebar" class="col-sm-3">
 					<?php get_sidebar('staff'); ?>
 				</div><!-- col-sm-3 -->
-				<div class="col-sm-9">
+				<div id="content_area" class="col-sm-9">
 					<h2 class="subpage-title">All Staff</h2>
-					<div class="directory row">
+          <div class="btn-group btn-grid-list" data-toggle="buttons">
+            <label class="btn btn-primary view-button active">
+              <input type="radio" name="views" autocomplete="off" value="grid" checked><i class="fa fa-th"></i> Grid
+            </label>
+            <label class="btn btn-primary view-button">
+              <input type="radio" name="views"  autocomplete="off" value="list"> <i class="fa fa-th-list"></i> List
+            </label>
+          </div>
+          <div id="list_view" class="view">
+            <div class="card">
+              <div class="table-responsive">
+                <table class="table table-striped table-sorter">
+                  <thead>
+                    <tr>
+                      <th class="empty-cell"></th>
+                      <th><span class="glyphicon glyphicon-user"></span> Name</th>
+                      <th><i class="fa fa-bookmark"></i> Title</th>
+                      <th><i class="fa fa-university"></i> Department</th>
+                      <th style="min-width: 10em;"><span class="glyphicon glyphicon-phone-alt"></span> Phone</th>
+                      <th style="min-width: 6em;"><span class="glyphicon glyphicon-envelope"></span> Email</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
+                    <tr>
+                      <td><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('thumbnail', array('class' => 'list-thumbnail')); ?></a></td>
+                      <td><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></td>
+                      <td>
+                        <?php if(get_post_meta($post->ID, 'title', true)): ?>
+                          <?php echo get_post_meta($post->ID, 'title', true); ?>
+                        <?php endif; ?>
+                      </td>
+                      <td>
+                        <?php if(get_the_term_list( $post->ID, 'department', true)): ?>
+                          <?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?>
+                        <?php endif; ?>
+                      </td>
+                      <td>
+                        <?php if(get_post_meta($post->ID, 'phone', true)): ?>
+                          <?php echo get_post_meta($post->ID, 'phone', true); ?>
+                        <?php endif; ?>
+                      </td>
+                      <td>
+                        <?php if(get_post_meta($post->ID, 'email', true)): ?>
+                          <a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>">Email</a>
+                        <?php endif; ?>
+                      </td>
+                    </tr>
+                  <?php endwhile; else: ?>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>                      
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  <?php endif; ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="grid_view" class="directory row view view-active">
   					<?php $i = 0; ?>
   					<?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
   						<?php $i++; ?>
@@ -50,7 +114,7 @@ Description: Archive staff member page.
     								): ?>
     								<ul>
   										<?php if(get_post_meta($post->ID, 'title', true)): ?>
-  											<li><span class="glyphicon glyphicon-user" data-toggle="tooltip" data-placement="right" title="Position"></span> <?php echo get_post_meta($post->ID, 'title', true); ?></li>
+                        <li><i class="fa fa-bookmark" data-toggle="tooltip" data-placement="right" title="Title"></i><?php echo get_post_meta($post->ID, 'title', true); ?></li>
   										<?php endif; ?>
 
   										<?php if(get_the_term_list( $post->ID, 'department', true)): ?>

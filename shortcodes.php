@@ -375,27 +375,23 @@ function recent_posts_function($atts){
             $output .= '<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '">'.$category->cat_name.'</a>'.$separator;
           }
         }
-        if(get_post_meta(get_the_ID(), 'thumbnail', true)){           //Check if post has custom field named thumbnail
+        if (has_post_thumbnail()) {
+          $thumbnail = get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail'));
+        } else {
+          $thumbnail = '<img class="homepage-thumbnail" src="'.get_template_directory_uri().'/images/generic-default-thumb.jpg">';
+        }
+        if (get_post_meta(get_the_ID(), 'thumbnail', true)){           //Check if post has custom field named thumbnail
           $url = get_post_meta(get_the_ID() , 'thumbnail', true);
           if (filter_var($url, FILTER_VALIDATE_URL) !== false) {      //Check if string is a valid URL
             $url = set_url_scheme( $url, $scheme );                   //Change the scheme of the URL to match the site (either http or https)
             $array = get_headers($url);
             $string = $array[0];
-            if(strpos($string,"200"))
-              {
+            if(strpos($string,"200")) {
                 $thumbnail = '<img class="homepage-thumbnail" src="'.$url.'">';
-              }
-              else
-              {
-                $thumbnail = get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail'));
-              }
-          } else {
-            $thumbnail = get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail'));
+            }
           }
-        } else {
-          $thumbnail = get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail'));
-        }
-         $return_string .=
+        } 
+        $return_string .=
          '<article>
          <div class="news-post card">
             <div class="news-post-image"><a href="'.get_permalink().'">'.$thumbnail.'</a></div>
@@ -788,12 +784,15 @@ function computer_availability($atts) {
           $floor_number = 'unknown';
           break;
       }
-      if ($percent_available > 65) {
-        $progress_color = 'progress-bar-success';
-      } elseif ($percent_available < 33) {
-        $progress_color = 'progress-bar-danger';
+      if ($machines_available > 0) {
+        if ($percent_available > 33) {
+          $progress_color = 'progress-bar-success';
+        } else {
+          $progress_color = 'progress-bar-warning';
+        }
+        
       } else {
-        $progress_color = 'progress-bar-warning';
+        $progress_color = 'progress-bar-danger';
       }
       $computers_list .= '
         <div class="row">

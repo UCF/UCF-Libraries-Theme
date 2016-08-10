@@ -123,11 +123,13 @@ function wpt_register_js() {
     wp_register_script('jquery', "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js", false, null);
     wp_register_script('jquery.ui', "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js", false, null);
     wp_register_script('jquery.bootstrap.min', get_template_directory_uri() . '/js/bootstrap.min.js', 'jquery');
+    wp_register_script('jquery.tablesorter.min', get_template_directory_uri() . '/js/jquery.tablesorter.min.js', 'jquery');
     wp_register_script('jquery.scripts', get_template_directory_uri(). '/js/scripts.js', 'jquery');
 
     wp_enqueue_script('jquery');
     wp_enqueue_script('jquery.ui');
     wp_enqueue_script('jquery.bootstrap.min');
+    wp_enqueue_script('jquery.tablesorter.min');
     wp_enqueue_script('jquery.scripts');
 }
 add_action( 'init', 'wpt_register_js' );
@@ -214,159 +216,329 @@ function get_modified_term_list( $id = 0, $taxonomy, $before = '', $sep = '', $a
 
 
 /**
-* Staff Directory Custom Post Type
+* Staff Directory Custom Post Type & Taxonomies
 **/
-add_action( 'init', 'register_cpt_staff' );
 
-function register_cpt_staff() {
+function register_cpt_staff_entities() {
 
-    $labels = array(
-        'name' => _x( 'Staff', 'staff' ),
-        'singular_name' => _x( 'Staff', 'staff' ),
-        'add_new' => _x( 'Add New', 'staff' ),
-        'add_new_item' => _x( 'Add New Staff Member', 'staff' ),
-        'edit_item' => _x( 'Edit Staff Member', 'staff' ),
-        'new_item' => _x( 'New Staff Member', 'staff' ),
-        'view_item' => _x( 'View Staff Member', 'staff' ),
-        'search_items' => _x( 'Search Staff', 'staff' ),
-        'not_found' => _x( 'No staff found', 'staff' ),
-        'not_found_in_trash' => _x( 'No staff found in Trash', 'staff' ),
-        'parent_item_colon' => _x( 'Parent Staff:', 'staff' ),
-        'menu_name' => _x( 'Staff', 'staff' ),
+  //Staff Custom Post Type
+    $staff_labels = array(
+      'name' => _x( 'Staff', 'staff' ),
+      'singular_name' => _x( 'Staff', 'staff' ),
+      'add_new' => _x( 'Add New', 'staff' ),
+      'add_new_item' => _x( 'Add New Staff Member', 'staff' ),
+      'edit_item' => _x( 'Edit Staff Member', 'staff' ),
+      'new_item' => _x( 'New Staff Member', 'staff' ),
+      'view_item' => _x( 'View Staff Member', 'staff' ),
+      'search_items' => _x( 'Search Staff', 'staff' ),
+      'not_found' => _x( 'No staff found', 'staff' ),
+      'not_found_in_trash' => _x( 'No staff found in Trash', 'staff' ),
+      'parent_item_colon' => _x( 'Parent Staff:', 'staff' ),
+      'menu_name' => _x( 'Staff', 'staff' ),
     );
 
-    $args = array(
-        'labels' => $labels,
+    $staff_args = array(
+      'labels' => $staff_labels,
+      'hierarchical' => true,
+      'description' => 'Staff names and descriptions',
+      'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions' ),
+      'taxonomies' => array( 'department', 'unit-group', 'subject' ),
+      'public' => true,
+      'show_ui' => true,
+      'show_in_menu' => true,
+      'menu_icon' => 'dashicons-id',
+      'menu_position' => 20,
+      'show_in_nav_menus' => true,
+      'publicly_queryable' => true,
+      'exclude_from_search' => false,
+      'has_archive' => true,
+      'query_var' => true,
+      'can_export' => true,
+      'rewrite' => array( 'with_front' => false ),
+      'capability_type' => 'post'
+    );
+    register_post_type( 'staff', $staff_args );
+
+  // Department Taxonomy
+    $department_labels = array(
+      'name' => _x( 'Department', 'taxonomy general name' ),
+      'singular_name' => _x( 'Department', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Search Departments' ),
+      'all_items' => __( 'All Departments' ),
+      'parent_item' => __( 'Parent Department' ),
+      'parent_item_colon' => __( 'Parent Department:' ),
+      'edit_item' => __( 'Edit Department' ),
+      'update_item' => __( 'Update Department' ),
+      'add_new_item' => __( 'Add New Department' ),
+      'new_item_name' => __( 'New Department Name' ),
+      'menu_name' => __( 'Department' ),
+    );
+  
+    $department_args = array(
+      'hierarchical' => true,
+      'labels' => $department_labels,
+      'show_ui' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'staff', 'with_front' => false ),
+    );
+    register_taxonomy('department',array('staff'), $department_args );
+
+  // Unit Taxonomy
+    $unit_labels = array(
+      'name' => _x( 'Unit & Group', 'taxonomy general name' ),
+      'singular_name' => _x( 'Unit & Group', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Search Units & Groups' ),
+      'all_items' => __( 'All Units & Groups' ),
+      'parent_item' => __( 'Parent Unit or Group' ),
+      'parent_item_colon' => __( 'Parent Unit or Group:' ),
+      'edit_item' => __( 'Edit Unit or Group' ),
+      'update_item' => __( 'Update Unit or Group' ),
+      'add_new_item' => __( 'Add New Unit or Group' ),
+      'new_item_name' => __( 'New Unit or Group Name' ),
+      'menu_name' => __( 'Unit or Group' ),
+    );
+
+    $unit_args = array(
+      'hierarchical' => true,
+      'labels' => $unit_labels,
+      'show_ui' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'staff', 'with_front' => false ),
+    );
+    register_taxonomy('unit',array('staff'), $unit_args );
+
+
+  // Subjects Taxonomy
+    $subject_labels = array(
+      'name' => _x( 'Subject', 'taxonomy general name' ),
+      'singular_name' => _x( 'Subject', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Search Subjects' ),
+      'all_items' => __( 'All Subjects' ),
+      'parent_item' => __( 'Parent Subject' ),
+      'parent_item_colon' => __( 'Parent Subject:' ),
+      'edit_item' => __( 'Edit Subject' ),
+      'update_item' => __( 'Update Subject' ),
+      'add_new_item' => __( 'Add New Subject' ),
+      'new_item_name' => __( 'New Subject Name' ),
+      'menu_name' => __( 'Subject' ),
+    );
+
+    $subject_args = array(
+      'hierarchical' => true,
+      'labels' => $subject_labels,
+      'show_ui' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'subject', 'with_front' => false ),
+    );
+    register_taxonomy('subject',array('sub'), $subject_args );
+}
+
+add_action( 'init', 'register_cpt_staff_entities' );
+
+
+// Slug rewrite for technology lending custom post type and taxonomies
+function generate_staff_taxonomy_rewrite_rules( $wp_rewrite ) {
+  $rules = array();
+  $post_types = get_post_types( array( 'name' => 'staff', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies = get_taxonomies( array( 'name' => 'department', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies += get_taxonomies( array( 'name' => 'unit', 'public' => true, '_builtin' => false ), 'objects' );
+
+  foreach ( $post_types as $post_type ) {
+    $post_type_name = $post_type->name; // 'developer'
+    $post_type_slug = $post_type->rewrite['slug']; // 'developers'
+
+    foreach ( $taxonomies as $taxonomy ) {
+      if ( $taxonomy->object_type[0] == $post_type_name ) {
+        $terms = get_categories( array( 'type' => $post_type_name, 'taxonomy' => $taxonomy->name, 'hide_empty' => 0 ) );
+        foreach ( $terms as $term ) {
+          $rules[$post_type_slug . '/' . $term->slug . '/?$'] = 'index.php?' . $term->taxonomy . '=' . $term->slug;
+        }
+      }
+    }
+  }
+  $wp_rewrite->rules = $rules + $wp_rewrite->rules;
+}
+add_action('generate_rewrite_rules', 'generate_staff_taxonomy_rewrite_rules');
+
+
+
+/**
+* Technology Lending Custom Post Type & Taxonomies
+**/
+
+function register_technology_lending_entities() {
+
+  //Technology Lending Custom Post Type
+    $technology_labels = array(
+        'name' => _x( 'Tech', 'tech' ),
+        'singular_name' => _x( 'Tech', 'tech' ),
+        'add_new' => _x( 'Add New', 'tech' ),
+        'add_new_item' => _x( 'Add New Tech Item', 'tech' ),
+        'edit_item' => _x( 'Edit Tech Item', 'tech' ),
+        'new_item' => _x( 'New Tech Item', 'tech' ),
+        'view_item' => _x( 'View Tech Item', 'tech' ),
+        'search_items' => _x( 'Search Tech Items', 'tech' ),
+        'not_found' => _x( 'No tech item found', 'tech' ),
+        'not_found_in_trash' => _x( 'No tech found in Trash', 'tech' ),
+        'parent_item_colon' => _x( 'Parent Tech:', 'tech' ),
+        'menu_name' => _x( 'Tech Lending', 'tech' ),
+    );
+
+    $technology_args = array(
+        'labels' => $technology_labels,
         'hierarchical' => true,
-        'description' => 'Staff names and descriptions',
-        'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions' ),
-        'taxonomies' => array( 'department', 'unit-group', 'subject' ),
+        'description' => 'Tech names and descriptions',
+        'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions'),
+        'taxonomies' => array( 'tech_type', 'loan_period'),
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
-        'menu_position' => 20,
+        'menu_icon' => 'dashicons-laptop',
+        'menu_position' => 21,
         'show_in_nav_menus' => true,
         'publicly_queryable' => true,
         'exclude_from_search' => false,
         'has_archive' => true,
         'query_var' => true,
         'can_export' => true,
-        'rewrite' => array( 'with_front' => false ),
+        'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
         'capability_type' => 'post'
     );
+    register_post_type( 'tech', $technology_args );
 
-    register_post_type( 'staff', $args );
+  // Tech Type Taxonomy
+    $tech_type_labels = array(
+        'name' => _x( 'Tech Type', 'taxonomy general name' ),
+        'singular_name' => _x( 'Tech Type', 'taxonomy singular name' ),
+        'search_items' =>  __( 'Search Tech Type' ),
+        'all_items' => __( 'All Tech Types' ),
+        'parent_item' => __( 'Parent Tech Type' ),
+        'parent_item_colon' => __( 'Parent Tech Type:' ),
+        'edit_item' => __( 'Edit Tech Type' ),
+        'update_item' => __( 'Update Tech Type' ),
+        'add_new_item' => __( 'Add New Tech Type' ),
+        'new_item_name' => __( 'New Tech Type Name' ),
+        'menu_name' => __( 'Tech Type' ),
+    );
+
+    $tech_type_args = array(
+      'hierarchical' => true,
+      'labels' => $tech_type_labels,
+      'show_ui' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
+    );
+    register_taxonomy('tech_type',array('tech'), $tech_type_args );
+
+  // Loan Period Taxonomy
+    $loan_period_labels = array(
+      'name' => _x( 'Loan Period', 'taxonomy general name' ),
+      'singular_name' => _x( 'Loan Period', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Search Loan Periods' ),
+      'all_items' => __( 'All Loan Periods' ),
+      'parent_item' => __( 'Parent Loan Period' ),
+      'parent_item_colon' => __( 'Parent Loan Period:' ),
+      'edit_item' => __( 'Edit Loan Period' ),
+      'update_item' => __( 'Update Loan Period' ),
+      'add_new_item' => __( 'Add New Loan Period' ),
+      'new_item_name' => __( 'New Loan Period Name' ),
+      'menu_name' => __( 'Loan Period' ),
+    );
+
+    $loan_period_args = array(
+      'hierarchical' => true,
+      'labels' => $loan_period_labels,
+      'show_ui' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
+    );
+    register_taxonomy('loan_period',array('tech'), $loan_period_args );
+
+  // Eligible User Taxonomy
+    $eligible_user_labels = array(
+      'name' => _x( 'Eligible User', 'taxonomy general name' ),
+      'singular_name' => _x( 'Eligible User', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Search Eligible Users' ),
+      'all_items' => __( 'All Eligible Users' ),
+      'parent_item' => __( 'Parent Eligible User' ),
+      'parent_item_colon' => __( 'Parent Eligible User:' ),
+      'edit_item' => __( 'Edit Eligible User' ),
+      'update_item' => __( 'Update Eligible User' ),
+      'add_new_item' => __( 'Add New Eligible User' ),
+      'new_item_name' => __( 'New Eligible User Name' ),
+      'menu_name' => __( 'Eligible User' ),
+    );
+
+    $eligible_user_args = array(
+      'hierarchical' => true,
+      'labels' => $eligible_user_labels,
+      'show_ui' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
+    );
+    register_taxonomy('eligible_user',array('tech'), $eligible_user_args );
+
+  // Library Taxonomy
+    $library_labels = array(
+      'name' => _x( 'Library', 'taxonomy general name' ),
+      'singular_name' => _x( 'Library', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Search Librarys' ),
+      'all_items' => __( 'All Librarys' ),
+      'parent_item' => __( 'Parent Library' ),
+      'parent_item_colon' => __( 'Parent Library:' ),
+      'edit_item' => __( 'Edit Library' ),
+      'update_item' => __( 'Update Library' ),
+      'add_new_item' => __( 'Add New Library' ),
+      'new_item_name' => __( 'New Library Name' ),
+      'menu_name' => __( 'Library' ),
+    );
+
+    $library_args = array(
+      'hierarchical' => true,
+      'labels' => $library_labels,
+      'show_ui' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
+    );
+    register_taxonomy('library',array('tech'), $library_args );
 }
-// Department Taxonomy
-add_action( 'init', 'department_init' );
 
-function department_init() {
-  register_taxonomy('department',array('staff'), array(
+add_action( 'init', 'register_technology_lending_entities' );
 
-    'hierarchical' => true,
-    'labels' => array(
-    'name' => _x( 'Department', 'taxonomy general name' ),
-    'singular_name' => _x( 'Department', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Departments' ),
-    'all_items' => __( 'All Departments' ),
-    'parent_item' => __( 'Parent Department' ),
-    'parent_item_colon' => __( 'Parent Department:' ),
-    'edit_item' => __( 'Edit Department' ),
-    'update_item' => __( 'Update Department' ),
-    'add_new_item' => __( 'Add New Department' ),
-    'new_item_name' => __( 'New Department Name' ),
-    'menu_name' => __( 'Department' ),
-  ),
-    'show_ui' => true,
-    'show_admin_column' => true,
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'department', 'with_front' => false ),
-  ));
+
+// Slug rewrite for technology lending custom post type and taxonomies
+function generate_tech_taxonomy_rewrite_rules( $wp_rewrite ) {
+  $rules = array();
+  $post_types = get_post_types( array( 'name' => 'tech', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies = get_taxonomies( array( 'name' => 'tech_type', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies += get_taxonomies( array( 'name' => 'loan_period', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies += get_taxonomies( array( 'name' => 'eligible_user', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies += get_taxonomies( array( 'name' => 'library', 'public' => true, '_builtin' => false ), 'objects' );
+
+  foreach ( $post_types as $post_type ) {
+    $post_type_name = $post_type->name; // 'developer'
+    $post_type_slug = $post_type->rewrite['slug']; // 'developers'
+
+    foreach ( $taxonomies as $taxonomy ) {
+      if ( $taxonomy->object_type[0] == $post_type_name ) {
+        $terms = get_categories( array( 'type' => $post_type_name, 'taxonomy' => $taxonomy->name, 'hide_empty' => 0 ) );
+        foreach ( $terms as $term ) {
+          $rules[$post_type_slug . '/' . $term->slug . '/?$'] = 'index.php?' . $term->taxonomy . '=' . $term->slug;
+        }
+      }
+    }
+  }
+  $wp_rewrite->rules = $rules + $wp_rewrite->rules;
 }
+add_action('generate_rewrite_rules', 'generate_tech_taxonomy_rewrite_rules');
 
-
-// Unit Taxonomy
-add_action( 'init', 'unit_init' );
-
-function unit_init() {
-  register_taxonomy('unit',array('staff'), array(
-
-    'hierarchical' => true,
-    'labels' => array(
-    'name' => _x( 'Unit & Group', 'taxonomy general name' ),
-    'singular_name' => _x( 'Unit & Group', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Units & Groups' ),
-    'all_items' => __( 'All Units & Groups' ),
-    'parent_item' => __( 'Parent Unit or Group' ),
-    'parent_item_colon' => __( 'Parent Unit or Group:' ),
-    'edit_item' => __( 'Edit Unit or Group' ),
-    'update_item' => __( 'Update Unit or Group' ),
-    'add_new_item' => __( 'Add New Unit or Group' ),
-    'new_item_name' => __( 'New Unit or Group Name' ),
-    'menu_name' => __( 'Unit or Group' ),
-  ),
-    'show_ui' => true,
-    'show_admin_column' => true,
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'unit-group', 'with_front' => false ),
-  ));
-}
-
-
-// Group Taxonomy
-// add_action( 'init', 'group_init' );
-
-// function group_init() {
-//   register_taxonomy('group',array('staff'), array(
-
-//     'hierarchical' => true,
-//     'labels' => array(
-//     'name' => _x( 'Group', 'taxonomy general name' ),
-//     'singular_name' => _x( 'Group', 'taxonomy singular name' ),
-//     'search_items' =>  __( 'Search Groups' ),
-//     'all_items' => __( 'All Groups' ),
-//     'parent_item' => __( 'Parent Group' ),
-//     'parent_item_colon' => __( 'Parent Group:' ),
-//     'edit_item' => __( 'Edit Group' ),
-//     'update_item' => __( 'Update Group' ),
-//     'add_new_item' => __( 'Add New Group' ),
-//     'new_item_name' => __( 'New Group Name' ),
-//     'menu_name' => __( 'Group' ),
-//   ),
-//     'show_ui' => true,
-//     'show_admin_column' => true,
-//     'query_var' => true,
-//     'rewrite' => array( 'slug' => 'group', 'with_front' => false ),
-//   ));
-// }
-
-
-// Subjects Taxonomy
-add_action( 'init', 'subject_init' );
-
-function subject_init() {
-  register_taxonomy('subject',array('staff'), array(
-
-    'hierarchical' => true,
-    'labels' => array(
-    'name' => _x( 'Subject', 'taxonomy general name' ),
-    'singular_name' => _x( 'Subject', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Subjects' ),
-    'all_items' => __( 'All Subjects' ),
-    'parent_item' => __( 'Parent Subject' ),
-    'parent_item_colon' => __( 'Parent Subject:' ),
-    'edit_item' => __( 'Edit Subject' ),
-    'update_item' => __( 'Update Subject' ),
-    'add_new_item' => __( 'Add New Subject' ),
-    'new_item_name' => __( 'New Subject Name' ),
-    'menu_name' => __( 'Subject' ),
-  ),
-    'show_ui' => true,
-    'show_admin_column' => true,
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'subject', 'with_front' => false ),
-  ));
-}
 
 
 //Adding in Featured image feature

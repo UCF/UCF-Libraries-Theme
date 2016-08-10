@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 <div id="main">
-	<div id="content" class="container">
+	<div id="title_bar" class="container">
 	<!-- single.php -->
 		<div class="row">
 			<div class="col-sm-8">
@@ -15,10 +15,10 @@
 	<div  class="background-color-gray">
 		<div id="content" class="container">
 			<div class="row">
-				<div class="col-sm-3">
+				<div id="sidebar" class="col-sm-3">
 					<?php get_sidebar(); ?>
 				</div>
-				<div class="col-sm-9">
+				<div id="content_area" class="col-sm-9">
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					<?php	
 						$categories = get_the_category();
@@ -34,6 +34,8 @@
 						<div class="card">
 						<?php if (has_post_thumbnail()): ?>
 							<div class="post-header-img"><?php the_post_thumbnail('full'); ?></div>
+						<?php else: ?>
+							<div class="post-header-img"><img src="<?php echo(get_template_directory_uri()) ?>/images/generic-default-banner.jpg"></div>
 						<?php endif; ?>
 							<div class="news-post-content">
 								<div class="share-btn-group">

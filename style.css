@@ -66,6 +66,7 @@ p, p a, li, li a {
         hyphens: auto;
 }
 
+.hide { display: none; }
 
 img {
   max-width: 100%;		/* Should stop images from breaking pages on mobile*/
@@ -148,8 +149,8 @@ dl.menu-list dd, dl.list-spaced dd { margin-bottom: 1.5em; }
 	border-radius: 2px;
 	overflow: auto;
 	margin: 0 0 2em;
-	font-size: 12px;
 }
+.content-area { padding: 1em; }
 
 /* Side Menu */
 .widget-area .textwidget ul {
@@ -482,6 +483,9 @@ footer ul li a:hover { text-decoration: none;}
 .tumblr-btn:hover {
   color: #32506d;
 }
+.vimeo-btn:hover {
+  color: #1ab7ea;
+}
 
 /* Image alignment */
 .aligncenter, .alignright, .alignleft, .floatleft, .size-full {
@@ -516,7 +520,41 @@ footer ul li a:hover { text-decoration: none;}
 	padding: 0 0 .25em;
 }
 
+/* Widget area affix */
+@media (max-width: 768px) {
+  .affix {
+      position: static;
+  }
+}
+@media (min-width: 768px) {
+  .widget-area.affix {
+    top: 2em;
+    z-index: 9999;
+    width: 157.5px;
+  }
+}
+@media (min-width: 992px) {
+  .widget-area.affix {
+    top: 2em;
+    z-index: 9999;
+    width: 212.5px;
+  }
+}
+@media (min-width: 1200px) {
+  .widget-area.affix {
+    top: 2em;
+    z-index: 9999;
+    width: 262.5px;
+  }
+}
+
+.affix-bottom {
+  position: relative;
+
+}
+
 /*Video iframe responsive wrapper*/
+
 .responsive-container { position: relative; padding-bottom: 100%; padding-top: 30px; height: 0; overflow: hidden; }
 .responsive-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 .responsive-container.youtube { padding-bottom: 57%; }
@@ -536,8 +574,23 @@ footer ul li a:hover { text-decoration: none;}
     width: 100% !important;
     height: 100% !important;
 }
+/* Grid / List view swapper */
 
-/* Single Person page */
+.view {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+}
+.view-active {
+  height: 100%;
+  visibility: visible;
+  opacity: 100;
+  transition-property: opacity, visibility;
+  transition-timing-function: ease;
+  transition-duration: 255ms;
+}
+.view table { font-size: 12px; }
 
 /*Staff Directories*/
 .primary {
@@ -554,6 +607,10 @@ footer ul li a:hover { text-decoration: none;}
 	left: -1.5em;
  	top: 0.2em;
 }
+.caption .fa-bookmark {
+  padding-left: 2px;
+}
+
 .caption h2,
 .caption h3,
 .caption h4 {
@@ -593,6 +650,48 @@ footer ul li a:hover { text-decoration: none;}
 }
 
 .staff-thumbnail { width: 100%; height: auto;}
+
+.btn-grid-list {margin-bottom: 1em;}
+
+/* Technology Lending */
+
+.tech-description { margin-bottom: 1em; }
+.tech-list td:nth-child(3n), .tech-list th:nth-child(3n) { max-width: 11em; }
+.list-thumbnail { max-width: 25px; }
+
+/* Table Sorter */
+
+th.header { 
+  cursor: pointer;    
+}
+th.header:after { 
+  position: relative;
+  left: 7px;
+  font-family: "FontAwesome";
+  content: "\f0dc";
+}
+th.headerSortUp { 
+  background-color: #ffcc00; 
+} 
+th.headerSortUp:after{
+  position: relative;
+  left: 7px;
+  font-family: "FontAwesome";
+  content: "\f0de";
+}
+th.headerSortDown { 
+  background-color: #ffcc00; 
+} 
+th.headerSortDown:after{
+  position: relative;
+  left: 7px;
+  font-family: "FontAwesome";
+  content: "\f0dd";
+}
+th.header.empty-cell:after { 
+  content: "";
+}
+
 
 /* jquery ui tabs override */
 
@@ -914,6 +1013,7 @@ footer ul li a:hover { text-decoration: none;}
   padding: 0 1%;
   padding-bottom: 10px;
   margin-bottom: 10px;
+  font-size: 12px;
 }
 .events-homepage li {
   margin: 0;

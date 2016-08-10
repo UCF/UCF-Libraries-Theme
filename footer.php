@@ -63,6 +63,7 @@
         <a class="instagram-btn" title="Follow us on Instagram" href="https://www.instagram.com/ucflibrary/" target="_blank"><i class="fa fa-instagram"></i><span class="sr-only">Follow us on Instagram</span></a>
         <a class="tumblr-btn" title="Follow us on Tumblr" href="http://ucflibrary.tumblr.com/" target="_blank"><i class="fa fa-tumblr-square"></i><span class="sr-only">Follow us on Tumblr</span></a>
         <a class="youtube-btn" title="Follow us on YouTube" href="https://www.youtube.com/user/UCFLibraries" target="_blank"><i class="fa fa-youtube-square"></i><span class="sr-only">Follow us on YouTube</span></a>
+        <a class="vimeo-btn" title="Follow us on Vimeo" href="https://vimeo.com/ucflibraries" target="_blank"><i class="fa fa-vimeo-square"></i><span class="sr-only">Follow us on Vimeo</span></a>
 			</div>
 			<div class="brand">
 				<img src="<?php echo get_template_directory_uri() ?>/images/libraries-word-mark.png" alt="UCF Libraries"><br>
