@@ -89,7 +89,7 @@ Description: Single technology page.
 											$second_step = explode("</div>" , $first_step[1] );
 											echo $second_step[0];
 										} else {
-											?><p>Item availability is unavailable.</p> <?php echo($content);
+											?><p>Item availability is unavailable.</p> <?php
 										}
 									?>
 								</div>
