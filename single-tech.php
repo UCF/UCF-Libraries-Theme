@@ -118,7 +118,7 @@ Description: Single technology page.
 	    var $tds = $(this).find('td'),
 	        due_date = $tds.eq(3).text(),
 	        item_status = $tds.eq(2).text();
-	    if (item_status != 'Damaged' && item_status != 'Lost - Patron Billed' && item_status != 'In House Repair' && item_status != 'Lost - Missing' && item_status != 'Lost - Paid' ) {
+	    if (item_status != 'Damaged' && item_status != 'Lost - Patron Billed' && item_status != 'In House Repair' && item_status != 'Lost - Missing' && item_status != 'Lost - Paid' && item_status != 'Withdrawn') {
 		    if (due_date == 'Not Checked Out') {
 		    	available_items++;
 		    }
