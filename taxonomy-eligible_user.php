@@ -131,13 +131,17 @@ Description: eligible user taxonomy archive.
                   <figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
   								<div class="caption">
   								  <h3><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h3>
-                    <?php if(get_the_term_list( $post->ID, 'loan_period', true) ||
+                    <?php if(get_the_term_list( $post->ID, 'tech_type', true) ||
+                      get_the_term_list( $post->ID, 'loan_period', true) ||
                       get_the_term_list( $post->ID, 'eligible_user', true) ||
                       get_the_term_list( $post->ID, 'library', true) ||
                       get_post_meta($post->ID, 'fine-policy', true) ||
                       get_post_meta($post->ID, 'availability', true)
                     ): ?>
       								<ul>
+                      <?php if(get_the_term_list( $post->ID, 'tech_type', true)): ?>
+                        <li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Tech Type"></i><?php echo get_the_term_list( $post->ID, 'tech_type', '', ', ', '' ); ?></li>
+                      <?php endif; ?>
                       <?php if(get_the_term_list( $post->ID, 'loan_period', true)): ?>
                         <li><i class="fa fa-hourglass" data-toggle="tooltip" data-placement="right" title="Loan Period"></i><?php echo get_the_term_list( $post->ID, 'loan_period', '', ', ', '' ); ?></li>
                       <?php endif; ?>

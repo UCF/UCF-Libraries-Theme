@@ -36,12 +36,16 @@ Description: Single technology page.
 									<div class="col-sm-8">
 										<div class="caption">
 											<h2><?php friendly_name(); ?></h2>
-		    								<?php if(get_the_term_list( $post->ID, 'loan_period', true) ||
-		    									 get_the_term_list( $post->ID, 'eligible_user', true) ||
-		    									 get_post_meta($post->ID, 'fine-policy', true) ||
-		    									 get_post_meta($post->ID, 'availability', true)
+		    								<?php if(get_the_term_list( $post->ID, 'tech_type', true) ||
+                      		get_the_term_list( $post->ID, 'loan_period', true) ||
+		    									get_the_term_list( $post->ID, 'eligible_user', true) ||
+		    									get_post_meta($post->ID, 'fine-policy', true) ||
+		    									get_post_meta($post->ID, 'availability', true)
 		    								): ?>
 												<ul>
+													<?php if(get_the_term_list( $post->ID, 'tech_type', true)): ?>
+	                        <li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Tech Type"></i><?php echo get_the_term_list( $post->ID, 'tech_type', '', ', ', '' ); ?></li>
+	                     		<?php endif; ?>
 		  										<?php if(get_the_term_list( $post->ID, 'loan_period', true)): ?>
 		  											<li><i class="fa fa-hourglass" data-toggle="tooltip" data-placement="right" title="Loan Period"></i><?php echo get_the_term_list( $post->ID, 'loan_period', '', ', ', '' ); ?></li>
 		  										<?php endif; ?>
@@ -114,7 +118,7 @@ Description: Single technology page.
 	    var $tds = $(this).find('td'),
 	        due_date = $tds.eq(3).text(),
 	        item_status = $tds.eq(2).text();
-	    if (item_status != 'Damaged' && item_status != 'Lost - Patron Billed' && item_status != 'In House Repair' && item_status != 'Lost - Missing' && item_status != 'Lost - Paid' ) {
+	    if (item_status != 'Damaged' && item_status != 'Lost - Patron Billed' && item_status != 'In House Repair' && item_status != 'Lost - Missing' && item_status != 'Lost - Paid' && item_status != 'Withdrawn') {
 		    if (due_date == 'Not Checked Out') {
 		    	available_items++;
 		    }
