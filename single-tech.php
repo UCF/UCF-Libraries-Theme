@@ -38,7 +38,7 @@ Description: Single technology page.
 											<h2><?php friendly_name(); ?></h2>
 		    								<?php if(get_the_term_list( $post->ID, 'loan_period', true) ||
 		    									 get_the_term_list( $post->ID, 'eligible_user', true) ||
-		    									 get_post_meta($post->ID, 'availability', true) ||
+		    									 get_post_meta($post->ID, 'fine-policy', true) ||
 		    									 get_post_meta($post->ID, 'availability', true)
 		    								): ?>
 												<ul>
