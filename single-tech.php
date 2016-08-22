@@ -39,6 +39,7 @@ Description: Single technology page.
 		    								<?php if(get_the_term_list( $post->ID, 'tech_type', true) ||
                       		get_the_term_list( $post->ID, 'loan_period', true) ||
 		    									get_the_term_list( $post->ID, 'eligible_user', true) ||
+		    									get_the_term_list( $post->ID, 'library', true) ||
 		    									get_post_meta($post->ID, 'fine-policy', true) ||
 		    									get_post_meta($post->ID, 'availability', true)
 		    								): ?>
@@ -51,6 +52,9 @@ Description: Single technology page.
 		  										<?php endif; ?>
 		                      <?php if(get_the_term_list( $post->ID, 'eligible_user', true)): ?>
 		                        <li><i class="fa fa-users" data-toggle="tooltip" data-placement="right" title="Eligible Users"></i><?php echo get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' ); ?></li>
+		                      <?php endif; ?>
+		                      <?php if(get_the_term_list( $post->ID, 'library', true)): ?>
+		                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo get_the_term_list( $post->ID, 'library', '', ', ', '' ); ?></li>
 		                      <?php endif; ?>
 		                      <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
 		                        <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fine Policy"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
