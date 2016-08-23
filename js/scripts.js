@@ -278,7 +278,7 @@ function widget_area_affix() {
 // =========================================
 
 function computer_availability(id) {
-  var feed_url = "https://libweb.net.ucf.edu/Web/Db.php?q=publicStatusPCs&format=json&l=" + id;
+  var feed_url = "http://libweb.net.ucf.edu/Web/Db.php?q=publicStatusPCs&format=json&l=" + id;
   $.getJSON( feed_url, function( data ) {
     var availability_content = '#computer_availability' + id;
     var computer_total = '#computer_total' + id;
