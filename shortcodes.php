@@ -734,85 +734,25 @@ add_shortcode('library-events', 'library_events');
 function computer_availability($atts) {
    extract(shortcode_atts(array(
       'id' => '1',
+      'name' => '',
    ), $atts));
-  $string = wp_remote_get('http://libweb.net.ucf.edu/Web/Db.php?q=publicStatusPCs&format=json&l='.$id, array(
-    'user-agent' => 'DummyAgentForDetectMobileBrowser.php',
-    ));
-  $json_o = json_decode($string['body']);
-  if ($json_o != null) {
-    $computers_list = '<div class="computer-availability">';
-    if ($id == '1') {
-      $i = 1;
-      $floors = 5;
-    } elseif ($id == '5' || $id == '13') {
-      $i = 1;
-      $floors = 1;
-    } else{
 
-    }
-    while ( $i <= $floors ) {
-      $machines_in_use = 0;
-      $machines_total = 0;
-      $machines_available = 0;
-      foreach ($json_o as $location) if ($location->location_room_floor == $i) {
-        $machines_in_use += $location->machinesInUse;
-        $machines_total += $location->machinesTotal;
-      }
-      $machines_available = ($machines_total-$machines_in_use);
-      if ($machines_total != 0) {
-        $percent_available = round(($machines_available/$machines_total)*100);
-      } else {
-        $percent_available = 0;
-      }
-      switch ($i) {
-        case 1:
-          $floor_number = '1st';
-          break;
-        case 2:
-          $floor_number = '2nd';
-          break;
-        case 3:
-          $floor_number = '3rd';
-          break;
-        case 4:
-          $floor_number = '4th';
-          break;
-        case 5:
-          $floor_number = '5th';
-          break;
-        default:
-          $floor_number = 'unknown';
-          break;
-      }
-      if ($machines_available > 0) {
-        if ($percent_available > 33) {
-          $progress_color = 'progress-bar-success';
-        } else {
-          $progress_color = 'progress-bar-warning';
-        }
-        
-      } else {
-        $progress_color = 'progress-bar-danger';
-      }
-      $computers_list .= '
-        <div class="row">
-          <div class="col-sm-3"><span class="floor-name">'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</span></div>
-          <div class="col-sm-9">
-            <div class="progress">
-              <div class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em; width: '.$percent_available.'%;">
-                '.$machines_available.' / '.$machines_total.'
-              </div>
-            </div>
-          </div>
-        </div>';
-      $i++;
-    }
-    $computers_list .= '</div>';
-  } else {
-    $computers_list = '<p>Unable to determine computer availability.</p>';
-  }
+  $computers_list = '
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 style="display:inline-block;">'.$name.'</h3>
+        <span class="computer-total"><span id="computer_total'.$id.'"></span> <i class="fa fa-desktop"></i></span>
+      </div>
+       <div class="panel-body">
+        <div id="computer_availability'.$id.'" class="computer-availability"></div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function(){
+        computer_availability('.$id.');
+      });
+    </script>';
   return $computers_list;
-  //return '<pre>'.$string['body'].'</pre>';
 }
 add_shortcode('computer-availability', 'computer_availability');
 
