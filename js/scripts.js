@@ -274,6 +274,87 @@ function widget_area_affix() {
   };
 };
 
+// Computer Availability
+// =========================================
+
+function computer_availability(id) {
+  var feed_url = "http://libweb.net.ucf.edu/Web/Db.php?q=publicStatusPCs&format=json&l=" + id;
+  $.getJSON( feed_url, function( data ) {
+    var availability_content = '#computer_availability' + id;
+    var computer_total = '#computer_total' + id;
+    $(availability_content).empty();
+    var all_floor_total = 0;
+    var floors = 1;
+    if (id == 1) {
+      floors = 5;
+    }
+    for (var i = 1; i <= floors; i++) {
+      var machines_in_use = 0;
+      var machines_total = 0;
+      var machines_available = 0;
+      $.each(data, function(key, value){
+        if (this.location_room_floor == i) {
+          machines_in_use += parseInt(this.machinesInUse);
+          machines_total += parseInt(this.machinesTotal);
+        }
+      });
+      machines_available = (machines_total - machines_in_use);
+      if (machines_total != 0) {
+        var percent_available = Math.round((machines_available / machines_total) * 100);
+      } else {
+        var percent_available = 0;
+      }
+      switch (i) {
+        case 1:
+          var floor_number = '1st'
+          break;
+        case 2:
+          var floor_number = '2nd';
+          break;
+        case 3:
+          var floor_number = '3rd';
+          break;
+        case 4:
+          var floor_number = '4th';
+          break;
+        case 5:
+          var floor_number = '5th';
+          break;
+
+        default:
+          var floor_number = 'unknown';
+          break;
+      }
+      if (machines_available > 0) {
+        if (percent_available > 33) {
+          var progress_color = 'progress-bar-success';
+        } else {
+          var progress_color = 'progress-bar-warning';
+        }
+      } else {
+        var progress_color = 'progress-bar-warning';
+      }
+
+      $(availability_content).append(' \
+        <div class="row"> \
+          <div class="col-sm-3"> \
+            <span class="floor-name">'+ floor_number +' Floor <i class="fa fa-desktop"></i>:</span> \
+          </div> \
+          <div class="col-sm-9"> \
+            <div class="progress"> \
+              <div class="progress-bar '+ progress_color +'" role="progressbar" aria-valuenow="'+ percent_available +'" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em; width: '+ percent_available +'%;"> \
+                '+ machines_available +' / '+ machines_total +' \
+              </div> \
+            </div> \
+          </div> \
+        </div>');
+      all_floor_total += machines_available;
+    }
+    $(computer_total).text(all_floor_total);
+    setTimeout(computer_availability, 10000, id);
+  });
+}
+
 
 // Load all functions when Dom Ready
 // =========================================
