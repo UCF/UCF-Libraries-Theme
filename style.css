@@ -385,6 +385,11 @@ footer ul li a:hover { text-decoration: none;}
   font-size: 18px;
   line-height: 30px;
 }
+.computer-total {
+    float: right;
+    font-size: 1.5em;
+    line-height: 3em;
+}
 .floor-name {
   font-size: 18px;
   line-height: 35px;

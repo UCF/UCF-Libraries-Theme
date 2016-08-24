@@ -748,7 +748,6 @@ function computer_availability($atts) {
       $i = 1;
       $floors = 1;
     } else{
-
     }
     while ( $i <= $floors ) {
       $machines_in_use = 0;

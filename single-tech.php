@@ -27,7 +27,7 @@ Description: Single technology page.
 				</div>
 				<div id="content_area" class="col-sm-9">
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-						<article class="clearfix">
+						<article>
 							<div class="thumbnail">
 								<div class="row">
 									<div class="col-sm-4">
@@ -73,38 +73,40 @@ Description: Single technology page.
 												<?php 
 													if (get_the_excerpt($post->ID, true)): 
 														the_excerpt();
-													endif
+													endif;
 												?>
 										</div>
 									</div>
 								</div>
 							</div>
-							<?php if(get_the_term_list( $post->ID, 'unit', true)): ?>
-								<p><?php echo get_the_term_list( $post->ID, 'unit', 'Units &amp; Groups: ', ', ', '' ); ?></p>
-							<?php endif; ?>
-						</article>
-						<?php the_content(__('(more...)')); ?>
-						<div class="card" style="padding:1em;">
-							<h3 id="item_availability">Item Availability</h3>
-							<?php if(get_post_meta($post->ID, 'availability', true)): ?>
-								<p>There are <strong><span class="total-items-available"></span> <?php friendly_name(); ?>s available</strong> for checkout.</p>
-								<div class="table-responsive">
-									<?php
-										$url = get_post_meta($post->ID, 'availability', true);
-										$content = file_get_contents($url);
-										if ($content != false) {
-											$first_step = explode( '<div id="divItemDetails">' , $content );
-											$second_step = explode("</div>" , $first_step[1] );
-											echo $second_step[0];
-										} else {
-											?><p>Item availability is unavailable.</p> <?php
-										}
-									?>
+							<div class="clearfix"></div>
+							<?php if($post->post_content != "") : ?>
+								<div class="card" style="padding:1em;">
+									<?php the_content(__('(more...)')); ?>
 								</div>
-							<?php else: ?>	
-								<p> This item is not tracked in our availability system. </p>
 							<?php endif; ?>
-						</div>
+							<div class="card" style="padding:1em;">
+								<h3 id="item_availability">Item Availability</h3>
+								<?php if(get_post_meta($post->ID, 'availability', true)): ?>
+									<p>There are <strong><span class="total-items-available"></span> <?php friendly_name(); ?>s available</strong> for checkout.</p>
+									<div class="table-responsive">
+										<?php
+											$url = get_post_meta($post->ID, 'availability', true);
+											$content = file_get_contents($url);
+											if ($content != false) {
+												$first_step = explode( '<div id="divItemDetails">' , $content );
+												$second_step = explode("</div>" , $first_step[1] );
+												echo $second_step[0];
+											} else {
+												?><p>Item availability is unavailable.</p> <?php
+											}
+										?>
+									</div>
+								<?php else: ?>	
+									<p> This item is not tracked in our availability system. </p>
+								<?php endif; ?>
+							</div>
+						</article>
 					<?php endwhile; else: ?>
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 				</div>
@@ -141,11 +143,6 @@ Description: Single technology page.
     $('#item_availability_bar').css('width', percent_available+'%').attr('aria-valuenow', percent_available);   
     $('.total-items-available').text(available_items);
     $('.total-items').text(total_items);
-
-	}
-
-// Availability Bar
-	function availability_bar() {
 
 	}
 
