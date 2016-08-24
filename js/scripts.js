@@ -274,7 +274,7 @@ function widget_area_affix() {
   };
 };
 
-// Computer Availability
+// Computer Availability (function is currently unused.)
 // =========================================
 
 function computer_availability(id) {
