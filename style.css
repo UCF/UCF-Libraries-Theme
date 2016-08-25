@@ -923,7 +923,7 @@ th.header.empty-cell:after {
 @media (min-width: 768px) {
 
 	.homepage-services {
-		font-size: 1.8em;
+		font-size: 1.1em;
 	}
 	.homepage-services a {
 		width: auto;
@@ -948,10 +948,20 @@ th.header.empty-cell:after {
 @media (min-width: 992px) {
 
 	.homepage-services {
-		font-size: 2em;
+		font-size: 1.5em;
 	}
 
 }
+
+/* Large devices (desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+  .homepage-services {
+    font-size: 1.8em;
+  }
+
+}
+
 
 /*Homepage News*/
 .news-post {
