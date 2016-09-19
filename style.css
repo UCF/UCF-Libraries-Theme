@@ -978,7 +978,7 @@ th.header.empty-cell:after {
 }
 .news-post-category, .news-post-category a, .news-post-date {
 	color: #999;
-	font-size: 13px;
+	font-size: 12px;
 }
 .news-post-date {
 	float: right;
