@@ -644,8 +644,8 @@ footer ul li a:hover { text-decoration: none;}
 		float: none;
 		width: auto;
 	}*/
-	.directory .caption ul { font-size: 11px; }
-	.directory .caption h3 { font-size: 14px; }
+	.directory .caption ul { font-size: 9px; }
+	.directory .caption h3 { font-size: 12px; }
 }
 
 @media (min-width: 768px) {
