@@ -1258,6 +1258,10 @@ th.header.empty-cell:after {
   .ui-tabs-panel {
     display: block !important;
   }
+  .tab-content>.tab-pane {
+    display: block;
+    visibility: visible;
+  }
   nav, #sidebar, .scroll-top, .brand, .header-search, .social-btn-group { display:none !important; }
   #header { height:75px; }
   #content{ margin-left:0; 
