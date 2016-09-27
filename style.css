@@ -1244,3 +1244,120 @@ th.header.empty-cell:after {
   margin-top: 0;
   margin-bottom: 0;
 }
+
+
+/* Print Style Sheet */
+@media print {
+
+  #content_area {
+    width: 100%;
+  }
+   a[href]:after {
+    content: none !important;
+  }
+  .ui-tabs-panel {
+    display: block !important;
+  }
+  nav, #sidebar, .scroll-top, .brand { display:none !important; }
+  #header { height:75px; }
+  #content{ margin-left:0; 
+       float:none; 
+       width:auto; }
+  .demo .red { color:black; 
+       font-weight:bold; }
+  #content a { font-weight:bold; 
+       color:#000066; 
+       text-decoration:underline; }
+  #content{ margin-left:0; 
+       float:none; 
+       width:auto; }
+  #footer, .ad { display:none; }
+  h1, h2, h3, h4, h5, h6 { page-break-after:avoid; 
+       page-break-inside:avoid; }
+  h3 { margin-left:10px; 
+       margin-bottom:0px; 
+       padding-bottom:0px; }
+  blockquote, table, pre { page-break-inside:avoid; }
+  ul, ol, dl  { page-break-before:avoid; }
+  img.centered { display: block; 
+       margin-left: auto; 
+       margin-right: auto; }
+  img.right { padding: 4px; 
+       margin: 0 0 2px 7px; 
+       display: inline; }
+  img.left { padding: 4px; 
+       margin: 0 7px 2px 0; 
+       display: inline; }
+  .right { float: right; }
+  .left { float: left; }
+  img { page-break-inside:avoid; 
+       page-break-after:avoid; 
+  }
+  h1.sr-only, h2.sr-only, h3.sr-only, h4.sr-only {
+    position: relative;
+    width: auto;
+    height: auto;
+    overflow: auto;
+    clip: inherit;
+  }
+
+  .staff-thumbnail { width: auto; }
+
+  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+        float: left;
+   }
+   .col-sm-12 {
+        width: 100%;
+   }
+   .col-sm-11 {
+        width: 91.66666667%;
+   }
+   .col-sm-10 {
+        width: 83.33333333%;
+   }
+   .col-sm-9 {
+        width: 75%;
+   }
+   .col-sm-8 {
+        width: 66.66666667%;
+   }
+   .col-sm-7 {
+        width: 58.33333333%;
+   }
+   .col-sm-6 {
+        width: 50%;
+   }
+   .col-sm-5 {
+        width: 41.66666667%;
+   }
+   .col-sm-4 {
+        width: 33.33333333%;
+   }
+   .col-sm-3, .col-lg-3 {
+        width: 25%;
+   }
+   .col-sm-2 {
+        width: 16.66666667%;
+   }
+   .col-sm-1 {
+        width: 8.33333333%;
+   }
+   .clearfix {
+    display: none !important;
+   }
+   .clearfix.visible-lg-block{
+    display: block !important;
+   }
+  .view {
+    height: 100%;
+    visibility: visible;
+    opacity: 100;
+  }
+  #list_view {
+    display: none;
+  }
+  .caption h2, .caption h3, .caption h4 {
+    margin: 0
+  }
+
+}
