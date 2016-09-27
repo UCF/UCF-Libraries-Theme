@@ -1258,7 +1258,7 @@ th.header.empty-cell:after {
   .ui-tabs-panel {
     display: block !important;
   }
-  nav, #sidebar, .scroll-top, .brand { display:none !important; }
+  nav, #sidebar, .scroll-top, .brand, .header-search { display:none !important; }
   #header { height:75px; }
   #content{ margin-left:0; 
        float:none; 
@@ -1345,7 +1345,7 @@ th.header.empty-cell:after {
    .clearfix {
     display: none !important;
    }
-   .clearfix.visible-lg-block{
+   .clearfix.visible-lg-block, article.clearfix{
     display: block !important;
    }
   .view {
