@@ -274,6 +274,16 @@ function widget_area_affix() {
   };
 };
 
+// Homepage Banner Close Button
+// =========================================
+
+function homepage_banner_close() {
+  $('#banner_close_btn').click(function() {
+    $('#banner_message').addClass('hide');
+  });
+}
+
+
 // Computer Availability (function is currently unused.)
 // =========================================
 
@@ -364,6 +374,7 @@ $(document).ready( function() {
   collapse_sidebar();
   tab_linking();
   login_modal_launch();
+  homepage_banner_close();
   enable_tooltips();
   bootstrap_gravity_forms();
   my_account_btn();
