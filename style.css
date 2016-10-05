@@ -1146,6 +1146,12 @@ th.header.empty-cell:after {
   font-size: 1.25em;
 }
 
+.homepage-banner a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 .homepage-banner p{
   margin: 1.25em 0;
   text-align: center;
