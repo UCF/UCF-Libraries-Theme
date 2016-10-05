@@ -846,7 +846,12 @@ th.header.empty-cell:after {
 	min-height: 50vh;
 	display: block;
 	position: relative;
-	padding: 10vh 0;
+	padding: 3vh 0;
+}
+@media (min-width: 992px) {
+  .background-image {
+    padding: 10vh 0;
+  }
 }
 
 .background-color-gray{
@@ -1133,6 +1138,50 @@ th.header.empty-cell:after {
   font-size: 0.875em;
   color: #475159;
   padding: 2px 0;
+}
+
+/* Homepage Message Banner */
+.homepage-banner {
+  color: #fff;
+  font-size: 1.25em;
+}
+
+.homepage-banner a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.homepage-banner p{
+  margin: 1.25em 0;
+  text-align: center;
+}
+
+.homepage-banner .close{
+  color: #fff;
+  text-shadow: 0 1px 0 #000;
+}
+
+.homepage-banner .close:hover{
+  color: #fff;
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+
+.banner-success {
+  background-color: #5cb85c;
+}
+
+.banner-info {
+  background-color: #337ab7;
+}
+
+.banner-warning {
+  background-color: #d88f27;
+}
+
+.banner-danger {
+  background-color: #aa0000;
 }
 
 /*Posts*/
