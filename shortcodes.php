@@ -753,7 +753,7 @@ function computer_availability($atts) {
       $machines_in_use = 0;
       $machines_total = 0;
       $machines_available = 0;
-      foreach ($json_o as $location) if ($location->location_room_floor == $i && $location->location_room_number != "ED194A") {
+      foreach ($json_o as $location) if ($location->location_room_floor == $i) {
         $machines_in_use += $location->machinesInUse;
         $machines_total += $location->machinesTotal;
       }
