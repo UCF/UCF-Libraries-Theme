@@ -985,7 +985,7 @@ function lending_login() {
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-          <input type="submit" class="btn btn-primary" name="SubmitButton" value="Logon to ILLiad"> or <a href="https://illiad.net.ucf.edu/lending/LendingFirstTime.html" >First Time User Registration</a>
+          <input type="submit" class="btn btn-primary" name="SubmitButton" value="Logon to ILLiad"> or <a href="https://library.ucf.edu/services/lending/new-lending-account/" >First Time User Registration</a>
       </div>
     </div>
     </fieldset>
