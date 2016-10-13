@@ -378,7 +378,7 @@ footer ul li a:hover { text-decoration: none;}
 }
 
 .navbar-library .dropdown-menu {
-
+  border: 1px solid #ccc;
 }
 
 
