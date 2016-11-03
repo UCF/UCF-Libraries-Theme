@@ -15,15 +15,15 @@ add_shortcode('search-website', 'search_website');
 
 
 /**
-* OneSearch search
-* Add the OneSearch search bar to any section of the website.
+* QuickSearch search
+* Add the QuickSearch search bar to any section of the website.
 *
-*[OneSearch]
+*[QuickSearch]
 **/
-function OneSearchform( $form ) {
+function search_quicksearch( $form ) {
 
     $form = '
-  <form role="form" class="search search-onesearch" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
+  <form role="form" class="search search-quicksearch" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
       <input name="direct" type="hidden" value="true">
       <input name="site" type="hidden" value="ehost-live">
       <input name="scope" type="hidden" value="site">
@@ -47,15 +47,15 @@ function OneSearchform( $form ) {
 
     return $form;
 }
-add_shortcode('OneSearch', 'OneSearchform');
+add_shortcode('search-quicksearch', 'search_quicksearch');
 
 /**
 * Articles only search
 * Search ebscohost for just articles
 *
-*[onesearch-articles]
+*[quicksearch-articles]
 **/
-function onesearch_articles( $form ){
+function search_quicksearch_articles( $form ){
   $form = '
     <form role="form" class="search search-articles" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
       <label for="ebscohostsearcharticletext" class="sr-only">Search</label>
@@ -80,7 +80,7 @@ function onesearch_articles( $form ){
   ';
   return $form;
 }
-add_shortcode('onesearch-articles', 'onesearch_articles');
+add_shortcode('search-quicksearch-articles', 'search_quicksearch_articles');
 
 /**
 * Book/catalog search
