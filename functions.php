@@ -333,7 +333,7 @@ function register_cpt_staff_entities() {
       'query_var' => true,
       'rewrite' => array( 'slug' => 'subject', 'with_front' => false ),
     );
-    register_taxonomy('subject',array('sub'), $subject_args );
+    register_taxonomy('subject',array('staff'), $subject_args );
 }
 
 add_action( 'init', 'register_cpt_staff_entities' );
