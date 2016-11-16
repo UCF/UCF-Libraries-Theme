@@ -6,7 +6,7 @@ Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
 
-Version: 1.11.4
+Version: 1.11.5
 
 */
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto+Slab:700|Roboto:500,700,400);
@@ -1301,9 +1301,15 @@ th.header.empty-cell:after {
 .gform_wrapper .gform_body .gfield { margin: 2em 0; }
 .gform_wrapper .gform_body .gfield .gfield_time_hour i { margin-top: -2em; }
 
+.gform_wrapper ul.gfield_checkbox li label, .gform_wrapper ul.gfield_radio li label { margin: 3px 0 -3px 0;}
+
 .gform_wrapper .radio {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.gform_wrapper .gfield_radio li .radio label {
+  padding-left: 20px;
 }
 
 
