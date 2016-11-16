@@ -1308,7 +1308,7 @@ th.header.empty-cell:after {
   margin-bottom: 0;
 }
 
-.gform_wrapper .radio label {
+.gform_wrapper .gfield_radio .radio li label {
   padding-left: 20px;
 }
 
