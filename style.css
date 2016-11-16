@@ -1301,9 +1301,15 @@ th.header.empty-cell:after {
 .gform_wrapper .gform_body .gfield { margin: 2em 0; }
 .gform_wrapper .gform_body .gfield .gfield_time_hour i { margin-top: -2em; }
 
+.gform_wrapper ul.gfield_checkbox li label, .gform_wrapper ul.gfield_radio li label { margin: 3px 0 -3px 0;}
+
 .gform_wrapper .radio {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.gform_wrapper .radio label {
+  padding-left: 20px;
 }
 
 
