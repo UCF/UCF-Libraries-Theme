@@ -50,23 +50,23 @@ function cleanup($content){
 		$null = null;
 		$found_closed = preg_match_all('/<\/p>/', $line, $null);
 		$found_opened = preg_match_all('/<p[^>]*>/', $line, $null);
-		
+
 		$diff = $found_closed - $found_opened;
 		# Balanced tags
 		if ($diff == 0){continue;}
-		
+
 		# missing closed
 		if ($diff < 0){
 			$lines[$key] = $lines[$key] . str_repeat('</p>', abs($diff));
 		}
-		
+
 		# missing open
 		if ($diff > 0){
 			$lines[$key] = str_repeat('<p>', abs($diff)) . $lines[$key];
 		}
 	}
 	$content = implode("\n", $lines);
-	
+
 	#Remove incomplete tags at start and end
 	$content = preg_replace('/^<\/p>[\s]*/i', '', $content);
 	$content = preg_replace('/[\s]*<p>$/i', '', $content);
@@ -116,7 +116,7 @@ add_action( 'init', 'register_my_menus' );
 
 
 //This section below loads the javascript and css used throughout the entire site
-//. ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . 
+//. ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") .
 
 function wpt_register_js() {
     wp_deregister_script('jquery');
@@ -237,6 +237,17 @@ function register_cpt_staff_entities() {
       'menu_name' => _x( 'Staff', 'staff' ),
     );
 
+    $capabilities = array(
+      'edit_post'          => 'manage_options',
+      'read_post'          => 'manage_options',
+      'delete_post'        => 'manage_options',
+      'edit_posts'         => 'manage_options',
+      'edit_others_posts'  => 'manage_options',
+      'delete_posts'       => 'manage_options',
+      'publish_posts'      => 'manage_options',
+      'read_private_posts' => 'manage_options'
+    );
+
     $staff_args = array(
       'labels' => $staff_labels,
       'hierarchical' => true,
@@ -255,6 +266,7 @@ function register_cpt_staff_entities() {
       'query_var' => true,
       'can_export' => true,
       'rewrite' => array( 'with_front' => false ),
+      'capabilities' => $capabilities,
       'capability_type' => 'post'
     );
     register_post_type( 'staff', $staff_args );
@@ -273,7 +285,7 @@ function register_cpt_staff_entities() {
       'new_item_name' => __( 'New Department Name' ),
       'menu_name' => __( 'Department' ),
     );
-  
+
     $department_args = array(
       'hierarchical' => true,
       'labels' => $department_labels,
@@ -631,17 +643,17 @@ function wpbeginner_numeric_posts_nav() {
 }
 
 /**
-* Allow html 
+* Allow html
 * This will allow defined html 5 data attributes to html tags
 *
 **/
 function mawaha_filter_allowed_html($allowed, $context){
- 
+
     if (is_array($context))
     {
         return $allowed;
     }
- 
+
     if ($context === 'post')
     {
             // Example case
@@ -662,14 +674,14 @@ function mawaha_filter_allowed_html($allowed, $context){
         $allowed['button']['aria-label'] = true;
         $allowed['button']['aria-labelledby'] = true;
         $allowed['button']['aria-hidden'] = true;
-        $allowed['div']['data-placement'] = true;   
+        $allowed['div']['data-placement'] = true;
         $allowed['div']['aria-labelledby'] = true;
         $allowed['div']['aria-hidden'] = true;
         $allowed['div']['aria-multiselectable'] = true;
         $allowed['span']['aria-hidden'] = true;
 
     }
- 
+
     return $allowed;
 }
 add_filter('wp_kses_allowed_html', 'mawaha_filter_allowed_html', 10, 2);
