@@ -148,7 +148,7 @@ dl.menu-list dd, dl.list-spaced dd { margin-bottom: 1.5em; }
 	background-color: #fff;
 	border-radius: 2px;
 	overflow: auto;
-	margin: 0 0 2em;
+	margin: 0 0 1em;
 }
 .content-area { padding: 1em; }
 
@@ -675,6 +675,19 @@ footer ul li a:hover { text-decoration: none;}
 .tech-description { margin-bottom: 1em; }
 .tech-list td:nth-child(3n), .tech-list th:nth-child(3n) { max-width: 11em; }
 .list-thumbnail { max-width: 25px; }
+
+
+/* Media Cards */
+.card .media {
+  padding: .75em;
+}
+
+.media-left img {
+    width: 100px;
+    height: 100px;
+    max-width: none;
+}
+
 
 /* Table Sorter */
 
