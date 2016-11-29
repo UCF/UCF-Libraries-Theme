@@ -50,7 +50,7 @@ Description: Scholarly Commnunication archive page.
 								    <a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
 								  </div>
 								  <div class="media-body">
-								    <h4 class="media-heading"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h4>
+								    <h4 class="media-heading"><a href="<?php echo get_permalink(); ?>"><?php friendly_name(); ?></a></h4>
 								    <?php if(get_post_meta($post->ID, 'sc-bio', true)): ?>
 		                  <?php echo get_post_meta($post->ID, 'sc-bio', true); ?>
 		                <?php endif; ?>
