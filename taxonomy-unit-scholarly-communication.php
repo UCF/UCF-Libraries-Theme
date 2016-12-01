@@ -104,7 +104,7 @@ Description: Scholarly Commnunication archive page.
               </div>
             </div>
           </div>
-          <div id="grid_view" class="row view view-active">
+          <div id="grid_view" class="view view-active">
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 							<div class="card">
 								<div class="media">
