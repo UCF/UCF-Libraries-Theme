@@ -40,10 +40,72 @@ Description: Scholarly Commnunication archive page.
 				<div class="col-sm-9">
 					<h2 class="subpage-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h2>
 					<?php echo term_description( ) ?>
-					<div class="directory row">
-						<?php $i = 0; ?>
+					<div class="btn-group btn-grid-list" data-toggle="buttons">
+            <label class="btn btn-primary view-button active">
+              <input type="radio" name="views" autocomplete="off" value="grid" checked><i class="fa fa-th"></i> Grid
+            </label>
+            <label class="btn btn-primary view-button">
+              <input type="radio" name="views"  autocomplete="off" value="list"> <i class="fa fa-th-list"></i> List
+            </label>
+          </div>
+          <div id="list_view" class="view">
+            <div class="card">
+              <div class="table-responsive">
+                <table class="table table-striped table-sorter">
+                  <thead>
+                    <tr>
+                      <th class="empty-cell"></th>
+                      <th><span class="glyphicon glyphicon-user"></span> Name</th>
+                      <th><i class="fa fa-bookmark"></i> Title</th>
+                      <th><i class="fa fa-university"></i> Department</th>
+                      <th style="min-width: 10em;"><span class="glyphicon glyphicon-phone-alt"></span> Phone</th>
+                      <th style="min-width: 6em;"><span class="glyphicon glyphicon-envelope"></span> Email</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                    <tr>
+                      <td><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('thumbnail', array('class' => 'list-thumbnail')); ?></a></td>
+                      <td><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></td>
+                      <td>
+                        <?php if(get_post_meta($post->ID, 'title', true)): ?>
+                          <?php echo get_post_meta($post->ID, 'title', true); ?>
+                        <?php endif; ?>
+                      </td>
+                      <td>
+                        <?php if(get_the_term_list( $post->ID, 'department', true)): ?>
+                          <?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?>
+                        <?php endif; ?>
+                      </td>
+                      <td>
+                        <?php if(get_post_meta($post->ID, 'phone', true)): ?>
+                          <?php echo get_post_meta($post->ID, 'phone', true); ?>
+                        <?php endif; ?>
+                      </td>
+                      <td>
+                        <?php if(get_post_meta($post->ID, 'email', true)): ?>
+                          <a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>">Email</a>
+                        <?php endif; ?>
+                      </td>
+                    </tr>
+                  <?php endwhile; else: ?>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>                      
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  <?php endif; ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="grid_view" class="row view view-active">
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-							<?php $i++; ?>
 							<div class="card">
 								<div class="media">
 								  <div class="media-left">
@@ -57,10 +119,10 @@ Description: Scholarly Commnunication archive page.
 								  </div>
 								</div>
 							</div>				
-            <?php endwhile; else: ?>
-              <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
-            <?php endif; ?>
-					</div><!-- directory row -->
+	          <?php endwhile; else: ?>
+	            <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+	          <?php endif; ?>
+          </div>
 					<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?>
 				</div><!-- col-sm-9 -->
 			</div><!-- row -->
