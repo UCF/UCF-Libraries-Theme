@@ -372,38 +372,51 @@ function computer_availability(id) {
 var timer_interval = 0;
 
 function countdown($display, collision) {
-    var offset = get_time_zone_offset();
-    var now = new Date();
-    now.setHours(now.getHours() + (offset-5));
-    var total_seconds = Math.floor((collision.getTime() - now.getTime()) * 0.001);
-    if (total_seconds > 0) {
-        var seconds = (Math.floor(total_seconds) % 60); //60 seconds in a minute
-        var minutes = (Math.floor(total_seconds/60) % 60); //60 minutes in an hour
-        var hours = (Math.floor(total_seconds/3600) % 24); //24 hours in a day
-        var days = Math.floor((total_seconds/3600/24) % 365); //365 days in a year
-        var years = Math.floor((total_seconds/3600/24)/ 365);
-
-        $display
-            .html
-            (
-                '<span class="years">' + years + '</span> Years <span class="days">' + days + '</span> Days <span class="hours">' + hours + '</span> Hours <span class="minutes">' + minutes + '</span> Minutes <span class="seconds">' + seconds + '</span> Seconds'
-                 
-            );
-    } else {
-        $display
-            .html
-            (
-                '<span class="years">0</span> Years <span class="days">0</span> Days <span class="hours">0</span> Hours <span class="minutes">0</span> Minutes <span class="seconds">0</span> Seconds'
-                 
-            );
-        clearInterval(timer_interval);
+  var offset = get_time_zone_offset();
+  var now = new Date();
+  now.setHours(now.getHours() + (offset-5));
+  var total_seconds = Math.floor((collision.getTime() - now.getTime()) * 0.001);
+  if (total_seconds > 0) {
+    var seconds = (Math.floor(total_seconds) % 60); //60 seconds in a minute
+    var minutes = (Math.floor(total_seconds/60) % 60); //60 minutes in an hour
+    var hours = (Math.floor(total_seconds/3600) % 24); //24 hours in a day
+    var days = Math.floor((total_seconds/3600/24) % 365); //365 days in a year
+    var years = Math.floor((total_seconds/3600/24)/ 365);
+    $display.html('');
+    if (years > 0) {
+      $display.append('<span class="years">' + years + '</span> Years ');
     }
+    if (days > 0 || years > 0) {
+      $display.append('<span class="days">' + days + '</span> Days ');
+    }
+    if (hours > 0 || days > 0 || years > 0) {
+      $display.append('<span class="hours">' + hours + '</span> Hours ');
+    }
+    if (minutes > 0 || hours > 0 || days > 0 || years > 0) {
+      $display.append('<span class="minutes">' + minutes + '</span> Minutes ');
+    }
+    if (seconds > 0 || minutes > 0 || hours > 0 || days > 0 || years > 0) {
+      $display.append('<span class="seconds">' + seconds + '</span> Seconds');
+    }
+    // $display
+    //   .html
+    //     (
+    //       '<span class="years">' + years + '</span> Years <span class="days">' + days + '</span> Days <span class="hours">' + hours + '</span> Hours <span class="minutes">' + minutes + '</span> Minutes <span class="seconds">' + seconds + '</span> Seconds'           
+    //     );
+  } else {
+    $display
+      .html
+        (
+          '<span class="years">0</span> Years <span class="days">0</span> Days <span class="hours">0</span> Hours <span class="minutes">0</span> Minutes <span class="seconds">0</span> Seconds'            
+        );
+    clearInterval(timer_interval);
+  }
 }
 
 function get_time_zone_offset() {
-     var current_date = new Date( );
-     var gmt_offset = current_date.getTimezoneOffset( ) / 60;
-     return gmt_offset;
+  var current_date = new Date( );
+  var gmt_offset = current_date.getTimezoneOffset( ) / 60;
+  return gmt_offset;
 }
 
 // Load all functions when Dom Ready
