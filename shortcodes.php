@@ -1157,6 +1157,38 @@ function stars_map() {
 add_shortcode('stars-map', 'stars_map');
 
 
+/**
+* Countdown Timer
+* Adds a countdown timer onto a page.
+*
+* [countdown-timer year="2018" month="12" day="6" hour="15" minute="28"] (hours entered in 24 hour format)
+*
+**/
+
+function countdown_timer($atts, $content = null) {
+  extract(shortcode_atts( array(
+      'year' => '2035',
+      'month' => '9',
+      'day' => '7',
+      'hour' => '5',
+      'minute' => '30',
+      'font_size' => '1em',
+  ), $atts ));
+  $output = '
+    <div id="countdown_timer" class="countdown-timer" style="font-size: '.$font_size.';"></div>
+    <script>
+      $(document).ready(function () {
+        var date = new Date('.$year.', '.($month-1).', '.$day.', '.$hour.', '.$minute.');
+        var $display = $("#countdown_timer");
+        countdown($display, date);
+        timer_interval = setInterval(function () { countdown($display, date); }, 1000);
+      });
+    </script>
+  ';
+  return $output;
+}
+add_shortcode('countdown-timer', 'countdown_timer');
+
 
 /**
 * Modal Window
