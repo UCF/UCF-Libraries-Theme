@@ -416,6 +416,19 @@ footer ul li a:hover { text-decoration: none;}
   .floor-name { font-size: 24px; }
 }
 
+/* Countdown Timer*/
+
+.countdown-timer {
+    text-align: center;
+    margin: 1em;
+}
+.countdown-timer span {
+    font-size: 1.25em;
+    font-weight: 700;
+    margin-left: 1em;
+}
+
+
 /* Hiring Status */
 .dl-horizontal.hiring-list {
   font-size: 1.25em;
