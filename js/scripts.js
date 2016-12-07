@@ -389,26 +389,22 @@ function countdown($display, collision) {
     if (days > 0 || years > 0) {
       $display.append('<span class="days">' + days + '</span> Days ');
     }
-    if (hours > 0 || days > 0 || years > 0) {
+//    if (hours > 0 || days > 0 || years > 0) {
       $display.append('<span class="hours">' + hours + '</span> Hours ');
-    }
-    if (minutes > 0 || hours > 0 || days > 0 || years > 0) {
+//    }
+//    if (minutes > 0 || hours > 0 || days > 0 || years > 0) {
       $display.append('<span class="minutes">' + minutes + '</span> Minutes ');
-    }
-    if (seconds > 0 || minutes > 0 || hours > 0 || days > 0 || years > 0) {
+//    }
+//    if (seconds > 0 || minutes > 0 || hours > 0 || days > 0 || years > 0) {
       $display.append('<span class="seconds">' + seconds + '</span> Seconds');
-    }
-    // $display
-    //   .html
-    //     (
-    //       '<span class="years">' + years + '</span> Years <span class="days">' + days + '</span> Days <span class="hours">' + hours + '</span> Hours <span class="minutes">' + minutes + '</span> Minutes <span class="seconds">' + seconds + '</span> Seconds'           
-    //     );
+//    }
   } else {
     $display
       .html
         (
-          '<span class="years">0</span> Years <span class="days">0</span> Days <span class="hours">0</span> Hours <span class="minutes">0</span> Minutes <span class="seconds">0</span> Seconds'            
+          '<span style="color: #a00;"><span class="hours">0</span> Hours <span class="minutes">0</span> Minutes <span class="seconds">0</span> Seconds</span>'            
         );
+    $('#countdown_finished').modal('show');
     clearInterval(timer_interval);
   }
 }
