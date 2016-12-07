@@ -404,7 +404,11 @@ function countdown($display, collision) {
         (
           '<span style="color: #a00;"><span class="hours">0</span> Hours <span class="minutes">0</span> Minutes <span class="seconds">0</span> Seconds</span>'            
         );
-    $('#countdown_finished').modal('show');
+    if (document.cookie.replace(/(?:(?:^|.*;\s*)modal_used\s*\=\s*([^;]*).*$)|^.*$/, "$1") !== "true") {
+      $('#countdown_finished').modal('show');
+      document.cookie = "modal_used=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+    }
+    
     clearInterval(timer_interval);
   }
 }
