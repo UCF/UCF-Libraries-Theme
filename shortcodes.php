@@ -27,7 +27,7 @@ function search_quicksearch( $form ) {
       <input name="direct" type="hidden" value="true">
       <input name="site" type="hidden" value="ehost-live">
       <input name="scope" type="hidden" value="site">
-      <input name="type" type="hidden" value="1">
+      <input name="type" type="hidden" value="0">
       <input name="site" type="hidden" value="eds-live">
       <input name="authtype" type="hidden" value="ip,guest,cookie,shib">
       <input name="custid" type="hidden" value="current">
@@ -62,7 +62,7 @@ function search_quicksearch_articles( $form ){
       <input name="direct" type="hidden" value="true">
       <input name="site" type="hidden" value="ehost-live">
       <input name="scope" type="hidden" value="site">
-      <input name="type" type="hidden" value="1">
+      <input name="type" type="hidden" value="0">
       <input name="site" type="hidden" value="eds-live">
       <input name="authtype" type="hidden" value="ip,guest,cookie,shib">
       <input name="custid" type="hidden" value="current">
