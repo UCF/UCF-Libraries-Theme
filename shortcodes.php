@@ -108,6 +108,7 @@ function search_catalog( $form ){
             <option value="au">Author</option>
             <option value="su">Subject Heading</option>
             <option value="nu">ISBN, ISSN, OCLC, etc.</option>
+            <option value="cn">Call Number</option>
           </select>
         </div>
         <div class="col-sm-6">
