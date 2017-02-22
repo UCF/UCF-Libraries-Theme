@@ -238,7 +238,7 @@ function librarian_newsletter_feed(librarian) {
     feed.setNumEntries(10);
     feed.load(function(result) {
       if (!result.error) {
-        var container = document.getElementById("librarian_newsletter_feed");
+        var container = document.getElementById(""+ librarian +"_newsletter_feed");
         var ul = document.createElement("ul");
         for (var i = 0; i < result.feed.entries.length; i++) {
           var entry = result.feed.entries[i];

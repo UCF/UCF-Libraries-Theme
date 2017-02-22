@@ -970,7 +970,7 @@ function newsletter_feed($atts) {
   extract(shortcode_atts(array(
       'librarian' => 'moran',
   ), $atts));
-  $output = '<div id="librarian_newsletter_feed"></div>
+  $output = '<div id="'.$librarian.'_newsletter_feed"></div>
   <script type="text/javascript" src="https://rss2json.com/gfapi.js"></script>
   <script> librarian_newsletter_feed("'.$librarian.'") </script>';
   return $output;
