@@ -966,13 +966,13 @@ add_shortcode('discovery-feed', 'discovery_feed');
 *[newsletter-feed]
 *
 **/
-function newsletter_feed() {
+function newsletter_feed($atts) {
   extract(shortcode_atts(array(
       'librarian' => 'moran',
   ), $atts));
   $output = '<div id="librarian_newsletter_feed"></div>
   <script type="text/javascript" src="https://rss2json.com/gfapi.js"></script>
-  <script> librarian_newsletter_feed("'.$librarian.'"") </script>';
+  <script> librarian_newsletter_feed("'.$librarian.'") </script>';
   return $output;
 }
 add_shortcode('newsletter-feed', 'newsletter_feed');

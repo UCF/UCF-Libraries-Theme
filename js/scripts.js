@@ -238,7 +238,7 @@ function librarian_newsletter_feed(librarian) {
     feed.setNumEntries(10);
     feed.load(function(result) {
       if (!result.error) {
-        var container = document.getElementById("librarian_feed");
+        var container = document.getElementById("librarian_newsletter_feed");
         var ul = document.createElement("ul");
         for (var i = 0; i < result.feed.entries.length; i++) {
           var entry = result.feed.entries[i];
@@ -252,9 +252,9 @@ function librarian_newsletter_feed(librarian) {
         container.appendChild(ul);
       } else {
         var container = document.getElementById("feed");
-        var h3 = document.createElement("h3");
-        h3.appendChild(document.createTextNode('there was an error'));
-        container.appendChild(h3);          
+        var h4 = document.createElement("h4");
+        h4.appendChild(document.createTextNode('Newsletter feed unavailable at this time.'));
+        container.appendChild(h4);          
     }
     });
   }
