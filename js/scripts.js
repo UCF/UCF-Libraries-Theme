@@ -226,6 +226,41 @@ function discovery_feed() {
   google.setOnLoadCallback(initialize);
 }
 
+
+// Subject Librarian newsletter feed
+//=======================================
+
+function librarian_newsletter_feed(librarian) {
+  google.load("feeds", "1");
+
+  function initialize() {
+    var feed = new google.feeds.Feed("http://stars.library.ucf.edu/subjectlibnews-"+ librarian +"/all.rss");
+    feed.setNumEntries(10);
+    feed.load(function(result) {
+      if (!result.error) {
+        var container = document.getElementById("librarian_feed");
+        var ul = document.createElement("ul");
+        for (var i = 0; i < result.feed.entries.length; i++) {
+          var entry = result.feed.entries[i];
+          var li = document.createElement("li");
+          var link = document.createElement("a");
+          link.setAttribute('href', entry.link);
+          link.appendChild(document.createTextNode(entry.title));
+          li.appendChild(link);
+          ul.appendChild(li);
+        }
+        container.appendChild(ul);
+      } else {
+        var container = document.getElementById("feed");
+        var h3 = document.createElement("h3");
+        h3.appendChild(document.createTextNode('there was an error'));
+        container.appendChild(h3);          
+    }
+    });
+  }
+  google.setOnLoadCallback(initialize);
+}
+
 // Share Button
 //=========================================
 
