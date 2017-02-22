@@ -8,7 +8,7 @@ Description: This page is bare bones and ment to be used by portal pages that ar
 <?php get_header(); ?>
 <style type="text/css">
 div#ucfhb {
-	display: none;
+	display: none !important;
 }
 header.main-header {
   display: none;
