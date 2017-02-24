@@ -108,6 +108,7 @@ function search_catalog( $form ){
             <option value="au">Author</option>
             <option value="su">Subject Heading</option>
             <option value="nu">ISBN, ISSN, OCLC, etc.</option>
+            <option value="cn">Call Number</option>
           </select>
         </div>
         <div class="col-sm-6">
@@ -943,7 +944,7 @@ function guide_list($atts) {
 add_shortcode('guide-list', 'guide_list');
 
 /**
-* Discovery Rss Feed
+* Discovery RSS Feed
 * Inserts Discovery Feed for ScholCom
 *
 *[discovery-feed]
@@ -951,11 +952,30 @@ add_shortcode('guide-list', 'guide_list');
 **/
 function discovery_feed() {
   $output = '<div id="feed"></div>
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="https://rss2json.com/gfapi.js"></script>
   <script> discovery_feed() </script>';
   return $output;
 }
 add_shortcode('discovery-feed', 'discovery_feed');
+
+
+/**
+* Subject Librarian Newsletter RSS Feed
+* Inserts newsletter Feed for Subject Librarians
+*
+*[newsletter-feed]
+*
+**/
+function newsletter_feed($atts) {
+  extract(shortcode_atts(array(
+      'librarian' => 'moran',
+  ), $atts));
+  $output = '<div id="'.$librarian.'_newsletter_feed"></div>
+  <script type="text/javascript" src="https://rss2json.com/gfapi.js"></script>
+  <script> librarian_newsletter_feed("'.$librarian.'") </script>';
+  return $output;
+}
+add_shortcode('newsletter-feed', 'newsletter_feed');
 
 
 /**
