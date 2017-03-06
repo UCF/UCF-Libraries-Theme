@@ -8,32 +8,7 @@ remove_filter( 'the_content', 'wpautop' );
 ?>
 
 <style>
-/*		header.main-header {
-		  display: none;
-		}
-		footer.main-footer {
-			display: none;
-		}*/
 
-		html, body, .hero-image{
-      width:100%;
-      height:75vh;
-    }
-
-    body {
-      position: relative;
-      background-color: #fff;
-    }
-
-
-    .fixed-header-padding{
-      padding-top: 50px;
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 4rem;
-    }
 		.hero-image{   
       background:url('<?php the_post_thumbnail_url( 'full' ); ?>') center center;
       /*background-color: rgba(255, 0, 179, 0.65);*/
@@ -72,85 +47,7 @@ remove_filter( 'the_content', 'wpautop' );
         color: #fff;
         text-shadow: 1px 1px 2px black;
     }
-    .schedule-content {
-        font-size:  20px;
-    }
-    .schedule-content h3 {
-      clear: left;
-      color: #999;
-      margin: 16px 0 0;
-    }
-   
-    .schedule-container {
-      border-left: 1px solid rgba(0,0,0,.10);
-      margin: 0;
-      overflow: auto;
-    }
-    .schedule-container-inner {
-      padding: .5em;
-      position: relative;
-      background-color: #ddd;
-      margin: .5em;
-      border-radius: 3px;
-    }
 
-    .event-title {
-      display: block;
-      font-size:  1.25em;
-    }
-    .event-room {
-      display: block;  
-      font-size:  .9em;
-    }
-    .event-speaker {
-      display: block;
-      padding-bottom: 10px;
-      font-size:  .9em;
-    }
-    .navbar-events {
-      background-color: rgb(91, 255, 132);
-    }
-
-    .navbar-nav>li>a {
-      font-size: 1.5em;
-      color: #333;
-    }
-    .navbar-collapse {
-      padding: 0;
-    }
-
-    .navbar-events .navbar-nav>.active>a, .navbar-events .navbar-nav>.active>a:focus, .navbar-events .navbar-nav>.active>a:hover {
-    color: #555;
-    background-color: rgb(163, 255, 186);
-}
-
-    @media (min-width: 768px) {
-      .schedule-content h3 {
-        float: left;
-        text-align: right;
-        width: 8em
-        zoom: 1;
-        font-size: 1em;
-      }
-
-      .schedule-container {
-        margin: -1px 0 0 8em;
-      }
-      .schedule-container-inner {
-        margin: .5em .5em .5em 2em;
-      }
-    }
-
-    .event-time {
-      padding: 1em;
-      font-weight: 700;
-    }
-    @media (min-width: 768px) {
-      .event-time {
-        text-align: right;
-        border-right: 1px dashed #222;
-      }
-    }
 </style>
 
 <?php get_header(); ?>
@@ -188,6 +85,7 @@ function fix_header_top() {
 function add_scroll_spy(){
   $('body').attr('data-spy', 'scroll');
   $('body').attr('data-target', '#navbar_events');
+  $('body').attr('data-offset', '51');
 }
 
 //Scrolls the page to the element the link is pointed to.
@@ -197,7 +95,9 @@ function scroll_to_element(){
 		var new_position = $(jump).offset();
 		$('html, body').stop().animate({ scrollTop: new_position.top - $('#navbar_events').outerHeight(true) }, 500);
 		e.preventDefault();
+    $(".navbar-toggle").trigger( "click" );
 	})
+
 }
 
 $(document).ready( function() {
