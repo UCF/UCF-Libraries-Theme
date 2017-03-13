@@ -93,7 +93,7 @@ function scroll_to_element(){
 	$('.scroll-to-element').click(function(e) {
 		var jump = $(this).attr('href');
 		var new_position = $(jump).offset();
-		$('html, body').stop().animate({ scrollTop: new_position.top - $('#navbar_events').outerHeight(true) }, 500);
+		$('html, body').stop().animate({ scrollTop: new_position.top - 49 }, 500);
 		e.preventDefault();
     $(".navbar-toggle").trigger( "click" );
 	})
