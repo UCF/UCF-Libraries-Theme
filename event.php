@@ -95,7 +95,7 @@ function scroll_to_element(){
 		var new_position = $(jump).offset();
 		$('html, body').stop().animate({ scrollTop: new_position.top - 49 }, 500);
 		e.preventDefault();
-    $(".navbar-toggle").trigger( "click" );
+    $("#main_menu").collapse('hide');
 	})
 
 }
