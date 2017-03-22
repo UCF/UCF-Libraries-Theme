@@ -57,7 +57,7 @@ add_shortcode('search-quicksearch', 'search_quicksearch');
 function search_quicksearch_webcourses( $form ) {
 
     $form = '
-  <form role="form" class="search search-quicksearch" action="<https://login.ezproxy.net.ucf.edu/login?auth=shibb&url=https://search.ebscohost.com/login.aspx ?>" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
+  <form role="form" class="search search-quicksearch" action="https://login.ezproxy.net.ucf.edu/login?auth=shibb&url=https://search.ebscohost.com/login.aspx ?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
       <input name="direct" type="hidden" value="true">
       <input name="site" type="hidden" value="ehost-live">
       <input name="scope" type="hidden" value="site">
