@@ -54,33 +54,33 @@ add_shortcode('search-quicksearch', 'search_quicksearch');
 *
 *[search-quicksearch-webcourses]
 **/
-function search_quicksearch_webcourses( $form ) {
+// function search_quicksearch_webcourses( $form ) {
 
-    $form = '
-  <form role="form" class="search search-quicksearch" action="https://login.ezproxy.net.ucf.edu/login?auth=shibb&url=https://search.ebscohost.com/login.aspx ?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
-      <input name="direct" type="hidden" value="true">
-      <input name="site" type="hidden" value="ehost-live">
-      <input name="scope" type="hidden" value="site">
-      <input name="type" type="hidden" value="0">
-      <input name="site" type="hidden" value="eds-live">
-      <input name="authtype" type="hidden" value="ip,guest,cookie,shib">
-      <input name="custid" type="hidden" value="current">
-      <input name="groupid" type="hidden" value="main">
-      <input name="profile" type="hidden" value="eds">
-      <input name="guidedField_3" type="hidden" value="">
-      <label class="sr-only" for="ebscohostsearchtext">Search All</label>
-      <div class="input-group">
-        <input id="ebscohostsearchwebcoursestext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search Databases, Articles, and Catalog" results="5" size="60" type="text" x-webkit-speech="" >
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearchwebcoursestext\').val(), \'QuickSearch-webcourses\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
-        </span>
-      </div>
-    </form>
-';
+//     $form = '
+//   <form role="form" class="search search-quicksearch" action="https://login.ezproxy.net.ucf.edu/login?auth=shibb&url=https://search.ebscohost.com/login.aspx ?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
+//       <input name="direct" type="hidden" value="true">
+//       <input name="site" type="hidden" value="ehost-live">
+//       <input name="scope" type="hidden" value="site">
+//       <input name="type" type="hidden" value="0">
+//       <input name="site" type="hidden" value="eds-live">
+//       <input name="authtype" type="hidden" value="ip,guest,cookie,shib">
+//       <input name="custid" type="hidden" value="current">
+//       <input name="groupid" type="hidden" value="main">
+//       <input name="profile" type="hidden" value="eds">
+//       <input name="guidedField_3" type="hidden" value="">
+//       <label class="sr-only" for="ebscohostsearchtext">Search All</label>
+//       <div class="input-group">
+//         <input id="ebscohostsearchwebcoursestext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search Databases, Articles, and Catalog" results="5" size="60" type="text" x-webkit-speech="" >
+//         <span class="input-group-btn">
+//           <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearchwebcoursestext\').val(), \'QuickSearch-webcourses\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
+//         </span>
+//       </div>
+//     </form>
+// ';
 
-    return $form;
-}
-add_shortcode('search-quicksearch-webcourses', 'search_quicksearch_webcourses');
+//     return $form;
+// }
+// add_shortcode('search-quicksearch-webcourses', 'search_quicksearch_webcourses');
 
 /**
 * Articles only search
