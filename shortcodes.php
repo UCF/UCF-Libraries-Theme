@@ -414,9 +414,11 @@ function recent_posts_function($atts){
         } else {                          // Use the default thumbnail instead.
           $thumbnail = '<img class="homepage-thumbnail" src="'.get_template_directory_uri().'/images/generic-default-thumb.jpg">';
         }
-        if (get_post_meta(get_the_ID() , 'thumbnail', true)){                         // Check if post has custom field named thumbnail
+        if (get_post_meta(get_the_ID() , 'thumbnail', true)){                         // Check if post has custom field named thumbnail.
           $thumbnail_id = get_post_meta(get_the_ID() , 'thumbnail', true);            // Gets the contents of the custom field, which is the post ID of the thumbnail image.
-          $thumbnail = wp_get_attachment_image( $thumbnail_id, 'homepage-thumbnail' );  
+          if (wp_get_attachment_image( $thumbnail_id, 'homepage-thumbnail' )) {       // Checks if post meta image id is valid.
+            $thumbnail = wp_get_attachment_image( $thumbnail_id, 'homepage-thumbnail' );  
+          }
         }
         
         // if ($thumbnail_image){           
