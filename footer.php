@@ -65,7 +65,7 @@
         <a class="vimeo-btn" title="Follow us on Vimeo" href="https://vimeo.com/ucflibraries" target="_blank"><i class="fa fa-vimeo-square"></i><span class="sr-only">Follow us on Vimeo</span></a>
 			</div>
 			<div class="brand">
-				<img src="<?php echo get_template_directory_uri() ?>/images/libraries-word-mark.png" alt="UCF Libraries"><br>
+				<img src="<?php echo get_template_directory_uri() ?>/images/UILexternal_W_Libraries.png" alt="UCF Libraries"><br>
 			</div>
 			<p style="margin-top: 2em; text-align: center; color:#ccc;">Copyright ©<?php echo date("Y"); ?> UCF Libraries</p>
 		</footer>
