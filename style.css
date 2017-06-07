@@ -9,7 +9,8 @@ Text Domain: UCFLibraries
 Version: 1.12.6
 
 */
-@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto+Slab:700|Roboto:500,700,400);
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto+Slab:700|Roboto:500,700,400|Montserrat:700);
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 .library-body {
   font-family: "Droid Sans", sans-serif;
@@ -290,12 +291,12 @@ footer ul li a:hover { text-decoration: none;}
 	font-size: 1.25em;
 	line-height: 2;
 	margin: 0;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Montserrat', 'Roboto', sans-serif;
 }
 .navbar-library .navbar-brand {
 	color: #222;
 	height: auto;
-  font-family: 'Roboto Slab', 'Roboto', sans-serif ;
+  font-family: 'Montserrat', 'Roboto', sans-serif ;
   font-size: 2.5em;
   font-variant: small-caps;
   margin: .25em 0 .35em;
