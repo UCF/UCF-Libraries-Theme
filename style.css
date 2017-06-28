@@ -1303,13 +1303,17 @@ th.header.empty-cell:after {
 .navbar-library .btn-link[disabled]:hover, fieldset[disabled] .navbar-library .btn-link:hover, .navbar-library .btn-link[disabled]:focus, fieldset[disabled] .navbar-library .btn-link:focus {
 	color: #ccc;
 }
+
+@media (max-width: 1200px) {
+  .navbar { font-size: 1.15em; }
+}
+
 @media (max-width: 991px) {
 	.navbar { font-size: .95em; }
 	.navbar-library .navbar-brand img { width: 10em; }
 	.nav > li > a { padding: 15px 10px; }
 }
 
-/* Gravity forms overrides */
 
 .gform_wrapper.gf_browser_chrome ul.gform_fields li.gfield div.ginput_complex span.ginput_left select,
 .gform_wrapper.gf_browser_chrome ul.gform_fields li.gfield div.ginput_complex span.ginput_right select,
