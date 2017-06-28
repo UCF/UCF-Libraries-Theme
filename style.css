@@ -1309,7 +1309,7 @@ th.header.empty-cell:after {
 }
 
 @media (max-width: 991px) {
-	.navbar { font-size: .95em; }
+	.navbar { font-size: .90em; }
 	.navbar-library .navbar-brand img { width: 10em; }
 	.nav > li > a { padding: 15px 10px; }
 }
