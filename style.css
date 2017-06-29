@@ -6,11 +6,11 @@ Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
 
-Version: 1.12.7
+Version: 1.12.8
 
 */
-@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto+Slab:700|Roboto:500,700,400|Montserrat:500,700);
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto:500,700,400');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500,700');
 
 .library-body {
   font-family: "Droid Sans", sans-serif;
