@@ -6,10 +6,6 @@
 //===================================
 
 
-function header_override() {
-  $('#ucfhb-inner').addClass('override');
-}
-
 //COLLAPSING SIDEBAR MENU
 //=======================
 
@@ -458,7 +454,6 @@ function get_time_zone_offset() {
 // =========================================
 
 $(document).ready( function() {
-  header_override();
   collapse_sidebar();
   tab_linking();
   login_modal_launch();
