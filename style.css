@@ -10,7 +10,7 @@ Version: 1.12.9
 
 */
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto:500,700,400');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:500,700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500,700,800');
 
 .library-body {
   font-family: "Droid Sans", sans-serif;
@@ -299,6 +299,7 @@ footer ul li a:hover { text-decoration: none;}
   font-family: 'Montserrat', 'Roboto', sans-serif ;
   font-size: 2.5em;
   font-variant: small-caps;
+  font-weight: 800;
   margin: .25em 0 .35em;
 }
 @media (min-width: 768px) {
