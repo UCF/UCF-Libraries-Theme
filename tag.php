@@ -20,7 +20,7 @@
 					<?php get_sidebar(); ?>
 				</div>
 				<div id="content_area" class="col-sm-9">
-					<h2 class="subpage-title"><?php single_cat_title('Tag: '); ?><!-- Test update --></h2>
+					<h2 class="subpage-title"><?php single_cat_title('Posts Tagged: '); ?></h2>
 
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					<?php	
