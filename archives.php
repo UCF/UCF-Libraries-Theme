@@ -23,7 +23,7 @@
 			        ?>
 					<article>
 						<header>
-		                  <h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+		                  <h2><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h2>
 		                  <span class="news-post-category"><?php echo trim($output, $separator).' - '.get_the_time('F jS, Y'); ?></span>
 						</header>
 						<p><?php the_post_thumbnail( ); ?></p>

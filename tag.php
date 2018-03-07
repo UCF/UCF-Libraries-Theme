@@ -54,12 +54,6 @@
 											<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
-									<a class="share-btn gplus-btn" href="javascript:share_button('https://plus.google.com/share?url=<?php echo get_permalink(); ?>', 500, 500)">
-										<span class="fa-stack fa-lg">
-											<i class="fa fa-circle fa-stack-2x"></i>
-											<i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
-										</span>
-									</a>
 									<a class="share-btn email-btn" href="mailto:?subject=<?php echo get_the_title(); ?>&body=<?php echo get_the_title(); ?> <?php echo get_permalink(); ?>">
 										<span class="fa-stack fa-lg">
 											<i class="fa fa-circle fa-stack-2x"></i>
@@ -69,7 +63,7 @@
 								</div>
 								<div class="news-post-title">
 									<header>
-					                  <h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+					                  <h2><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h2>
 					                  <span class="news-post-category"><?php echo trim($output, $separator); ?></span>
                 					  <span class="news-post-date">Posted: <i class="fa fa-calendar"></i> <?php echo get_the_time('F jS, Y'); ?></span>
                 					</header>
