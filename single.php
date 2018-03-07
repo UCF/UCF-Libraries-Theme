@@ -51,12 +51,6 @@
 											<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
-									<a class="share-btn gplus-btn" href="javascript:share_button('https://plus.google.com/share?url=<?php echo get_permalink(); ?>', 500, 500)">
-										<span class="fa-stack fa-lg">
-											<i class="fa fa-circle fa-stack-2x"></i>
-											<i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
-										</span>
-									</a>
 									<a class="share-btn email-btn" href="mailto:?subject=<?php echo get_the_title(); ?>&body=<?php echo get_the_title(); ?> <?php echo get_permalink(); ?>">
 										<span class="fa-stack fa-lg">
 											<i class="fa fa-circle fa-stack-2x"></i>

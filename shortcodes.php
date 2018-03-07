@@ -211,7 +211,7 @@ add_shortcode('search-videos', 'search_videos');
 **/
 function search_scua($form) {
     $form = '
-      <form role="form" class="search search-scua" id="advanced" name="searchAdv" action="http://cf.catalog.fcla.edu/cf.jsp?ADV=S" target="_blank">
+      <form role="form" class="search search-scua" id="advanced" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp?ADV=S" target="_blank">
 
         <input name="ADV" type="hidden" value="S">
         <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
@@ -730,7 +730,7 @@ function library_events($atts) {
    extract(shortcode_atts(array(
       'number' => '4',
    ), $atts));
-  $string = file_get_contents('http://events.ucf.edu/calendar/2084/ucf-libraries-events/upcoming/feed.json');
+  $string = file_get_contents('https://events.ucf.edu/calendar/2084/ucf-libraries-events/upcoming/feed.json');
   $json_o = json_decode($string);
   $events_list = '';
   $i = 0;
