@@ -262,12 +262,11 @@ function librarian_newsletter_feed(librarian) {
 // STARS Publication feed list
 //=======================================
 
-function stars_feed_list(feed_url, container_ID) {
+function stars_feed_list(feed_url, container_ID, number) {
   google.load("feeds", "1");
-
   function initialize() {
     var feed = new google.feeds.Feed(feed_url);
-    feed.setNumEntries(10);
+    feed.setNumEntries(number);
     feed.load(function(result) {
       if (!result.error) {
         var container = document.getElementById(container_ID);

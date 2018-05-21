@@ -1029,10 +1029,11 @@ function stars_feed_list($atts) {
   extract(shortcode_atts(array(
       'feed_url' => 'https://stars.library.ucf.edu/topdownloads.html',
       'container_id' => 'feed_container',
+      'number' => '10',
   ), $atts));
   $output = '<div id="'.$container_id.'"></div>
   <script type="text/javascript" src="https://rss2json.com/gfapi.js"></script>
-  <script> stars_feed_list("'.$feed_url.'","'.$container_id.'") </script>';
+  <script> stars_feed_list("'.$feed_url.'","'.$container_id.'","'.$number.'") </script>';
   return $output;
 }
 add_shortcode('stars-feed-list', 'stars_feed_list');
