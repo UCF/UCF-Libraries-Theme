@@ -1019,6 +1019,26 @@ add_shortcode('newsletter-feed', 'newsletter_feed');
 
 
 /**
+* STARS Most Recent RSS Feed
+* Inserts Feed for Most Recent Publications
+*
+*[stars-feed-list feed_url="ttps://stars.library.ucf.edu/topdownloads.html" container_id="top_download_feed"]
+*
+**/
+function stars_feed_list($atts) {
+  extract(shortcode_atts(array(
+      'feed_url' => 'https://stars.library.ucf.edu/topdownloads.html',
+      'container_id' => 'feed_container',
+  ), $atts));
+  $output = '<div id="'.$container_id.'"></div>
+  <script type="text/javascript" src="https://rss2json.com/gfapi.js"></script>
+  <script> stars_feed_list("'.$feed_url.'","'.$container_id.'") </script>';
+  return $output;
+}
+add_shortcode('stars-feed-list', 'stars_feed_list');
+
+
+/**
 * ILL Lending Login
 * Allows ILL patrons to login to the lending site
 *
