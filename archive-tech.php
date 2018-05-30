@@ -51,7 +51,7 @@ Description: Archive tech page.
                 <table class="table table-striped table-sorter tech-list">
                   <thead>
                     <tr>
-                      <th class="empty-cell"></th>
+                      <th class="empty-cell"><span class="sr-only">Item Image</span></th>
                       <th><i class="fa fa-exclamation-circle"></i> Item Name</th>
                       <th><i class="fa fa-hourglass"></i> Loan Period</th>
                       <th><i class="fa fa-users"></i> Eligible Users</th>
