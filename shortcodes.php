@@ -228,6 +228,31 @@ function search_scua($form) {
 }
 add_shortcode('search-scua', 'search_scua');
 
+/**
+* STARS Search bar shortcode
+* Searches STARS repository
+*
+* Example [search-stars]
+**/
+function search_stars($form) {
+    $form = '
+      <form method="get" action="https://stars.library.ucf.edu/do/search/" id="sidebar-search">
+        <fieldset>      
+          <label for="search" class="sr-only">Search </label>          
+          <div class="input-group">
+            <input class="form-control" type="text" name="q" class="search" id="search" placeholder="Search Collection">
+            <input name="fq" type="hidden" value="virtual_ancestor_link:&quot;https://stars.library.ucf.edu/&quot;">
+            <span class="input-group-btn">  
+              <button type="submit" class="btn btn-default" name="query" value="Search"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
+            </span>        
+          </div>     
+        </fieldset>
+      </form>
+    ';
+    return $form;
+}
+add_shortcode('search-stars', 'search_stars');
+
 
 /**
 * JQuery Homepage tabs
@@ -1016,6 +1041,27 @@ function newsletter_feed($atts) {
   return $output;
 }
 add_shortcode('newsletter-feed', 'newsletter_feed');
+
+
+/**
+* STARS Most Recent RSS Feed
+* Inserts Feed for Most Recent Publications
+*
+*[stars-feed-list feed_url="ttps://stars.library.ucf.edu/topdownloads.html" container_id="top_download_feed"]
+*
+**/
+function stars_feed_list($atts) {
+  extract(shortcode_atts(array(
+      'feed_url' => 'https://stars.library.ucf.edu/topdownloads.html',
+      'container_id' => 'feed_container',
+      'number' => '10',
+  ), $atts));
+  $output = '<div id="'.$container_id.'"></div>
+  <script type="text/javascript" src="https://rss2json.com/gfapi.js"></script>
+  <script> stars_feed_list("'.$feed_url.'","'.$container_id.'","'.$number.'") </script>';
+  return $output;
+}
+add_shortcode('stars-feed-list', 'stars_feed_list');
 
 
 /**
