@@ -392,7 +392,7 @@ function register_technology_lending_entities() {
         'hierarchical' => true,
         'description' => 'Tech names and descriptions',
         'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions'),
-        'taxonomies' => array( 'tech_type', 'loan_period'),
+        'taxonomies' => array( 'tech_type', 'loan_period', 'eligible_user', 'library'),
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
@@ -539,6 +539,127 @@ function generate_tech_taxonomy_rewrite_rules( $wp_rewrite ) {
 }
 add_action('generate_rewrite_rules', 'generate_tech_taxonomy_rewrite_rules');
 
+
+/**
+* Collections Custom Post Type & Taxonomies
+**/
+
+function register_collection_entities() {
+
+  //Collection Custom Post Type
+    $collection_labels = array(
+        'name' => _x( 'collection', 'collection' ),
+        'singular_name' => _x( 'Collection', 'collection' ),
+        'add_new' => _x( 'Add New', 'collection' ),
+        'add_new_item' => _x( 'Add New Collection Item', 'collection' ),
+        'edit_item' => _x( 'Edit Collection Item', 'collection' ),
+        'new_item' => _x( 'New Collection Item', 'collection' ),
+        'view_item' => _x( 'View Collection Item', 'collection' ),
+        'search_items' => _x( 'Search Collection Items', 'collection' ),
+        'not_found' => _x( 'No collection item found', 'collection' ),
+        'not_found_in_trash' => _x( 'No collection found in Trash', 'collection' ),
+        'parent_item_colon' => _x( 'Parent Collection:', 'collection' ),
+        'menu_name' => _x( 'Collection', 'collection' ),
+    );
+
+    $collection_args = array(
+        'labels' => $collection_labels,
+        'hierarchical' => true,
+        'description' => 'Collection names and descriptions',
+        'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions'),
+        'taxonomies' => array( 'keyword', 'location'),
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_icon' => 'dashicons-media-document',
+        'menu_position' => 21,
+        'show_in_nav_menus' => true,
+        'publicly_queryable' => true,
+        'exclude_from_search' => false,
+        'has_archive' => true,
+        'query_var' => true,
+        'can_export' => true,
+        'rewrite' => array( 'slug' => 'collection', 'with_front' => false ),
+        'capability_type' => 'post'
+    );
+    register_post_type( 'collection', $collection_args );
+
+  // Keyword Taxonomy
+    $keyword_labels = array(
+        'name' => _x( 'Keyword', 'taxonomy general name' ),
+        'singular_name' => _x( 'Keyword', 'taxonomy singular name' ),
+        'search_items' =>  __( 'Search Keyword' ),
+        'all_items' => __( 'All Keywords' ),
+        'parent_item' => __( 'Parent Keyword' ),
+        'parent_item_colon' => __( 'Parent Keyword:' ),
+        'edit_item' => __( 'Edit Keyword' ),
+        'update_item' => __( 'Update Keyword' ),
+        'add_new_item' => __( 'Add New Keyword' ),
+        'new_item_name' => __( 'New Keyword Name' ),
+        'menu_name' => __( 'Keyword' ),
+    );
+
+    $keyword_args = array(
+      'hierarchical' => true,
+      'labels' => $keyword_labels,
+      'show_ui' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'collection', 'with_front' => false ),
+    );
+    register_taxonomy('keyword',array('collection'), $keyword_args );
+
+  // Location Taxonomy
+    $location_labels = array(
+        'name' => _x( 'Location', 'taxonomy general name' ),
+        'singular_name' => _x( 'Location', 'taxonomy singular name' ),
+        'search_items' =>  __( 'Search Location' ),
+        'all_items' => __( 'All Locations' ),
+        'parent_item' => __( 'Parent Location' ),
+        'parent_item_colon' => __( 'Parent Location:' ),
+        'edit_item' => __( 'Edit Location' ),
+        'update_item' => __( 'Update Location' ),
+        'add_new_item' => __( 'Add New Location' ),
+        'new_item_name' => __( 'New Location Name' ),
+        'menu_name' => __( 'Location' ),
+    );
+
+    $location_args = array(
+      'hierarchical' => true,
+      'labels' => $location_labels,
+      'show_ui' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'collection', 'with_front' => false ),
+    );
+    register_taxonomy('location',array('collection'), $location_args );
+}
+
+add_action( 'init', 'register_collection_entities' );
+
+// Slug rewrite for collection custom post type and taxonomies
+function generate_collection_taxonomy_rewrite_rules( $wp_rewrite ) {
+  $rules = array();
+  $post_types = get_post_types( array( 'name' => 'collection', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies = get_taxonomies( array( 'name' => 'keyword', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies += get_taxonomies( array( 'name' => 'location', 'public' => true, '_builtin' => false ), 'objects' );
+
+  foreach ( $post_types as $post_type ) {
+    $post_type_name = $post_type->name; // 'developer'
+    $post_type_slug = $post_type->rewrite['slug']; // 'developers'
+
+    foreach ( $taxonomies as $taxonomy ) {
+      if ( $taxonomy->object_type[0] == $post_type_name ) {
+        $terms = get_categories( array( 'type' => $post_type_name, 'taxonomy' => $taxonomy->name, 'hide_empty' => 0 ) );
+        foreach ( $terms as $term ) {
+          $rules[$post_type_slug . '/' . $term->slug . '/?$'] = 'index.php?' . $term->taxonomy . '=' . $term->slug;
+        }
+      }
+    }
+  }
+  $wp_rewrite->rules = $rules + $wp_rewrite->rules;
+}
+add_action('generate_rewrite_rules', 'generate_collection_taxonomy_rewrite_rules');
 
 
 //Adding in Featured image feature
