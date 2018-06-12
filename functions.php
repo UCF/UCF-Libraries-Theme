@@ -567,7 +567,7 @@ function register_collection_entities() {
         'hierarchical' => true,
         'description' => 'Collection names and descriptions',
         'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions'),
-        'taxonomies' => array( 'keyword', 'location'),
+        'taxonomies' => array( 'collection_owner', 'collection_keyword', 'collection_location'),
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
@@ -584,8 +584,33 @@ function register_collection_entities() {
     );
     register_post_type( 'collection', $collection_args );
 
+  // Collection Owner Taxonomy
+    $collection_owner_labels = array(
+        'name' => _x( 'Collection Owner', 'taxonomy general name' ),
+        'singular_name' => _x( 'Collection Owner', 'taxonomy singular name' ),
+        'search_items' =>  __( 'Search Collection Owner' ),
+        'all_items' => __( 'All Collection Owners' ),
+        'parent_item' => __( 'Parent Collection Owner' ),
+        'parent_item_colon' => __( 'Parent Collection Owner:' ),
+        'edit_item' => __( 'Edit Collection Owner' ),
+        'update_item' => __( 'Update Collection Owner' ),
+        'add_new_item' => __( 'Add New Collection Owner' ),
+        'new_item_name' => __( 'New Collection Owner Name' ),
+        'menu_name' => __( 'Collection Owner' ),
+    );
+
+    $collection_owner_args = array(
+      'hierarchical' => true,
+      'labels' => $collection_owner_labels,
+      'show_ui' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'collection', 'with_front' => false ),
+    );
+    register_taxonomy('collection_owner',array('collection'), $collection_owner_args );
+
   // Keyword Taxonomy
-    $keyword_labels = array(
+    $collection_keyword_labels = array(
         'name' => _x( 'Keyword', 'taxonomy general name' ),
         'singular_name' => _x( 'Keyword', 'taxonomy singular name' ),
         'search_items' =>  __( 'Search Keyword' ),
@@ -599,18 +624,18 @@ function register_collection_entities() {
         'menu_name' => __( 'Keyword' ),
     );
 
-    $keyword_args = array(
+    $collection_keyword_args = array(
       'hierarchical' => true,
-      'labels' => $keyword_labels,
+      'labels' => $collection_keyword_labels,
       'show_ui' => true,
       'show_admin_column' => true,
       'query_var' => true,
       'rewrite' => array( 'slug' => 'collection', 'with_front' => false ),
     );
-    register_taxonomy('keyword',array('collection'), $keyword_args );
+    register_taxonomy('collection_keyword',array('collection'), $collection_keyword_args );
 
   // Location Taxonomy
-    $location_labels = array(
+    $collection_location_labels = array(
         'name' => _x( 'Location', 'taxonomy general name' ),
         'singular_name' => _x( 'Location', 'taxonomy singular name' ),
         'search_items' =>  __( 'Search Location' ),
@@ -624,15 +649,15 @@ function register_collection_entities() {
         'menu_name' => __( 'Location' ),
     );
 
-    $location_args = array(
+    $collection_location_args = array(
       'hierarchical' => true,
-      'labels' => $location_labels,
+      'labels' => $collection_location_labels,
       'show_ui' => true,
       'show_admin_column' => true,
       'query_var' => true,
       'rewrite' => array( 'slug' => 'collection', 'with_front' => false ),
     );
-    register_taxonomy('location',array('collection'), $location_args );
+    register_taxonomy('collection_location',array('collection'), $collection_location_args );
 }
 
 add_action( 'init', 'register_collection_entities' );
@@ -641,8 +666,9 @@ add_action( 'init', 'register_collection_entities' );
 function generate_collection_taxonomy_rewrite_rules( $wp_rewrite ) {
   $rules = array();
   $post_types = get_post_types( array( 'name' => 'collection', 'public' => true, '_builtin' => false ), 'objects' );
-  $taxonomies = get_taxonomies( array( 'name' => 'keyword', 'public' => true, '_builtin' => false ), 'objects' );
-  $taxonomies += get_taxonomies( array( 'name' => 'location', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies = get_taxonomies( array( 'name' => 'collection_owner', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies += get_taxonomies( array( 'name' => 'collection_keyword', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies += get_taxonomies( array( 'name' => 'collection_location', 'public' => true, '_builtin' => false ), 'objects' );
 
   foreach ( $post_types as $post_type ) {
     $post_type_name = $post_type->name; // 'developer'
