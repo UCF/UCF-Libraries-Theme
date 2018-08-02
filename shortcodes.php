@@ -174,6 +174,31 @@ add_shortcode('search-catalog', 'search_catalog');
 
 
 /**
+* Textbook search
+* Search Reserves for Textbooks
+*
+*[search-textbooks]
+**/
+function search_textbooks( $form ){
+  $form = '
+    <form role="form" class="search search-textbooks"  id="textbook_search_form" name="textbook_search_form" action="https://reserves.catalog.fcla.edu/cf.jsp?" target="_blank">
+      <label for="textbook_search" class="sr-only">Search Textbooks</label>
+      <div class="input-group">
+        <input id="textbook_search" type="text" name="Ntt" value="" placeholder="Search for textbooks" class="form-control" />
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#textbook_search\').val(), \'Textbook Search\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
+        </span>
+      </div>
+      <input name="CRopt" type="hidden" value="TAP">
+      <input name="Ntk" type="hidden" value="Title">
+
+    </form>
+  ';
+  return $form;
+}
+add_shortcode('search-textbooks', 'search_textbooks');
+
+/**
 * Video/catalog search
 * Search the catalog for videos
 *
@@ -699,8 +724,8 @@ add_shortcode('hours-calendar', 'hours_week_calendar');
 *
 **/
 function hours_today_homepage( $atts ) {
-  $string = file_get_contents('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
-  $json_o = json_decode($string);
+  $string = wp_remote_get('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json', array( 'timeout' => 15 ));
+  $json_o = json_decode($string['body']);
   if ($json_o != null) {
     $hours_list = '<dl class="dl-horizontal homepage">';
     foreach ($json_o->locations as $location) if ($location->lid == '1206' || $location->lid == '1209' || $location->lid == '1211') {
@@ -727,8 +752,8 @@ function hours_today_single( $atts ) {
   extract(shortcode_atts( array(
     'id' => '1206',
   ), $atts ));
-  $string = file_get_contents('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json');
-  $json_o = json_decode($string);
+  $string = wp_remote_get('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json', array( 'timeout' => 15 ));
+  $json_o = json_decode($string['body']);
   $hours = '';
   if ($json_o != null) {
     foreach ($json_o->locations as $location) if ($location->lid == $id) {
@@ -755,8 +780,9 @@ function library_events($atts) {
    extract(shortcode_atts(array(
       'number' => '4',
    ), $atts));
-  $string = file_get_contents('https://events.ucf.edu/calendar/2084/ucf-libraries-events/upcoming/feed.json');
-  $json_o = json_decode($string);
+
+  $string = wp_remote_get('https://events.ucf.edu/calendar/2084/ucf-libraries-events/upcoming/feed.json', array( 'timeout' => 15 ));
+  $json_o = json_decode($string['body']);
   $events_list = '';
   $i = 0;
   date_default_timezone_set('America/New_York');
@@ -1109,8 +1135,8 @@ add_shortcode('lending-login', 'lending_login');
 * Requires <div class="collapse" id="Department-Name">...</div> on the page for each department in the system, or else the link will do nothing.
 **/
 function hiring_status($atts) {
-  $string = @file_get_contents('https://apps.library.ucf.edu/public/jobapplication/JSONUtils/HiringDepartments');
-  $json_o = json_decode($string);
+  $string = wp_remote_get('https://apps.library.ucf.edu/public/jobapplication/JSONUtils/HiringDepartments');
+  $json_o = json_decode($string['body']);
   if ($json_o != null) {
     if (!empty($json_o) || $json_o != false) {
       $hiring_list = '<dl class="dl-horizontal hiring-list">';
