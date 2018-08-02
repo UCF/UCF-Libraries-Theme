@@ -36,6 +36,22 @@ add_filter( 'wp_calculate_image_srcset', 'ssl_srcset' );
 
 
 /**
+* File_get_contents replacement
+**/
+function url_get_contents ($Url) {
+    if (!function_exists('curl_init')){ 
+        die('CURL is not installed!');
+    }
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $Url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $output = curl_exec($ch);
+    curl_close($ch);
+    return $output;
+}
+
+
+/**
  * Strings passed to this function will be modified under the assumption that
  * they were outputted by wordpress' the_output filter.  It checks for a handful
  * of things like empty, unnecessary, and unclosed tags.
