@@ -92,9 +92,9 @@ Description: Single technology page.
 									<div class="table-responsive">
 										<?php
 											$url = get_post_meta($post->ID, 'availability', true);
-											$content = file_get_contents($url);
+											$content = wp_remote_get($url);
 											if ($content != false) {
-												$first_step = explode( '<div id="divItemDetails">' , $content );
+												$first_step = explode( '<div id="divItemDetails">' , $content['body'] );
 												$second_step = explode("</div>" , $first_step[1] );
 												echo $second_step[0];
 											} else {
