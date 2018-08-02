@@ -174,6 +174,31 @@ add_shortcode('search-catalog', 'search_catalog');
 
 
 /**
+* Textbook search
+* Search Reserves for Textbooks
+*
+*[search-textbooks]
+**/
+function search_textbooks( $form ){
+  $form = '
+    <form role="form" class="search search-textbooks"  id="textbook_search_form" name="textbook_search_form" action="https://reserves.catalog.fcla.edu/cf.jsp?" target="_blank">
+      <label for="textbook_search" class="sr-only">Search Textbooks</label>
+      <div class="input-group">
+        <input id="textbook_search" type="text" name="Ntt" value="" placeholder="Search for textbooks" class="form-control" />
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#textbook_search\').val(), \'Textbook Search\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
+        </span>
+      </div>
+      <input name="CRopt" type="hidden" value="TAP">
+      <input name="Ntk" type="hidden" value="Title">
+      
+    </form>
+  ';
+  return $form;
+}
+add_shortcode('search-textbooks', 'search_textbooks');
+
+/**
 * Video/catalog search
 * Search the catalog for videos
 *
@@ -755,7 +780,7 @@ function library_events($atts) {
    extract(shortcode_atts(array(
       'number' => '4',
    ), $atts));
-  $string = file_get_contents('https://events.ucf.edu/calendar/2084/ucf-libraries-events/upcoming/feed.json');
+  $string = url_get_contents('https://events.ucf.edu/calendar/2084/ucf-libraries-events/upcoming/feed.json');
   $json_o = json_decode($string);
   $events_list = '';
   $i = 0;
