@@ -954,6 +954,10 @@ th.header.empty-cell:after {
 /* Homepage Service Bar */
 .homepage-services {
 	font-size: 1.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
 }
 .homepage-services a {
 	display: block;
@@ -974,11 +978,20 @@ th.header.empty-cell:after {
 	margin: 1em 0;
 }
 
+.h-s-item {
+  flex-grow: 1;
+  width: 100%;
+}
+.h-s-text {
+  font-size: .8em;
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 
 	.homepage-services {
 		font-size: 1.1em;
+    flex-direction: row;
 	}
 	.homepage-services a {
 		width: auto;
