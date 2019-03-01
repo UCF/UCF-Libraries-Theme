@@ -535,17 +535,18 @@ add_shortcode('icon', 'icon_graphic');
 *Create embeded youtube links that are responsive.
 *
 *Example:
-*[youtube id="cJHCKkCesuE" width="500"]
+*[youtube id="cJHCKkCesuE" width="500" title=""]
 **/
 function youtube_video($atts) {
   extract(shortcode_atts( array(
       'id' => '62NEzgmqwx0',
       'width' => '100%',
-      'list' => ''
+      'list' => '',
+      'title' => 'Youtube Video',
   ), $atts ));
   return '<div class="responsive-wrapper" style="max-width:'.$width.';">
             <div class="responsive-container youtube">
-             <iframe src="https://youtube.com/embed/'.$id.'?list='.$list.'" frameborder="0" allowfullscreen></iframe>
+             <iframe title="'.$title.'"" src="https://youtube.com/embed/'.$id.'?list='.$list.'" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>';
 }
@@ -557,17 +558,18 @@ add_shortcode('youtube', 'youtube_video');
 * Create embedded vimeo links that are responsive.
 *
 * Example:
-* [vimeo id="" width ="50%"]
+* [vimeo id="" width ="50%" title=""]
 **/
 function vimeo_video($atts) {
   extract(shortcode_atts( array(
       'id' => '171786784',
       'width' => '100%',
+      'title' => 'Vimeo Video',
   ), $atts ));
   return '
     <div class="responsive-wrapper" style="max-width: '.$width.';">
       <div class="responsive-container vimeo">
-        <iframe src="https://player.vimeo.com/video/'.$id.'" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <iframe title="'.$title.'"" src="https://player.vimeo.com/video/'.$id.'" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       </div>
     </div>';
 }
