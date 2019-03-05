@@ -339,7 +339,7 @@ function register_cpt_staff_entities() {
 add_action( 'init', 'register_cpt_staff_entities' );
 
 
-// Slug rewrite for technology lending custom post type and taxonomies
+// Slug rewrite for staff custom post type and taxonomies
 function generate_staff_taxonomy_rewrite_rules( $wp_rewrite ) {
   $rules = array();
   $post_types = get_post_types( array( 'name' => 'staff', 'public' => true, '_builtin' => false ), 'objects' );
