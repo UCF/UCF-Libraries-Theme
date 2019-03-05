@@ -51,9 +51,10 @@ Description: Archive staff member page.
                       <th class="empty-cell"><span class="sr-only">Staff Image</span></th>
                       <th><span class="glyphicon glyphicon-user"></span> Name</th>
                       <th><i class="fa fa-bookmark"></i> Title</th>
+                      <th><i class="fa fa-graduation-cap"></i> Rank</th>
                       <th><i class="fa fa-university"></i> Department</th>
                       <th style="min-width: 10em;"><span class="glyphicon glyphicon-phone-alt"></span> Phone</th>
-                      <th style="min-width: 6em;"><span class="glyphicon glyphicon-envelope"></span> Email</th>
+                      <th style="min-width: 6em;"><i class="fa fa-envelope"></i> Email</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -64,6 +65,11 @@ Description: Archive staff member page.
                       <td>
                         <?php if(get_post_meta($post->ID, 'title', true)): ?>
                           <?php echo get_post_meta($post->ID, 'title', true); ?>
+                        <?php endif; ?>
+                      </td>
+                      <td>
+                        <?php if(get_post_meta($post->ID, 'rank', true)): ?>
+                          <?php echo get_post_meta($post->ID, 'rank', true); ?>
                         <?php endif; ?>
                       </td>
                       <td>
@@ -108,14 +114,21 @@ Description: Archive staff member page.
     							<div class="caption">
     								<h3><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h3>
     								<?php if(get_post_meta($post->ID, 'title', true) ||
-    									 get_post_meta($post->ID, 'room', true) ||
-    									 get_post_meta($post->ID, 'phone', true) ||
-    									 get_post_meta($post->ID, 'email', true)
+                             get_post_meta($post->ID, 'rank', true) ||
+                             get_post_meta($post->ID, 'department', true) ||
+                             get_post_meta($post->ID, 'subject', true) ||
+                             get_post_meta($post->ID, 'room', true) ||
+                             get_post_meta($post->ID, 'phone', true) ||
+                             get_post_meta($post->ID, 'email', true)
     								): ?>
     								<ul>
   										<?php if(get_post_meta($post->ID, 'title', true)): ?>
                         <li><i class="fa fa-bookmark" data-toggle="tooltip" data-placement="right" title="Title"></i><?php echo get_post_meta($post->ID, 'title', true); ?></li>
   										<?php endif; ?>
+
+                      <?php if(get_post_meta($post->ID, 'rank', true)): ?>
+                        <li><i class="fa fa-graduation-cap" data-toggle="tooltip" data-placement="right" title="Rank"></i><?php echo get_post_meta($post->ID, 'rank', true); ?></li>
+                      <?php endif; ?>
 
   										<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
   											<li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
@@ -130,7 +143,7 @@ Description: Archive staff member page.
   										<?php endif; ?>
 
   										<?php if(get_post_meta($post->ID, 'email', true)): ?>
-  											<li><span class="glyphicon glyphicon-envelope" data-toggle="tooltip" data-placement="right" title="Email"></span><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"> <span class="ellipsis"> <?php echo get_post_meta($post->ID, 'email', true); ?></span></a></li>
+  											<li><i class="fa fa-envelope" data-toggle="tooltip" data-placement="right" title="Email"></i><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"> <span class="ellipsis"> <?php echo get_post_meta($post->ID, 'email', true); ?></span></a></li>
   										<?php endif; ?>
     								</ul>
       							<?php endif; ?>

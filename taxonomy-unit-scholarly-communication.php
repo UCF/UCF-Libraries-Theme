@@ -57,9 +57,10 @@ Description: Scholarly Commnunication archive page.
                       <th class="empty-cell"></th>
                       <th><span class="glyphicon glyphicon-user"></span> Name</th>
                       <th><i class="fa fa-bookmark"></i> Title</th>
+                      <th><i class="fa fa-graduation-cap"></i> Rank</th>
                       <th><i class="fa fa-university"></i> Department</th>
                       <th style="min-width: 10em;"><span class="glyphicon glyphicon-phone-alt"></span> Phone</th>
-                      <th style="min-width: 6em;"><span class="glyphicon glyphicon-envelope"></span> Email</th>
+                      <th style="min-width: 6em;"><i class="fa fa-envelope"></i> Email</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -70,6 +71,11 @@ Description: Scholarly Commnunication archive page.
                       <td>
                         <?php if(get_post_meta($post->ID, 'title', true)): ?>
                           <?php echo get_post_meta($post->ID, 'title', true); ?>
+                        <?php endif; ?>
+                      </td>
+                      <td>
+                        <?php if(get_post_meta($post->ID, 'rank', true)): ?>
+                          <?php echo get_post_meta($post->ID, 'rank', true); ?>
                         <?php endif; ?>
                       </td>
                       <td>

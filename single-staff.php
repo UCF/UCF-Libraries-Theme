@@ -37,13 +37,20 @@ Description: Single staff member page.
 										<div class="caption">
 										<h2><?php friendly_name(); ?></h2>
 											<?php if(get_post_meta($post->ID, 'title', true) ||
-												 get_post_meta($post->ID, 'room', true) ||
-												 get_post_meta($post->ID, 'phone', true) || 
-												 get_post_meta($post->ID, 'email', true)
+                             get_post_meta($post->ID, 'rank', true) ||
+                             get_post_meta($post->ID, 'department', true) ||
+                             get_post_meta($post->ID, 'subject', true) ||
+                             get_post_meta($post->ID, 'room', true) ||
+                             get_post_meta($post->ID, 'phone', true) ||
+                             get_post_meta($post->ID, 'email', true)
 											): ?>
 											<ul>
 												<?php if(get_post_meta($post->ID, 'title', true)): ?>
     											<li><i class="fa fa-bookmark" data-toggle="tooltip" data-placement="right" title="Title"></i><?php echo get_post_meta($post->ID, 'title', true); ?></li>
+												<?php endif; ?>
+
+												<?php if(get_post_meta($post->ID, 'rank', true)): ?>
+    											<li><i class="fa fa-graduation-cap" data-toggle="tooltip" data-placement="right" title="Rank"></i><?php echo get_post_meta($post->ID, 'rank', true); ?></li>
 												<?php endif; ?>
 
 												<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
@@ -59,7 +66,7 @@ Description: Single staff member page.
 												<?php endif; ?>
 
 												<?php if(get_post_meta($post->ID, 'email', true)): ?>
-													<li><span class="glyphicon glyphicon-envelope" data-toggle="tooltip" data-placement="right" title="Email"></span><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"> <span class="ellipsis"> <?php echo get_post_meta($post->ID, 'email', true); ?></span></a></li>
+													<li><i class="fa fa-envelope" data-toggle="tooltip" data-placement="right" title="Email"></i><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"> <span class="ellipsis"> <?php echo get_post_meta($post->ID, 'email', true); ?></span></a></li>
 												<?php endif; ?>
 											</ul>
 											<?php endif; ?>
