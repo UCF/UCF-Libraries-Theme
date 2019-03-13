@@ -1138,8 +1138,8 @@ add_shortcode('lending-login', 'lending_login');
 **/
 function hiring_status($atts) {
   $string = wp_remote_get('https://apps.library.ucf.edu/public/jobapplication/JSONUtils/HiringDepartments');
-  $json_o = json_decode($string['body']);
-  if ($json_o != null) {
+  if (is_array( $string)) {
+    $json_o = json_decode($string['body']);
     if (!empty($json_o) || $json_o != false) {
       $hiring_list = '<dl class="dl-horizontal hiring-list">';
       $hiring = 0;
