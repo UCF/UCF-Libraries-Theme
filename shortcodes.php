@@ -727,8 +727,8 @@ add_shortcode('hours-calendar', 'hours_week_calendar');
 **/
 function hours_today_homepage( $atts ) {
   $string = wp_remote_get('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json', array( 'timeout' => 15 ));
-  $json_o = json_decode($string['body']);
-  if ($json_o != null) {
+  if (is_array( $string)) {
+    $json_o = json_decode($string['body']);
     $hours_list = '<dl class="dl-horizontal homepage">';
     foreach ($json_o->locations as $location) if ($location->lid == '1206' || $location->lid == '1209' || $location->lid == '1211') {
         $hours_list .= '<dt>'.$location->name.'</dt><dd>'.$location->rendered.'</dd>';
@@ -755,9 +755,9 @@ function hours_today_single( $atts ) {
     'id' => '1206',
   ), $atts ));
   $string = wp_remote_get('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json', array( 'timeout' => 15 ));
-  $json_o = json_decode($string['body']);
-  $hours = '';
-  if ($json_o != null) {
+  if (is_array( $string)) {
+    $json_o = json_decode($string['body']);
+    $hours = '';
     foreach ($json_o->locations as $location) if ($location->lid == $id) {
       $hours .= '<span class="department-hours"><!-- '.$location->name.'-->'.$location->rendered.'</span>';
     }
@@ -784,11 +784,11 @@ function library_events($atts) {
    ), $atts));
 
   $string = wp_remote_get('https://events.ucf.edu/calendar/2084/ucf-libraries-events/upcoming/feed.json', array( 'timeout' => 15 ));
-  $json_o = json_decode($string['body']);
-  $events_list = '';
-  $i = 0;
-  date_default_timezone_set('America/New_York');
-  if ($json_o != null) {
+  if (is_array( $string)) {
+    $json_o = json_decode($string['body']);
+    $events_list = '';
+    $i = 0;
+    date_default_timezone_set('America/New_York');
     foreach ($json_o as $event) {
       $date = strtotime($event->starts);
       $day = date('d',$date);
@@ -832,8 +832,8 @@ function computer_availability($atts) {
   $string = wp_remote_get('http://libweb.net.ucf.edu/Web/Db.php?q=publicStatusPCs&format=json&l='.$id, array(
     'user-agent' => 'DummyAgentForDetectMobileBrowser.php',
     ));
-  $json_o = json_decode($string['body']);
-  if ($json_o != null) {
+  if (is_array( $string)) {
+    $json_o = json_decode($string['body']);
     $computers_list = '<div class="computer-availability">';
     if ($id == '1') {
       $i = 1;
