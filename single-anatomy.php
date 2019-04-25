@@ -37,7 +37,7 @@ Description: Single anatomynology page.
 										<div class="caption">
 											<h2><?php friendly_name(); ?></h2>
 		    								<?php if(get_the_term_list( $post->ID, 'anatomy_type', true) ||
-		    									get_the_term_list( $post->ID, 'library', true) ||
+		    									get_the_term_list( $post->ID, 'a_library', true) ||
 		    									get_post_meta($post->ID, 'fine-policy', true) ||
 		    									get_post_meta($post->ID, 'availability', true)
 		    								): ?>

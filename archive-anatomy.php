@@ -65,8 +65,8 @@ Description: Archive anatomy page.
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></td>
                       <td>
                         <?php 
-                          if(get_the_term_list( $post->ID, 'library', true)): 
-                            echo get_the_term_list( $post->ID, 'library', '', ', ', '' ); 
+                          if(get_the_term_list( $post->ID, 'a_library', true)): 
+                            echo get_the_term_list( $post->ID, 'a_library', '', ', ', '' ); 
                           endif;
                         ?>
                       </td>
@@ -107,7 +107,7 @@ Description: Archive anatomy page.
     							<div class="caption">
     								<h3><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h3>
     								<?php if(get_the_term_list( $post->ID, 'anatomy_type', true) ||
-                      get_the_term_list( $post->ID, 'library', true) ||
+                      get_the_term_list( $post->ID, 'a_library', true) ||
                       get_post_meta($post->ID, 'fine-policy', true) ||
                       get_post_meta($post->ID, 'availability', true)
                     ): ?>
@@ -115,8 +115,8 @@ Description: Archive anatomy page.
   										<?php if(get_the_term_list( $post->ID, 'anatomy_type', true)): ?>
   											<li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Anatomy Type"></i><?php echo get_the_term_list( $post->ID, 'anatomy_type', '', ', ', '' ); ?></li>
   										<?php endif; ?>
-                      <?php if(get_the_term_list( $post->ID, 'library', true)): ?>
-                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo get_the_term_list( $post->ID, 'library', '', ', ', '' ); ?></li>
+                      <?php if(get_the_term_list( $post->ID, 'a_library', true)): ?>
+                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo get_the_term_list( $post->ID, 'a_library', '', ', ', '' ); ?></li>
                       <?php endif; ?>
                       <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
                         <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fine Policy"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
