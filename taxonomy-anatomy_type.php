@@ -26,7 +26,7 @@ Description: anatomy type archive page.
 	 <!-- taxonomy.php -->
 		<div class="row">
 			<div class="col-sm-8">
-				<header><h1>Technology Lending</h1></header>
+				<header><h1>Anatomy Lending</h1></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div><!-- col-sm-8 -->
 			<div class="col-sm-4">
@@ -122,7 +122,7 @@ Description: anatomy type archive page.
                     ): ?>
       								<ul>
                       <?php if(get_the_term_list( $post->ID, 'anatomy_type', true)): ?>
-                        <li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Tech Type"></i><?php echo get_the_term_list( $post->ID, 'anatomy_type', '', ', ', '' ); ?></li>
+                        <li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Anatomy Type"></i><?php echo get_the_term_list( $post->ID, 'anatomy_type', '', ', ', '' ); ?></li>
                       <?php endif; ?>
                       <?php if(get_the_term_list( $post->ID, 'a_library', true)): ?>
                         <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo get_the_term_list( $post->ID, 'a_library', '', ', ', '' ); ?></li>
