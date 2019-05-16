@@ -540,6 +540,128 @@ function generate_tech_taxonomy_rewrite_rules( $wp_rewrite ) {
 add_action('generate_rewrite_rules', 'generate_tech_taxonomy_rewrite_rules');
 
 
+/**
+* Anatomy Lending Custom Post Type & Taxonomies
+**/
+
+function register_anatomy_lending_entities() {
+
+  //Anatomy Lending Custom Post Type
+    $anatomy_labels = array(
+        'name' => _x( 'Anatomy', 'anatomy' ),
+        'singular_name' => _x( 'Anatomy', 'anatomy' ),
+        'add_new' => _x( 'Add New', 'anatomy' ),
+        'add_new_item' => _x( 'Add New Anatomy Item', 'anatomy' ),
+        'edit_item' => _x( 'Edit Anatomy Item', 'anatomy' ),
+        'new_item' => _x( 'New Anatomy Item', 'anatomy' ),
+        'view_item' => _x( 'View Anatomy Item', 'anatomy' ),
+        'search_items' => _x( 'Search Anatomy Items', 'anatomy' ),
+        'not_found' => _x( 'No anatomy item found', 'anatomy' ),
+        'not_found_in_trash' => _x( 'No anatomy found in Trash', 'anatomy' ),
+        'parent_item_colon' => _x( 'Parent Anatomy:', 'anatomy' ),
+        'menu_name' => _x( 'Anatomy Lending', 'anatomy' ),
+    );
+
+    $anatomy_args = array(
+        'labels' => $anatomy_labels,
+        'hierarchical' => true,
+        'description' => 'Anatomy names and descriptions',
+        'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions'),
+        'taxonomies' => array( 'anatomy_type', 'a_library'),
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_icon' => 'dashicons-universal-access-alt',
+        'menu_position' => 21,
+        'show_in_nav_menus' => true,
+        'publicly_queryable' => true,
+        'exclude_from_search' => false,
+        'has_archive' => true,
+        'query_var' => true,
+        'can_export' => true,
+        'rewrite' => array( 'slug' => 'anatomy-lending', 'with_front' => false ),
+        'capability_type' => 'post'
+    );
+    register_post_type( 'anatomy', $anatomy_args );
+
+  // Anatomy Type Taxonomy
+    $anatomy_type_labels = array(
+        'name' => _x( 'Anatomy Type', 'taxonomy general name' ),
+        'singular_name' => _x( 'Anatomy Type', 'taxonomy singular name' ),
+        'search_items' =>  __( 'Search Anatomy Type' ),
+        'all_items' => __( 'All Anatomy Types' ),
+        'parent_item' => __( 'Parent Anatomy Type' ),
+        'parent_item_colon' => __( 'Parent Anatomy Type:' ),
+        'edit_item' => __( 'Edit Anatomy Type' ),
+        'update_item' => __( 'Update Anatomy Type' ),
+        'add_new_item' => __( 'Add New Anatomy Type' ),
+        'new_item_name' => __( 'New Anatomy Type Name' ),
+        'menu_name' => __( 'Anatomy Type' ),
+    );
+
+    $anatomy_type_args = array(
+      'hierarchical' => true,
+      'labels' => $anatomy_type_labels,
+      'show_ui' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'anatomy-lending', 'with_front' => false ),
+    );
+    register_taxonomy('anatomy_type',array('anatomy'), $anatomy_type_args );
+
+  // Library Taxonomy
+    $a_library_labels = array(
+      'name' => _x( 'Library', 'taxonomy general name' ),
+      'singular_name' => _x( 'Library', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Search Libraries' ),
+      'all_items' => __( 'All Libraries' ),
+      'parent_item' => __( 'Parent Library' ),
+      'parent_item_colon' => __( 'Parent Library:' ),
+      'edit_item' => __( 'Edit Library' ),
+      'update_item' => __( 'Update Library' ),
+      'add_new_item' => __( 'Add New Library' ),
+      'new_item_name' => __( 'New Library Name' ),
+      'menu_name' => __( 'Library' ),
+    );
+
+    $a_library_args = array(
+      'hierarchical' => true,
+      'labels' => $a_library_labels,
+      'show_ui' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'anatomy-lending', 'with_front' => false ),
+    );
+    register_taxonomy('a_library',array('anatomy'), $a_library_args );
+}
+
+add_action( 'init', 'register_anatomy_lending_entities' );
+
+
+// Slug rewrite for anatomy lending custom post type and taxonomies
+function generate_anatomy_taxonomy_rewrite_rules( $wp_rewrite ) {
+  $rules = array();
+  $post_types = get_post_types( array( 'name' => 'anatomy', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies = get_taxonomies( array( 'name' => 'anatomy_type', 'public' => true, '_builtin' => false ), 'objects' );
+  $taxonomies += get_taxonomies( array( 'name' => 'a_library', 'public' => true, '_builtin' => false ), 'objects' );
+
+  foreach ( $post_types as $post_type ) {
+    $post_type_name = $post_type->name; // 'developer'
+    $post_type_slug = $post_type->rewrite['slug']; // 'developers'
+
+    foreach ( $taxonomies as $taxonomy ) {
+      if ( $taxonomy->object_type[0] == $post_type_name ) {
+        $terms = get_categories( array( 'type' => $post_type_name, 'taxonomy' => $taxonomy->name, 'hide_empty' => 0 ) );
+        foreach ( $terms as $term ) {
+          $rules[$post_type_slug . '/' . $term->slug . '/?$'] = 'index.php?' . $term->taxonomy . '=' . $term->slug;
+        }
+      }
+    }
+  }
+  $wp_rewrite->rules = $rules + $wp_rewrite->rules;
+}
+add_action('generate_rewrite_rules', 'generate_anatomy_taxonomy_rewrite_rules');
+
 
 //Adding in Featured image feature
 if ( function_exists( 'add_theme_support' ) ) {

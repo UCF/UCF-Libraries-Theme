@@ -685,7 +685,7 @@ footer ul li a:hover { text-decoration: none;}
 	}
 }
 
-.staff-thumbnail { width: 100%; height: auto;}
+.staff-thumbnail, .tech-thumbnail, .anatomy-thumbnail { width: 100%; height: auto;}
 
 .btn-grid-list {margin-bottom: 1em;}
 
@@ -693,6 +693,12 @@ footer ul li a:hover { text-decoration: none;}
 
 .tech-description { margin-bottom: 1em; }
 .tech-list td:nth-child(3n), .tech-list th:nth-child(3n) { max-width: 11em; }
+.list-thumbnail { max-width: 25px; }
+
+/* Anatomy Lending */
+
+.anatomy-description { margin-bottom: 1em; }
+.anatomy-list td:nth-child(3n), .anatomy-list th:nth-child(3n) { max-width: 11em; }
 .list-thumbnail { max-width: 25px; }
 
 

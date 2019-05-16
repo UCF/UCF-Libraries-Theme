@@ -25,7 +25,7 @@ Description: 404 page not found.
         <div style="width:25%; margin-right: 1em; float: left;">
           <img src="<?php echo get_template_directory_uri() ?>/images/citronaut.png" alt="The Citronaut">
         </div>
-        <p>We're sorry. Our website was recently updated, and the page you were looking for could not be found.</p>
+        <p>We're sorry, the page you were looking for could not be found.</p>
         <p>Need help finding something on our new site?  Try starting at the new <a href="<?php bloginfo('url')?>">UCF Libraries homepage</a>. Or simply <a href="<?php bloginfo('url')?>/ask/">Ask Us!</a></p>
         
       </div> <!-- .col-md-9 -->

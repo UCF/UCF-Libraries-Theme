@@ -729,11 +729,15 @@ function hours_today_homepage( $atts ) {
   $string = wp_remote_get('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json', array( 'timeout' => 15 ));
   if (is_array( $string)) {
     $json_o = json_decode($string['body']);
-    $hours_list = '<dl class="dl-horizontal homepage">';
-    foreach ($json_o->locations as $location) if ($location->lid == '1206' || $location->lid == '1209' || $location->lid == '1211') {
-        $hours_list .= '<dt>'.$location->name.'</dt><dd>'.$location->rendered.'</dd>';
+    if ($json_o != null) {
+      $hours_list = '<dl class="dl-horizontal homepage">';
+      foreach ($json_o->locations as $location) if ($location->lid == '1206' || $location->lid == '1209' || $location->lid == '1211') {
+          $hours_list .= '<dt>'.$location->name.'</dt><dd>'.$location->rendered.'</dd>';
+      }
+      $hours_list .= '</dl>';
+    } else {
+      $hours_list = '<p style="text-align: center">Unable to load hours.</p>';
     }
-    $hours_list .= '</dl>';
   } else {
     $hours_list = '<p style="text-align: center">Unable to load hours.</p>';
   }
@@ -757,9 +761,13 @@ function hours_today_single( $atts ) {
   $string = wp_remote_get('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json', array( 'timeout' => 15 ));
   if (is_array( $string)) {
     $json_o = json_decode($string['body']);
-    $hours = '';
-    foreach ($json_o->locations as $location) if ($location->lid == $id) {
-      $hours .= '<span class="department-hours"><!-- '.$location->name.'-->'.$location->rendered.'</span>';
+    if ($json_o != null) {
+      $hours = '';
+      foreach ($json_o->locations as $location) if ($location->lid == $id) {
+        $hours .= '<span class="department-hours"><!-- '.$location->name.'-->'.$location->rendered.'</span>';
+      }
+    } else {
+      $hours = '<p>Unable to load hours.</p>';
     }
   } else {
     $hours = '<p>Unable to load hours.</p>';
@@ -786,26 +794,30 @@ function library_events($atts) {
   $string = wp_remote_get('https://events.ucf.edu/calendar/2084/ucf-libraries-events/upcoming/feed.json', array( 'timeout' => 15 ));
   if (is_array( $string)) {
     $json_o = json_decode($string['body']);
-    $events_list = '';
-    $i = 0;
-    date_default_timezone_set('America/New_York');
-    foreach ($json_o as $event) {
-      $date = strtotime($event->starts);
-      $day = date('d',$date);
-      $month = date('M',$date);
-      $year = date('Y',$date);
-      $start_time = date('g:ia',$date);
-      $end_time = date('g:ia',strtotime($event->ends));
-      $events_list .= '
-        <article>
-          <span class="eventDate"><ul><li class="eventMonth">'.$month.'</li><li class="eventDay">'.$day.'</li><li class="eventYear">'.$year.'</li><li class="eventDate">'.$event->starts.'</li></ul></span>
-          <ul class="eventInfo">
-            <li class="eventTitle"><a href="'.$event->url.'" title="'.$event->title.'" target="_blank">'.$event->title.'</a></li>
-            <li class="eventTime"><span class="glyphicon glyphicon-time"></span> '.$start_time.' - '.$end_time.'</li>
-            <li class="eventLocation"><span class="glyphicon glyphicon-map-marker"></span> <a href="'.$event->location_url.'">'.$event->location.'</a></li>
-          </ul>
-        </article>';
-      if(++$i == $number) break;
+    if ($json_o != null) {
+      $events_list = '';
+      $i = 0;
+      date_default_timezone_set('America/New_York');
+      foreach ($json_o as $event) {
+        $date = strtotime($event->starts);
+        $day = date('d',$date);
+        $month = date('M',$date);
+        $year = date('Y',$date);
+        $start_time = date('g:ia',$date);
+        $end_time = date('g:ia',strtotime($event->ends));
+        $events_list .= '
+          <article>
+            <span class="eventDate"><ul><li class="eventMonth">'.$month.'</li><li class="eventDay">'.$day.'</li><li class="eventYear">'.$year.'</li><li class="eventDate">'.$event->starts.'</li></ul></span>
+            <ul class="eventInfo">
+              <li class="eventTitle"><a href="'.$event->url.'" title="'.$event->title.'" target="_blank">'.$event->title.'</a></li>
+              <li class="eventTime"><span class="glyphicon glyphicon-time"></span> '.$start_time.' - '.$end_time.'</li>
+              <li class="eventLocation"><span class="glyphicon glyphicon-map-marker"></span> <a href="'.$event->location_url.'">'.$event->location.'</a></li>
+            </ul>
+          </article>';
+        if(++$i == $number) break;
+      }
+    } else {
+      $events_list = '<p style="margin: 1em;"><strong>No events available.</strong></p>';
     }
   } else {
     $events_list = '<p style="margin: 1em;"><strong>No events available.</strong></p>';
@@ -834,73 +846,77 @@ function computer_availability($atts) {
     ));
   if (is_array( $string)) {
     $json_o = json_decode($string['body']);
-    $computers_list = '<div class="computer-availability">';
-    if ($id == '1') {
-      $i = 1;
-      $floors = 5;
-    } elseif ($id == '5' || $id == '13') {
-      $i = 1;
-      $floors = 1;
-    } else{
-    }
-    while ( $i <= $floors ) {
-      $machines_in_use = 0;
-      $machines_total = 0;
-      $machines_available = 0;
-      foreach ($json_o as $location) if ($location->location_room_floor == $i) {
-        $machines_in_use += $location->machinesInUse;
-        $machines_total += $location->machinesTotal;
+    if ($json_o != null) {
+      $computers_list = '<div class="computer-availability">';
+      if ($id == '1') {
+        $i = 1;
+        $floors = 5;
+      } elseif ($id == '5' || $id == '13') {
+        $i = 1;
+        $floors = 1;
+      } else{
       }
-      $machines_available = ($machines_total-$machines_in_use);
-      if ($machines_total != 0) {
-        $percent_available = round(($machines_available/$machines_total)*100);
-      } else {
-        $percent_available = 0;
-      }
-      switch ($i) {
-        case 1:
-          $floor_number = '1st';
-          break;
-        case 2:
-          $floor_number = '2nd';
-          break;
-        case 3:
-          $floor_number = '3rd';
-          break;
-        case 4:
-          $floor_number = '4th';
-          break;
-        case 5:
-          $floor_number = '5th';
-          break;
-        default:
-          $floor_number = 'unknown';
-          break;
-      }
-      if ($machines_available > 0) {
-        if ($percent_available > 33) {
-          $progress_color = 'progress-bar-success';
-        } else {
-          $progress_color = 'progress-bar-warning';
+      while ( $i <= $floors ) {
+        $machines_in_use = 0;
+        $machines_total = 0;
+        $machines_available = 0;
+        foreach ($json_o as $location) if ($location->location_room_floor == $i) {
+          $machines_in_use += $location->machinesInUse;
+          $machines_total += $location->machinesTotal;
         }
-        
-      } else {
-        $progress_color = 'progress-bar-danger';
-      }
-      $computers_list .= '
-        <div class="row">
-          <div class="col-sm-3"><span class="floor-name">'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</span></div>
-          <div class="col-sm-9">
-            <div class="progress">
-              <div class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em; width: '.$percent_available.'%;">
-                '.$machines_available.' / '.$machines_total.'
+        $machines_available = ($machines_total-$machines_in_use);
+        if ($machines_total != 0) {
+          $percent_available = round(($machines_available/$machines_total)*100);
+        } else {
+          $percent_available = 0;
+        }
+        switch ($i) {
+          case 1:
+            $floor_number = '1st';
+            break;
+          case 2:
+            $floor_number = '2nd';
+            break;
+          case 3:
+            $floor_number = '3rd';
+            break;
+          case 4:
+            $floor_number = '4th';
+            break;
+          case 5:
+            $floor_number = '5th';
+            break;
+          default:
+            $floor_number = 'unknown';
+            break;
+        }
+        if ($machines_available > 0) {
+          if ($percent_available > 33) {
+            $progress_color = 'progress-bar-success';
+          } else {
+            $progress_color = 'progress-bar-warning';
+          }
+          
+        } else {
+          $progress_color = 'progress-bar-danger';
+        }
+        $computers_list .= '
+          <div class="row">
+            <div class="col-sm-3"><span class="floor-name">'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</span></div>
+            <div class="col-sm-9">
+              <div class="progress">
+                <div class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em; width: '.$percent_available.'%;">
+                  '.$machines_available.' / '.$machines_total.'
+                </div>
               </div>
             </div>
-          </div>
-        </div>';
-      $i++;
+          </div>';
+        $i++;
+      }
+      $computers_list .= '</div>';
+    } else {
+      $computers_list = '<p>Unable to determine computer availability.</p>';
     }
-    $computers_list .= '</div>';
   } else {
     $computers_list = '<p>Unable to determine computer availability.</p>';
   }
