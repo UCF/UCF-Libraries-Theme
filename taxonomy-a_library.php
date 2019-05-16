@@ -63,7 +63,7 @@ Description: eligible user taxonomy archive.
                       <th class="empty-cell"></th>
                       <th><i class="fa fa-exclamation-circle"></i> Item Name</th>
                       <th><i class="fa fa-university"></i> Library</th>
-                      <th><i class="fa fa-usd"></i> Fine Policy</th>
+                      <th><i class="fa fa-usd"></i> Fines & Policies</th>
                       <th><i class="fa fa-check-circle"></i> Availability</th>
                     </tr>
                   </thead>
@@ -81,7 +81,7 @@ Description: eligible user taxonomy archive.
                       </td> 
                       <td>
                         <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
-                          <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
+                          <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fines & Policies</a></li>
                         <?php endif; ?>
                       </td>
                       <td>
@@ -126,7 +126,7 @@ Description: eligible user taxonomy archive.
                         <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo get_the_term_list( $post->ID, 'a_library', '', ', ', '' ); ?></li>
                       <?php endif; ?>
                       <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
-                        <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fine Policy"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
+                        <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fines & Policies"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fines & Policies</a></li>
                       <?php endif; ?>
                       <?php if(get_post_meta($post->ID, 'availability', true)): ?>
                         <li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_permalink(); ?>#item_availability">Check Availability</a></li>

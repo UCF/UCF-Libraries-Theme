@@ -49,7 +49,7 @@ Description: Single anatomynology page.
 		                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo get_the_term_list( $post->ID, 'a_library', '', ', ', '' ); ?></li>
 		                      <?php endif; ?>
 		                      <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
-		                        <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fine Policy"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
+		                        <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fines & Policies"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fines & Policies</a></li>
 		                      <?php endif; ?>
                       		<?php if(get_post_meta($post->ID, 'availability', true)): ?>
 		  											<li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Availability"></i> 

@@ -53,8 +53,9 @@ Description: Archive anatomy page.
                     <tr>
                       <th class="empty-cell"><span class="sr-only">Item Image</span></th>
                       <th><i class="fa fa-exclamation-circle"></i> Item Name</th>
+                      <th><i class="fa fa-info-circle"></i> Anatomy Type</th>
                       <th><i class="fa fa-university"></i> Library</th>
-                      <th><i class="fa fa-usd"></i> Fine Policy</th>
+                      <th><i class="fa fa-usd"></i> Fines & Policies</th>
                       <th><i class="fa fa-check-circle"></i> Availability</th>
                     </tr>
                   </thead>
@@ -65,6 +66,13 @@ Description: Archive anatomy page.
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></td>
                       <td>
                         <?php 
+                          if(get_the_term_list( $post->ID, 'anatomy_type', true)): 
+                            echo get_the_term_list( $post->ID, 'anatomy_type', '', ', ', '' ); 
+                          endif;
+                        ?>
+                      </td>
+                       <td>
+                        <?php 
                           if(get_the_term_list( $post->ID, 'a_library', true)): 
                             echo get_the_term_list( $post->ID, 'a_library', '', ', ', '' ); 
                           endif;
@@ -72,7 +80,7 @@ Description: Archive anatomy page.
                       </td>
                       <td>
                         <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
-                          <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
+                          <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fines & Policies</a></li>
                         <?php endif; ?>
                       </td>
                       <td>
@@ -88,8 +96,7 @@ Description: Archive anatomy page.
                       <td></td>
                       <td></td>
                       <td></td>
-                      <td></td>                      
-                      <td></td>                      
+                      <td></td>                                           
                     </tr>
                   <?php endif; ?>
                   </tbody>
@@ -119,7 +126,7 @@ Description: Archive anatomy page.
                         <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo get_the_term_list( $post->ID, 'a_library', '', ', ', '' ); ?></li>
                       <?php endif; ?>
                       <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
-                        <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fine Policy"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
+                        <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fines & Policies"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fines & Policies</a></li>
                       <?php endif; ?>
                       <?php if(get_post_meta($post->ID, 'availability', true)): ?>
   											<li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_permalink(); ?>#item_availability">Check Availability</a></li>
