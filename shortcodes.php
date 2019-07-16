@@ -1152,41 +1152,22 @@ add_shortcode('lending-login', 'lending_login');
 * [hiring-status]
 * Requires <div class="collapse" id="Department-Name">...</div> on the page for each department in the system, or else the link will do nothing.
 **/
+
 function hiring_status($atts) {
-  $string = wp_remote_get('https://apps.library.ucf.edu/public/jobapplication/JSONUtils/HiringDepartments');
-  if (is_array( $string)) {
-    $json_o = json_decode($string['body']);
-    if (!empty($json_o) || $json_o != false) {
-      $hiring_list = '<dl class="dl-horizontal hiring-list">';
-      $hiring = 0;
-      foreach ($json_o as $department) if ($department->name != 'Anywhere') {
-        if ($department->isHiring == 'true') {
-          $hiring = '<i class="fa fa-check-circle"></i> is actively seeking applications.';
-          $id = $department->name;
-          $id = str_replace('&', '', $id);
-          $id = str_replace('  ', ' ', $id);
-          $id = str_replace(' ', '-', $id);
-          $id = str_replace('(', '', $id);
-          $id = str_replace(')', '', $id);
-          //$hiring_list .= '<dt><a href="'.$url.'#'.$id.'">'.$department->name.'</a>:</dt><dd>'.$hiring.'</dd>';
-          $hiring_list .= '<dt><a role="button" data-toggle="collapse" href="#'.$id.'" aria-expanded="false" aria-controls="collapseExample">'.$department->name.'</a>:</dt><dd>'.$hiring.'</dd>';
-          $hiring = 1;
-        } 
-      }
-      $hiring_list .= '</dl>
-                        <p>(Click on a Department listed above to see a brief description and general work duties.)</p>';
-      if ($hiring == 0) {
-        $hiring_list = '<p><strong>Currently, there are no departments actively hiring. You may still submit an application to be considered for future positions.</strong></p>';
-      }
-    } else {
-      $hiring_list = '<p>Currently, there are no departments actively hiring. You may still submit an application to be considered for future positions.</p>';
+  $departments = get_field('hiring_departments');
+  $output = '';
+  if ($departments) {
+    $output = '<dl class="dl-horizontal hiring-list">';
+    foreach ($departments as $department) {
+      $output .= '<dt><a role="button" data-toggle="collapse" href="#'.$department['value'].'" aria-expanded="false" aria-controls="collapseExample">'.$department['label'].'</a>:</dt><dd><i class="fa fa-check-circle"></i> is actively seeking applications.</dd>';
     }
   } else {
-    $hiring_list = '<p>Unable to determine hiring status.</p>';
+    $output = '<p>Currently, there are no departments actively hiring. You may still submit an application to be considered for future positions.</p>';
   }
-  return $hiring_list;
+  return $output;
 }
 add_shortcode('hiring-status', 'hiring_status');
+
 
 function databases() {
   return '
