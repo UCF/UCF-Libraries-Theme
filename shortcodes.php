@@ -1170,7 +1170,7 @@ function hiring_status($atts) {
       }
     }
   } else {
-    $output = '<p>Currently, there are no departments actively hiring. You may still submit an application to be considered for future positions.</p>';
+    $output = '<p>No departments are actively hiring now. Thank you for your interest in the Libraries.</p>';
   }
   return $output;
 }
