@@ -1159,7 +1159,15 @@ function hiring_status($atts) {
   if ($departments) {
     $output = '<dl class="dl-horizontal hiring-list">';
     foreach ($departments as $department) {
-      $output .= '<dt><a role="button" data-toggle="collapse" href="#'.$department['value'].'" aria-expanded="false" aria-controls="collapseExample">'.$department['label'].'</a>:</dt><dd><i class="fa fa-check-circle"></i> is actively seeking applications.</dd>';
+      if (get_field($department['value'].'-URL')){
+        $hiring_url = get_field($department['value'].'-URL');
+      }
+      $output .= '<dt><a role="button" data-toggle="collapse" href="#'.$department['value'].'" aria-expanded="false" aria-controls="collapseExample">'.$department['label'].'</a>:</dt><dd><i class="fa fa-check-circle"></i> is actively seeking applications.';
+      if ($hiring_url != '') {
+        $output .= ' <a class="btn btn-primary" href="'.$hiring_url.'" target="_blank">Apply Now</a></dd>';
+      } else {
+        $output .='</dd>';
+      }
     }
   } else {
     $output = '<p>Currently, there are no departments actively hiring. You may still submit an application to be considered for future positions.</p>';
