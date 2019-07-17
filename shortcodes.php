@@ -1159,15 +1159,24 @@ function hiring_status($atts) {
   if ($departments) {
     $output = '<dl class="dl-horizontal hiring-list">';
     foreach ($departments as $department) {
-      if (get_field($department['value'].'_url')){
-        $hiring_url = get_field($department['value'].'_url');
+      if (get_field($department['value'].'_ops_url')){
+        $hiring_url_ops = get_field($department['value'].'_ops_url');
+      } else {
+        $hiring_url_ops = '';
+      }
+      if (get_field($department['value'].'_fws_url')){
+        $hiring_url_fws = get_field($department['value'].'_fws_url');
+      } else {
+        $hiring_url_fws = '';
       }
       $output .= '<dt>'.$department['label'].':</dt><dd><i class="fa fa-check-circle"></i> is actively seeking applications. <button class="btn btn-default" type="button" data-toggle="modal" data-target="#'.$department['value'].'">View Job Details</button>';
-      if ($hiring_url != '') {
-        $output .= ' <a class="btn btn-primary" href="'.$hiring_url.'" target="_blank">Apply Now</a></dd>';
-      } else {
-        $output .='</dd>';
+      if ($hiring_url_ops !='') {
+        $output .= ' <a class="btn btn-primary" href="'.$hiring_url_ops.'" target="_blank">Apply (OPS)</a>';
+      } 
+      if ($hiring_url_fws !='') {
+        $output .= ' <a class="btn btn-primary" href="'.$hiring_url_fws.'" target="_blank">Apply (FWS)</a>';
       }
+      $output .='</dd>';
     }
   } else {
     $output = '<p>No departments are actively hiring now. Thank you for your interest in the Libraries.</p>';
