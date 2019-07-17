@@ -1159,10 +1159,10 @@ function hiring_status($atts) {
   if ($departments) {
     $output = '<dl class="dl-horizontal hiring-list">';
     foreach ($departments as $department) {
-      if (get_field($department['value'].'-URL')){
-        $hiring_url = get_field($department['value'].'-URL');
+      if (get_field($department['value'].'_url')){
+        $hiring_url = get_field($department['value'].'_url');
       }
-      $output .= '<dt><a role="button" data-toggle="collapse" href="#'.$department['value'].'" aria-expanded="false" aria-controls="collapseExample">'.$department['label'].'</a>:</dt><dd><i class="fa fa-check-circle"></i> is actively seeking applications.';
+      $output .= '<dt>'.$department['label'].':</dt><dd><i class="fa fa-check-circle"></i> is actively seeking applications. <button class="btn btn-default" type="button" data-toggle="modal" data-target="#'.$department['value'].'">View Job Description</button>';
       if ($hiring_url != '') {
         $output .= ' <a class="btn btn-primary" href="'.$hiring_url.'" target="_blank">Apply Now</a></dd>';
       } else {
