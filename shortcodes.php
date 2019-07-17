@@ -1162,7 +1162,7 @@ function hiring_status($atts) {
       if (get_field($department['value'].'_url')){
         $hiring_url = get_field($department['value'].'_url');
       }
-      $output .= '<dt>'.$department['label'].':</dt><dd><i class="fa fa-check-circle"></i> is actively seeking applications. <button class="btn btn-default" type="button" data-toggle="modal" data-target="#'.$department['value'].'">View Job Description</button>';
+      $output .= '<dt>'.$department['label'].':</dt><dd><i class="fa fa-check-circle"></i> is actively seeking applications. <button class="btn btn-default" type="button" data-toggle="modal" data-target="#'.$department['value'].'">View Job Details</button>';
       if ($hiring_url != '') {
         $output .= ' <a class="btn btn-primary" href="'.$hiring_url.'" target="_blank">Apply Now</a></dd>';
       } else {
