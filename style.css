@@ -442,16 +442,22 @@ footer ul li a:hover { text-decoration: none;}
 
 .dl-horizontal.hiring-list dt{
   width: 250px;
+
 }
 .dl-horizontal.hiring-list dd {
-    margin-left: 0;
-    margin-bottom: .5em;
+  margin-left: 0;
+  margin-bottom: .5em;
+  
 }
 
 @media (min-width: 768px) {
+  .dl-horizontal.hiring-list dt{
+    line-height: 3em;
+  }
   .dl-horizontal.hiring-list dd {
     margin-left: 260px;
     margin-bottom: .25em;
+    line-height: 3em;
   }
 }
 .dl-horizontal.hiring-list dd .fa-check-circle {

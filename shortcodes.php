@@ -1152,41 +1152,39 @@ add_shortcode('lending-login', 'lending_login');
 * [hiring-status]
 * Requires <div class="collapse" id="Department-Name">...</div> on the page for each department in the system, or else the link will do nothing.
 **/
+
 function hiring_status($atts) {
-  $string = wp_remote_get('https://apps.library.ucf.edu/public/jobapplication/JSONUtils/HiringDepartments');
-  if (is_array( $string)) {
-    $json_o = json_decode($string['body']);
-    if (!empty($json_o) || $json_o != false) {
-      $hiring_list = '<dl class="dl-horizontal hiring-list">';
-      $hiring = 0;
-      foreach ($json_o as $department) if ($department->name != 'Anywhere') {
-        if ($department->isHiring == 'true') {
-          $hiring = '<i class="fa fa-check-circle"></i> is actively seeking applications.';
-          $id = $department->name;
-          $id = str_replace('&', '', $id);
-          $id = str_replace('  ', ' ', $id);
-          $id = str_replace(' ', '-', $id);
-          $id = str_replace('(', '', $id);
-          $id = str_replace(')', '', $id);
-          //$hiring_list .= '<dt><a href="'.$url.'#'.$id.'">'.$department->name.'</a>:</dt><dd>'.$hiring.'</dd>';
-          $hiring_list .= '<dt><a role="button" data-toggle="collapse" href="#'.$id.'" aria-expanded="false" aria-controls="collapseExample">'.$department->name.'</a>:</dt><dd>'.$hiring.'</dd>';
-          $hiring = 1;
-        } 
+  $departments = get_field('hiring_departments');
+  $output = '';
+  if ($departments) {
+    $output = '<dl class="dl-horizontal hiring-list">';
+    foreach ($departments as $department) {
+      if (get_field($department['value'].'_ops_url')){
+        $hiring_url_ops = get_field($department['value'].'_ops_url');
+      } else {
+        $hiring_url_ops = '';
       }
-      $hiring_list .= '</dl>
-                        <p>(Click on a Department listed above to see a brief description and general work duties.)</p>';
-      if ($hiring == 0) {
-        $hiring_list = '<p><strong>Currently, there are no departments actively hiring. You may still submit an application to be considered for future positions.</strong></p>';
+      if (get_field($department['value'].'_fws_url')){
+        $hiring_url_fws = get_field($department['value'].'_fws_url');
+      } else {
+        $hiring_url_fws = '';
       }
-    } else {
-      $hiring_list = '<p>Currently, there are no departments actively hiring. You may still submit an application to be considered for future positions.</p>';
+      $output .= '<dt>'.$department['label'].':</dt><dd><i class="fa fa-check-circle"></i> is actively seeking applications. <button class="btn btn-default" type="button" data-toggle="modal" data-target="#'.$department['value'].'">View Job Details</button>';
+      if ($hiring_url_ops !='') {
+        $output .= ' <a class="btn btn-primary" href="'.$hiring_url_ops.'" target="_blank">Apply (OPS)</a>';
+      } 
+      if ($hiring_url_fws !='') {
+        $output .= ' <a class="btn btn-primary" href="'.$hiring_url_fws.'" target="_blank">Apply (FWS)</a>';
+      }
+      $output .='</dd>';
     }
   } else {
-    $hiring_list = '<p>Unable to determine hiring status.</p>';
+    $output = '<p>No departments are actively hiring now. Thank you for your interest in the Libraries.</p>';
   }
-  return $hiring_list;
+  return $output;
 }
 add_shortcode('hiring-status', 'hiring_status');
+
 
 function databases() {
   return '
