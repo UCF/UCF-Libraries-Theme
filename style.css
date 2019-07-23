@@ -66,6 +66,9 @@ p, p a, li, li a {
    -moz-hyphens: auto;
         hyphens: auto;
 }
+p {
+    margin: 0 0 20px;
+}
 
 .hide { display: none; }
 
