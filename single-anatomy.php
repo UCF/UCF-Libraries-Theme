@@ -80,7 +80,7 @@ Description: Single anatomynology page.
 							<div class="card" style="padding:1em;">
 								<h3 id="item_availability">Item Availability</h3>
 								<?php if(get_post_meta($post->ID, 'availability', true)): ?>
-									<p>There are <strong><span class="total-items-available"></span> <?php friendly_name(); ?>s available</strong> for checkout.</p>
+									<p>There are <strong><span class="total-items-available"></span> <?php friendly_name(); ?> available</strong> for checkout.</p>
 									<div class="table-responsive">
 										<?php
 											$url = get_post_meta($post->ID, 'availability', true);
