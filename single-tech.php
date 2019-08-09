@@ -2,6 +2,13 @@
 /*
 Description: Single technology page.
 */
+
+$has_s = 0;
+$name = get_the_title();
+if ( substr($name, -1) == 's') {
+	$has_s = 1;
+}
+
 ?>
 
 
@@ -88,7 +95,7 @@ Description: Single technology page.
 							<div class="card" style="padding:1em;">
 								<h3 id="item_availability">Item Availability</h3>
 								<?php if(get_post_meta($post->ID, 'availability', true)): ?>
-									<p>There are <strong><span class="total-items-available"></span> <?php the_title(); ?>s available</strong> for checkout.</p>
+									<p>There <span class="single-plural"></span> <strong><span class="total-items-available"></span> <?php the_title(); ?><span class="s-ending"></span> available</strong> for checkout.</p>
 									<div class="table-responsive">
 										<?php
 											$url = get_post_meta($post->ID, 'availability', true);
@@ -120,6 +127,7 @@ Description: Single technology page.
 		var available_items = 0,
 				total_items = 0,
 				percent_available = 0;
+				has_s = <?php echo($has_s); ?>;
 		$('.table').find('tr').each(function (i, el) {
 	    var $tds = $(this).find('td'),
 	        due_date = $tds.eq(3).text(),
@@ -143,6 +151,14 @@ Description: Single technology page.
     $('#item_availability_bar').css('width', percent_available+'%').attr('aria-valuenow', percent_available);   
     $('.total-items-available').text(available_items);
     $('.total-items').text(total_items);
+    if (available_items == 1) {
+    	$('.single-plural').text('is');
+    } else {
+    	$('.single-plural').text('are');
+    }
+    if (available_items != 1 && has_s == 0 ){
+    	$('.s-ending').text('s');
+    }
 
 	}
 
