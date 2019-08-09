@@ -6,7 +6,7 @@ Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
 
-Version: 1.14.2
+Version: 1.14.3
 
 */
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto:500,700,400');
@@ -65,6 +65,9 @@ p, p a, li, li a {
 -webkit-hyphens: auto;
    -moz-hyphens: auto;
         hyphens: auto;
+}
+p {
+    margin: 0 0 20px;
 }
 
 .hide { display: none; }
