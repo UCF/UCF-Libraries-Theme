@@ -719,20 +719,24 @@ add_shortcode('hours-calendar', 'hours_week_calendar');
 
 /**
 * Homepage Today's Hours Shortcode
-* Create a dl list for the current daily hours. Only shows hours for Hitt Rosen and CMC
+* Create a dl list for the current daily hours. Specify the ids of the libraries in the shortcode.
 *
 *Example:
-*[hours-today-homepage]
+*[hours-today-homepage ids="1206, 1209, 10190, 1211"]
 *
 **/
 function hours_today_homepage( $atts ) {
+  extract(shortcode_atts( array(
+    'ids' => '1206',
+  ), $atts ));
+  $ids = explode(', ', $ids);
   $string = wp_remote_get('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json', array( 'timeout' => 15 ));
   if (is_array( $string)) {
     $json_o = json_decode($string['body']);
     if ($json_o != null) {
       $hours_list = '<dl class="dl-horizontal homepage">';
-      foreach ($json_o->locations as $location) if ($location->lid == '1206' || $location->lid == '1209' || $location->lid == '1211') {
-          $hours_list .= '<dt>'.$location->name.'</dt><dd>'.$location->rendered.'</dd>';
+      foreach ($json_o->locations as $location) if (in_array($location->lid, $ids)) {    
+        $hours_list .= '<dt>'.$location->name.'</dt><dd>'.$location->rendered.'</dd>';
       }
       $hours_list .= '</dl>';
     } else {
