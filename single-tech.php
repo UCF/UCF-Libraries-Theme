@@ -99,7 +99,7 @@ if ( substr($name, -1) == 's') {
 									<div class="table-responsive">
 										<?php
 											$url = get_post_meta($post->ID, 'availability', true);
-											$content = wp_remote_get($url);
+											$content = wp_remote_get($url, array( 'timeout' => 120));
 											if ($content != false) {
 												$first_step = explode( '<div id="divItemDetails">' , $content['body'] );
 												$second_step = explode("</div>" , $first_step[1] );
