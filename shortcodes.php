@@ -727,7 +727,7 @@ add_shortcode('hours-calendar', 'hours_week_calendar');
 **/
 function hours_today_homepage( $atts ) {
   extract(shortcode_atts( array(
-    'ids' => '1206, 1209, 10190, 1211',
+    'ids' => '1206, 1209, 1211',
   ), $atts ));
   $ids = explode(', ', $ids);
   $string = wp_remote_get('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json', array( 'timeout' => 15 ));
