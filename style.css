@@ -887,7 +887,7 @@ th.header.empty-cell{
 }
 
 .ui-tabs .ui-tabs-panel {
-  min-height: 16.5em;
+  min-height: 18.5em;
   background-color: rgba(0,0,0,0.85);
   border-radius: 0px;
   padding: 2em 1.4em 1em;
