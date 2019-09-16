@@ -102,8 +102,9 @@ if ( substr($name, -1) == 's') {
 											$content = wp_remote_get($url, array( 'timeout' => 120));
 											if ($content != false) {
 												$first_step = explode( '<div id="divItemDetails">' , $content['body'] );
-												$second_step = explode("</div>" , $first_step[1] );
-												echo $second_step[0];
+												$second_step = explode("</table></div>" , $first_step[1] );
+												$third_step = explode("<script>" , $second_step[0] );
+												echo $third_step[0];
 											} else {
 												?><p>Item availability is unavailable.</p> <?php
 											}
