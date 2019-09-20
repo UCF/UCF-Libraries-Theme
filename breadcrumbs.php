@@ -17,7 +17,7 @@ function dimox_breadcrumbs() {
   $text['page']     = 'Page %s'; // text 'Page N'
   $text['cpage']    = 'Comment Page %s'; // text 'Comment Page N'
 
-  $wrap_before    = '<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">'; // the opening wrapper tag
+  $wrap_before    = '<ul class="breadcrumb" vocab="https://schema.org/" typeof="BreadcrumbList">'; // the opening wrapper tag
   $wrap_after     = '</ul><!-- .breadcrumb -->'; // the closing wrapper tag
   $sep            = ''; // separator between crumbs
   $sep_before     = ''; // tag before separator
@@ -25,18 +25,18 @@ function dimox_breadcrumbs() {
   $show_home_link = 1; // 1 - show the 'Home' link, 0 - don't show
   $show_on_home   = 0; // 1 - show breadcrumbs on the homepage, 0 - don't show
   $show_current   = 1; // 1 - show current page title, 0 - don't show
-  $before         = '<li class="active"><span class="current">'; // tag before the current crumb
+  $before         = '<li class="active" property="itemListElement" typeof="ListItem"><span class="current" property="name">'; // tag before the current crumb
   $after          = '</span></li>'; // tag after the current crumb
   /* === END OF OPTIONS === */
 
   global $post;
   $home_url       = home_url('/');
-  $link_before    = '<li>';
+  $link_before    = '<li property="itemListElement" typeof="ListItem">';
   $link_after     = '</li>';
   $link_attr      = '';
   $link_in_before = '';
   $link_in_after  = '';
-  $link           = $link_before . '<a href="%1$s"' . $link_attr . '>' . $link_in_before . '%2$s' . $link_in_after . '</a>' . $link_after;
+  $link           = $link_before . '<a href="%1$s"' . $link_attr . ' property="item" typeof="WebPage">' . $link_in_before . '%2$s' . $link_in_after . '</a>' . $link_after;
   $frontpage_id   = get_option('page_on_front');
   $parent_id      = ($post) ? $post->post_parent : '';
   $sep            = ' ' . $sep_before . $sep . $sep_after . ' ';
