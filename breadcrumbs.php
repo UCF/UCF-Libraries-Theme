@@ -8,7 +8,7 @@
 function dimox_breadcrumbs() {
 
   /* === OPTIONS === */
-  $text['home']     = '<i class="fa fa-home"></i><span class="sr-only">Home</span>'; // text for the 'Home' link
+  $text['home']     = '<i class="fa fa-home"></i><span class="sr-only" property="name">Home</span>'; // text for the 'Home' link
   $text['category'] = '%s'; // text for a category page
   $text['search']   = 'Search Results for "%s" Query'; // text for a search results page
   $text['tag']      = 'Posts Tagged "%s"'; // text for a tag page
@@ -40,7 +40,7 @@ function dimox_breadcrumbs() {
   $frontpage_id   = get_option('page_on_front');
   $parent_id      = ($post) ? $post->post_parent : '';
   $sep            = ' ' . $sep_before . $sep . $sep_after . ' ';
-  $home_link      = $link_before . '<a href="' . $home_url . '"' . $link_attr . ' class="home">' . $link_in_before . $text['home'] . $link_in_after . '</a>' . $link_after;
+  $home_link      = $link_before . '<a href="' . $home_url . '"' . $link_attr . ' property="item" typeof="WebPage" class="home">' . $link_in_before . $text['home'] . $link_in_after . '</a>' . $link_after;
 
   if (is_home() || is_front_page()) {
 
