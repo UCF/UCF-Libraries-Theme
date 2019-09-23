@@ -8,7 +8,7 @@
 function dimox_breadcrumbs() {
 
   /* === OPTIONS === */
-  $text['home']     = '<i class="fa fa-home"></i><span class="sr-only">Home</span>'; // text for the 'Home' link
+  $text['home']     = '<i class="fa fa-home"></i><span class="sr-only" property="name">Home</span>'; // text for the 'Home' link
   $text['category'] = '%s'; // text for a category page
   $text['search']   = 'Search Results for "%s" Query'; // text for a search results page
   $text['tag']      = 'Posts Tagged "%s"'; // text for a tag page
