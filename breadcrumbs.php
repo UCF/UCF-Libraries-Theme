@@ -40,7 +40,7 @@ function dimox_breadcrumbs() {
   $frontpage_id   = get_option('page_on_front');
   $parent_id      = ($post) ? $post->post_parent : '';
   $sep            = ' ' . $sep_before . $sep . $sep_after . ' ';
-  $home_link      = $link_before . '<a href="' . $home_url . '"' . $link_attr . ' class="home">' . $link_in_before . $text['home'] . $link_in_after . '</a>' . $link_after;
+  $home_link      = $link_before . '<a href="' . $home_url . '"' . $link_attr . ' property="item" typeof="WebPage" class="home">' . $link_in_before . $text['home'] . $link_in_after . '</a>' . $link_after;
 
   if (is_home() || is_front_page()) {
 
