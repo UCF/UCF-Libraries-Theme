@@ -36,7 +36,7 @@ function dimox_breadcrumbs() {
   $link_attr      = '';
   $link_in_before = '';
   $link_in_after  = '';
-  $link           = $link_before . '<a href="%1$s"' . $link_attr . ' property="item" typeof="WebPage">' . $link_in_before . '%2$s' . $link_in_after . '</a>' . $link_after;
+  $link           = $link_before . '<a href="%1$s"' . $link_attr . ' property="item" typeof="WebPage"><span property="name">' . $link_in_before . '%2$s' . $link_in_after . '</span></a>' . $link_after;
   $frontpage_id   = get_option('page_on_front');
   $parent_id      = ($post) ? $post->post_parent : '';
   $sep            = ' ' . $sep_before . $sep . $sep_after . ' ';
