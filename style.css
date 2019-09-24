@@ -89,6 +89,12 @@ img.media-object {    /* Stops media object images from breaking from img max-wi
   margin-top: -2.5em;
   background-color: transparent;
 }
+.breadcrumb-separator {
+  color: #ccc;
+}
+.breadcrumb-current{
+  color: #777;
+}
 .header-search { margin: 1em 0; }
 @media (min-width: 768px) {
 	.header-search { margin: 3em 0 1em; }
