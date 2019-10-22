@@ -23,7 +23,7 @@ add_shortcode('search-website', 'search_website');
 function search_quicksearch( $form ) {
 
     $form = '
-  <form role="form" class="search search-quicksearch" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank" >
+  <form role="form" class="search search-quicksearch" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" >
       <input name="direct" type="hidden" value="true">
       <input name="site" type="hidden" value="ehost-live">
       <input name="scope" type="hidden" value="site">
@@ -57,7 +57,7 @@ add_shortcode('search-quicksearch', 'search_quicksearch');
 // function search_quicksearch_webcourses( $form ) {
 
 //     $form = '
-//   <form role="form" class="search search-quicksearch" action="https://login.ezproxy.net.ucf.edu/login?auth=shibb&url=https://search.ebscohost.com/login.aspx ?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
+//   <form role="form" class="search search-quicksearch" action="https://login.ezproxy.net.ucf.edu/login?auth=shibb&url=https://search.ebscohost.com/login.aspx ?" method="GET" onsubmit="ebscoPreProcess(this)">
 //       <input name="direct" type="hidden" value="true">
 //       <input name="site" type="hidden" value="ehost-live">
 //       <input name="scope" type="hidden" value="site">
@@ -90,7 +90,7 @@ add_shortcode('search-quicksearch', 'search_quicksearch');
 **/
 function search_quicksearch_articles( $form ){
   $form = '
-    <form role="form" class="search search-articles" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)" target="_blank">
+    <form role="form" class="search search-articles" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)">
       <label for="ebscohostsearcharticletext" class="sr-only">Search</label>
       <input name="direct" type="hidden" value="true">
       <input name="site" type="hidden" value="ehost-live">
@@ -123,7 +123,7 @@ add_shortcode('search-quicksearch-articles', 'search_quicksearch_articles');
 **/
 function search_catalog( $form ){
   $form = '
-    <form role="form" class="search search-catalog"  id="advanced" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp?ADV=S" target="_blank">
+    <form role="form" class="search search-catalog"  id="advanced" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp?ADV=S">
       <label for="catalog_search" class="sr-only">Search catalog</label>
       <div class="input-group">
         <input id="catalog_search" type="text" name="t1" value="" placeholder="Search the Catalog" class="form-control" />
@@ -181,7 +181,7 @@ add_shortcode('search-catalog', 'search_catalog');
 **/
 function search_textbooks( $form ){
   $form = '
-    <form role="form" class="search search-textbooks"  id="textbook_search_form" name="textbook_search_form" action="https://reserves.catalog.fcla.edu/cf.jsp?" target="_blank">
+    <form role="form" class="search search-textbooks"  id="textbook_search_form" name="textbook_search_form" action="https://reserves.catalog.fcla.edu/cf.jsp?">
       <label for="textbook_search" class="sr-only">Search Textbooks</label>
       <div class="input-group">
         <input id="textbook_search" type="text" name="Ntt" value="" placeholder="Search for textbooks" class="form-control" />
@@ -206,7 +206,7 @@ add_shortcode('search-textbooks', 'search_textbooks');
 **/
 function search_videos( $form ) {
   $form = '
-  <form role="form" class="search search-videos" id="advanced_video" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp" target="_blank">
+  <form role="form" class="search search-videos" id="advanced_video" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp">
     <label for="video_search" class="sr-only">Find DVDs, streaming videos, and VHS</label>
     <input type="hidden" name="k1" value="kw">
     <input name="ADV" type="hidden" value="S">
@@ -236,7 +236,7 @@ add_shortcode('search-videos', 'search_videos');
 **/
 function search_scua($form) {
     $form = '
-      <form role="form" class="search search-scua" id="advanced" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp?ADV=S" target="_blank">
+      <form role="form" class="search search-scua" id="advanced" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp?ADV=S">
 
         <input name="ADV" type="hidden" value="S">
         <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
