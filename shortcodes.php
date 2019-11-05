@@ -148,20 +148,30 @@ function search_catalog( $form ){
           <label for="avli" class="sr-only">Choose Location</label>
           <select id="avli" name="avli" class="form-control">
             <option value="" selected="selected">Any Locations</option>
-            <option value="CFORLANDO">John C. Hitt</option>
-            <option value="CFRO*">Rosen</option>
-            <option value="CFC*">CMC</option>
-            <option value="CFHSL*">Health Sciences Library</option>
-            <option value="CFSAL*">Altamonte Springs</option>
-            <option value="CFBCC*">Cocoa</option>
-            <option value="CFDBG*">Daytona Beach</option>
-            <option value="CFLEE*">Leesburg</option>
-            <option value="CFOCA*">Ocala</option>
-            <option value="CFBPC*">Palm Bay</option>
-            <option value="CFSLM*">Sanford/Lake Mary</option>
-            <option value="CFSOUTHLAKE">South Lake</option>
-            <option value="CFOSC*">Valencia Osceola</option>
-            <option value="CFMTW*">Valencia West</option>
+            <option value="CFORLANDO">John&nbsp;C.&nbsp;Hitt</option>
+            <option value="CFORLANDOREF">John&nbsp;C.&nbsp;Hitt-&nbsp;Reference&nbsp;</option>
+            <option value="CFSPECIALCOLL">John&nbsp;C.&nbsp;Hitt-&nbsp;Special&nbsp;Collections&nbsp;</option>
+            <option value="CFUSDOCUMENTS">John&nbsp;C.&nbsp;Hitt-&nbsp;U.S.&nbsp;Documents&nbsp;</option>
+            <option value="CFMGCBROW">John&nbsp;C.&nbsp;Hitt-&nbsp;Knight&nbsp;Reads</option>
+            <option value="CFC*">CMC&nbsp;-&nbsp;Education&nbsp;Building&nbsp;</option>
+            <option value="CFWT*">Downtown&nbsp;Campus&nbsp;Library&nbsp;</option>
+            <option value="CFHSL*">Health&nbsp;Sciences&nbsp;Library</option>
+            <option value="CFRO*">Rosen&nbsp;Campus&nbsp;</option>
+            <option value="CFROSBROW">Rosen&nbsp;Campus&nbsp;-&nbsp;Knight&nbsp;Reads</option>
+            <option value="CFSAL*">UCF&nbsp;at&nbsp;Altamonte&nbsp;Springs</option>
+            <option value="CFBCC*">UCF&nbsp;at&nbsp;Cocoa</option>
+            <option value="CFDBG*">UCF&nbsp;at&nbsp;Daytona&nbsp;Beach</option>
+            <option value="CFLEE*">UCF&nbsp;at&nbsp;Leesburg</option>
+            <option value="CFOCA*">UCF&nbsp;at&nbsp;Ocala</option>
+            <option value="CFOSC*">UCF&nbsp;at&nbsp;Osceola</option>
+            <option value="CFBMC*">UCF&nbsp;at&nbsp;Melbourne</option>
+            <option value="CFBPC*">UCF&nbsp;at&nbsp;Palm&nbsp;Bay</option>
+            <option value="CFSLGRES OR CFSLGGC OR CFSLGMED OR CFSLGREF">UCF&nbsp;at&nbsp;South&nbsp;Lake&nbsp;</option>
+            <option value="CFSLM*">UCF&nbsp;at&nbsp;Sanford/Lake&nbsp;Mary</option>
+            <option value="CFBTC*">UCF&nbsp;at&nbsp;Titusville&nbsp;</option>
+            <option value="CFMTW*">UCF&nbsp;at&nbsp;West&nbsp;Orlando</option>
+            <option value="CFSEC*">Florida&nbsp;Solar&nbsp;Energy&nbsp;Center</option>
+            <option value="CFELE*">Online</option>
           </select>
         </div>
         <input name="ADV" type="hidden" value="S">
