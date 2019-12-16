@@ -116,6 +116,7 @@ body {
   font-family: 'Montserrat', 'Roboto', sans-serif ;
   font-size: 30px;
   font-variant: small-caps;
+  font-weight: 700;
 }
 .lib-home {
   float: right;
