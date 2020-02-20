@@ -5,14 +5,17 @@
  
  ////////////////////////////////////////////////////////// */
 
-@import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto:500,700,400');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:500,700');
+@import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,500,700|Roboto:500,700,400');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500,700,800');
 
 body {
   background-color: #fff;
   background-image: none;
 }
 
+#ucfhb-signon-logo {
+  cursor: pointer;
+}
 
 .external-header {
   background-color: #111;
@@ -55,7 +58,7 @@ a.external-title {
   font-family: 'Montserrat', 'Roboto', sans-serif ;
   font-size: 30px;
   font-variant: small-caps;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 20px;
   color: #ffcc00;
 }
@@ -88,8 +91,8 @@ body {
   text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 }
 .lib-container {
-  padding-right: 0;
-  padding-left: 0;
+  padding-right: 15px;
+  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -105,7 +108,7 @@ body {
 }
 @media (min-width: 1200px) {
   .lib-container {
-    width: 1170px;
+    width: 1140px;
   }
 }
 .lib-title {
@@ -114,9 +117,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', 'Roboto', sans-serif ;
+  font-weight: 800;
   font-size: 30px;
   font-variant: small-caps;
-  font-weight: 700;
 }
 .lib-home {
   float: right;
@@ -214,6 +217,19 @@ body {
   EBSCO Header include begins
   
 ///////////////////////////////////////////////////// */
+
+.ebsco-header {
+  position: fixed;
+  z-index: 9;
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  top: 0;
+  left: 0;
+  background-color: #111;
+}
+
 
 #toolbarControl {
   position: fixed;
