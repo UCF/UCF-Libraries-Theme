@@ -455,6 +455,7 @@ function recent_posts_function($atts){
    extract(shortcode_atts(array(
       'posts' => 3,
       'category_id' => -0,
+      'size' => 'medium',
    ), $atts));
 
    $return_string = '<div class="news">';
@@ -469,18 +470,19 @@ function recent_posts_function($atts){
             $output .= '<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '">'.$category->cat_name.'</a>'.$separator;
           }
         }
-        if (has_post_thumbnail()) {       // Check if post has a featured image.
-          $thumbnail = get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail'));
-        } else {                          // Use the default thumbnail instead.
-          $thumbnail = '<img class="homepage-thumbnail" src="'.get_template_directory_uri().'/images/generic-default-thumb.jpg">';
-        }
-        if (get_post_meta(get_the_ID() , 'thumbnail', true)){                         // Check if post has custom field named thumbnail.
-          $thumbnail_id = get_post_meta(get_the_ID() , 'thumbnail', true);            // Gets the contents of the custom field, which is the post ID of the thumbnail image.
-          if (wp_get_attachment_image( $thumbnail_id, 'homepage-thumbnail' )) {       // Checks if post meta image id is valid.
-            $thumbnail = wp_get_attachment_image( $thumbnail_id, 'homepage-thumbnail' );  
+        if ($size != 'small') {
+          if (has_post_thumbnail()) {       // Check if post has a featured image.
+            $thumbnail = get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail'));
+          } else {                          // Use the default thumbnail instead.
+            $thumbnail = '<img class="homepage-thumbnail" src="'.get_template_directory_uri().'/images/generic-default-thumb.jpg">';
+          }
+          if (get_post_meta(get_the_ID() , 'thumbnail', true)){                         // Check if post has custom field named thumbnail.
+            $thumbnail_id = get_post_meta(get_the_ID() , 'thumbnail', true);            // Gets the contents of the custom field, which is the post ID of the thumbnail image.
+            if (wp_get_attachment_image( $thumbnail_id, 'homepage-thumbnail' )) {       // Checks if post meta image id is valid.
+              $thumbnail = wp_get_attachment_image( $thumbnail_id, 'homepage-thumbnail' );  
+            }
           }
         }
-        
         // if ($thumbnail_image){           
         //   $thumbnail = $thumbnail_image;
         //   // if (filter_var($url, FILTER_VALIDATE_URL) !== false) {      // Check if string is a valid URL
@@ -492,22 +494,28 @@ function recent_posts_function($atts){
         //   //   }
         //   // }
         // } 
-        $return_string .=
-         '<article>
-         <div class="news-post card">
-            <div class="news-post-image"><a href="'.get_permalink().'">'.$thumbnail.'</a></div><!-- '.$url.' -->
-            <div class="news-post-text">
-              <div class="news-post-title">
-                <header>
-                  <h3><a href="'.get_permalink().'">'.get_the_title().'</a></h3>
-                  <span class="news-post-category">'.trim($output, $separator).'</span>
-                  <span class="news-post-date">Posted: <i class="fa fa-calendar"></i> '.get_the_time('F jS, Y').'</span>
-                </header>
+        if ($size == 'small'){
+          $return_string .=
+          '<article>
+            <p><a href="'.get_permalink().'">'.get_the_title().'</a></p>';
+        } else {
+          $return_string .=
+          '<article>
+          <div class="news-post card">
+              <div class="news-post-image"><a href="'.get_permalink().'">'.$thumbnail.'</a></div><!-- '.$url.' -->
+              <div class="news-post-text">
+                <div class="news-post-title">
+                  <header>
+                    <h3><a href="'.get_permalink().'">'.get_the_title().'</a></h3>
+                    <span class="news-post-category">'.trim($output, $separator).'</span>
+                    <span class="news-post-date">Posted: <i class="fa fa-calendar"></i> '.get_the_time('F jS, Y').'</span>
+                  </header>
+                </div>
+                <p>'.get_the_excerpt().'</p>
               </div>
-              <p>'.get_the_excerpt().'</p>
             </div>
-          </div>
-          </article>';
+            </article>';
+        }
       endwhile;
    endif;
    $return_string .= '</div>';
