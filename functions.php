@@ -35,6 +35,16 @@ function ssl_srcset( $sources ) {
 add_filter( 'wp_calculate_image_srcset', 'ssl_srcset' );
 
 
+// Wordpress Editor Stylesheet
+add_action( 'after_setup_theme', 'editor_gutenberg_css' );
+ 
+function editor_gutenberg_css(){
+ 
+	add_theme_support( 'editor-styles' ); // if you don't add this line, your stylesheet won't be added
+	add_editor_style( 'css/style-editor.css' ); // tries to include style-editor.css directly from your theme folder
+ 
+}
+
 /**
  * Strings passed to this function will be modified under the assumption that
  * they were outputted by wordpress' the_output filter.  It checks for a handful
