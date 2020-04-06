@@ -518,8 +518,7 @@ function recent_posts_function($atts){
                 </div>
                 <p>'.get_the_excerpt().'</p>
               </div>
-            </div>
-            </article>';
+            </div>';
         }
       endwhile;
    endif;
