@@ -15,8 +15,6 @@ Description: This page contains now elements of wordpress. It is used purely for
 <meta content="IE=edge" http-equiv="X-UA-Compatible">
 </head>
 <body>
-<br>
-
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 	<?php the_content(__('(more...)')); ?>
 <?php endwhile; else: ?>
