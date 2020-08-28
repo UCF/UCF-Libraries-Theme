@@ -14,7 +14,7 @@ Description: Taxonomy Subject archive page.
         'posts_per_page' => 200
       )
 	  )
-  );
+	);
 ?>
 <?php
 
@@ -67,6 +67,7 @@ function subject_dropdown( $taxonomy ) {
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 							<?php $subjects = explode(", ", get_post_meta($post->ID, 'primary-subject', true)); ?>
 							<?php foreach ($subjects as $subject) {
+								$subject = preg_replace('/&/', '&amp;', $subject);
 								if ($subject == $term->name) : ?>
 								<?php $i++; ?>
 									<div class="col-sm-6 col-md-3">
