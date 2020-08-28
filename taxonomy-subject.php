@@ -125,6 +125,7 @@ function subject_dropdown( $taxonomy ) {
 							<?php $subjects = explode(", ", get_post_meta($post->ID, 'primary-subject', true)); ?>
 							<?php $match = 0; ?>
 							<?php foreach ($subjects as $subject) {
+								$subject = preg_replace('/&/', '&amp;', $subject);
 								if ($subject == $term->name) {
 									$match++;
 								}
