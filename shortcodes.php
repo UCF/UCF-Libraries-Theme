@@ -761,7 +761,7 @@ function hours_today_homepage( $atts ) {
     if ($json_o != null) {
       $hours_list = '<dl class="dl-horizontal homepage">';
       foreach ($json_o->locations as $location) if (in_array($location->lid, $ids)) {    
-        $hours_list .= '<dt>'.$location->name.'</dt><dd>'.$location->rendered.'</dd>';
+        $hours_list .= '<dt><a href="'.$location->url.'">'.$location->name.'</a></dt><dd>'.$location->rendered.'</dd>';
       }
       $hours_list .= '</dl>';
     } else {
