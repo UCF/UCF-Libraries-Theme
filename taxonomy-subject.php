@@ -51,7 +51,7 @@ function subject_dropdown( $taxonomy ) {
 		</div><!-- row -->
 		<div class="row">
 			<div class="col-sm-12">
-				<p>Use the drop down menu to view the librarian(s) associated with each subject. You can also view the librarians at the <a href="<?php bloginfo('url'); ?>/subject/hospitality-management/">Rosen Library</a>, <a href="<?php bloginfo('url'); ?>/subject/curriculum-materials/">the Curriculum Materials Center (CMC)</a>, and the <a href="<?php bloginfo('url'); ?>/about/libraries/">UCF Connect Libraries</a>.</p>
+				<p>Use the drop down menu to view the librarian(s) associated with each subject. You can also view the librarians at the <a href="<?php bloginfo('url'); ?>/staff/rosen-library/">Rosen Library</a>, <a href="<?php bloginfo('url'); ?>/staff/curriculum-materials-center/">the Curriculum Materials Center (CMC)</a>, <a href="<?php bloginfo('url'); ?>/staff/downtown/">Downtown Library</a>, and the <a href="<?php bloginfo('url'); ?>/staff/ucf-connect-libraries/">UCF Connect Libraries</a>.</p>
 				<p style="display:inline-block"><strong>Choose Librarians by Subject:</strong></p> <?php subject_dropdown( 'subject' ); ?>
 			</div><!-- col-sm-12 -->
 		</div><!-- row -->
