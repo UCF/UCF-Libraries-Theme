@@ -1109,7 +1109,7 @@ add_shortcode('stars-feed-list', 'stars_feed_list');
 *
 **/
 function lending_login() {
-  $output = '<form  class="form-horizontal" action="https://illiad.net.ucf.edu/lending/illiadlending.dll" method="post" name="ILLiadLogin" id="ILLiadLogin">
+  $output = '<form  class="form-horizontal" action="https://illiad.library.ucf.edu/lending/illiadlending.dll" method="post" name="ILLiadLogin" id="ILLiadLogin">
   <fieldset>
     <legend>Lending Login</legend>
     <input type="hidden" name="IlliadForm" value="LendingLogon">
