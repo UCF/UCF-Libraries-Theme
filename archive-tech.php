@@ -119,14 +119,14 @@ Description: Archive tech page.
   					<?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
   						<?php $i++; ?>
               <?php $slug = get_post_field( 'post_name', get_post() ); ?>
-              <?php $taxonomy_arr = array("tech_type", "loan_period", "library");?>
+              <?php $taxonomy_arr = array("tech_type", "loan_period", "eligible_user", "library");?>
               <?php $data_categories =''; ?>
               <?php
                 foreach($taxonomy_arr as $taxonomy_value) {
                   if(get_the_term_list( $post->ID, $taxonomy_value, true)){
-                    $term_list = strip_tags( get_the_term_list( $post->ID, $taxonomy_value, '', ',', '' ));
+                    $term_list = strip_tags( get_the_term_list( $post->ID, $taxonomy_value, '', 'tagplace', '' ));
                     $term_list = title_to_slug($term_list);
-                    $term_list = str_replace(',', ' ', $term_list);
+                    $term_list = str_replace('tagplace', ' ', $term_list);
                     $data_categories = $data_categories.$term_list.' ';
                   }
                 }
