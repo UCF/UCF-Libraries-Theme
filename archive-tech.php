@@ -12,7 +12,7 @@ Description: Archive tech page.
 	$my_query = null;
 	$my_query = new WP_Query($args);
  ?>
-
+<?php $taxonomies = get_taxonomies();?>
 
 <?php get_header(); ?>
 <div id="main">
@@ -63,7 +63,20 @@ Description: Archive tech page.
                   </thead>
                   <tbody>
                   <?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
-                    <tr>
+                    <?php $slug = get_post_field( 'post_name', get_post() ); ?>
+                    <?php $data_categories =''; ?>
+                    <?php
+                      foreach($taxonomies as $taxonomy) {
+                        if(get_the_term_list( $post->ID, $taxonomy, true)){
+                          $term_list = strip_tags( get_the_term_list( $post->ID, $taxonomy, '', 'tagplace', '' ));
+                          $term_list = title_to_slug($term_list);
+                          $term_list = str_replace('tagplace', ' ', $term_list);
+                          $term_list = str_replace('-amp', '', $term_list);
+                          $data_categories = $data_categories.$term_list.' ';
+                        }
+                      }
+                    ?>
+                    <tr class="taxonomy" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('thumbnail', array('class' => 'list-thumbnail')); ?></a></td>
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></td>
                       <td>
@@ -119,19 +132,19 @@ Description: Archive tech page.
   					<?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
   						<?php $i++; ?>
               <?php $slug = get_post_field( 'post_name', get_post() ); ?>
-              <?php $taxonomy_arr = array("tech_type", "loan_period", "eligible_user", "library");?>
               <?php $data_categories =''; ?>
               <?php
-                foreach($taxonomy_arr as $taxonomy_value) {
-                  if(get_the_term_list( $post->ID, $taxonomy_value, true)){
-                    $term_list = strip_tags( get_the_term_list( $post->ID, $taxonomy_value, '', 'tagplace', '' ));
+                foreach($taxonomies as $taxonomy) {
+                  if(get_the_term_list( $post->ID, $taxonomy, true)){
+                    $term_list = strip_tags( get_the_term_list( $post->ID, $taxonomy, '', 'tagplace', '' ));
                     $term_list = title_to_slug($term_list);
                     $term_list = str_replace('tagplace', ' ', $term_list);
+                    $term_list = str_replace('-amp', '', $term_list);
                     $data_categories = $data_categories.$term_list.' ';
                   }
                 }
               ?>
-  						<div class="col-xs-6 col-md-4 col-lg-3" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
+  						<div class="col-xs-6 col-md-4 col-lg-3 taxonomy" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
   			    		<div class="thumbnail">
   			    			<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
     							<div class="caption">
@@ -167,15 +180,6 @@ Description: Archive tech page.
       						</div><!-- caption -->
       					</div><!-- thumbnail -->
     					</div><!-- col-xs-6 col-md-4 col-lg-3 -->
-              <?php if ($i % 4 == 0) : //adds a clearfix every 3 items. ?>
-                  <div class="clearfix visible-lg-block"></div>
-              <?php endif; ?>
-              <?php if ($i % 3 == 0) : //adds a clearfix every 2 items. ?>
-                  <div class="clearfix visible-md-block"></div>
-              <?php endif; ?>
-              <?php if ($i % 2 == 0) : //adds a clearfix every 3 items. ?>
-                  <div class="clearfix visible-sm-block visible-xs-block"></div>
-              <?php endif; ?> 
             <?php endwhile; else: ?>
   					<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?>
   					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
