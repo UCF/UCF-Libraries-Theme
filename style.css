@@ -732,6 +732,8 @@ footer ul li a:hover { text-decoration: none;}
 label.filter-checkbox {
   cursor: pointer;
   display: block;
+  position: relative;
+  margin-bottom: 8px;
 }
 
 label.filter-checkbox input {
@@ -742,20 +744,71 @@ label.filter-checkbox input {
   pointer-events: none;
 }
 
-label.filter-checkbox span {
-  padding: 7px 14px;
-  border: 2px solid #ffcc00;
+label.filter-checkbox .checkbox-container {
   display: block;
   color: #222222;
-  border-radius: 3px;
   text-transform: uppercase;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
 }
 
-label.filter-checkbox input:checked+span {
+label.filter-checkbox .checkbox-container:hover {
+background-color: #ffcc0025;
+}
+
+label.filter-checkbox input:checked+.checkbox-container {
   border-color: #ffcc00;
   background-color: #ffcc00;
   color: #222222;
 }
+
+/* Create a custom checkbox */
+.checkbox-custom {
+  position: absolute;
+  top: .8rem;
+  right: 1.25rem;
+  height: 25px;
+  width: 25px;
+  background-color: #22222210;
+}
+
+/* On mouse-over, add a grey background color */
+label.filter-checkbox:hover input ~ .checkbox-container  .checkbox-custom {
+  background-color: #22222225;
+}
+
+/* When the checkbox is checked, add a blue background */
+label.filter-checkbox input:checked ~ .checkbox-container .checkbox-custom {
+  background-color: #222222;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+label.filter-checkbox input:checked ~ .checkbox-container .checkbox-custom:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+label.filter-checkbox input:checked ~ .checkbox-container .checkbox-custom:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+label.filter-checkbox input ~ .checkbox-container .checkbox-custom:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
 
 /* Media Cards */
 .card .media {
