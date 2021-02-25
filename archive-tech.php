@@ -82,21 +82,21 @@ Description: Archive tech page.
                       <td>
                         <?php 
                           if(get_the_term_list( $post->ID, 'loan_period', true)): 
-                            echo get_the_term_list( $post->ID, 'loan_period', '', ', ', '' ); 
+                            echo strip_tags( get_the_term_list( $post->ID, 'loan_period', '', ', ', '' )); 
                           endif;
                         ?>
                       </td>
                       <td>
                         <?php 
                           if(get_the_term_list( $post->ID, 'eligible_user', true)): 
-                            echo get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' ); 
+                            echo strip_tags( get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' )); 
                           endif;
                         ?>
                       </td>
                       <td>
                         <?php 
                           if(get_the_term_list( $post->ID, 'library', true)): 
-                            echo get_the_term_list( $post->ID, 'library', '', ', ', '' ); 
+                            echo strip_tags( get_the_term_list( $post->ID, 'library', '', ', ', '' )); 
                           endif;
                         ?>
                       </td>
@@ -158,16 +158,16 @@ Description: Archive tech page.
                     ): ?>
     								<ul>
   										<?php if(get_the_term_list( $post->ID, 'tech_type', true)): ?>
-  											<li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Tech Type"></i><?php echo get_the_term_list( $post->ID, 'tech_type', '', ', ', '' ); ?></li>
+  											<li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Tech Type"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'tech_type', '', ', ', '' )); ?></li>
   										<?php endif; ?>
                       <?php if(get_the_term_list( $post->ID, 'loan_period', true)): ?>
-                        <li><i class="fa fa-hourglass" data-toggle="tooltip" data-placement="right" title="Loan Period"></i><?php echo get_the_term_list( $post->ID, 'loan_period', '', ', ', '' ); ?></li>
+                        <li><i class="fa fa-hourglass" data-toggle="tooltip" data-placement="right" title="Loan Period"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'loan_period', '', ', ', '' )); ?></li>
                       <?php endif; ?>
                       <?php if(get_the_term_list( $post->ID, 'eligible_user', true)): ?>
-                        <li><i class="fa fa-users" data-toggle="tooltip" data-placement="right" title="Eligible Users"></i><?php echo get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' ); ?></li>
+                        <li><i class="fa fa-users" data-toggle="tooltip" data-placement="right" title="Eligible Users"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' )); ?></li>
                       <?php endif; ?>
                       <?php if(get_the_term_list( $post->ID, 'library', true)): ?>
-                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo get_the_term_list( $post->ID, 'library', '', ', ', '' ); ?></li>
+                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'library', '', ', ', '' )); ?></li>
                       <?php endif; ?>
                       <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
                         <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fine Policy"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
