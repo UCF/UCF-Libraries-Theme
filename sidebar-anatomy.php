@@ -5,12 +5,12 @@
 		<div id="widget-area" class="widget-area" role="complementary">
 			<h3>Filters</h3>
 			<p>Click on a box below to filter items that contain that category.</p>
-			<div class="sidebar-collapse">
+			<!-- <div class="sidebar-collapse">
 				<h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></h4>
 				<div class="collapse in" id="Library">
-					<?php taxonomy_filter('a_library'); ?>
+					<?php// taxonomy_filter('a_library'); ?>
 				</div>
-			</div>
+			</div> -->
 			<div class="sidebar-collapse">
 				<h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Anatomy_Type" aria-expanded="true" aria-controls="Anatomy Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Anatomy Type</a></h4>
 				<div class="collapse in" id="Anatomy_Type">
