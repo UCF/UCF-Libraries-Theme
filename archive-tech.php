@@ -46,6 +46,7 @@ Description: Archive tech page.
               <input type="radio" name="views"  autocomplete="off" value="list"> <i class="fa fa-th-list"></i> List
             </label>
           </div>
+          <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
           <div id="list_view" class="view">
             <div class="card">
               <div class="table-responsive">
@@ -127,7 +128,7 @@ Description: Archive tech page.
               </div>
             </div>
           </div>
-					<div id="grid_view" class="directory grid view view-active">
+					<div id="grid_view" class="directory grid view">
   					<?php $i = 0; ?>
   					<?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
   						<?php $i++; ?>
@@ -189,5 +190,12 @@ Description: Archive tech page.
   	</div><!-- container -->
   </div><!-- background-color-gray -->
 </div><!-- main -->
+<script>
+$(document).ready( function(){
+  $('.lds-spinner').hide();
+  $('#grid_view').addClass('view-active');
+});
 
+
+</script>
 <?php get_footer(); ?>
