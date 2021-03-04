@@ -223,7 +223,6 @@ Description: Archive tech page.
   </div><!-- background-color-gray -->
 </div><!-- main -->
 <script>
-
 $('.taxonomy-filter').on('change', 'input:checkbox', function (){taxonomy_filter();});
 $('#clear_all').on('click', function(){
     $('input:checkbox').removeAttr('checked');
@@ -232,7 +231,7 @@ $('#clear_all').on('click', function(){
 $(document).ready( function(){
   $('.lds-spinner').hide();
   $('#grid_view').addClass('view-active');
+  pre_check_box();
 });
-
 </script>
 <?php get_footer(); ?>

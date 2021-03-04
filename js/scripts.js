@@ -504,6 +504,18 @@ function taxonomy_filter() {
   }
 }
 
+//This function checks a checkbox that has the same id as the hash
+function pre_check_box() {
+  let $filter = $.getUrlVar('filter');
+  if(document.location.search.length) {
+    if ($filter) {
+      let filter_array = $filter.split('+');
+      filter_array.forEach(element => $('#'+element).attr('checked', 'checked'));
+      taxonomy_filter();
+    }
+  }
+}
+
 // Load all functions when Dom Ready
 // =========================================
 
