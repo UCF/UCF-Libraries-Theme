@@ -31,7 +31,39 @@ Description: Archive tech page.
 		<div id="content" class="container">
 			<div class="row">
         <div id="sidebar" class="col-sm-3">
-          <?php get_sidebar('tech'); ?>
+          <aside>	
+            <div id="secondary" class="secondary taxonomy-filter">
+              <div id="widget-area-2" class="widget-area" role="complementary">
+                <h3>Filters</h3>
+                <p>Click on a box below to filter items that contain that category.</p>
+                <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
+                <div class="sidebar-collapse">
+                  <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></h4>
+                  <div class="collapse in" id="Library">
+                    <?php taxonomy_filter('library');	?>
+                  </div>
+                </div>
+                <div class="sidebar-collapse">
+                  <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#TechType" aria-expanded="true" aria-controls="Tech Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Tech Type</a></h4>
+                  <div class="collapse in" id="Tech_Type">
+                      <?php taxonomy_filter('tech_type');	?>
+                  </div>
+                </div>
+                <div class="sidebar-collapse">
+                  <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Loan_Period" aria-expanded="true" aria-controls="Loan Period"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-hourglass"></i> Loan Period</a></h4>
+                  <div class="collapse in" id="Loan_Period">
+                      <?php taxonomy_filter('loan_period');	?>
+                  </div>
+                </div>
+                <div class="sidebar-collapse">
+                  <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Eligible_User" aria-expanded="true" aria-controls="Eligible User"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-users"></i> Eligible User</a></h4>
+                  <div class="collapse in" id="Eligible_User">
+                      <?php taxonomy_filter('eligible_user');	?>
+                  </div>
+                </div>
+              </div><!-- .widget-area -->
+            </div>
+          </aside>
         </div>
         <div id="content_area" class="col-sm-9">
 					<h2 class="subpage-title">All Technology</h2>
@@ -77,7 +109,7 @@ Description: Archive tech page.
                         }
                       }
                     ?>
-                    <tr class="taxonomy" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
+                    <tr class="taxonomy-item" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('thumbnail', array('class' => 'list-thumbnail')); ?></a></td>
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></td>
                       <td>
@@ -145,7 +177,7 @@ Description: Archive tech page.
                   }
                 }
               ?>
-  						<div class="grid-item taxonomy" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
+  						<div class="grid-item taxonomy-item" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
   			    		<div class="thumbnail">
   			    			<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
     							<div class="caption">
@@ -191,11 +223,16 @@ Description: Archive tech page.
   </div><!-- background-color-gray -->
 </div><!-- main -->
 <script>
+
+$('.taxonomy-filter').on('change', 'input:checkbox', function (){taxonomy_filter();});
+$('#clear_all').on('click', function(){
+    $('input:checkbox').removeAttr('checked');
+    taxonomy_filter();
+});
 $(document).ready( function(){
   $('.lds-spinner').hide();
   $('#grid_view').addClass('view-active');
 });
-
 
 </script>
 <?php get_footer(); ?>
