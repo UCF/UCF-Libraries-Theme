@@ -40,6 +40,7 @@ Description: loan period taxonomy archive.
           <aside>	
             <div id="secondary" class="secondary taxonomy-filter">
               <div id="widget-area-2" class="widget-area" role="complementary">
+                <h3><a href="<?php echo get_post_type_archive_link( 'tech' ); ?>">View All Technology</a></h3>
                 <h3>Filters</h3>
                 <p>Click on a box below to filter items that contain that category.</p>
                 <div class="sidebar-collapse">

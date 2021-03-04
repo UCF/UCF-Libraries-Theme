@@ -42,6 +42,7 @@ Description: anatomy library archive page.
           <aside>	
             <div id="secondary" class="secondary taxonomy-filter">
               <div id="widget-area" class="widget-area" role="complementary">
+                <h3><a href="<?php echo get_post_type_archive_link( 'anatomy' ); ?>">View All Anatomy</a></h3>
                 <h3>Filters</h3>
                 <p>Click on a box below to filter items that contain that category.</p>
                 <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
