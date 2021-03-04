@@ -1,7 +1,9 @@
 <?php
 /*
-Description: eligible user taxonomy archive.
+Description: anatomy library archive page.
 */
+
+//locate_template( 'archive-anatomy.php', true );
 
 ?>
  <?php
@@ -17,6 +19,7 @@ Description: eligible user taxonomy archive.
 	  )
   );
 ?>
+<?php $taxonomies = get_taxonomies();?>
 
 <?php get_header(); ?>
 <div id="main">
@@ -36,11 +39,25 @@ Description: eligible user taxonomy archive.
 		<div id="content" class="container">
 			<div class="row">
         <div id="sidebar" class="col-sm-3">
-          <?php get_sidebar('anatomy'); ?>
+          <aside>	
+            <div id="secondary" class="secondary taxonomy-filter">
+              <div id="widget-area" class="widget-area" role="complementary">
+                <h3>Filters</h3>
+                <p>Click on a box below to filter items that contain that category.</p>
+                <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
+                <div class="sidebar-collapse">
+                  <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Anatomy_Type" aria-expanded="true" aria-controls="Anatomy Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Anatomy Type</a></h4>
+                  <div class="collapse in" id="Anatomy_Type">
+                    <?php taxonomy_filter('anatomy_type'); ?>
+                  </div>
+                </div>
+              </div><!-- .widget-area -->
+            </div>
+          </aside>
         </div>
         <div id="content_area" class="col-sm-9">
 					<h2 class="subpage-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h2>
-					<div class="anatomy-description">
+          <div class="anatomy-description">
             <?php echo term_description( ) ?>
           </div>
           <div class="anatomy-description">
@@ -54,6 +71,7 @@ Description: eligible user taxonomy archive.
               <input type="radio" name="views"  autocomplete="off" value="list"> <i class="fa fa-th-list"></i> List
             </label>
           </div>
+          <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
           <div id="list_view" class="view">
             <div class="card">
               <div class="table-responsive">
@@ -62,6 +80,7 @@ Description: eligible user taxonomy archive.
                     <tr>
                       <th class="empty-cell"></th>
                       <th><i class="fa fa-exclamation-circle"></i> Item Name</th>
+                      <th><i class="fa fa-info-circle"></i> Anatomy Type</th>
                       <th><i class="fa fa-university"></i> Library</th>
                       <th><i class="fa fa-usd"></i> Fines & Policies</th>
                       <th><i class="fa fa-check-circle"></i> Availability</th>
@@ -69,13 +88,33 @@ Description: eligible user taxonomy archive.
                   </thead>
                   <tbody>
                   <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                    <tr>
+                    <?php $slug = get_post_field( 'post_name', get_post() ); ?>
+                    <?php $data_categories =''; ?>
+                    <?php
+                      foreach($taxonomies as $taxonomy) {
+                        if(get_the_term_list( $post->ID, $taxonomy, true)){
+                          $term_list = strip_tags( get_the_term_list( $post->ID, $taxonomy, '', 'tagplace', '' ));
+                          $term_list = title_to_slug($term_list);
+                          $term_list = str_replace('tagplace', ' ', $term_list);
+                          $term_list = str_replace('-amp', '', $term_list);
+                          $data_categories = $data_categories.$term_list.' ';
+                        }
+                      }
+                    ?>
+                    <tr class="taxonomy-item" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('thumbnail', array('class' => 'list-thumbnail')); ?></a></td>
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></td>
                       <td>
                         <?php 
+                          if(get_the_term_list( $post->ID, 'anatomy_type', true)): 
+                            echo strip_tags(get_the_term_list( $post->ID, 'anatomy_type', '', ', ', '' )); 
+                          endif;
+                        ?>
+                      </td>
+                      <td>
+                        <?php 
                           if(get_the_term_list( $post->ID, 'a_library', true)): 
-                            echo get_the_term_list( $post->ID, 'a_library', '', ', ', '' ); 
+                            echo strip_tags(get_the_term_list( $post->ID, 'a_library', '', ', ', '' )); 
                           endif;
                         ?>
                       </td> 
@@ -86,7 +125,7 @@ Description: eligible user taxonomy archive.
                       </td>
                       <td>
                         <?php if(get_post_meta($post->ID, 'availability', true)): ?>
-                          <a href="<?php echo get_permalink(); ?>#item_availability">Check Availability</a></li>
+                          <a href="<?php echo get_post_meta($post->ID, 'availability', true); ?>">Check Availability</a></li>
                         <?php endif; ?>
                       </td>
                     </tr>
@@ -95,7 +134,7 @@ Description: eligible user taxonomy archive.
                       <td></td>
                       <td></td>
                       <td></td>
-                      <td></td>                      
+                      <td></td>
                       <td></td>                      
                     </tr>
                   <?php endif; ?>
@@ -104,47 +143,51 @@ Description: eligible user taxonomy archive.
               </div>
             </div>
           </div>
-					<div id="grid_view" class="directory row view view-active">
+					<div id="grid_view" class="directory grid view">
 					 <?php $i = 0; ?>
 					 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-							<?php $i++; ?>
-							<div class="col-xs-6 col-md-4 col-lg-3">
+              <?php $i++; ?>
+              <?php $slug = get_post_field( 'post_name', get_post() ); ?>
+              <?php $data_categories =''; ?>
+              <?php
+                foreach($taxonomies as $taxonomy) {
+                  if(get_the_term_list( $post->ID, $taxonomy, true)){
+                    $term_list = strip_tags( get_the_term_list( $post->ID, $taxonomy, '', 'tagplace', '' ));
+                    $term_list = title_to_slug($term_list);
+                    $term_list = str_replace('tagplace', ' ', $term_list);
+                    $term_list = str_replace('-amp', '', $term_list);
+                    $data_categories = $data_categories.$term_list.' ';
+                  }
+                }
+              ?>
+  						<div class="grid-item taxonomy-item" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
 				    		<div class="thumbnail">
-                  <figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
+  				    		<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
   								<div class="caption">
-  								  <h3><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h3>
-                    <?php if(get_the_term_list( $post->ID, 'anatomy_type', true) ||
+    								<h3><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h3>
+  									<?php if(get_the_term_list( $post->ID, 'anatomy_type', true) ||
                       get_the_term_list( $post->ID, 'library', true) ||
                       get_post_meta($post->ID, 'fine-policy', true) ||
                       get_post_meta($post->ID, 'availability', true)
                     ): ?>
-      								<ul>
-                      <?php if(get_the_term_list( $post->ID, 'anatomy_type', true)): ?>
-                        <li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Anatomy Type"></i><?php echo get_the_term_list( $post->ID, 'anatomy_type', '', ', ', '' ); ?></li>
-                      <?php endif; ?>
+    								<ul>
+  										<?php if(get_the_term_list( $post->ID, 'anatomy_type', true)): ?>
+  											<li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Anatomy Type"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'anatomy_type', '', ', ', '' )); ?></li>
+  										<?php endif; ?>
                       <?php if(get_the_term_list( $post->ID, 'a_library', true)): ?>
-                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo get_the_term_list( $post->ID, 'a_library', '', ', ', '' ); ?></li>
+                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'a_library', '', ', ', '' )); ?></li>
                       <?php endif; ?>
                       <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
                         <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fines & Policies"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fines & Policies</a></li>
                       <?php endif; ?>
                       <?php if(get_post_meta($post->ID, 'availability', true)): ?>
-                        <li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_permalink(); ?>#item_availability">Check Availability</a></li>
-                      <?php endif; ?>
-      								</ul>
-  									<?php endif; ?>
-  								</div><!-- caption -->
+  											<li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_permalink(); ?>#item_availability">Check Availability</a></li>
+  										<?php endif; ?>
+    								</ul>
+    								<?php endif; ?>
+  						    </div><!-- caption -->
 								</div><!-- thumbnail -->
-							</div><!-- col-xs-6 col-md-4 col-lg-3 -->
-							<?php if ($i % 4 == 0) : //adds a clearfix every 3 items. ?>
-									<div class="clearfix visible-lg-block"></div>
-							<?php endif; ?>
-							<?php if ($i % 3 == 0) : //adds a clearfix every 2 items. ?>
-									<div class="clearfix visible-md-block"></div>
-							<?php endif; ?>
-							<?php if ($i % 2 == 0) : //adds a clearfix every 3 items. ?>
-									<div class="clearfix visible-sm-block visible-xs-block"></div>
-							<?php endif; ?>	
+							</div><!-- grid-item -->
 					 <?php endwhile; else: ?>
            <p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 					</div><!-- directory row -->
@@ -154,4 +197,16 @@ Description: eligible user taxonomy archive.
 		</div><!-- container -->
 	</div><!-- background-color-gray -->
 </div><!-- main -->
+<script>
+$('.taxonomy-filter').on('change', 'input:checkbox', function (){taxonomy_filter();});
+$('#clear_all').on('click', function(){
+    $('input:checkbox').removeAttr('checked');
+    taxonomy_filter();
+});
+$(document).ready( function(){
+  $('.lds-spinner').hide();
+  $('#grid_view').addClass('view-active');
+  pre_check_box();
+});
+</script>
 <?php get_footer(); ?>

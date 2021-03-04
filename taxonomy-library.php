@@ -40,6 +40,7 @@ Description: Library taxonomy archive.
               <div id="widget-area-2" class="widget-area" role="complementary">
                 <h3>Filters</h3>
                 <p>Click on a box below to filter items that contain that category.</p>
+                <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
                 <div class="sidebar-collapse">
                   <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#TechType" aria-expanded="true" aria-controls="Tech Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Tech Type</a></h4>
                   <div class="collapse in" id="Tech_Type">
@@ -109,7 +110,7 @@ Description: Library taxonomy archive.
                         }
                       }
                     ?>
-                    <tr class="taxonomy" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
+                    <tr class="taxonomy-item" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('thumbnail', array('class' => 'list-thumbnail')); ?></a></td>
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></td>
                       <td>
@@ -177,7 +178,7 @@ Description: Library taxonomy archive.
                   }
                 }
               ?>
-  						<div class="grid-item taxonomy" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
+  						<div class="grid-item taxonomy-item" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
 				    		<div class="thumbnail">
                   <figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
   								<div class="caption">
@@ -223,26 +224,16 @@ Description: Library taxonomy archive.
 	</div><!-- background-color-gray -->
 </div><!-- main -->
 <script>
+$('.taxonomy-filter').on('change', 'input:checkbox', function (){taxonomy_filter();});
+$('#clear_all').on('click', function(){
+    $('input:checkbox').removeAttr('checked');
+    taxonomy_filter();
+});
 $(document).ready( function(){
   $('.lds-spinner').hide();
   $('#grid_view').addClass('view-active');
+  pre_check_box();
 });
-$('.taxonomy-filter').on('change', 'input[type=checkbox]', function() {
-  var $lis = $('.taxonomy');	
-	var $checked =$('input[type=checkbox]:checked');
-  if ($checked.length)
-  {							
-		var selector = '';
-		$($checked).each(function(index, element){                            
-				selector += "[data-category~='" + element.value + "']";                            
-		});                        
-    $lis.hide();                        
-    $lis.filter(selector).show();			   
-  }
-  else
-  {
-    $lis.show();
-  }
-});
+
 </script>
 <?php get_footer(); ?>
