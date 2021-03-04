@@ -44,7 +44,7 @@ Description: anatomy library archive page.
               <div id="widget-area" class="widget-area" role="complementary">
                 <h3><a href="<?php echo get_post_type_archive_link( 'anatomy' ); ?>">View All Anatomy</a></h3>
                 <h3>Filters</h3>
-                <p>Click on a box below to filter items that contain that category.</p>
+                <p>Select filters below to narrow results:</p>
                 <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
                 <div class="sidebar-collapse">
                   <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Anatomy_Type" aria-expanded="true" aria-controls="Anatomy Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Anatomy Type</a></h4>

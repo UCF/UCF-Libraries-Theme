@@ -35,7 +35,7 @@ Description: Archive tech page.
             <div id="secondary" class="secondary taxonomy-filter">
               <div id="widget-area-2" class="widget-area" role="complementary">
                 <h3>Filters</h3>
-                <p>Click on a box below to filter items that contain that category.</p>
+                <p>Select filters below to narrow results:</p>
                 <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
                 <div class="sidebar-collapse">
                   <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></h4>
@@ -66,7 +66,6 @@ Description: Archive tech page.
           </aside>
         </div>
         <div id="content_area" class="col-sm-9">
-					<h2 class="subpage-title">All Technology</h2>
           <div class="tech-description">
             <?php dynamic_sidebar( 'technology-lending' ); ?>
           </div>

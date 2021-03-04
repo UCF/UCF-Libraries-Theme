@@ -40,7 +40,7 @@ Description: Library taxonomy archive.
               <div id="widget-area-2" class="widget-area" role="complementary">
                 <h3><a href="<?php echo get_post_type_archive_link( 'tech' ); ?>">View All Technology</a></h3>
                 <h3>Filters</h3>
-                <p>Click on a box below to filter items that contain that category.</p>
+                <p>Select filters below to narrow results:</p>
                 <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
                 <div class="sidebar-collapse">
                   <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#TechType" aria-expanded="true" aria-controls="Tech Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Tech Type</a></h4>
