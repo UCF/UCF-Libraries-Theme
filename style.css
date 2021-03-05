@@ -1090,6 +1090,7 @@ th.header.empty-cell{
 .background-image {
 	background-size: cover;
 	background-position: center center;
+  background-attachment: fixed;
 	width: 100%;
 	min-height: 50vh;
 	display: block;
