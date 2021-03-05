@@ -485,6 +485,37 @@ function get_time_zone_offset() {
   return gmt_offset;
 }
 
+// This function powers the filter checkboxes in the Tech Lending and Anatomy Lending custom post types
+function taxonomy_filter() {
+  var $lis = $('.taxonomy-item');	
+	var $checked =$('input:checkbox:checked');
+  if ($checked.length)
+  {							
+		var $selector = '';
+		$($checked).each(function(index, element){                            
+				$selector += "[data-category~='" + element.value + "']";                            
+		});                        
+    $lis.hide();                        
+    $lis.filter($selector).show();			   
+  }
+  else
+  {
+    $lis.show();
+  }
+}
+
+//This function checks a checkbox that has the same id as the hash
+function pre_check_box() {
+  let $filter = $.getUrlVar('filter');
+  if(document.location.search.length) {
+    if ($filter) {
+      let filter_array = $filter.split('+');
+      filter_array.forEach(element => $('#'+element).attr('checked', 'checked'));
+      taxonomy_filter();
+    }
+  }
+}
+
 // Load all functions when Dom Ready
 // =========================================
 

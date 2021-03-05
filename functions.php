@@ -93,6 +93,19 @@ function cleanup($content){
 	return $content;
 }
 
+//Page title to slug converter
+function title_to_slug($string) {
+  //Lower case everything
+  $string = strtolower($string);
+  //Make alphanumeric (removes all other characters)
+  $string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
+  //Clean up multiple dashes or whitespaces
+  $string = preg_replace("/[\s-]+/", " ", $string);
+  //Convert whitespaces and underscore to dash
+  $string = preg_replace("/[\s_]/", "-", $string);
+  return $string;
+}
+
 function taxonomy_term_list( $taxonomy ) {
   $term_args = array(
     'hide_empty' => false,
@@ -106,6 +119,18 @@ function taxonomy_term_list( $taxonomy ) {
   }
   $term_list .= '</ul>';
   echo $term_list;
+}
+
+// Creates list items for sidebar taxonmy filter lists
+function taxonomy_filter ($taxonomy_name) {
+	$taxonomy_terms = get_terms(['taxonomy' => $taxonomy_name, 'hide_empty' => false,]);
+	$output .= '<ul>';
+  foreach($taxonomy_terms as $taxonomy_term) {
+		$slug = str_replace('-amp', '', title_to_slug($taxonomy_term -> name));
+		$output .= '<li><label class="filter-checkbox" ><input type="checkbox" id="'.$slug.'" value="'.$slug.'" /> <span class="checkbox-container">'.$taxonomy_term -> name.'<span class="checkbox-custom"></span></span></label></li>';
+	}
+  $output .= '</ul>';
+  echo ($output);
 }
 
 //Register all Wordpress menus

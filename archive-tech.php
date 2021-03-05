@@ -12,6 +12,7 @@ Description: Archive tech page.
 	$my_query = null;
 	$my_query = new WP_Query($args);
  ?>
+<?php $taxonomies = get_taxonomies();?>
 
 <?php get_header(); ?>
 <div id="main">
@@ -30,10 +31,41 @@ Description: Archive tech page.
 		<div id="content" class="container">
 			<div class="row">
         <div id="sidebar" class="col-sm-3">
-          <?php get_sidebar('tech'); ?>
+          <aside>	
+            <div id="secondary" class="secondary taxonomy-filter">
+              <div id="widget-area-2" class="widget-area" role="complementary">
+                <h3>Filters</h3>
+                <p>Select filters below to narrow results:</p>
+                <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
+                <div class="sidebar-collapse">
+                  <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></h4>
+                  <div class="collapse in" id="Library">
+                    <?php taxonomy_filter('library');	?>
+                  </div>
+                </div>
+                <div class="sidebar-collapse">
+                  <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#TechType" aria-expanded="true" aria-controls="Tech Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Tech Type</a></h4>
+                  <div class="collapse in" id="Tech_Type">
+                      <?php taxonomy_filter('tech_type');	?>
+                  </div>
+                </div>
+                <div class="sidebar-collapse">
+                  <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Loan_Period" aria-expanded="true" aria-controls="Loan Period"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-hourglass"></i> Loan Period</a></h4>
+                  <div class="collapse in" id="Loan_Period">
+                      <?php taxonomy_filter('loan_period');	?>
+                  </div>
+                </div>
+                <div class="sidebar-collapse">
+                  <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Eligible_User" aria-expanded="true" aria-controls="Eligible User"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-users"></i> Eligible User</a></h4>
+                  <div class="collapse in" id="Eligible_User">
+                      <?php taxonomy_filter('eligible_user');	?>
+                  </div>
+                </div>
+              </div><!-- .widget-area -->
+            </div>
+          </aside>
         </div>
         <div id="content_area" class="col-sm-9">
-					<h2 class="subpage-title">All Technology</h2>
           <div class="tech-description">
             <?php dynamic_sidebar( 'technology-lending' ); ?>
           </div>
@@ -45,6 +77,7 @@ Description: Archive tech page.
               <input type="radio" name="views"  autocomplete="off" value="list"> <i class="fa fa-th-list"></i> List
             </label>
           </div>
+          <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
           <div id="list_view" class="view">
             <div class="card">
               <div class="table-responsive">
@@ -62,27 +95,40 @@ Description: Archive tech page.
                   </thead>
                   <tbody>
                   <?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
-                    <tr>
+                    <?php $slug = get_post_field( 'post_name', get_post() ); ?>
+                    <?php $data_categories =''; ?>
+                    <?php
+                      foreach($taxonomies as $taxonomy) {
+                        if(get_the_term_list( $post->ID, $taxonomy, true)){
+                          $term_list = strip_tags( get_the_term_list( $post->ID, $taxonomy, '', 'tagplace', '' ));
+                          $term_list = title_to_slug($term_list);
+                          $term_list = str_replace('tagplace', ' ', $term_list);
+                          $term_list = str_replace('-amp', '', $term_list);
+                          $data_categories = $data_categories.$term_list.' ';
+                        }
+                      }
+                    ?>
+                    <tr class="taxonomy-item" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('thumbnail', array('class' => 'list-thumbnail')); ?></a></td>
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></td>
                       <td>
                         <?php 
                           if(get_the_term_list( $post->ID, 'loan_period', true)): 
-                            echo get_the_term_list( $post->ID, 'loan_period', '', ', ', '' ); 
+                            echo strip_tags( get_the_term_list( $post->ID, 'loan_period', '', ', ', '' )); 
                           endif;
                         ?>
                       </td>
                       <td>
                         <?php 
                           if(get_the_term_list( $post->ID, 'eligible_user', true)): 
-                            echo get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' ); 
+                            echo strip_tags( get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' )); 
                           endif;
                         ?>
                       </td>
                       <td>
                         <?php 
                           if(get_the_term_list( $post->ID, 'library', true)): 
-                            echo get_the_term_list( $post->ID, 'library', '', ', ', '' ); 
+                            echo strip_tags( get_the_term_list( $post->ID, 'library', '', ', ', '' )); 
                           endif;
                         ?>
                       </td>
@@ -113,11 +159,24 @@ Description: Archive tech page.
               </div>
             </div>
           </div>
-					<div id="grid_view" class="directory row view view-active">
+					<div id="grid_view" class="directory grid view">
   					<?php $i = 0; ?>
   					<?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
   						<?php $i++; ?>
-  						<div class="col-xs-6 col-md-4 col-lg-3">
+              <?php $slug = get_post_field( 'post_name', get_post() ); ?>
+              <?php $data_categories =''; ?>
+              <?php
+                foreach($taxonomies as $taxonomy) {
+                  if(get_the_term_list( $post->ID, $taxonomy, true)){
+                    $term_list = strip_tags( get_the_term_list( $post->ID, $taxonomy, '', 'tagplace', '' ));
+                    $term_list = title_to_slug($term_list);
+                    $term_list = str_replace('tagplace', ' ', $term_list);
+                    $term_list = str_replace('-amp', '', $term_list);
+                    $data_categories = $data_categories.$term_list.' ';
+                  }
+                }
+              ?>
+  						<div class="grid-item taxonomy-item" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
   			    		<div class="thumbnail">
   			    			<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
     							<div class="caption">
@@ -131,16 +190,16 @@ Description: Archive tech page.
                     ): ?>
     								<ul>
   										<?php if(get_the_term_list( $post->ID, 'tech_type', true)): ?>
-  											<li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Tech Type"></i><?php echo get_the_term_list( $post->ID, 'tech_type', '', ', ', '' ); ?></li>
+  											<li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Tech Type"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'tech_type', '', ', ', '' )); ?></li>
   										<?php endif; ?>
                       <?php if(get_the_term_list( $post->ID, 'loan_period', true)): ?>
-                        <li><i class="fa fa-hourglass" data-toggle="tooltip" data-placement="right" title="Loan Period"></i><?php echo get_the_term_list( $post->ID, 'loan_period', '', ', ', '' ); ?></li>
+                        <li><i class="fa fa-hourglass" data-toggle="tooltip" data-placement="right" title="Loan Period"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'loan_period', '', ', ', '' )); ?></li>
                       <?php endif; ?>
                       <?php if(get_the_term_list( $post->ID, 'eligible_user', true)): ?>
-                        <li><i class="fa fa-users" data-toggle="tooltip" data-placement="right" title="Eligible Users"></i><?php echo get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' ); ?></li>
+                        <li><i class="fa fa-users" data-toggle="tooltip" data-placement="right" title="Eligible Users"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' )); ?></li>
                       <?php endif; ?>
                       <?php if(get_the_term_list( $post->ID, 'library', true)): ?>
-                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo get_the_term_list( $post->ID, 'library', '', ', ', '' ); ?></li>
+                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'library', '', ', ', '' )); ?></li>
                       <?php endif; ?>
                       <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
                         <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fine Policy"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
@@ -152,16 +211,7 @@ Description: Archive tech page.
       							<?php endif; ?>
       						</div><!-- caption -->
       					</div><!-- thumbnail -->
-    					</div><!-- col-xs-6 col-md-4 col-lg-3 -->
-              <?php if ($i % 4 == 0) : //adds a clearfix every 3 items. ?>
-                  <div class="clearfix visible-lg-block"></div>
-              <?php endif; ?>
-              <?php if ($i % 3 == 0) : //adds a clearfix every 2 items. ?>
-                  <div class="clearfix visible-md-block"></div>
-              <?php endif; ?>
-              <?php if ($i % 2 == 0) : //adds a clearfix every 3 items. ?>
-                  <div class="clearfix visible-sm-block visible-xs-block"></div>
-              <?php endif; ?> 
+    					</div><!-- grid-item -->
             <?php endwhile; else: ?>
   					<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?>
   					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
@@ -171,5 +221,16 @@ Description: Archive tech page.
   	</div><!-- container -->
   </div><!-- background-color-gray -->
 </div><!-- main -->
-
+<script>
+$('.taxonomy-filter').on('change', 'input:checkbox', function (){taxonomy_filter();});
+$('#clear_all').on('click', function(){
+    $('input:checkbox').removeAttr('checked');
+    taxonomy_filter();
+});
+$(document).ready( function(){
+  $('.lds-spinner').hide();
+  $('#grid_view').addClass('view-active');
+  pre_check_box();
+});
+</script>
 <?php get_footer(); ?>

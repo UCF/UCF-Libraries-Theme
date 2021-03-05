@@ -19,6 +19,7 @@ Description: anatomy type archive page.
 	  )
   );
 ?>
+<?php $taxonomies = get_taxonomies();?>
 
 <?php get_header(); ?>
 <div id="main">
@@ -38,7 +39,22 @@ Description: anatomy type archive page.
 		<div id="content" class="container">
 			<div class="row">
         <div id="sidebar" class="col-sm-3">
-          <?php get_sidebar('anatomy'); ?>
+          <aside>	
+            <div id="secondary" class="secondary taxonomy-filter">
+              <div id="widget-area" class="widget-area" role="complementary">
+                <h3><a href="<?php echo get_post_type_archive_link( 'anatomy' ); ?>">View All Anatomy</a></h3>
+                <h3>Filters</h3>
+                <p>Select filters below to narrow results:</p>
+                <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
+                <div class="sidebar-collapse">
+                  <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></h4>
+                  <div class="collapse in" id="Library">
+                    <?php taxonomy_filter('a_library'); ?>
+                  </div>
+                </div>
+              </div><!-- .widget-area -->
+            </div>
+          </aside>
         </div>
         <div id="content_area" class="col-sm-9">
 					<h2 class="subpage-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h2>
@@ -56,6 +72,7 @@ Description: anatomy type archive page.
               <input type="radio" name="views"  autocomplete="off" value="list"> <i class="fa fa-th-list"></i> List
             </label>
           </div>
+          <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
           <div id="list_view" class="view">
             <div class="card">
               <div class="table-responsive">
@@ -72,20 +89,33 @@ Description: anatomy type archive page.
                   </thead>
                   <tbody>
                   <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                    <tr>
+                    <?php $slug = get_post_field( 'post_name', get_post() ); ?>
+                    <?php $data_categories =''; ?>
+                    <?php
+                      foreach($taxonomies as $taxonomy) {
+                        if(get_the_term_list( $post->ID, $taxonomy, true)){
+                          $term_list = strip_tags( get_the_term_list( $post->ID, $taxonomy, '', 'tagplace', '' ));
+                          $term_list = title_to_slug($term_list);
+                          $term_list = str_replace('tagplace', ' ', $term_list);
+                          $term_list = str_replace('-amp', '', $term_list);
+                          $data_categories = $data_categories.$term_list.' ';
+                        }
+                      }
+                    ?>
+                    <tr class="taxonomy-item" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('thumbnail', array('class' => 'list-thumbnail')); ?></a></td>
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></td>
                       <td>
                         <?php 
                           if(get_the_term_list( $post->ID, 'anatomy_type', true)): 
-                            echo get_the_term_list( $post->ID, 'anatomy_type', '', ', ', '' ); 
+                            echo strip_tags(get_the_term_list( $post->ID, 'anatomy_type', '', ', ', '' )); 
                           endif;
                         ?>
                       </td>
                       <td>
                         <?php 
                           if(get_the_term_list( $post->ID, 'a_library', true)): 
-                            echo get_the_term_list( $post->ID, 'a_library', '', ', ', '' ); 
+                            echo strip_tags(get_the_term_list( $post->ID, 'a_library', '', ', ', '' )); 
                           endif;
                         ?>
                       </td> 
@@ -114,11 +144,24 @@ Description: anatomy type archive page.
               </div>
             </div>
           </div>
-          <div id="grid_view" class="directory row view view-active">
+					<div id="grid_view" class="directory grid view">
 					 <?php $i = 0; ?>
 					 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-							<?php $i++; ?>
-							<div class="col-xs-6 col-md-4 col-lg-3">
+              <?php $i++; ?>
+              <?php $slug = get_post_field( 'post_name', get_post() ); ?>
+              <?php $data_categories =''; ?>
+              <?php
+                foreach($taxonomies as $taxonomy) {
+                  if(get_the_term_list( $post->ID, $taxonomy, true)){
+                    $term_list = strip_tags( get_the_term_list( $post->ID, $taxonomy, '', 'tagplace', '' ));
+                    $term_list = title_to_slug($term_list);
+                    $term_list = str_replace('tagplace', ' ', $term_list);
+                    $term_list = str_replace('-amp', '', $term_list);
+                    $data_categories = $data_categories.$term_list.' ';
+                  }
+                }
+              ?>
+  						<div class="grid-item taxonomy-item" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
 				    		<div class="thumbnail">
   				    		<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
   								<div class="caption">
@@ -128,33 +171,24 @@ Description: anatomy type archive page.
                       get_post_meta($post->ID, 'fine-policy', true) ||
                       get_post_meta($post->ID, 'availability', true)
                     ): ?>
-      								<ul>
-                      <?php if(get_the_term_list( $post->ID, 'anatomy_type', true)): ?>
-                        <li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Anatomy Type"></i><?php echo get_the_term_list( $post->ID, 'anatomy_type', '', ', ', '' ); ?></li>
-                      <?php endif; ?>
+    								<ul>
+  										<?php if(get_the_term_list( $post->ID, 'anatomy_type', true)): ?>
+  											<li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Anatomy Type"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'anatomy_type', '', ', ', '' )); ?></li>
+  										<?php endif; ?>
                       <?php if(get_the_term_list( $post->ID, 'a_library', true)): ?>
-                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo get_the_term_list( $post->ID, 'a_library', '', ', ', '' ); ?></li>
+                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'a_library', '', ', ', '' )); ?></li>
                       <?php endif; ?>
                       <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
                         <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fines & Policies"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fines & Policies</a></li>
                       <?php endif; ?>
                       <?php if(get_post_meta($post->ID, 'availability', true)): ?>
-                        <li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_permalink(); ?>#item_availability">Check Availability</a></li>
-                      <?php endif; ?>
-      						    </ul>
+  											<li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_permalink(); ?>#item_availability">Check Availability</a></li>
+  										<?php endif; ?>
+    								</ul>
     								<?php endif; ?>
   						    </div><!-- caption -->
 								</div><!-- thumbnail -->
-							</div><!-- col-xs-6 col-md-4 col-lg-3 -->
-							<?php if ($i % 4 == 0) : //adds a clearfix every 3 items. ?>
-									<div class="clearfix visible-lg-block"></div>
-							<?php endif; ?>
-							<?php if ($i % 3 == 0) : //adds a clearfix every 2 items. ?>
-									<div class="clearfix visible-md-block"></div>
-							<?php endif; ?>
-							<?php if ($i % 2 == 0) : //adds a clearfix every 3 items. ?>
-									<div class="clearfix visible-sm-block visible-xs-block"></div>
-							<?php endif; ?>	
+							</div><!-- grid-item -->
 					 <?php endwhile; else: ?>
            <p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 					</div><!-- directory row -->
@@ -164,4 +198,16 @@ Description: anatomy type archive page.
 		</div><!-- container -->
 	</div><!-- background-color-gray -->
 </div><!-- main -->
+<script>
+$('.taxonomy-filter').on('change', 'input:checkbox', function (){taxonomy_filter();});
+$('#clear_all').on('click', function(){
+    $('input:checkbox').removeAttr('checked');
+    taxonomy_filter();
+});
+$(document).ready( function(){
+  $('.lds-spinner').hide();
+  $('#grid_view').addClass('view-active');
+  pre_check_box();
+});
+</script>
 <?php get_footer(); ?>

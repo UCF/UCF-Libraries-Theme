@@ -48,10 +48,10 @@ if ( substr($name, -1) == 's') {
 		    								): ?>
 												<ul>
 													<?php if(get_the_term_list( $post->ID, 'anatomy_type', true)): ?>
-	                        <li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Anatomy Type"></i><?php echo get_the_term_list( $post->ID, 'anatomy_type', '', ', ', '' ); ?></li>
+	                        <li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Anatomy Type"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'anatomy_type', '', ', ', '' )); ?></li>
 	                     		<?php endif; ?>
 		                      <?php if(get_the_term_list( $post->ID, 'a_library', true)): ?>
-		                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo get_the_term_list( $post->ID, 'a_library', '', ', ', '' ); ?></li>
+		                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'a_library', '', ', ', '' )); ?></li>
 		                      <?php endif; ?>
 		                      <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
 		                        <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fines & Policies"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fines & Policies</a></li>
