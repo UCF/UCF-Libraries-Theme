@@ -523,13 +523,13 @@ function taxonomy_filter(categories) {
           $lis = $lis.filter(cat.filter);
         }
       });
-      $lis.show();          
+      $lis.show();     
     }
     else
     {
       $lis.show();
     }
-  }
+  } 
 }
 
 

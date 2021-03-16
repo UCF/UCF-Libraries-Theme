@@ -2,7 +2,6 @@
 /*
 Description: loan period taxonomy archive.
 */
-
 ?>
  <?php
 	global $wp_query;
@@ -18,7 +17,6 @@ Description: loan period taxonomy archive.
   );
 ?>
 <?php $taxonomies = get_taxonomies();?>
-
 <?php get_header(); ?>
 <div id="main">
 	<div id="title_bar" class="container">
@@ -43,6 +41,7 @@ Description: loan period taxonomy archive.
                 <h3><a href="<?php echo get_post_type_archive_link( 'tech' ); ?>">View All Technology</a></h3>
                 <h3>Filters</h3>
                 <p>Select filters below to narrow results:</p>
+                <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
                 <div class="sidebar-collapse">
                   <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></h4>
                   <div class="collapse in" id="Library">
@@ -226,10 +225,28 @@ Description: loan period taxonomy archive.
 	</div><!-- background-color-gray -->
 </div><!-- main -->
 <script>
-$('.taxonomy-filter').on('change', 'input:checkbox', function (){taxonomy_filter();});
+let categories = [
+  {
+    'name' : 'library',
+    'filter' : ''
+  }, 
+  {
+    'name' : 'tech_type',
+    'filter' : ''
+  },
+  {
+    'name' : 'loan_period',
+    'filter' : ''
+  },
+  {
+    'name' : 'eligible_user',
+    'filter' : ''
+  },
+]
+$('.taxonomy-filter').on('change', 'input:checkbox', function (){taxonomy_filter(categories);});
 $('#clear_all').on('click', function(){
     $('input:checkbox').removeAttr('checked');
-    taxonomy_filter();
+    taxonomy_filter(categories);
 });
 $(document).ready( function(){
   $('.lds-spinner').hide();
