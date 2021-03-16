@@ -107,11 +107,11 @@ Description: tech type taxonomy archive.
                           $term_list = title_to_slug($term_list);
                           $term_list = str_replace('tagplace', ' ', $term_list);
                           $term_list = str_replace('-amp', '', $term_list);
-                          $data_categories = $data_categories.$term_list.' ';
+                          $data_categories = $data_categories.' data-'.$taxonomy.'="'.$term_list.'" ';
                         }
                       }
                     ?>
-                    <tr class="taxonomy-item" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
+                    <tr class="taxonomy-item" data-id="<?php echo ($slug) ?>" <?php echo ($data_categories) ?>>
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('thumbnail', array('class' => 'list-thumbnail')); ?></a></td>
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></td>
                       <td>
@@ -175,11 +175,11 @@ Description: tech type taxonomy archive.
                     $term_list = title_to_slug($term_list);
                     $term_list = str_replace('tagplace', ' ', $term_list);
                     $term_list = str_replace('-amp', '', $term_list);
-                    $data_categories = $data_categories.$term_list.' ';
+                    $data_categories = $data_categories.' data-'.$taxonomy.'="'.$term_list.'" ';
                   }
                 }
               ?>
-              <div class="grid-item taxonomy-item" data-id="<?php echo ($slug) ?>" data-category="<?php echo ($data_categories) ?>">
+              <div class="grid-item taxonomy-item" data-id="<?php echo ($slug) ?>" <?php echo ($data_categories) ?>>
 				    		<div class="thumbnail">
                   <figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
   								<div class="caption">

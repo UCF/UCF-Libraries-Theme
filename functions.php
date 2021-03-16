@@ -127,7 +127,7 @@ function taxonomy_filter ($taxonomy_name) {
 	$output .= '<ul>';
   foreach($taxonomy_terms as $taxonomy_term) {
 		$slug = str_replace('-amp', '', title_to_slug($taxonomy_term -> name));
-		$output .= '<li><label class="filter-checkbox" ><input type="checkbox" id="'.$slug.'" value="'.$slug.'" /> <span class="checkbox-container">'.$taxonomy_term -> name.'<span class="checkbox-custom"></span></span></label></li>';
+		$output .= '<li><label class="filter-checkbox" ><input type="checkbox" data-category="'.$taxonomy_name.'" id="'.$slug.'" value="'.$slug.'" /> <span class="checkbox-container">'.$taxonomy_term -> name.'<span class="checkbox-custom"></span></span></label></li>';
 	}
   $output .= '</ul>';
   echo ($output);

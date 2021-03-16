@@ -486,64 +486,49 @@ function get_time_zone_offset() {
 }
 
 // This function powers the filter checkboxes in the Tech Lending and Anatomy Lending custom post types
-function taxonomy_filter() {
-  let $lis = $('.taxonomy-item');	
-	let $checked =$('input:checkbox:checked');
-  if ($checked.length)
-  {							
-		let $library_selector = '';
-    let $tech_selector = '';
-    let $loan_selector = '';
-    let $user_selector = '';
-
-		$($checked).each(function(index, element){                            
-				if (element.dataset.category == 'library') {
-          if ($library_selector == '') {
-            $library_selector += "[data-library~='" + element.value + "']";
-          } else {
-            $library_selector += ", [data-library~='" + element.value + "']";
+// categories:
+/*
+  categories = [
+    { 
+      "name" : "library",
+      "filter" : "" }
+    },
+    {
+      ...
+    },
+    ...
+  ]
+*/
+function taxonomy_filter(categories) {
+  if (categories) {
+    let $lis = $('.taxonomy-item');	
+    let $checked =$('input:checkbox:checked');
+    if ($checked.length)
+    {						
+      categories.forEach(function(cat) {
+        cat.filter = '';
+        $($checked).each(function(index, element){   
+          if (element.dataset.category == cat.name) {                         
+            if (cat.filter == '') {
+              cat.filter += '[data-'+cat.name+'~="' + element.value + '"]'; 
+            } else {
+              cat.filter += ', [data-'+cat.name+'~="' + element.value + '"]';
+            }
           }
+        }); 
+      });                 
+      $lis.hide();     
+      categories.forEach(function(cat) {        
+        if (cat.filter != '') {
+          $lis = $lis.filter(cat.filter);
         }
-        if (element.dataset.category == 'tech_type') {
-          if ($tech_selector == '') {
-            $tech_selector += "[data-tech_type~='" + element.value + "']";
-          } else {
-            $tech_selector += ", [data-tech_type~='" + element.value + "']";
-          }
-        }
-        if (element.dataset.category == 'loan_period') {
-          if ($loan_selector == '') {
-            $loan_selector += "[data-loan_period~='" + element.value + "']";
-          } else {
-            $loan_selector += ", [data-loan_period~='" + element.value + "']";
-          }
-        }
-        if (element.dataset.category == 'eligible_user') {
-          if ($user_selector == '') {
-            $user_selector += "[data-eligible_user~='" + element.value + "']";
-          } else {
-            $user_selector += ", [data-eligible_user~='" + element.value + "']";
-          }                
-        }        
-		});                        
-    $lis.hide();             
-    if ($library_selector != '') {
-      $lis = $lis.filter($library_selector);
+      });
+      $lis.show();          
     }
-    if ($tech_selector != '') {
-      $lis = $lis.filter($tech_selector);
-    }  
-    if ($loan_selector != '') {
-      $lis = $lis.filter($loan_selector);
-    }  
-    if ($user_selector != '') {
-      $lis = $lis.filter($user_selector);
+    else
+    {
+      $lis.show();
     }
-    $lis.show();          
-  }
-  else
-  {
-    $lis.show();
   }
 }
 
