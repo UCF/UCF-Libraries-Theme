@@ -222,7 +222,7 @@ Description: Archive tech page.
   </div><!-- background-color-gray -->
 </div><!-- main -->
 <script>
-let categories = ['library', 'tech_type', 'loan_period', 'fine-policy'];
+let categories = ['library', 'tech_type', 'loan_period', 'eligible_user'];
 $('.taxonomy-filter').on('change', 'input:checkbox', function (){taxonomy_filter(categories);});
 $('#clear_all').on('click', function(){
     $('input:checkbox').removeAttr('checked');
