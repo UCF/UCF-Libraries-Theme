@@ -243,7 +243,7 @@ let categories = [
 $('.taxonomy-filter').on('change', 'input:checkbox', function (){taxonomy_filter(categories);});
 $('#clear_all').on('click', function(){
     $('input:checkbox').removeAttr('checked');
-    taxonomy_filter();
+    taxonomy_filter(categories);
 });
 $(document).ready( function(){
   $('.lds-spinner').hide();

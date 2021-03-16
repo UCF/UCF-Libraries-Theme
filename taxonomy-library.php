@@ -225,10 +225,28 @@ Description: Library taxonomy archive.
 	</div><!-- background-color-gray -->
 </div><!-- main -->
 <script>
-$('.taxonomy-filter').on('change', 'input:checkbox', function (){taxonomy_filter();});
+let categories = [
+  {
+    'name' : 'library',
+    'filter' : ''
+  }, 
+  {
+    'name' : 'tech_type',
+    'filter' : ''
+  },
+  {
+    'name' : 'loan_period',
+    'filter' : ''
+  },
+  {
+    'name' : 'eligible_user',
+    'filter' : ''
+  },
+]
+$('.taxonomy-filter').on('change', 'input:checkbox', function (){taxonomy_filter(categories);});
 $('#clear_all').on('click', function(){
     $('input:checkbox').removeAttr('checked');
-    taxonomy_filter();
+    taxonomy_filter(categories);
 });
 $(document).ready( function(){
   $('.lds-spinner').hide();
