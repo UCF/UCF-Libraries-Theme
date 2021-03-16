@@ -491,9 +491,9 @@ function taxonomy_filter(categories) {
 	let $checked =$('input:checkbox:checked');
   if ($checked.length)
   {							
-    $.each(categories, function(index, value){
+    // $.each(categories, function(index, value){
 
-    });
+    // });
 		let $library_selector = '';
     let $tech_selector = '';
     let $loan_selector = '';
