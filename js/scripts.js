@@ -486,45 +486,50 @@ function get_time_zone_offset() {
 }
 
 // This function powers the filter checkboxes in the Tech Lending and Anatomy Lending custom post types
-function taxonomy_filter() {
+function taxonomy_filter(categories) {
   let $lis = $('.taxonomy-item');	
 	let $checked =$('input:checkbox:checked');
   if ($checked.length)
   {							
+    $.each(categories, function(index, value){
+
+    });
 		let $library_selector = '';
     let $tech_selector = '';
     let $loan_selector = '';
     let $user_selector = '';
 
 		$($checked).each(function(index, element){                            
-				if (element.dataset.category == 'library') {
+      switch (element.dataset.category) {
+        case 'library':
           if ($library_selector == '') {
             $library_selector += "[data-library~='" + element.value + "']";
           } else {
             $library_selector += ", [data-library~='" + element.value + "']";
           }
-        }
-        if (element.dataset.category == 'tech_type') {
+          break;
+        case 'tech_type':
           if ($tech_selector == '') {
             $tech_selector += "[data-tech_type~='" + element.value + "']";
           } else {
             $tech_selector += ", [data-tech_type~='" + element.value + "']";
           }
-        }
-        if (element.dataset.category == 'loan_period') {
+          break;
+        case 'loan_period':
           if ($loan_selector == '') {
             $loan_selector += "[data-loan_period~='" + element.value + "']";
           } else {
             $loan_selector += ", [data-loan_period~='" + element.value + "']";
           }
-        }
-        if (element.dataset.category == 'eligible_user') {
+          break;
+        case 'eligible_user':
           if ($user_selector == '') {
             $user_selector += "[data-eligible_user~='" + element.value + "']";
           } else {
             $user_selector += ", [data-eligible_user~='" + element.value + "']";
-          }                
-        }        
+          }         
+          break;       
+      }        
 		});                        
     $lis.hide();             
     if ($library_selector != '') {
