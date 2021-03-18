@@ -141,6 +141,7 @@ if ( substr($name, -1) == 's') {
 		  total_items++;
     });
     total_items = total_items - 3;
+		if (total_items < 0){ total_items = 0;}
     percent_available = Math.round((available_items / total_items) * 100);
     
     if (available_items > 0) {
