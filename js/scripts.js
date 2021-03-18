@@ -539,7 +539,7 @@ function pre_check_box() {
     if ($filter) {
       let filter_array = $filter.split('+');
       filter_array.forEach(element => $('#'+element).attr('checked', 'checked'));
-      taxonomy_filter();
+      taxonomy_filter(categories);
     }
   }
 }
