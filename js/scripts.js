@@ -486,8 +486,7 @@ function get_time_zone_offset() {
 }
 
 // This function powers the filter checkboxes in the Tech Lending and Anatomy Lending custom post types
-// categories:
-/*
+/* Example categories object to place on tech or anatomy lending template pages
   categories = [
     { 
       "name" : "library",
@@ -501,11 +500,11 @@ function get_time_zone_offset() {
 */
 function taxonomy_filter(categories) {
   if (categories) {
-    let $lis = $('.taxonomy-item');	
+    let $lis = $('.taxonomy-item');	 
     let $checked =$('input:checkbox:checked');
     if ($checked.length)
     {						
-      categories.forEach(function(cat) {
+      categories.forEach(function(cat) { 
         cat.filter = '';
         $($checked).each(function(index, element){   
           if (element.dataset.category == cat.name) {                         
