@@ -719,12 +719,18 @@ footer ul li a:hover { text-decoration: none;}
 /* CSS Grid for Staff, Tech Lending, and Anatomy Lending*/
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 1rem;
 }
 
 .grid-item {
   padding: .5rem;
+}
+
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
 }
 
 /* Filter Checkboxes */
