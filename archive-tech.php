@@ -6,7 +6,7 @@ Description: Archive tech page.
 <?php
 	$args=array(
 	'post_type' => 'tech',
-  'posts_per_page' => 200,
+  'posts_per_page' => 500,
 	'orderby' => 'title',
 	'order' => 'ASC');
 	$my_query = null;
@@ -213,6 +213,7 @@ Description: Archive tech page.
       					</div><!-- thumbnail -->
     					</div><!-- grid-item -->
             <?php endwhile; else: ?>
+            <?php wpbeginner_numeric_posts_nav(); ?>
   					<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?>
   					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
   				</div><!-- directory row -->

@@ -14,7 +14,7 @@ Description: anatomy library archive page.
       array(
         'orderby' => 'title',
         'order' => 'ASC',
-        'posts_per_page' => 200
+        'posts_per_page' => 500
       )
 	  )
   );
@@ -200,6 +200,7 @@ Description: anatomy library archive page.
 								</div><!-- thumbnail -->
 							</div><!-- grid-item -->
 					 <?php endwhile; else: ?>
+           <?php wpbeginner_numeric_posts_nav(); ?>
            <p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 					</div><!-- directory row -->
 					<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?>

@@ -11,7 +11,7 @@ Description: Include file for Tech Lending Taxonomies.
       array(
         'orderby' => 'title',
         'order' => 'ASC',
-        'posts_per_page' => 200
+        'posts_per_page' => 500
       )
 	  )
   );
@@ -231,6 +231,7 @@ Description: Include file for Tech Lending Taxonomies.
 							</div><!-- grid-item -->
 					 <?php endwhile; else: ?>
            <p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
+           <?php wpbeginner_numeric_posts_nav(); ?>
 					</div><!-- directory row -->
 					<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?>
 				</div><!-- col-sm-9 -->
