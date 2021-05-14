@@ -6,7 +6,7 @@ Description: Archive staff member page.
 <?php
 	$args=array(
 	'post_type' => 'staff',
-  'posts_per_page' => 500,
+  'posts_per_page' => 1000,
 	'orderby' => 'title',
 	'order' => 'ASC');
 	$my_query = null;

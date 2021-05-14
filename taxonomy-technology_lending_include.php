@@ -11,7 +11,7 @@ Description: Include file for Tech Lending Taxonomies.
       array(
         'orderby' => 'title',
         'order' => 'ASC',
-        'posts_per_page' => 500
+        'posts_per_page' => 1000
       )
 	  )
   );
