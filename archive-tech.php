@@ -19,7 +19,7 @@ Description: Archive tech page.
 	<div id="title_bar" class="container">
 		<div class="row">
 			<div class="col-sm-8">
-				<header><h1>Technology Lending</h1></header>
+				<header><h1>Technology Lending</h1></header><!--Update Test -->
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div><!-- col-sm-8 -->
 			<div class="col-sm-4">
