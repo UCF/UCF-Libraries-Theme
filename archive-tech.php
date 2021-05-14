@@ -6,7 +6,7 @@ Description: Archive tech page.
 <?php
 	$args=array(
 	'post_type' => 'tech',
-  'posts_per_page' => 200,
+  'posts_per_page' => 1000,
 	'orderby' => 'title',
 	'order' => 'ASC');
 	$my_query = null;
@@ -19,7 +19,7 @@ Description: Archive tech page.
 	<div id="title_bar" class="container">
 		<div class="row">
 			<div class="col-sm-8">
-				<header><h1>Technology Lending</h1></header>
+				<header><h1>Technology Lending</h1></header><!--Update Test -->
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div><!-- col-sm-8 -->
 			<div class="col-sm-4">
@@ -213,6 +213,7 @@ Description: Archive tech page.
       					</div><!-- thumbnail -->
     					</div><!-- grid-item -->
             <?php endwhile; else: ?>
+            <?php wpbeginner_numeric_posts_nav(); ?>
   					<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?>
   					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
   				</div><!-- directory row -->
