@@ -66,7 +66,7 @@ if ( substr($name, -1) == 's') {
 		                      <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
 		                        <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fine Policy"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
 		                      <?php endif; ?>
-                      		<?php if(get_post_meta($post->ID, 'availability', true)): ?>
+                      		<?php /* if(get_post_meta($post->ID, 'availability', true)): ?>
 		  											<li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Availability"></i> 
 		  												<div class="progress">
 									              <div id="item_availability_bar" class="progress-bar " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;">
@@ -74,7 +74,7 @@ if ( substr($name, -1) == 's') {
 									              </div>
 									            </div>
 		  											</li>
-		  										<?php endif; ?>
+		  										<?php endif; */ ?>
 												</ul>
 												<?php endif; ?>
 												<?php 
@@ -92,12 +92,12 @@ if ( substr($name, -1) == 's') {
 									<?php the_content(__('(more...)')); ?>
 								</div>
 							<?php endif; ?>
-							<div class="card" style="padding:1em;">
+							<!-- <div class="card" style="padding:1em;">
 								<h3 id="item_availability">Item Availability</h3>
-								<?php if(get_post_meta($post->ID, 'availability', true)): ?>
+								<?php // if(get_post_meta($post->ID, 'availability', true)): ?>
 									<p>There <span class="single-plural"></span> <strong><span class="total-items-available"></span> <?php the_title(); ?><span class="s-ending"></span> available</strong> for checkout.</p>
 									<div class="table-responsive">
-										<?php
+										<?php /*
 											$url = get_post_meta($post->ID, 'availability', true);
 											$content = wp_remote_get($url, array( 'timeout' => 120));
 											if ($content != false) {
@@ -107,13 +107,13 @@ if ( substr($name, -1) == 's') {
 												echo $third_step[0];
 											} else {
 												?><p>Item availability is unavailable.</p> <?php
-											}
+											} */
 										?>
 									</div>
-								<?php else: ?>	
+								<?php // else: ?>	
 									<p> This item is not tracked in our availability system. </p>
-								<?php endif; ?>
-							</div>
+								<?php // endif; ?>
+							</div> -->
 						</article>
 					<?php endwhile; else: ?>
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
