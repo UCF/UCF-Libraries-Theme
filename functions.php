@@ -831,4 +831,41 @@ function mawaha_filter_allowed_html($allowed, $context){
 }
 add_filter('wp_kses_allowed_html', 'mawaha_filter_allowed_html', 10, 2);
 
+/**
+ * Primo API call function
+ * Access the availability of an item in Primo and return an array ($available_items, $total_items)
+ */
+function primo_availability_api_call($mmsid, $limit){
+  $url = 'https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/'.$mmsid.'/holdings/all/items?limit='.$limit.'&offset=0&order_by=none&direction=desc&view=brief&apikey=l8xxbd732e64a6fb41e4af79c0260aa7a809';
+  $request = wp_remote_get($url, array( 
+    'timeout' => 120,
+    'headers' => array(
+      'Accept' => 'application/json'
+    )
+  ));
+// $body = wp_remote_retrieve_body( $request );
+// $data_api = json_decode($body, true);
+// var_dump($data_api);
+  if (is_array( $request)) {
+    $json_o = json_decode($request['body']);
+    $total_items = 0;
+    $removed_items = 0;
+    $available_items = 0;
+    if ($json_o->item != null) {
+      foreach ($json_o->item as $item) {
+        if ($item->item_data->base_status->value == 0 && $item->item_data->process_type->value !== 'LOAN') {
+          $removed_items = $removed_items + 1;
+        }
+        $available_items = $available_items + $item->item_data->base_status->value;
+        $total_items = $total_items + 1;
+      }
+      $total_items = $total_items - $removed_items;
+    } else {
+      $total_items = -1;
+      $available_items = -1;
+    }
+    return array($available_items, $total_items);
+  }
+}
+
 ?>
