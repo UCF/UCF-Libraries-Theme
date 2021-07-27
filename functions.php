@@ -843,9 +843,9 @@ function primo_availability_api_call($mmsid, $limit){
       'Accept' => 'application/json'
     )
   ));
- $body = wp_remote_retrieve_body( $request );
- $data_api = json_decode($body, true);
- var_dump($data_api);
+// $body = wp_remote_retrieve_body( $request );
+// $data_api = json_decode($body, true);
+// var_dump($data_api);
   if (is_array( $request)) {
     $json_o = json_decode($request['body']);
     $total_items = 0;
@@ -865,8 +865,6 @@ function primo_availability_api_call($mmsid, $limit){
       $available_items = -1;
     }
     return array($available_items, $total_items);
-  } else {
-    return array('failed', 'failed');
   }
 }
 
