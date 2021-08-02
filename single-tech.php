@@ -95,8 +95,13 @@ if ( substr($name, -1) == 's') {
 							 <div class="card" style="padding:1em;">
 								<h3 id="item_availability">Item Availability</h3>
 								<?php  if(get_post_meta($post->ID, 'availability', true)): ?>
-									<p id="item_availability_message">There <span class="single-plural"></span> <strong><span class="total-items-available"></span> <?php the_title(); ?><span class="s-ending"></span> available</strong> for checkout.</p>
-									<?php $availability = primo_availability_api_call(get_post_meta($post->ID, 'availability', true), 100);	?>
+									<p id="item_availability_message">There <span class="single-plural"></span> <strong><span class="total-items-available"></span> <?php the_title(); ?><span class="s-ending"></span> available</strong> for checkout. <a href="https://ucf-flvc.primo.exlibrisgroup.com/permalink/01FALSC_UCF/6a1ouu/alma<?php echo get_post_meta($post->ID, 'availability', true); ?>" target="_blank">View items in Primo</a></p>
+									<?php 
+										$json_o = primo_availability_api_call(get_post_meta($post->ID, 'availability', true), 100);	
+										$availability = primo_availability_calc($json_o);
+										$availability_list = primo_availability_list($json_o);
+										echo($availability_list);
+									?>
 								<?php  else: ?>	
 									<p> This item is not tracked in our availability system. </p>
 								<?php  endif; ?>
