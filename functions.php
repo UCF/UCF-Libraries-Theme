@@ -912,7 +912,7 @@ function primo_availability_list($json_o) {
     ';
     return $output;
   } else {
-    return ('<p>json_o was null</p>');
+    return ('<!-- json_o was null -->');
   }
 }
 
