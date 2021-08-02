@@ -74,7 +74,7 @@ if ( substr($name, -1) == 's') {
 									              </div>
 									            </div>
 		  											</li>
-		  										<?php endif;  ?>
+		  										<?php endif; ?>
 												</ul>
 												<?php endif; ?>
 												<?php 
@@ -114,26 +114,14 @@ if ( substr($name, -1) == 's') {
 		</div>
 	</div>
 </div>
-
-
 <script type="text/javascript">
 // Adds all objects with status "Not Checked Out" and prints them into objects with class .total-items-available
 	function availability_status() {
 		let available_items = <?php	echo($availability[0]); ?>,
 				total_items = <?php	echo($availability[1]); ?>,
-				percent_available = 0;
+				percent_available = 0,
 				has_s = <?php echo($has_s); ?>;
-		// $('.table').find('tr').each(function (i, el) {
-	  //   var $tds = $(this).find('td'),
-	  //       due_date = $tds.eq(3).text(),
-	  //       item_status = $tds.eq(2).text();
-	  //   if (item_status != 'Damaged' && item_status != 'Lost - Patron Billed' && item_status != 'In House Repair' && item_status != 'Lost - Missing' && item_status != 'Lost - Paid' && item_status != 'Withdrawn') {
-		//     if (due_date == 'Not Checked Out') {
-		//     	available_items++;
-		//     }
-		//   }
-		//   total_items++;
-    // });
+
 		if (total_items != -1) {
 			if (total_items < 0){ total_items = 0;}
 			percent_available = Math.round((available_items / total_items) * 100);
@@ -163,36 +151,8 @@ if ( substr($name, -1) == 's') {
 		}
 	}
 
-// Hides the empty columns that are pulled in from the catalog
-	// function hide_empty() {
-	// 	var row = 0;
-	// 	$('.table').find('tr').each(function (i, el) {
-	//   	var $tds = $(this).find('td');
-	//   	$tds.eq(1).addClass('hide');
-	//   	$tds.eq(4).addClass('hide');
-
-	//   	if (row < 2) {
-	//   		$(this).addClass('hide');
-	//   	}
-	//   	if (row == 2) {		
-	//   		// Convert this row from tds to ths
-	//   		$(this).find('td').each(function (){
-	//   			$(this).replaceWith('<th>' + $(this).text() + '</th>'); 
-	//   		});
-	//   		// Hide newly created ths
-	//   		var	$ths = $(this).find('th');
-	//   		$ths.eq(1).addClass('hide');
-	//   		$ths.eq(4).addClass('hide');
-	//   	}
-
-	//   	row++;
-	//   });
-	// }
-
 	$(document).ready(function(){
-		$('.table-responsive > table').addClass('table table-striped');
 		availability_status();
-		// hide_empty();
 	});
 </script>
 <?php get_footer(); ?>
