@@ -6,7 +6,7 @@ Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
 
-Version: 1.17.2
+Version: 1.17.3
 
 */
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto:500,700,400');
@@ -166,7 +166,7 @@ p.comment-form-url {   /* Removes Website URL field from post comments */
 
 /* Material Cards */
 .card, .thumbnail {	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-.card .thumbnail { box-shadow: none; }
+/* .card .thumbnail { box-shadow: none; } */
 .card {
 	background-color: #fff;
 	border-radius: 2px;
@@ -718,6 +718,25 @@ footer ul li a:hover { text-decoration: none;}
 .tech-description { margin-bottom: 1em; }
 .tech-list td:nth-child(3n), .tech-list th:nth-child(3n) { max-width: 11em; }
 .list-thumbnail { max-width: 25px; }
+
+.tech-content {
+  padding: 1em;
+}
+.tech-content h2,
+.tech-content h3,
+.tech-content h4 {
+  background: #222;
+  color: #fff;
+  padding: .25em 0 .25em 1em;
+  margin: .5em 0 .5em -1.25em;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.tech-content ul{
+  margin-bottom: 2em
+}
+
 
 /* Anatomy Lending */
 
