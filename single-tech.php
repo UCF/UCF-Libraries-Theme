@@ -88,8 +88,10 @@ if ( substr($name, -1) == 's') {
 							</div>
 							<div class="clearfix"></div>
 							<?php if($post->post_content != "") : ?>
-								<div class="card" style="padding:1em;">
-									<?php the_content(__('(more...)')); ?>
+								<div class="card"> 
+									<section class="tech-content">
+										<?php the_content(__('(more...)')); ?>
+									</section>
 								</div>
 							<?php endif; ?>
 							 <div class="card" style="padding:1em;">
