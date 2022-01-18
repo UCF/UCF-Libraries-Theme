@@ -13,25 +13,39 @@ Description: This page has a large hero image with text on top.
     background-size: cover;
     background-attachment: fixed;
     position: relative;
-    padding: 7em;
+    padding: 1em;
   }
   .hero-title {
     color: #fff;
     font-family: Montserrat;
     font-weight: 700;
-    font-size: 9.75rem;
+    font-size: 4rem;
     margin: 0 0 10px;
     text-shadow: 0 0 0.05em #000;
+    line-height: 1.1;
+    display: block;
   }
   .hero-subtitle {
     background-color: #000;
     margin: 0 0 0 1em;
     padding: .5em;
     color: #fff;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
     text-transform: uppercase;
     display: inline-block;
+    line-height: 1.42857143;
+  }
+  @media (min-width: 768px) {
+    .hero-image {
+      padding: 3em;
+    }
+    .hero-title {
+      font-size: 9.75rem;
+    }
+    .hero-subtitle{
+      font-size: 2rem;
+    }
   }
 
 </style>
