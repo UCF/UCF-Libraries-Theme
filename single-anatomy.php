@@ -26,7 +26,7 @@ if ( substr($name, -1) == 's') {
 	</div>
 	<div  class="background-color-gray">
 		<div id="content" class="container">
-			<div class="row">
+			<div class="row directory-single">
 				<div id="sidebar" class="col-sm-3">
 					<?php get_sidebar('anatomy'); ?>
 				</div>
