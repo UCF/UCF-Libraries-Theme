@@ -684,8 +684,9 @@ footer ul li a:hover { text-decoration: none;}
 .caption h3 a,
 .caption h4 a
 { color: #fff; }
-.caption ul, .caption p { font-size: 11px; }
-.caption h3 { font-size: 17px; }
+.caption ul, .caption p { font-size: 9px; }
+.directory-single .caption ul, .directory-single .caption p { font-size: 14px; }
+.caption h3 { font-size: 12px; }
 
 @media (min-width: 768px) {
 	.libraries-page .caption h3 { font-size: 16px;}
@@ -694,13 +695,13 @@ footer ul li a:hover { text-decoration: none;}
 	.libraries-page .caption h3 { font-size: 18px;}
 }
 
-@media (max-width: 445px) {
+@media (min-width: 445px) {
 /*	.col-xs-6 {
 		float: none;
 		width: auto;
 	}*/
-	.caption ul, .caption p { font-size: 9px; }
-	.caption h3 { font-size: 12px; }
+	.caption ul, .caption p { font-size: 11px; }
+	.caption h3 { font-size: 17px; }
 }
 
 @media (min-width: 768px) {
