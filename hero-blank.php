@@ -27,21 +27,21 @@ Description: This page has a large hero image with text on top.
   }
   .hero-subtitle {
     background-color: #000;
-    margin: 0 0 0 1em;
+    margin: 0 auto;
     padding: .5em;
     color: #fff;
     font-size: 1.5rem;
     font-weight: 700;
     text-transform: uppercase;
-    display: inline-block;
+    display: table;
     line-height: 1.42857143;
   }
   @media (min-width: 768px) {
     .hero-image {
-      padding: 3em;
+      padding: 4em;
     }
     .hero-title {
-      font-size: 9.75rem;
+      font-size: 9.5rem;
     }
     .hero-subtitle{
       font-size: 2rem;
