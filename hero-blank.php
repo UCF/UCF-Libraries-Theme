@@ -24,6 +24,7 @@ Description: This page has a large hero image with text on top.
     text-shadow: 0 0 0.05em #000;
     line-height: 1.1;
     display: block;
+    text-align: center;
   }
   .hero-subtitle {
     background-color: #000;
@@ -38,7 +39,7 @@ Description: This page has a large hero image with text on top.
   }
   @media (min-width: 768px) {
     .hero-image {
-      padding: 4em;
+      padding: 4em 0;
     }
     .hero-title {
       font-size: 9.5rem;
