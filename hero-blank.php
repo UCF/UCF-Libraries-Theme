@@ -8,8 +8,8 @@ Description: This page has a large hero image with text on top.
 <style>
   .hero-image {
     background:url('<?php the_post_thumbnail_url( 'full' ); ?>') center center;
-    background-color: rgb(31 227 218 / 65%);
-    background-blend-mode: luminosity;    
+    /* background-color: rgb(31 227 218 / 65%);
+    background-blend-mode: luminosity;     */
     background-size: cover;
     background-attachment: fixed;
     position: relative;
@@ -69,6 +69,13 @@ Description: This page has a large hero image with text on top.
   <?php endwhile; else: ?>
     <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
   <?php endif; ?>
+
+    <?php 
+      // $textbooks = textbook_items_object();
+      // $content = textbook_object_content($textbooks);
+      // echo($content);
+    ?>
+
 </div>
 
 
