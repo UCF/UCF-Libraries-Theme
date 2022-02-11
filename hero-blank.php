@@ -8,8 +8,8 @@ Description: This page has a large hero image with text on top.
 <style>
   .hero-image {
     background:url('<?php the_post_thumbnail_url( 'full' ); ?>') center center;
-    background-color: rgb(31 227 218 / 65%);
-    background-blend-mode: luminosity;    
+    /* background-color: rgb(31 227 218 / 65%);
+    background-blend-mode: luminosity;     */
     background-size: cover;
     background-attachment: fixed;
     position: relative;
@@ -24,6 +24,7 @@ Description: This page has a large hero image with text on top.
     text-shadow: 0 0 0.05em #000;
     line-height: 1.1;
     display: block;
+    text-align: center;
   }
   .hero-subtitle {
     background-color: #000;
@@ -38,7 +39,7 @@ Description: This page has a large hero image with text on top.
   }
   @media (min-width: 768px) {
     .hero-image {
-      padding: 4em;
+      padding: 4em 0;
     }
     .hero-title {
       font-size: 9.5rem;
@@ -68,6 +69,13 @@ Description: This page has a large hero image with text on top.
   <?php endwhile; else: ?>
     <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
   <?php endif; ?>
+
+    <?php 
+      // $textbooks = textbook_items_object();
+      // $content = textbook_object_content($textbooks);
+      // echo($content);
+    ?>
+
 </div>
 
 
