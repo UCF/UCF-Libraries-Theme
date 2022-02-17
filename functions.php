@@ -916,4 +916,51 @@ function primo_availability_list($json_o) {
   }
 }
 
+
+function textbook_items_object() {
+  $url = "https://content-out.bepress.com/v2/stars.library.ucf.edu/query?parent_link=http://stars.library.ucf.edu/diversefamilies&select_fields=all";
+  $request = wp_remote_get($url, array( 
+    'timeout' => 120,
+    'headers' => array(
+      'Authorization' => 'YqaVM5va0QnZQStiMEUGAinKJjlXwg3bOfzVn4YRseI='
+    )
+  ));
+  if (is_wp_error( $request) ) {
+    return null; // bail
+  }
+  
+  $body = wp_remote_retrieve_body($request);
+  // $json_o = json_decode ($body);
+  return $body;
+
+}
+
+function textbook_object_content($json_o){
+  $content = '<div class="grid">';
+  if ($json_o == null) {
+    $content .= '<p>object returned null</p>';
+    
+  }
+  else {
+    $content .= '<p>object returned not null</p>';
+    echo($json_o);
+  }
+  // foreach ($json_o as $item){
+  //   $content .= '
+  //     <div class="grid-item">
+  //       <div class="thumbnail">
+  //         <figure><img src="'.$result->configured_field_t_book_cover_link.'"></figure>
+  //         <div class="caption">
+  //           <h3>'.$result->title.'</h3>
+  //           <ul>
+  //             <li>Author: '.$result->author_dispay.'</li>
+  //           </ul>
+  //         </div><!-- caption -->
+  //       </div><!-- thumbnail -->
+  //     </div><!-- grid-item -->
+  //     ';
+  // }
+  $content .= '</div>';
+  return $content;
+}
 ?>
