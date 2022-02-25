@@ -71,9 +71,9 @@ Description: This page has a large hero image with text on top.
   <?php endif; ?>
 
     <?php 
-      // $textbooks = textbook_items_object();
-      // $content = textbook_object_content($textbooks);
-      // echo($content);
+      $textbooks = textbook_items_object();
+      $content = textbook_object_content($textbooks);
+      echo($content);
     ?>
 
 </div>
