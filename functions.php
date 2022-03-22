@@ -157,7 +157,7 @@ function wpt_register_js() {
     wp_deregister_script('jquery');
     wp_register_script('jquery', "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js", false, null);
     wp_register_script('jquery.ui', "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js", false, null);
-    wp_register_script('jquery.bootstrap.min', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", false, null);
+    wp_register_script('jquery.bootstrap.min', get_template_directory_uri() . '/js/bootstrap.min.js', 'jquery');
     wp_register_script('jquery.tablesorter.min', get_template_directory_uri() . '/js/jquery.tablesorter.min.js', 'jquery');
     wp_register_script('jquery.scripts', get_template_directory_uri(). '/js/scripts.js', 'jquery');
 
@@ -172,8 +172,8 @@ add_action( 'init', 'wpt_register_js' );
 function wpt_register_css() {
     wp_register_style( 'normalize', get_stylesheet_directory_uri() . '/css/normalize.css', array(), '1', 'all' );
     wp_register_style( 'jquery.ui.css', "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css");
-    wp_register_style( 'bootstrap.min', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
-    wp_register_style( 'font-awesome.min.css', "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+    wp_register_style( 'bootstrap.min', get_stylesheet_directory_uri() . '/css/bootstrap.min.css', array(), '1', 'all' );
+    wp_register_style( 'font-awesome.min.css', get_stylesheet_directory_uri() . '/css/font-awesome.min.css', array(), '1', 'all' );
     wp_register_style( 'style', get_stylesheet_directory_uri() . '/style.css', array('normalize','jquery.ui.css','bootstrap.min','font-awesome.min.css'), '1', 'all' );
  //   wp_register_style( 'gravity-bootstrap', get_stylesheet_directory_uri() . '/css/gravity-bootstrap.css' );
 
@@ -916,4 +916,51 @@ function primo_availability_list($json_o) {
   }
 }
 
+
+function textbook_items_object() {
+  $url = "https://content-out.bepress.com/v2/stars.library.ucf.edu/query?parent_link=http://stars.library.ucf.edu/diversefamilies&select_fields=all";
+  $request = wp_remote_get($url, array( 
+    'timeout' => 120,
+    'headers' => array(
+      'Authorization' => 'YqaVM5va0QnZQStiMEUGAinKJjlXwg3bOfzVn4YRseI='
+    )
+  ));
+  if (is_wp_error( $request) ) {
+    return null; // bail
+  }
+  
+  $body = wp_remote_retrieve_body($request);
+  // $json_o = json_decode ($body);
+  return $body;
+
+}
+
+function textbook_object_content($json_o){
+  $content = '<div class="grid">';
+  if ($json_o == null) {
+    $content .= '<p>object returned null</p>';
+    
+  }
+  else {
+    $content .= '<p>object returned not null</p>';
+    echo($json_o);
+  }
+  // foreach ($json_o as $item){
+  //   $content .= '
+  //     <div class="grid-item">
+  //       <div class="thumbnail">
+  //         <figure><img src="'.$result->configured_field_t_book_cover_link.'"></figure>
+  //         <div class="caption">
+  //           <h3>'.$result->title.'</h3>
+  //           <ul>
+  //             <li>Author: '.$result->author_dispay.'</li>
+  //           </ul>
+  //         </div><!-- caption -->
+  //       </div><!-- thumbnail -->
+  //     </div><!-- grid-item -->
+  //     ';
+  // }
+  $content .= '</div>';
+  return $content;
+}
 ?>
