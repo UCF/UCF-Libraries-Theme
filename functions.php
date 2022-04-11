@@ -928,10 +928,11 @@ function limit_redirects( $parsed_args, $url ) {
 }
 
 function textbook_items_object() {
-  add_filter( 'http_request_args', 'limit_redirects', 10, 2 );
+  // add_filter( 'http_request_args', 'limit_redirects', 10, 2 );
   $url = "https://content-out.bepress.com/v2/stars.library.ucf.edu/query?parent_link=http://stars.library.ucf.edu/diversefamilies&select_fields=all";
   $request = wp_remote_get($url, array( 
     'timeout' => 120,
+    'redirection' => 0,
     'headers' => array(
       'Authorization' => 'YqaVM5va0QnZQStiMEUGAinKJjlXwg3bOfzVn4YRseI='
     )
@@ -942,10 +943,9 @@ function textbook_items_object() {
   
   $body = wp_remote_retrieve_body($request);
   // $json_o = json_decode ($body);
-  remove_filter( 'http_request_args', 'limit_redirects', 10 );
+  // remove_filter( 'http_request_args', 'limit_redirects', 10 );
   var_dump ($body);
   return $body;
-
 }
 
 function textbook_object_content($json_o){
