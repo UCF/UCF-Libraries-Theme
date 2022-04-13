@@ -1231,7 +1231,7 @@ function image_slider($atts, $content = null) {
   $output .='     
       </ol>
       <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox">
+      <div class="carousel-inner">
       '.shortcode_unautop( $content ).'
       </div>
       <!-- Controls -->
