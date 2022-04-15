@@ -1171,6 +1171,7 @@ function hiring_status($atts) {
       }
       $output .='</dd>';
     }
+    $output .= '</dl>';
   } else {
     $output = '<p>No departments are actively hiring now. Thank you for your interest in the Libraries.</p>';
   }
