@@ -630,6 +630,7 @@ add_shortcode('interactive-map', 'interactive_map');
 function general_map($atts) {
     extract(shortcode_atts( array(
       'location' => 'Hitt',
+      'title' => 'John C. Hitt Library Google Map',
   ), $atts ));
   switch ($location) {
     case '':
@@ -637,51 +638,65 @@ function general_map($atts) {
       break;
     case 'Hitt':
       $src = 'https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d875.7455309790337!2d-81.20141982209049!3d28.60031308469445!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436290834017';
+      $title = 'John C. Hitt Library Google Map';
       break;
     case 'Rosen':
       $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d877.1712348227965!2d-81.44179284571355!3d28.428762107708213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436290994918';
+      $title = 'Rosen Library Google Map';
       break;
     case 'CMC':
       $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d875.7471532641134!2d-81.20424548715444!3d28.60011841531814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436291070792';
+      $title = 'CMC Library Google Map';
       break;
     case 'Altamonte':
       $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d875.3605067111315!2d-81.41574975829931!3d28.64648059583555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436291171096';
+      $title = 'Altamonte Library Google Map';
       break;
     case 'Cocoa':
       $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d877.543018943443!2d-80.75894411468059!3d28.383870220119142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436291275931';
+      $title = 'Cocoa Library Google Map';
       break;
     case 'Daytona':
       $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d870.6827500139531!2d-81.04838862757899!3d29.202045601161537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436291762901';
+      $title = 'Daytona Library Google Map';
       break;
     case 'COM':
       $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1755.3586622029607!2d-81.28007195568081!3d28.367394594240633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436453703193';
+      $title = 'College of Medicine Library Google Map';
       break;
     case 'Leesburg':
       $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d873.8414959020026!2d-81.79709471534468!3d28.82796203482712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436293795981';
+      $title = 'Leesburg Library Google Map';
       break;
     case 'Ocala':
       $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d435.4925656406324!2d-82.17891057312566!3d29.166424826039044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436294701966';
+      $title = 'Ocala Library Google Map';
       break;
     case 'Palm Bay':
       $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2094.7949334536293!2d-80.62999584485338!3d27.99355678209441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436453802729';
+      $title = 'Palm Bay Library Google Map';
       break;
     case 'Sanford':
       $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d874.5443588197293!2d-81.30288227540986!3d28.744118869883454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436296187647';
+      $title = 'Sanford Library Google Map';
       break;
     case 'South Lake':
       $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d876.1545525330274!2d-81.70839270489343!3d28.551193246093373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436296296709';
+      $title = 'South Lake Library Google Map';
       break;
     case 'Valencia Osceola':
       $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d878.1771815393496!2d-81.38134562572704!3d28.30714626573258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436296377437';
+      $title = 'Valencia Osoceola Library Google Map';
       break;
     case 'Valencia West':
       $src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1752.7924647070772!2d-81.46436832764923!3d28.522133249858822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1436296479048';
+      $title = ' Library Google Map';
       break;
     default:
       $src = $location;
       break;
   }
-  $output = '<div class="google-maps"> <iframe src="'.$src.'" width="600" height="450" frameborder="0" style="border:0"></iframe> </div>';
+  $output = '<div class="google-maps"> <iframe src="'.$src.'" width="600" height="450" frameborder="0" style="border:0" title="'.$title.'"></iframe> </div>';
   return $output;
 }
 add_shortcode('general-map', 'general_map');
