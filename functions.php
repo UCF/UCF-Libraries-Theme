@@ -916,36 +916,60 @@ function primo_availability_list($json_o) {
   }
 }
 
-function http_debug( $response, $context, $class, $parsed_args, $url ) {
-  var_dump( $response );
-}
-add_action( 'http_api_debug', 'http_debug', 10, 5 ); 
+// function http_debug( $response, $context, $class, $parsed_args, $url ) {
+//   var_dump( $response );
+// }
+// add_action( 'http_api_debug', 'http_debug', 10, 5 ); 
 
-function limit_redirects( $parsed_args, $url ) {
-  $parsed_args['redirection'] = 1;
+// function limit_redirects( $parsed_args, $url ) {
+//   $parsed_args['redirection'] = 1;
 
-  return $parsed_args;
-}
+//   return $parsed_args;
+// }
 
 function textbook_items_object() {
-  // add_filter( 'http_request_args', 'limit_redirects', 10, 2 );
-  $url = "https://content-out.bepress.com/v2/stars.library.ucf.edu/query?parent_link=http://stars.library.ucf.edu/diversefamilies&select_fields=all";
-  $request = wp_remote_get($url, array( 
-    'timeout' => 120,
-    'redirection' => 0,
-    'headers' => array(
-      'Authorization' => 'YqaVM5va0QnZQStiMEUGAinKJjlXwg3bOfzVn4YRseI='
-    )
-  ));
-  if (is_wp_error( $request) ) {
-    return null; // bail
-  }
-  
-  $body = wp_remote_retrieve_body($request);
-  // $json_o = json_decode ($body);
-  // remove_filter( 'http_request_args', 'limit_redirects', 10 );
-  var_dump ($body);
-  return $body;
+	$url = "https://content-out.bepress.com/v2/stars.library.ucf.edu/query?parent_link=http://stars.library.ucf.edu/etextbooks&select_fields=all";
+	$args = array(
+		'timeout' => 120,
+		'redirection' => 0,
+		'headers' => array(
+			'Authorization' => 'YqaVM5va0QnZQStiMEUGAinKJjlXwg3bOfzVn4YRseI='
+		)
+	);
+
+	// add_filter( 'http_request_args', 'limit_redirects', 10, 2 );
+	$response = wp_remote_get( $url, $args );
+	// remove_filter( 'http_request_args', 'limit_redirects' );
+
+	if ( is_wp_error( $request ) ) {
+		return null;
+	}
+
+	if ( wp_remote_retrieve_response_code( $response ) !== 302 ) {
+		$body = wp_remote_retrieve_body( $response );
+		$json = json_decode( $body );
+		return $json;
+	}
+
+	$response_headers = wp_remote_retrieve_headers( $response );
+	if ( ! isset( $response_headers['location'] ) ) {
+		return null;
+	}
+
+	$url = $response_headers['location'];
+	$args = array(
+		'timeout' => 120
+	);
+
+	$response = wp_remote_get( $url, $args );
+
+	if ( is_wp_error( $response ) ) {
+		return null;
+	}
+
+	$body = wp_remote_retrieve_body( $response );
+	$json = json_decode( $body );
+	return $json;
 }
 
 function textbook_object_content($json_o){
@@ -955,24 +979,39 @@ function textbook_object_content($json_o){
     
   }
   else {
-    $content .= '<p>object returned not null</p>';
-    echo($json_o);
+    // $content .= '<p>object returned not null</p>';
+    // echo($json_o);
   }
-  // foreach ($json_o as $item){
-  //   $content .= '
-  //     <div class="grid-item">
-  //       <div class="thumbnail">
-  //         <figure><img src="'.$result->configured_field_t_book_cover_link.'"></figure>
-  //         <div class="caption">
-  //           <h3>'.$result->title.'</h3>
-  //           <ul>
-  //             <li>Author: '.$result->author_dispay.'</li>
-  //           </ul>
-  //         </div><!-- caption -->
-  //       </div><!-- thumbnail -->
-  //     </div><!-- grid-item -->
-  //     ';
-  // }
+  function display_array($item_property_array){
+    $array_output = '';
+    foreach ($item_property_array as $array_item) {
+      if ($array_output == ''){
+        $array_output = $array_item;
+      }
+      else {
+        $array_output .= ', '.$array_item;
+      }
+    }
+    return $array_output;
+  }
+  foreach ($json_o->results as $item){
+    $content .= '
+      <div class="grid-item">
+        <div class="thumbnail">
+          <figure><img src="'.$item->configured_field_t_book_cover_link[0].'"></figure>
+          <div class="caption">
+            <h3>'.$item->title.'</h3>
+            <ul>
+              <li>Author: '.display_array($item->author).'</li>
+              <li>Course Title: '.display_array($item->configured_field_t_course_title).'</li>
+              <li>Course #: '.display_array($item->configured_field_t_course_number).'</li>
+              <li><a href="'.$item->fulltext_url.'" title="Read Full Text URL for '.$item->title.'">Read Full Text</a></li>
+            </ul>
+          </div><!-- caption -->
+        </div><!-- thumbnail -->
+      </div><!-- grid-item -->
+      ';
+  }
   $content .= '</div>';
   return $content;
 }
