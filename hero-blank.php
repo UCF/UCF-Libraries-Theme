@@ -69,13 +69,13 @@ Description: This page has a large hero image with text on top.
   <?php endwhile; else: ?>
     <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
   <?php endif; ?>
-
+  <div class="container">
     <?php 
       $textbooks = textbook_items_object();
       $content = textbook_object_content($textbooks);
       echo($content);
     ?>
-
+  </div>
 </div>
 
 
