@@ -1420,6 +1420,37 @@ function referral_message($atts, $content = null) {
     ';
   }
 }
-add_shortcode('referral-message', 'referral_message');
+// add_shortcode('referral-message', 'referral_message');
 
+
+
+// function textbook_objects_display($content = null) {
+//   $json_o = textbook_items_object();
+//   return('
+//     <script>
+//     function display_array(item_property_array){
+//       let array_output = "";
+//       item_property_array.forEach((array_item) => {
+//         if (array_output == ""){
+//           array_output = array_item;
+//         }
+//         else {
+//           array_output += ", "+array_item;
+//         }
+//       });
+//       return array_output;
+//     }
+
+
+//       const json_o = JSON.parse('.$json_o.');
+//       console.log(json_o);
+//       let results = json_o.results;
+//       for(key of Object.keys(results)) {
+//         console.log(key + " -> " + results[key].title);
+//         console.log( display_array(results[key].author) );
+//       }
+//     </script>
+//   ');
+// }
+// add_shortcode('textbook-objects-display', 'textbook_objects_display');
 ?>
