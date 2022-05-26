@@ -1000,13 +1000,13 @@ function textbook_object_content($json_o){
         <div class="thumbnail">
           <figure><img src="'.$item->configured_field_t_book_cover_link[0].'"></figure>
           <div class="caption">
-            <h3>'.$item->title.'</h3>
+            <h3>'.$item->title.' <span class="textbook-author">by '.display_array($item->author).'</span></h3>
             <ul>
-              <li>Author: '.display_array($item->author).'</li>
-              <li>Course Title: '.display_array($item->configured_field_t_course_title).'</li>
-              <li>Course #: '.display_array($item->configured_field_t_course_number).'</li>
-              <li><a href="'.$item->fulltext_url.'" title="Read Full Text URL for '.$item->title.'">Read Full Text</a></li>
+              <li style="background-color: #ffcc00;"><strong>Course Number</strong>: '.display_array($item->configured_field_t_course_number).'</li>
+              <li><strong>Course Title</strong>: '.display_array($item->configured_field_t_course_title).'</li>
+              <li><strong>Course Instructor</strong>: '.display_array($item->configured_field_t_instructors).'</li>
             </ul>
+            <a class="btn btn-primary" href="'.$item->download_link.'" title="Read Full Text URL for '.$item->title.'">Read Full Text</a>
           </div><!-- caption -->
         </div><!-- thumbnail -->
       </div><!-- grid-item -->
@@ -1015,4 +1015,8 @@ function textbook_object_content($json_o){
   $content .= '</div>';
   return $content;
 }
+
+// add_action('wp_ajax_nopriv_textbook_items_object', 'textbook_items_object');
+// add_action('wp_ajax_textbook_items_object', 'textbook_items_object');
+
 ?>
