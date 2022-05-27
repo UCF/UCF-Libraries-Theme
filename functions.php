@@ -2,6 +2,7 @@
     require_once('wp_bootstrap_navwalker.php');
     require_once('breadcrumbs.php');
     require_once('shortcodes.php');
+    require_once('textbook-api.php');
 
 //add custom php functions here.
 
@@ -927,96 +928,6 @@ function primo_availability_list($json_o) {
 //   return $parsed_args;
 // }
 
-function textbook_items_object() {
-	$url = "https://content-out.bepress.com/v2/stars.library.ucf.edu/query?parent_link=http://stars.library.ucf.edu/etextbooks&select_fields=all";
-	$args = array(
-		'timeout' => 120,
-		'redirection' => 0,
-		'headers' => array(
-			'Authorization' => 'YqaVM5va0QnZQStiMEUGAinKJjlXwg3bOfzVn4YRseI='
-		)
-	);
 
-	// add_filter( 'http_request_args', 'limit_redirects', 10, 2 );
-	$response = wp_remote_get( $url, $args );
-	// remove_filter( 'http_request_args', 'limit_redirects' );
-
-	if ( is_wp_error( $request ) ) {
-		return null;
-	}
-
-	if ( wp_remote_retrieve_response_code( $response ) !== 302 ) {
-		$body = wp_remote_retrieve_body( $response );
-		$json = json_decode( $body );
-		return $json;
-	}
-
-	$response_headers = wp_remote_retrieve_headers( $response );
-	if ( ! isset( $response_headers['location'] ) ) {
-		return null;
-	}
-
-	$url = $response_headers['location'];
-	$args = array(
-		'timeout' => 120
-	);
-
-	$response = wp_remote_get( $url, $args );
-
-	if ( is_wp_error( $response ) ) {
-		return null;
-	}
-
-	$body = wp_remote_retrieve_body( $response );
-	$json = json_decode( $body );
-	return $json;
-}
-
-function textbook_object_content($json_o){
-  $content = '<div class="grid">';
-  if ($json_o == null) {
-    $content .= '<p>object returned null</p>';
-    
-  }
-  else {
-    // $content .= '<p>object returned not null</p>';
-    // echo($json_o);
-  }
-  function display_array($item_property_array){
-    $array_output = '';
-    foreach ($item_property_array as $array_item) {
-      if ($array_output == ''){
-        $array_output = $array_item;
-      }
-      else {
-        $array_output .= ', '.$array_item;
-      }
-    }
-    return $array_output;
-  }
-  foreach ($json_o->results as $item){
-    $content .= '
-      <div class="grid-item">
-        <div class="thumbnail">
-          <figure><img src="'.$item->configured_field_t_book_cover_link[0].'"></figure>
-          <div class="caption">
-            <h3>'.$item->title.' <span class="textbook-author">by '.display_array($item->author).'</span></h3>
-            <ul>
-              <li style="background-color: #ffcc00;"><strong>Course Number</strong>: '.display_array($item->configured_field_t_course_number).'</li>
-              <li><strong>Course Title</strong>: '.display_array($item->configured_field_t_course_title).'</li>
-              <li><strong>Course Instructor</strong>: '.display_array($item->configured_field_t_instructors).'</li>
-            </ul>
-            <a class="btn btn-primary" href="'.$item->download_link.'" title="Read Full Text URL for '.$item->title.'">Read Full Text</a>
-          </div><!-- caption -->
-        </div><!-- thumbnail -->
-      </div><!-- grid-item -->
-      ';
-  }
-  $content .= '</div>';
-  return $content;
-}
-
-// add_action('wp_ajax_nopriv_textbook_items_object', 'textbook_items_object');
-// add_action('wp_ajax_textbook_items_object', 'textbook_items_object');
 
 ?>
