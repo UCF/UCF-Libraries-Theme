@@ -6,7 +6,20 @@ add_shortcode('textbook-objects-display', 'textbook_objects_display');
 function textbook_objects_display() {
   wp_enqueue_script( 'textbook-rest-ajax-script', get_template_directory_uri().'/js/textbooks.js', 'jquery');
   
-  $output = '<div class="container" id="textbook_content">test</div>';
+  $output = '<div class="background-color-gray">
+              <div class="container">
+                <div class="card">
+                  <form>
+                    <label for="instructor">Instructor</label>
+                    <input name="instructor" id="instructor" type="text">
+                  </form>
+                  <button title="submit query" class="btn btn-primary" id="submit_query">Submit</button> <button title="Clear Search" class="btn btn-default" id="clear_query">Clear</button>
+                </div>
+                <div id="textbook_content">
+                  <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                </div>
+              </div>
+             </div>';
   return $output;  
 
 }
