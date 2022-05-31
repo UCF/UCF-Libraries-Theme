@@ -31,21 +31,26 @@ function submit_textbook_query(){
   $('#submit_query').click(function(){
     $('#textbook_content').html(spinner);
     let search_query = '';
+    let amp = '';
     if ($('#instructor').val()){
       let instructor = $('#instructor').val();
       console.log(instructor);
       instructor = instructor.replace(/\s/g, '%20');
-      search_query += 'instructor=configured_field_t_instructors='+ instructor;
+      search_query += amp+'instructor=configured_field_t_instructors='+ instructor;
+      amp = '&';
     }
     if ($('#course_number').val()){
       let course_number = $('#course_number').val();
       console.log(course_number);
       course_number = course_number.replace(/\s/g, '%20');
-      search_query += 'course_number=configured_field_t_course_number='+ course_number;
+      search_query += amp+'course_number=configured_field_t_course_number='+ course_number;
+      amp = '&';
     }
     if (search_query.length > 0){
-      search_query = '?'+search_query
+      search_query = '?'+ search_query;
+      // console.log(search_query);
     }
+    // console.log(search_query);
     display_textbooks(search_query);
   });
 }
