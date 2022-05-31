@@ -130,7 +130,7 @@ function textbook_object_content($json_o){
     $content .= '
       <div class="grid-item">
         <div class="card">
-          <figure><img src="'.$item->configured_field_t_book_cover_link[0].'"></figure>
+          <figure><img src="'.$item->configured_field_t_book_cover_link[0].'" alt="'.$item->title.' book cover"></figure>
           <div class="textbook-info">
             <span class="textbook-title">'.$item->title.' <span class="textbook-author">by '.display_array($item->author).'</span></span>
             <ul>
