@@ -762,6 +762,56 @@ footer ul li a:hover { text-decoration: none;}
   }
 }
 
+/* Textbooks */
+
+.textbooks-search-box {
+  padding: 0.5rem;
+}
+.textbooks-search-box .card {
+  padding: 1em;
+}
+
+.grid.textbooks {
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+}
+.textbooks .card {
+  padding: .75em;
+  display: flex;
+  margin: 0;
+}
+.textbooks figure {
+  flex: none;
+  margin: 0 1em 0 0;
+}
+
+.textbooks .textbook-info{
+  font-size: 1.25rem;
+}
+
+.textbook-info ul {
+  list-style: none;
+  margin-top: 1em;
+}
+
+.textbooks .textbook-title {
+  background: #222;
+  display: block;
+  color: #fff;
+  padding: 0.25em 0.5em;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.textbooks .textbook-author {
+  font-size: 1.25rem;
+  font-weight: normal;
+}
+
 /* Filter Checkboxes */
 
 label.filter-checkbox {

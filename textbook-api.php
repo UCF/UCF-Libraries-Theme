@@ -8,12 +8,16 @@ function textbook_objects_display() {
   
   $output = '<div class="background-color-gray">
               <div class="container">
-                <div class="card">
-                  <form>
-                    <label for="instructor">Instructor</label>
-                    <input name="instructor" id="instructor" type="text">
-                  </form>
-                  <button title="submit query" class="btn btn-primary" id="submit_query">Submit</button> <button title="Clear Search" class="btn btn-default" id="clear_query">Clear</button>
+                <div class="textbooks-search-box">
+                  <div class="card">
+                    <form>
+                      <label for="instructor">Instructor</label>
+                      <input name="instructor" id="instructor" type="text">
+                      <label for="course_number">Course_number</label>
+                      <input name="course_number" id="course_number" type="text">
+                    </form>
+                    <button title="submit query" class="btn btn-primary" id="submit_query">Submit</button> <button title="Clear Search" class="btn btn-default" id="clear_query">Clear</button>
+                  </div>
                 </div>
                 <div id="textbook_content">
                   <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
@@ -101,7 +105,7 @@ function textbook_items_object($query_params) {
 }
 
 function textbook_object_content($json_o){
-  $content = '<div class="grid">';
+  $content = '<div class="grid textbooks">';
   if ($json_o == null) {
     $content .= '<p>object returned null</p>';
     
@@ -125,12 +129,12 @@ function textbook_object_content($json_o){
   foreach ($json_o->results as $item){
     $content .= '
       <div class="grid-item">
-        <div class="thumbnail">
+        <div class="card">
           <figure><img src="'.$item->configured_field_t_book_cover_link[0].'"></figure>
-          <div class="caption">
-            <h3>'.$item->title.' <span class="textbook-author">by '.display_array($item->author).'</span></h3>
+          <div class="textbook-info">
+            <span class="textbook-title">'.$item->title.' <span class="textbook-author">by '.display_array($item->author).'</span></span>
             <ul>
-              <li style="background-color: #ffcc00;"><strong>Course Number</strong>: '.display_array($item->configured_field_t_course_number).'</li>
+              <li><span style="background-color: #ffcc00;"><strong>Course Number</strong>: '.display_array($item->configured_field_t_course_number).'</span></li>
               <li><strong>Course Title</strong>: '.display_array($item->configured_field_t_course_title).'</li>
               <li><strong>Course Instructor</strong>: '.display_array($item->configured_field_t_instructors).'</li>
             </ul>
