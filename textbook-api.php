@@ -140,7 +140,7 @@ function textbook_items_object($query_params) {
 }
 
 function textbook_object_content($json_o){
-  $content = '<div class="grid textbooks">';
+  $content = '';
   if ($json_o == null) {
     $content .= '<p>object returned null</p>';
     
@@ -179,7 +179,11 @@ function textbook_object_content($json_o){
       </div><!-- grid-item -->
       ';
   }
-  $content .= '</div>';
+  if ($content !== ''){
+    $content = '<div class="grid textbooks">'.$content.'</div>';
+  } else {
+    $content = '<p style="text-align:center;">Your search produced no results. Please try again.</p>';
+  }
   return $content;
 }
 
