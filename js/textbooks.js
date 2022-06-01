@@ -37,21 +37,31 @@ function submit_textbook_query(){
     let amp = '';
     if ($('#instructor').val()){
       let instructor = $('#instructor').val();
-      console.log(instructor);
+      // console.log(instructor);
       instructor = instructor.replace(/\s/g, '%20');
       search_query += amp+'instructor=configured_field_t_instructors='+ instructor;
       amp = '&';
     }
     if ($('#course_number').val()){
       let course_number = $('#course_number').val();
-      console.log(course_number);
+      if (course_number[3] !== ' ' && isNaN(course_number.slice(0, 3)) ){   //Check if there is a space between the letters and numbers
+        course_number = course_number.slice(0, 3) + ' ' + course_number.slice(3);
+      }
+      // console.log(course_number);
       course_number = course_number.replace(/\s/g, '%20');
       search_query += amp+'course_number=configured_field_t_course_number='+ course_number;
       amp = '&';
     }
+    if ($('#book_title').val()){
+      let book_title = $('#book_title').val();
+      // console.log(book_title);
+      book_title = book_title.replace(/\s/g, '%20');
+      search_query += amp+'book_title=title='+ book_title;
+      amp = '&';
+    }
     if (search_query.length > 0){
       search_query = '?'+ search_query;
-      // console.log(search_query);
+      //  console.log(search_query);
     }
     // console.log(search_query);
     display_textbooks(search_query);
