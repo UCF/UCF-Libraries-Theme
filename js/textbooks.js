@@ -24,6 +24,9 @@ function display_textbooks(query_parameters) {
   }).done(function(data){
     //console.log(data)
     $('#textbook_content').html(data);
+  }).fail(function(data){
+    console.log(data);
+    $('#textbook_content').html('<p>The requested textbooks could not be loaded.</p>');
   });
 }
 
