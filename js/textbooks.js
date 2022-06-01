@@ -52,24 +52,31 @@ function submit_textbook_query(){
       search_query += amp+'course_number=configured_field_t_course_number='+ course_number;
       amp = '&';
     }
-    if ($('#book_title').val()){
-      let book_title = $('#book_title').val();
-      // console.log(book_title);
-      book_title = book_title.replace(/\s/g, '%20');
-      search_query += amp+'book_title=title='+ book_title;
+    if ($('#course_department').val()){
+      let course_department = $('#course_department').val();
+      // console.log(course_number);
+      search_query += amp+'course_number=configured_field_t_course_department='+ course_department;
+      amp = '&';
+    }
+    if ($('#course_title').val()){
+      let course_title = $('#course_title').val();
+      //console.log(course_title);
+      course_title = course_title.replace(/\s/g, '%20');
+      search_query += amp+'course_title=configured_field_t_course_title='+ course_title;
       amp = '&';
     }
     if (search_query.length > 0){
       search_query = '?'+ search_query;
-      //  console.log(search_query);
+      // console.log(search_query);
     }
-    // console.log(search_query);
+    //  console.log(search_query);
     display_textbooks(search_query);
   });
 }
 function clear_textbook_query(){
   $('#clear_query').click(function(){
     $('input:text').val('');
+    $('#course_department').val('').trigger('change');
     $('#textbook_content').html(spinner);
     display_textbooks();
   });
