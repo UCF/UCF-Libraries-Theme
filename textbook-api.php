@@ -11,10 +11,12 @@ function textbook_objects_display() {
                 <div class="textbooks-search-box">
                   <div class="card">
                     <form>
+                      <label for="course_number">Course Number</label>
+                      <input name="course_number" id="course_number" type="text">
+                      <label for="book_title">Book Title</label>
+                      <input name="book_title" id="book_title" type="text">
                       <label for="instructor">Instructor</label>
                       <input name="instructor" id="instructor" type="text">
-                      <label for="course_number">Course_number</label>
-                      <input name="course_number" id="course_number" type="text">
                     </form>
                     <button title="submit query" class="btn btn-primary" id="submit_query">Submit</button> <button title="Clear Search" class="btn btn-default" id="clear_query">Clear</button>
                   </div>
@@ -51,6 +53,9 @@ function textbook_rest_ajax_callback($request){
   }
   if ($request->get_param('course_number')) {
     $query_params .= '&'.$request->get_param('course_number');
+  }
+  if ($request->get_param('book_title')) {
+    $query_params .= '&'.$request->get_param('book_title');
   }
    $textbooks_json = textbook_items_object($query_params);
    $content =  textbook_object_content($textbooks_json);
