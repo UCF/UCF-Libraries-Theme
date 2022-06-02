@@ -791,6 +791,7 @@ footer ul li a:hover { text-decoration: none;}
 
 .textbooks .textbook-info{
   font-size: 1.25rem;
+  width: 100%;
 }
 
 .textbook-info ul {
