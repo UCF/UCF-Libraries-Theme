@@ -72,7 +72,7 @@ function textbook_rest_ajax_endpoint(){
   );
 }
 
-//REST endpoint information.
+//REST endpoint information. Sets up all parameters.
 function textbook_rest_ajax_callback($request){
   $query_params = '';
   if ($request->get_param('instructor')) {
@@ -97,7 +97,7 @@ function textbook_items_object($query_params) {
 	$url = 'https://content-out.bepress.com/v2/stars.library.ucf.edu/query?parent_link=http://stars.library.ucf.edu/etextbooks&select_fields=all'.$query_params;
 	$args = array(
 		'timeout' => 120,
-		'redirection' => 0,
+		'redirection' => 0, // Turns off auto redirection. This is needed because wp_remote_get will double send the Authorization headers and break the request.
 		'headers' => array(
 			'Authorization' => 'YqaVM5va0QnZQStiMEUGAinKJjlXwg3bOfzVn4YRseI='
 		)
@@ -110,18 +110,18 @@ function textbook_items_object($query_params) {
 	if ( is_wp_error( $request ) ) {
 		return null;
 	}
-
+  // This step captures the response to collect the headers
 	if ( wp_remote_retrieve_response_code( $response ) !== 302 ) {
 		$body = wp_remote_retrieve_body( $response );
 		$json = json_decode( $body );
 		return $json;
 	}
-
+  // This step captures the location from the header
 	$response_headers = wp_remote_retrieve_headers( $response );
 	if ( ! isset( $response_headers['location'] ) ) {
 		return null;
 	}
-
+  // This new request arguments does not include the Authorization Header
 	$url = $response_headers['location'];
 	$args = array(
 		'timeout' => 120
@@ -139,6 +139,7 @@ function textbook_items_object($query_params) {
 	return $response;
 }
 
+// This function takes the json object from textbook_items_object() and processes it into html for display
 function textbook_object_content($json_o){
   $content = '';
   if ($json_o == null) {
@@ -161,6 +162,7 @@ function textbook_object_content($json_o){
     }
     return $array_output;
   }
+  // Iterate through each textbook object to make a new item for the grid.
   foreach ($json_o->results as $item){
     $content .= '
       <div class="grid-item">
