@@ -25,24 +25,18 @@ function textbook_objects_display() {
                           <input class="form-control" name="course_number" id="course_number" type="text">
                         </div>
                         <div class="form-group col-md-6">
-                          <label for="course_title">Course Title</label>
-                          <input class="form-control" name="course_title" id="course_title" type="text">
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="form-group col-md-6">
                           <label for="course_department">Course Department</label>
                           <select class="form-control" name="course_department" id="course_department">
                             <option></option>
                             '.$option_list.'
                           </select>
                         </div>
+                      </div>
+                      <div class="row">
                         <div class="form-group col-md-6">
                           <label for="book_title">Book Title</label>
                           <input class="form-control" name="book_title" id="book_title" type="text">
                         </div>
-                      </div>
-                      <div class="row">
                         <div class="form-group col-md-6">
                           <label for="instructor">Course Instructor</label>
                           <input class="form-control" name="instructor" id="instructor" type="text">
