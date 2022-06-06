@@ -65,6 +65,13 @@ function submit_textbook_query(){
       search_query += amp+'course_title=configured_field_t_course_title='+ course_title;
       amp = '&';
     }
+    if ($('#book_title').val()){
+      let book_title = $('#book_title').val();
+      //console.log(book_title);
+      book_title = book_title.replace(/\s/g, '%20');
+      search_query += amp+'book_title=title='+ book_title;
+      amp = '&';
+    }
     if (search_query.length > 0){
       search_query = '?'+ search_query;
       // console.log(search_query);

@@ -38,7 +38,13 @@ function textbook_objects_display() {
                           </select>
                         </div>
                         <div class="form-group col-md-6">
-                          <label for="instructor">Instructor</label>
+                          <label for="book_title">Book Title</label>
+                          <input class="form-control" name="book_title" id="book_title" type="text">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <label for="instructor">Course Instructor</label>
                           <input class="form-control" name="instructor" id="instructor" type="text">
                         </div>
                       </div>
@@ -86,6 +92,9 @@ function textbook_rest_ajax_callback($request){
   }
   if ($request->get_param('course_title')) {
     $query_params .= '&'.$request->get_param('course_title');
+  }
+  if ($request->get_param('book_title')) {
+    $query_params .= '&'.$request->get_param('book_title');
   }
    $textbooks_json = textbook_items_object($query_params);
    $content =  textbook_object_content($textbooks_json);
