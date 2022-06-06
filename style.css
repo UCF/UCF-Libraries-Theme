@@ -797,6 +797,7 @@ footer ul li a:hover { text-decoration: none;}
 .textbook-info ul {
   list-style: none;
   margin-top: 1em;
+  padding: 0;
 }
 
 .textbooks .textbook-title {
