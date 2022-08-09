@@ -97,7 +97,7 @@ function textbook_rest_ajax_callback($request){
 }
 
 function textbook_items_object($query_params) {
-	$url = 'https://content-out.bepress.com/v2/stars.library.ucf.edu/query?parent_link=http://stars.library.ucf.edu/etextbooks&select_fields=all'.$query_params;
+	$url = 'https://content-out.bepress.com/v2/stars.library.ucf.edu/query?parent_link=http://stars.library.ucf.edu/etextbooks&select_fields=all&limit=1000'.$query_params;
 	$args = array(
 		'timeout' => 120,
 		'redirection' => 0, // Turns off auto redirection. This is needed because wp_remote_get will double send the Authorization headers and break the request.
