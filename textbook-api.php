@@ -177,7 +177,7 @@ function textbook_object_content($json_o){
               <li><span style="background-color: #ffcc00;"><strong>Course Number</strong>: '.display_array($item->configured_field_t_course_number).'</span></li>
               <li><strong>Course Title</strong>: '.display_array($item->configured_field_t_course_title).'</li>
               <li><strong>Course Instructor</strong>: '.display_array($item->configured_field_t_instructors).'</li>
-              <li><strong>License: '.display_array($item->configured_field_t_license).'</li>
+              <li><strong>License</strong>: '.display_array($item->configured_field_t_license).'</li>
             </ul>
             <a class="btn btn-primary" href="'.$item->download_link.'" title="Read Full Text URL for '.$item->title.'">Read Full Text</a>
           </div><!-- caption -->
