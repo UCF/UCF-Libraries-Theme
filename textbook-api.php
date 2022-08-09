@@ -9,7 +9,7 @@ function textbook_objects_display() {
   global $post;
   $option_list ='';
   if (get_post_meta($post->ID, 'course_departments', true)){
-    $select_options = explode(', ', get_post_meta($post->ID, 'course_departments', true));
+    $select_options = explode('; ', get_post_meta($post->ID, 'course_departments', true));
     foreach ($select_options as $select_option){
       $option_list .= '<option>'.$select_option.'</option>';
     }
@@ -18,7 +18,7 @@ function textbook_objects_display() {
               <div class="container">
                 <div class="textbooks-search-box">
                   <div class="card">
-                    <form>
+                    <form id="textbook_search_form" action="javascript:void(0);">
                       <div class="row">
                         <div class="form-group col-md-6">
                           <label for="course_number">Course Number</label>
@@ -44,7 +44,7 @@ function textbook_objects_display() {
                       </div>
                     </form>
                     <div class="clearfix"></div>
-                    <button title="submit query" class="btn btn-primary" id="submit_query">Submit</button> <button type="reset" title="Clear Search" class="btn btn-default" id="clear_query">Clear</button>
+                    <button type="submit" title="submit query" class="btn btn-primary" id="submit_query">Submit</button> <button type="reset" title="Clear Search" class="btn btn-default" id="clear_query">Clear</button>
                   </div>
                 </div>
                 <div id="textbook_content">
