@@ -1436,6 +1436,6 @@ function referral_message($atts, $content = null) {
     ';
   }
 }
-add_shortcode('referral-message', 'referral_message');
+//add_shortcode('referral-message', 'referral_message');
 
 ?>
