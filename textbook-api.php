@@ -41,10 +41,10 @@ function textbook_objects_display() {
                           <label for="instructor">Course Instructor</label>
                           <input class="form-control" name="instructor" id="instructor" type="text">
                         </div>
-                      </div>
+                      </div>                    
+                      <div class="clearfix"></div>
+                      <button type="submit" title="submit query" class="btn btn-primary" id="submit_query">Submit</button> <button type="reset" title="Clear Search" class="btn btn-default" id="clear_query">Clear</button>
                     </form>
-                    <div class="clearfix"></div>
-                    <button type="submit" title="submit query" class="btn btn-primary" id="submit_query">Submit</button> <button type="reset" title="Clear Search" class="btn btn-default" id="clear_query">Clear</button>
                   </div>
                 </div>
                 <div id="textbook_content">
