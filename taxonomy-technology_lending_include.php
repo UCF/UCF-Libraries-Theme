@@ -107,7 +107,7 @@ Description: Include file for Tech Lending Taxonomies.
                       <th><i class="fa fa-users"></i> Eligible Users</th>
                       <th><i class="fa fa-university"></i> Library</th>
                       <th><i class="fa fa-usd"></i> Fine Policy</th>
-                      <!-- <th><i class="fa fa-check-circle"></i> Availability</th> -->
+                      <th><i class="fa fa-check-circle"></i> Availability</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -154,11 +154,11 @@ Description: Include file for Tech Lending Taxonomies.
                           <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
                         <?php endif; ?>
                       </td>
-                      <!-- <td>
-                        <?php /* if(get_post_meta($post->ID, 'availability', true)): ?>
+                      <td>
+                        <?php if(get_post_meta($post->ID, 'availability', true)): ?>
                           <a href="<?php echo get_permalink(); ?>#item_availability">Check Availability</a></li>
-                        <?php endif; */ ?>
-                      </td> -->
+                        <?php endif; ?>
+                      </td>
                     </tr>
                   <?php endwhile; else: ?>
                     <tr>
@@ -221,9 +221,9 @@ Description: Include file for Tech Lending Taxonomies.
                       <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
                         <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fine Policy"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
                       <?php endif; ?>
-                      <?php /* if(get_post_meta($post->ID, 'availability', true)): ?>
+                      <?php if(get_post_meta($post->ID, 'availability', true)): ?>
                         <li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_permalink(); ?>#item_availability">Check Availability</a></li>
-                      <?php endif; */ ?>
+                      <?php endif; ?>
       								</ul>
   									<?php endif; ?>
   								</div><!-- caption -->
