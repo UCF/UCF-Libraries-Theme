@@ -18,6 +18,7 @@ function textbook_objects_display() {
               <div class="container">
                 <div class="textbooks-search-box">
                   <div class="card">
+                    <h2 id="portal">eTextbook Portal</h2>
                     <form id="textbook_search_form" action="javascript:void(0);">
                       <div class="row">
                         <div class="form-group col-md-6">
