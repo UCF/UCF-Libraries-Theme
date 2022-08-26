@@ -138,8 +138,11 @@ function textbook_items_object($query_params) {
 	}
 
 	$response = wp_remote_retrieve_body( $response );
-	$response = json_decode( $response );
+	$response = json_decode( $response, true );
 //  $response = json_encode( $response ); for Javascript
+  usort($response['results'],function($a,$b) {return strnatcasecmp($a['title'],$b['title']);}); //Sort the array alphabetically by title
+  $response = json_encode( $response); // re-encoding to decode with false option so html output doesn't need to change.
+  $response = json_decode ( $response, false);
 	return $response;
 }
 
