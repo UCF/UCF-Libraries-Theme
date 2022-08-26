@@ -802,6 +802,9 @@ footer ul li a:hover { text-decoration: none;}
   margin-top: 1em;
   padding: 0;
 }
+.textbook-info .btn {
+  margin-bottom: 5px;
+}
 
 .textbooks .textbook-title {
   background: #222;
