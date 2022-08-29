@@ -171,6 +171,10 @@ function textbook_object_content($json_o){
   }
   // Iterate through each textbook object to make a new item for the grid.
   foreach ($json_o->results as $item){
+    $instructions = '';
+    if ($item->configured_field_t_instructions[0]){
+      $instructions = ' <a class="btn btn-default" target="_blank" href="'.$item->configured_field_t_instructions[0].'" title="View instructions for accessing '.$item->title.' on ProQuest.">View Instructions</a>';
+    }
     $content .= '
       <div class="grid-item">
         <div class="card">
@@ -183,7 +187,8 @@ function textbook_object_content($json_o){
               <li><strong>Course Instructor</strong>: '.display_array($item->configured_field_t_instructors).'</li>
               <li><strong>License</strong>: '.display_array($item->configured_field_t_license).'</li>
             </ul>
-            <a class="btn btn-primary" href="'.$item->download_link.'" title="Read Full Text URL for '.$item->title.'">Read Full Text</a>
+            <a class="btn btn-primary" target="_blank" href="'.$item->download_link.'" title="Read Full Text URL for '.$item->title.'">Read Full Text</a>
+            '.$instructions.'
           </div><!-- caption -->
         </div><!-- thumbnail -->
       </div><!-- grid-item -->

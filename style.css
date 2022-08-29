@@ -775,7 +775,7 @@ footer ul li a:hover { text-decoration: none;}
 }
 
 .grid.textbooks {
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
 }
 @media (min-width: 1200px) {
   .grid.textbooks {
@@ -788,7 +788,6 @@ footer ul li a:hover { text-decoration: none;}
   margin: 0;
 }
 .textbooks figure {
-  flex: none;
   margin: 0 1em 0 0;
 }
 
@@ -801,6 +800,9 @@ footer ul li a:hover { text-decoration: none;}
   list-style: none;
   margin-top: 1em;
   padding: 0;
+}
+.textbook-info .btn {
+  margin-bottom: 5px;
 }
 
 .textbooks .textbook-title {
@@ -1055,11 +1057,12 @@ th.header.empty-cell{
 }
 .home.page .checkbox-inline, .home.page .radio-inline {
   display: block;
+  padding-right: 2em;
 }
 .home.page .checkbox-inline+.checkbox-inline, .home.page .radio-inline+.radio-inline {
     margin-left: 0;
 }
-@media (min-width: 625px) {
+@media (min-width: 665px) {
 	.ui-tabs .ui-tabs-nav li {
 		width: auto;
 	}
@@ -1087,7 +1090,7 @@ th.header.empty-cell{
     margin-left: 0;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .ui-tabs .ui-tabs-nav li {
     width: auto;
   }
@@ -1159,7 +1162,12 @@ th.header.empty-cell{
   min-height: 18.5em;
   background-color: rgba(0,0,0,0.85);
   border-radius: 0px;
-  padding: 2em 1.4em 1em;
+  padding: 1em 1.4em .25em;
+}
+@media (min-width: 1200px) {
+  .ui-tabs .ui-tabs-panel {
+    padding: 2em 1.4em 0em;
+  }
 }
 
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
