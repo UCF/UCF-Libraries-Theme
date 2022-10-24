@@ -79,7 +79,7 @@ $(document).ready(function() {
 	 $directory = get_template_directory_uri().'/images/';
  	 echo "var directory = '$directory';";
 	 ?>
-    var images = ['bg-01-main.jpg', 'bg-02-rosen.jpg', 'bg-03-glass.jpg', 'bg-07-studying.jpg', 'bg-08-circ.jpg', 'bg-09-historic.jpg', 'bg-10-ilo.jpg', 'bg-11-hitt-new-entrance.jpg'];
+    var images = ['bg-01-main.jpg', 'bg-02-rosen.jpg', 'bg-03-glass.jpg', 'bg-07-studying.jpg', 'bg-09-historic.jpg', 'bg-10-ilo.jpg', 'bg-11-hitt-new-entrance.jpg'];
     $('.background-image').css({'background-image': 'url('+ directory + images[Math.floor(Math.random() * images.length)] + ')'});
    });
 </script>

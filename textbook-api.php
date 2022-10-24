@@ -197,7 +197,7 @@ function textbook_object_content($json_o){
   if ($content !== ''){
     $content = '<div class="grid textbooks">'.$content.'</div>';
   } else {
-    $content = '<p style="text-align:center;">Your search produced no results. Please try again.</p>';
+    $content = '<div style="text-align:center;><p ">Your search produced no results. Please try again.</p><p>Already tried? Ask us to check for your eTextbook:</p><p><a class="btn btn-primary" href="https://ucf.qualtrics.com/jfe/form/SV_8dgBttqJvuhLXh4" target="_blank">eTextbook Check/Request Form</a></p></div>';
   }
   return $content;
 }
