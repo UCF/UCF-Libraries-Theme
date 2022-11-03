@@ -23,7 +23,7 @@ Generate a random backround from the list below.
 
 
 <?php get_header(); ?>
-<h1 class="sr-only">UCF Libraries Website Homepage</h1>
+<h1 class="sr-only"><?php bloginfo('name')?> Homepage</h1>
 <div id="main">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
       <?php if(get_post_meta($post->ID, 'success', true) || get_post_meta($post->ID, 'info', true) || get_post_meta($post->ID, 'warning', true) || get_post_meta($post->ID, 'danger', true)): ?>
