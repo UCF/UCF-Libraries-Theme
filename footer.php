@@ -12,7 +12,7 @@
   						  'menu_class' 			=> 'Find',
   						  'fallback_cb'      	=> 'wp_bootstrap_navwalker::fallback',
   						  //Process nav menu using our custom nav walker
-  						  'walker' => new wp_bootstrap_navwalker())
+  						  'walker' => new bootstrap_5_wp_nav_menu_walker())
   						);
   					?>
   					<?php /* Footer Navigation - Find */
@@ -25,7 +25,7 @@
   						  'menu_class' 			=> 'Services',
   						  'fallback_cb'      	=> 'wp_bootstrap_navwalker::fallback',
   						  //Process nav menu using our custom nav walker
-  						  'walker' => new wp_bootstrap_navwalker())
+  						  'walker' => new bootstrap_5_wp_nav_menu_walker())
   						);
   					?>
   					<?php /* Footer Navigation - About */
@@ -38,7 +38,7 @@
   						  'menu_class' 			=> 'About',
   						  'fallback_cb'      	=> 'wp_bootstrap_navwalker::fallback',
   						  //Process nav menu using our custom nav walker
-  						  'walker' => new wp_bootstrap_navwalker())
+  						  'walker' => new bootstrap_5_wp_nav_menu_walker())
   						);
   					?>
   					<?php /* Footer Navigation - Help */
@@ -51,18 +51,18 @@
   						  'menu_class' 			=> 'Help',
   						  'fallback_cb'      	=> 'wp_bootstrap_navwalker::fallback',
   						  //Process nav menu using our custom nav walker
-  						  'walker' => new wp_bootstrap_navwalker())
+  						  'walker' => new bootstrap_5_wp_nav_menu_walker())
   						);
   					?>
   				</div>
         </nav>
 			</div>
 			<div class="social-btn-group">
-        <a class="facebook-btn" href="https://www.facebook.com/ucflibrary/" target="_blank"><i class="fa fa-facebook-square"></i><span class="sr-only">Follow on Facebook</span></a>
-        <a class="twitter-btn" href="https://twitter.com/UCFLibrary"  target="_blank"><i class="fa fa-twitter-square"></i><span class="sr-only">Follow on Twitter</span></a>
-        <a class="instagram-btn"  href="https://www.instagram.com/ucflibrary/" target="_blank"><i class="fa fa-instagram"></i><span class="sr-only">Follow us on Instagram</span></a>
-        <a class="tumblr-btn" href="http://ucflibrary.tumblr.com/" target="_blank"><i class="fa fa-tumblr-square"></i><span class="sr-only">Follow us on Tumblr</span></a>
-        <a class="vimeo-btn"  href="https://vimeo.com/ucflibraries" target="_blank"><i class="fa fa-vimeo-square"></i><span class="sr-only">Follow us on Vimeo</span></a>
+        <a class="facebook-btn" href="https://www.facebook.com/ucflibrary/" target="_blank"><i class="fa fa-facebook-square"></i><span class="visually-hidden">Follow on Facebook</span></a>
+        <a class="twitter-btn" href="https://twitter.com/UCFLibrary"  target="_blank"><i class="fa fa-twitter-square"></i><span class="visually-hidden">Follow on Twitter</span></a>
+        <a class="instagram-btn"  href="https://www.instagram.com/ucflibrary/" target="_blank"><i class="fa fa-instagram"></i><span class="visually-hidden">Follow us on Instagram</span></a>
+        <a class="tumblr-btn" href="http://ucflibrary.tumblr.com/" target="_blank"><i class="fa fa-tumblr-square"></i><span class="visually-hidden">Follow us on Tumblr</span></a>
+        <a class="vimeo-btn"  href="https://vimeo.com/ucflibraries" target="_blank"><i class="fa fa-vimeo-square"></i><span class="visually-hidden">Follow us on Vimeo</span></a>
 			</div>
 			<div class="brand">
 				<img src="<?php echo get_template_directory_uri() ?>/images/UILexternal_W_Libraries.png" alt="UCF Libraries"><br>
@@ -70,7 +70,7 @@
 			<p style="margin-top: 2em; text-align: center; color:#ccc;">Copyright ©<?php echo date("Y"); ?> UCF Libraries</p>
 		</footer>
 		<?php wp_footer(); ?>
-		<a class="scroll-top" href="#"><span class="glyphicon glyphicon-circle-arrow-up"></span><span class="text">Back to Top</span></a>
+		<a class="scroll-top" href="#"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i><span class="text">Back to Top</span></a>
 	</body>
 </html>
 
