@@ -22,19 +22,14 @@
 	</head>
 	<body <?php body_class('library-body'); ?>>
 		<header class="main-header">
-			<nav class="navbar navbar-library navbar-static-top" role="navigation">
+			<nav class="navbar navbar-library navbar-expand-lg" role="navigation">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
-						<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-text">Menu</span>
+						<a class="navbar-brand" href="<?php bloginfo('url')?>"><?php bloginfo('name')?></a>
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
 						</button>
-
-					    <a class="navbar-brand" href="<?php bloginfo('url')?>"><?php bloginfo('name')?></a>
 					</div> 
 					  <!-- Collect the nav links, forms, and other content for toggling --> 
 					    <?php /* Primary navigation */
@@ -43,10 +38,10 @@
 							  'depth'				=> 2,
 							  'container'			=> 'div',
 							  'container_class'		=> 'collapse navbar-collapse',
-							  'menu_class' 			=> 'nav navbar-nav navbar-right',
+							  'menu_class' 			=> 'nav navbar-nav ms-auto mb-2 mb-lg-0',
 							  'fallback_cb'      	=> 'wp_bootstrap_navwalker::fallback',
 							  //Process nav menu using our custom nav walker
-							  'walker' => new wp_bootstrap_navwalker())
+							  'walker' => new bootstrap_5_wp_nav_menu_walker())
 							);
 						?>
 				  </div>
