@@ -3,7 +3,10 @@
 // Create Shortcode for displaying texbook objects from rest API
 add_shortcode('textbook-objects-display', 'textbook_objects_display');
 
-function textbook_objects_display() {
+function textbook_objects_display($atts) {
+  extract(shortcode_atts(array(
+    'desc' => '',
+  ), $atts));
   wp_enqueue_script( 'textbook-rest-ajax-script', get_template_directory_uri().'/js/textbooks.js', 'jquery');
   //This allows us to add a custom field to the textbook page and put all the select options into that field.
   global $post;
@@ -19,6 +22,7 @@ function textbook_objects_display() {
                 <div class="textbooks-search-box">
                   <div class="card">
                     <h2 id="portal">eTextbook Portal</h2>
+                    <p>'.$desc.'</p>
                     <form id="textbook_search_form" action="javascript:void(0);">
                       <div class="row">
                         <div class="form-group col-md-6">
