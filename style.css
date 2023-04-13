@@ -6,7 +6,7 @@ Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
 
-Version: 1.19.9
+Version: 1.19.10
 
 */
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto:500,700,400');
@@ -737,6 +737,22 @@ footer ul li a:hover { text-decoration: none;}
 .tech-content ul{
   margin-bottom: 2em
 }
+
+.loan-period {
+  padding: .25em 1.5em;
+  margin: 0 0 .25em;
+  background: #ffcc00;
+  display: inline-block;
+  border-radius: 3px;
+  font-weight: 700;
+}
+
+.lp-4-hour-loan {background: #ee0000; color:#ffffff;  }
+.lp-24-hour-loan {background: #0070c0; color:#ffffff;  }
+.lp-3-day-loan {background: #7030a0; color:#ffffff;  }
+.lp-7-day-loan {background: #008a00 ; color:#ffffff;  }
+.lp-4-week-loan {background: #002060; color:#ffffff;  }
+.lp-semester-loan {background: #c55a11; color:#ffffff;  }
 
 
 /* Anatomy Lending */
