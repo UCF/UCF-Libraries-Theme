@@ -1491,7 +1491,7 @@ function tech_lending_items ($atts){
     $output .= '
 	    <div class="grid-item taxonomy-item">
 				<div class="thumbnail">
-          <figure>'.get_the_post_thumbnail().'</figure>
+          <figure>'.get_the_post_thumbnail( $post->ID,'medium').'</figure>
   								<div class="caption">
   								  <h3><a href="#">'.get_the_title().'</a></h3>
       								<ul>';
