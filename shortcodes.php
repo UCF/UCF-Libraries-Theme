@@ -1438,4 +1438,86 @@ function referral_message($atts, $content = null) {
 }
 //add_shortcode('referral-message', 'referral_message');
 
+
+
+/**
+ * Technology Lending item display
+ * Primary use is for digital signage content but is built so that it could be utilized on other pages as well.
+ * 
+ * [tech-lending-items cateogry="laptops" number="8" offset="2" library="john-c-hitt"]
+ * 
+ */
+
+function tech_lending_items ($atts){
+  extract(shortcode_atts( array(
+    'category' => 'laptops',
+    'number'   => '10',
+    'offset'   => 0,
+    'library'  => 'john-c-hitt',
+  ), $atts ));
+  // Check to see if any parameters were set in the URL of the page and if so overwrite the shortcode atts
+  if (isset($_GET)) {
+    if ($_GET['category']){
+      $category = $_GET['category'];
+    }
+    if ($_GET['number']){
+      $number = $_GET['number'];
+    }
+    if ($_GET['offset']){
+      $offset = $_GET['offset'];
+    }
+    if ($_GET['library']){
+      $library = $_GET['library'];
+    }
+  } 
+  $args = array(
+              'post_type'       => 'tech',
+              'posts_per_page'  => $number,
+              'offset'          => $offset,
+              'tax_query'       => array( 'relation' => 'AND', 
+                array(
+                  'taxonomy'   => 'tech_type',
+                  'field'      => 'slug',
+                  'terms'      => array( $category )
+                ), array(
+                  'taxonomy'   => 'library',
+                  'field'      => 'slug',
+                  'terms'      => array( $library )
+                )
+              )
+          );
+  $query = new WP_query($args);
+  $output = '<div id="grid_view" class="directory grid">';
+  if ($query->have_posts()): while($query->have_posts()): $query->the_post();
+    $output .= '
+	    <div class="grid-item taxonomy-item">
+				<div class="thumbnail">
+          <figure>'.get_the_post_thumbnail( $post->ID,'medium').'</figure>
+  								<div class="caption">
+  								  <h3><a href="#">'.get_the_title().'</a></h3>
+      								<ul>';
+
+      if(get_the_term_list( $post->ID, 'loan_period', true)):
+        $output .= '<li><i class="fa fa-hourglass" data-toggle="tooltip" data-placement="right" title="Loan Period"></i>';
+        $terms = get_the_terms ( $post->ID, 'loan_period', true);
+        foreach ($terms as $term) {
+          $output .= '<span class="loan-period lp-'.$term->slug.'">'.$term->name.'</span> ';
+        }
+        $output .= '<li>';
+      endif;
+      if(get_the_term_list( $post->ID, 'eligible_user', true)):
+         $output .= '<li><i class="fa fa-users" data-toggle="tooltip" data-placement="right" title="Eligible Users"></i>'. strip_tags(get_the_term_list( $post->ID, "eligible_user", "", ", ", "" )).'</li>';
+      endif;
+    $output .= '</ul>
+  						</div><!-- caption -->
+						</div><!-- thumbnail -->
+					</div><!-- grid-item -->
+      ';                  
+    endwhile;
+  endif;
+  $output .= '</div><!-- grid -->';
+  return $output;
+  wp_reset_postdata();
+}
+add_shortcode('tech-lending-items', 'tech_lending_items');
 ?>
