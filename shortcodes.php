@@ -1451,10 +1451,11 @@ function referral_message($atts, $content = null) {
 function tech_lending_items ($atts){
   extract(shortcode_atts( array(
     'category' => 'laptops',
-    'number'   => '5',
+    'number'   => '10',
     'offset'   => 0,
     'library'  => 'john-c-hitt',
   ), $atts ));
+  // Check to see if any parameters were set in the URL of the page and if so overwrite the shortcode atts
   if (isset($_GET)) {
     if ($_GET['category']){
       $category = $_GET['category'];
