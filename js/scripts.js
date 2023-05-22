@@ -47,7 +47,7 @@ function collapse_sidebar(){
   }
 
   //Locate the ID of the sidebar collapse menus and give them a unique id
-  $('.sidebar-collapse').each(function() {
+  $('.custom-sidebar').each(function() {
   	$id = get_random_string();
   	$(this).find('.collapse').prop('id', $id);
   	$(this).find('.menu-toggle').prop('href', '#'+$id);
