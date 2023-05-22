@@ -26,6 +26,8 @@ Version: 1.19.11
   font-family: "Roboto";
 }
 
+a {color: #1a73b3;}
+
 /* UCF Header Override Class */
 @media (min-width: 1200px) {
   #ucfhb-inner.override {
@@ -90,10 +92,10 @@ img.media-object {    /* Stops media object images from breaking from img max-wi
   background-color: transparent;
 }
 .breadcrumb-separator {
-  color: #ccc;
+  color: #767676;
 }
 .breadcrumb-current{
-  color: #777;
+  color: #767676;
 }
 .header-search { margin: 1em 0; }
 @media (min-width: 768px) {
@@ -576,7 +578,16 @@ footer ul li a:hover { text-decoration: none;}
 
 .subpage-title { margin-top: 0; }
 .widget-title {
+  font-family: "Roboto";
 	border-bottom: 4px solid #555;
+  padding: 0 0 0.25em;
+  font-size: 18px;
+  margin: 10px auto;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.widget-link {
+  font-family: "Roboto";
   padding: 0 0 0.25em;
   font-size: 18px;
   margin: 10px auto;
@@ -1225,7 +1236,7 @@ th.header.empty-cell{
 }
 
 .background-color-gray{
-	background-color: rgba(0,0,0,0.1);
+	background-color: #f2f2f2;
 	margin-bottom: -2em;
 	padding: 2em 0;
 }
