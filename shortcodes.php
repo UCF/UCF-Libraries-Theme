@@ -477,7 +477,7 @@ function recent_posts_function($atts){
           if (has_post_thumbnail()) {       // Check if post has a featured image.
             $thumbnail = get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail'));
           } else {                          // Use the default thumbnail instead.
-            $thumbnail = '<img class="homepage-thumbnail" src="'.get_template_directory_uri().'/images/generic-default-thumb.jpg">';
+            $thumbnail = '<img class="homepage-thumbnail" alt="" src="'.get_template_directory_uri().'/images/generic-default-thumb.jpg">';
           }
           if (get_post_meta(get_the_ID() , 'thumbnail', true)){                         // Check if post has custom field named thumbnail.
             $thumbnail_id = get_post_meta(get_the_ID() , 'thumbnail', true);            // Gets the contents of the custom field, which is the post ID of the thumbnail image.
