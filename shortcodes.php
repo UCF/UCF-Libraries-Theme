@@ -320,7 +320,7 @@ function hompage_tab_container( $atts, $content = null ) {
   ), $atts ));
   $content = cleanup(str_replace('<br />', '', $content));
   $ids = explode(", ", $names);
-  $output = '<div id="tabs">
+  $output = '<div id="tabs" role="tabpanel">
               <ul>';
   foreach($ids as $id) {
     $id_name = $id;
@@ -376,6 +376,7 @@ function tab_container($atts, $content = null) {
       'names' => 'placehold',
       'numbers' => '',
       'icons' => '',
+      'class' => '',
   ), $atts ));
   $content = cleanup(str_replace('<br />', '', $content));
   $ids = explode(", ", $names);
@@ -387,7 +388,7 @@ function tab_container($atts, $content = null) {
   }
   $i = 0;
   $output = '
-    <div class="tab-container" role="tabpanel">
+    <div class="tab-container '.$class.'" role="tabpanel">
 
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">';
