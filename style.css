@@ -342,6 +342,7 @@ footer ul li a:hover { text-decoration: none;}
 .tab-container.homepage .tab-content{
   background-color: rgba(0,0,0,0.85);
   color: white;
+  min-height: 20em;
 }
 
 .tab-container.homepage .tab-content>.tab-pane {
