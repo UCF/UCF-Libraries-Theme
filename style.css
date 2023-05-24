@@ -296,7 +296,7 @@ footer ul li a:hover { text-decoration: none;}
 }
 
 /* Bootstrap style override/extention */
-.nav-tabs>li>a {
+/* .nav-tabs>li>a {
   background-color: #eee;
   border: 1px solid #ddd;
   border-bottom-color: transparent;
@@ -304,7 +304,7 @@ footer ul li a:hover { text-decoration: none;}
 .nav-tabs>li>a:hover {
   background-color: #fff;
   border-bottom-color: transparent;
-}
+} */
 
 .navbar-library {
 	font-weight: 700;
@@ -1402,7 +1402,7 @@ th.header.empty-cell{
 	margin: 0;
 }
 .news-post-category, .news-post-category a, .news-post-date, .news-post-date-small {
-	color: #999;
+	color: #767676;
 	font-size: 12px;
 }
 .news-post-date {

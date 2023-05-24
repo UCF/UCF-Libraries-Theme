@@ -35,7 +35,7 @@
 						<?php if (has_post_thumbnail()): ?>
 							<div class="post-header-img"><?php the_post_thumbnail('full'); ?></div>
 						<?php else: ?>
-							<div class="post-header-img"><img src="<?php echo(get_template_directory_uri()) ?>/images/generic-default-banner.jpg"></div>
+							<div class="post-header-img"><img alt="" src="<?php echo(get_template_directory_uri()) ?>/images/generic-default-banner.jpg"></div>
 						<?php endif; ?>
 							<div class="news-post-content">
 								<div class="share-btn-group">
