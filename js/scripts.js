@@ -26,14 +26,14 @@ function collapseMenus() {
     $('.menu-toggle .glyphicon').removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");
 }
 
-//Generate a random string for use in ID override
-function get_random_string() {
-    $text = "";
-    $possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    for( var i=0; i < 10; i++ )
-        $text += $possible.charAt(Math.floor(Math.random() * $possible.length));
-    return $text;
-}
+//(Depricated) Generate a random string for use in ID override
+// function get_random_string() {
+//     $text = "";
+//     $possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+//     for( var i=0; i < 10; i++ )
+//         $text += $possible.charAt(Math.floor(Math.random() * $possible.length));
+//     return $text;
+// }
 
 
 function collapse_sidebar(){
@@ -46,9 +46,9 @@ function collapse_sidebar(){
 	$menus_open = true;
   }
 
-  //Locate the ID of the sidebar collapse menus and give them a unique id
+  //Locate the toggle buttons of the sidebar and assign an ID based on the button text
   $('.custom-sidebar').each(function() {
-  	$id = get_random_string();
+  	$id = $(this).find('.menu-toggle').text().replaceAll(' ', '_');
   	$(this).find('.collapse').prop('id', $id);
   	$(this).find('.menu-toggle').prop('href', '#'+$id);
   });
