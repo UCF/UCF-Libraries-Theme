@@ -1446,6 +1446,22 @@ th.header.empty-cell{
 	display:table;
 	font-size: 12px;
 	margin: 1em 0;
+  position: relative;
+}
+
+.news-post.card:hover {
+  border-radius: 2px;
+  box-shadow: 0 0 5px #555;
+}
+
+.stretched-link::after {
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
 }
 
 .news-post-title { margin: 1em 0 .5em; }

@@ -508,11 +508,11 @@ function recent_posts_function($atts){
         } else {
           $return_string .=
           '<div class="news-post card">
-              <div class="news-post-image"><a href="'.get_permalink().'">'.$thumbnail.'</a></div><!-- '.$url.' -->
+              <div class="news-post-image">'.$thumbnail.'</div><!-- '.$url.' -->
               <div class="news-post-text">
                 <div class="news-post-title">
                   <header>
-                    <h3><a href="'.get_permalink().'">'.get_the_title().'</a></h3>
+                    <h3><a class="stretched-link" href="'.get_permalink().'">'.get_the_title().'</a></h3>
                     <span class="news-post-category">'.trim($output, $separator).'</span>
                     <span class="news-post-date">Posted: <i class="fa fa-calendar"></i> '.get_the_time('F jS, Y').'</span>
                   </header>
