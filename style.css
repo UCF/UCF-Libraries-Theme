@@ -1533,7 +1533,7 @@ th.header.empty-cell{
 
 /* Hours Week Widget */
   .s-lc-whw thead { background-color: #F5F5F5; }
-  .s-lc-whw-head-date { color: #999; }
+  .s-lc-whw-head-date { color: #555; }
   .s-lc-whw-today-h {  background-color: #ddd; }
   .s-lc-whw-today { background-color: #F5F5F5; }
   .s-lc-whw-bh { text-align: right; white-space: nowrap; }
