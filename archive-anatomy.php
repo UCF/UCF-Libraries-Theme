@@ -34,17 +34,17 @@ Description: Archive anatomy page.
           <aside>	
             <div id="secondary" class="secondary taxonomy-filter">
               <div id="widget-area" class="widget-area" role="complementary">
-                <h3>Filters</h3>
+                <h2>Filters</h2>
                 <p>Select filters below to narrow results:</p>
                 <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
                 <div class="sidebar-collapse">
-                  <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></h4>
+                  <div class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></div>
                   <div class="collapse in" id="Library">
                     <?php taxonomy_filter('a_library'); ?>
                   </div>
                 </div>
                 <div class="sidebar-collapse">
-                  <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Anatomy_Type" aria-expanded="true" aria-controls="Anatomy Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Anatomy Type</a></h4>
+                  <div class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Anatomy_Type" aria-expanded="true" aria-controls="Anatomy_Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Anatomy Type</a></div>
                   <div class="collapse in" id="Anatomy_Type">
                     <?php taxonomy_filter('anatomy_type'); ?>
                   </div>
@@ -57,7 +57,7 @@ Description: Archive anatomy page.
           <div class="anatomy-description">
             <?php dynamic_sidebar( 'anatomy-lending' ); ?>
           </div>
-          <div class="btn-group btn-grid-list" data-toggle="buttons" style="margin-bottom: 1em">
+          <div class="btn-group btn-grid-list" data-toggle="buttons" style="margin-bottom: 1em" role="group" aria-label="format">
             <label class="btn btn-primary view-button active">
               <input type="radio" name="views" autocomplete="off" value="grid" checked><i class="fa fa-th"></i> Grid
             </label>

@@ -36,7 +36,7 @@
 								<?php if (has_post_thumbnail()): ?>
 									<div class="post-header-img"><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('full'); ?></a></div>
 								<?php else: ?>
-									<div class="post-header-img"><a href="<?php echo get_permalink(); ?>"><img src="<?php echo(get_template_directory_uri()) ?>/images/generic-default-banner.jpg"></a></div>
+									<div class="post-header-img"><a href="<?php echo get_permalink(); ?>"><img alt="" src="<?php echo(get_template_directory_uri()) ?>/images/generic-default-banner.jpg"></a></div>
 								<?php endif; ?>
 									<div class="news-post-content">
 										<div class="share-btn-group">

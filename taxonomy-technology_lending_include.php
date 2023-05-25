@@ -38,13 +38,13 @@ Description: Include file for Tech Lending Taxonomies.
           <aside>	
             <div id="secondary" class="secondary taxonomy-filter">
               <div id="widget-area-2" class="widget-area" role="complementary">
-                <h3><a href="<?php echo get_post_type_archive_link( 'tech' ); ?>">View All Technology</a></h3>
-                <h3>Filters</h3>
+                <p class="widget-link"><a href="<?php echo get_post_type_archive_link( 'tech' ); ?>">View All Technology</a></p>
+                <h2>Filters</h2>
                 <p>Select filters below to narrow results:</p>
                 <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
                 <?php if ($current_taxonomy != 'library'): ?>
                 <div class="sidebar-collapse">
-                  <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></h4>
+                  <div class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></div>
                   <div class="collapse in" id="Library">
                     <?php taxonomy_filter('library');	?>
                   </div>
@@ -52,7 +52,7 @@ Description: Include file for Tech Lending Taxonomies.
                 <?php endif; ?>
                 <?php if ($current_taxonomy != 'tech_type'): ?>
                 <div class="sidebar-collapse">
-                  <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Tech_Type" aria-expanded="true" aria-controls="Tech Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Tech Type</a></h4>
+                  <div class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Tech_Type" aria-expanded="true" aria-controls="Tech Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Tech Type</a></div>
                   <div class="collapse in" id="Tech_Type">
                       <?php taxonomy_filter('tech_type');	?>
                   </div>
@@ -60,7 +60,7 @@ Description: Include file for Tech Lending Taxonomies.
                 <?php endif; ?>
                 <?php if ($current_taxonomy != 'loan_period'): ?>
                 <div class="sidebar-collapse">
-                  <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Loan_Period" aria-expanded="true" aria-controls="Loan Period"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-hourglass"></i> Loan Period</a></h4>
+                  <div class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Loan_Period" aria-expanded="true" aria-controls="Loan Period"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-hourglass"></i> Loan Period</a></div>
                   <div class="collapse in" id="Loan_Period">
                       <?php taxonomy_filter('loan_period');	?>
                   </div>
@@ -68,7 +68,7 @@ Description: Include file for Tech Lending Taxonomies.
                 <?php endif; ?>
                 <?php if ($current_taxonomy != 'eligible_user'): ?>
                 <div class="sidebar-collapse">
-                  <h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Eligible_User" aria-expanded="true" aria-controls="Eligible User"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-users"></i> Eligible User</a></h4>
+                  <div class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Eligible_User" aria-expanded="true" aria-controls="Eligible User"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-users"></i> Eligible User</a></div>
                   <div class="collapse in" id="Eligible_User">
                       <?php taxonomy_filter('eligible_user');	?>
                   </div>

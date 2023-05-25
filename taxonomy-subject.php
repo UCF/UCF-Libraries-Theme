@@ -21,7 +21,7 @@ Description: Taxonomy Subject archive page.
 function subject_dropdown( $taxonomy ) {
 	$terms = get_terms( $taxonomy );
 	if ( $terms ) {
-		printf( '<form action="" method="get" style="display:inline-block;"><select name="%s"  class="form-control"  onchange="this.form.submit();"><option value="-- Choose a Subject --">-- Choose a Subject --</option>', esc_attr( $taxonomy ) );
+		printf( '<form action="" method="get" style="display:inline-block;"><label for="choose_subject" class="sr-only"> Choose Subject</label><div class="input-group"</div><select name="%s" id="choose_subject"  class="form-control"><option value="-- Choose a Subject --">-- Choose a Subject --</option>', esc_attr( $taxonomy ) );
 		foreach ( $terms as $term ) {
 			if ($term->slug == 'all') {
 				printf( '<option value="%s">%s</option>', esc_attr( $term->slug ), esc_html( $term->name ) );
@@ -32,7 +32,7 @@ function subject_dropdown( $taxonomy ) {
 				printf( '<option value="%s">%s</option>', esc_attr( $term->slug ), esc_html( $term->name ) );
 			}
 		}
-		print( '</select></form>' );
+		print( '</select><span class="input-group-btn"><button class="btn btn-primary" type="submit">Submit</button></span></div></form>' );
 	}
 }
 ?>
@@ -52,7 +52,10 @@ function subject_dropdown( $taxonomy ) {
 		<div class="row">
 			<div class="col-sm-12">
 				<p>Use the drop down menu to view the librarian(s) associated with each subject. You can also view the librarians at the <a href="<?php bloginfo('url'); ?>/staff/rosen-library/">Rosen Library</a>, <a href="<?php bloginfo('url'); ?>/staff/curriculum-materials-center/">the Curriculum Materials Center (CMC)</a>, <a href="<?php bloginfo('url'); ?>/staff/downtown/">Downtown Library</a>, and the <a href="<?php bloginfo('url'); ?>/staff/ucf-connect-libraries/">UCF Connect Libraries</a>.</p>
-				<p style="display:inline-block"><strong>Choose Librarians by Subject:</strong></p> <?php subject_dropdown( 'subject' ); ?>
+				<p><strong>Choose Librarians by Subject:</strong></p> 
+				<div class="row">
+					<div class="col-md-6"><p><?php subject_dropdown( 'subject' ); ?></p></div>
+				</div>
 			</div><!-- col-sm-12 -->
 		</div><!-- row -->
 	</div><!-- container -->
@@ -97,8 +100,8 @@ function subject_dropdown( $taxonomy ) {
   														<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
   															<li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
   														<?php endif; ?>
-  														<?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array(all) )): ?>
-  															<li><i class="fa fa-book" data-toggle="tooltip" data-placement="right" title="Subject"></i><?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array(all) ); ?></li>
+  														<?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') )): ?>
+  															<li><i class="fa fa-book" data-toggle="tooltip" data-placement="right" title="Subject"></i><?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') ); ?></li>
   														<?php endif; ?>
   														
   														<?php if(get_post_meta($post->ID, 'room', true)): ?>
@@ -133,7 +136,7 @@ function subject_dropdown( $taxonomy ) {
 							<?php if($match == 0) : ?>
 							<?php $i++; ?>
 							<div class="col-sm-6 col-md-3">
-								<h4>&nbsp;</h4>									
+								<!-- <h4>&nbsp;</h4>									 -->
 				    		<div class="thumbnail">
 				    				<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
   									<div class="caption">
@@ -160,8 +163,8 @@ function subject_dropdown( $taxonomy ) {
   													<li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
   												<?php endif; ?>
 
-  												<?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array(all) )): ?>
-  													<li><i class="fa fa-book" data-toggle="tooltip" data-placement="right" title="Subject"></i><?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array(all) ); ?></li>
+  												<?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') )): ?>
+  													<li><i class="fa fa-book" data-toggle="tooltip" data-placement="right" title="Subject"></i><?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') ); ?></li>
   												<?php endif; ?>
   												
   												<?php if(get_post_meta($post->ID, 'room', true)): ?>
