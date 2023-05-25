@@ -272,7 +272,8 @@ add_shortcode('search-scua', 'search_scua');
 function search_stars($form) {
     $form = '
       <form method="get" action="https://stars.library.ucf.edu/do/search/" id="sidebar-search">
-        <fieldset>      
+        <fieldset>    
+          <legend class="sr-only">Search Collection</legend>  
           <label for="search" class="sr-only">Search </label>          
           <div class="input-group">
             <input class="form-control" type="text" name="q" class="search" id="search" placeholder="Search Collection">
