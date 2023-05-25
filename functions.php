@@ -195,10 +195,10 @@ function theme_slug_widgets_init() {
         'name'          => __( 'Main Sidebar', 'theme-slug' ),
         'id'            => 'sidebar-1',
         'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'theme-slug' ),
-        'before_widget' => '<div class="sidebar-collapse">',
+        'before_widget' => '<div class="sidebar-collapse custom-sidebar">',
         'after_widget'  => '</div></div>',
-        'before_title'  => '<h4 class="widget-title"><a class="menu-toggle" data-toggle="collapse" aria-expanded="true" aria-controls="collapseExample"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span>',
-        'after_title'   => '</a></h4><div class="collapse in">',
+        'before_title'  => '<div class="widget-title"><a class="menu-toggle" data-toggle="collapse" aria-expanded="true" aria-controls="collapseExample"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span>',
+        'after_title'   => '</a></div><div class="collapse in">',
     ) );
 }
 add_action( 'widgets_init', 'theme_slug_widgets_init' );

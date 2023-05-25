@@ -272,7 +272,8 @@ add_shortcode('search-scua', 'search_scua');
 function search_stars($form) {
     $form = '
       <form method="get" action="https://stars.library.ucf.edu/do/search/" id="sidebar-search">
-        <fieldset>      
+        <fieldset>    
+          <legend class="sr-only">Search Collection</legend>  
           <label for="search" class="sr-only">Search </label>          
           <div class="input-group">
             <input class="form-control" type="text" name="q" class="search" id="search" placeholder="Search Collection">
@@ -320,7 +321,7 @@ function hompage_tab_container( $atts, $content = null ) {
   ), $atts ));
   $content = cleanup(str_replace('<br />', '', $content));
   $ids = explode(", ", $names);
-  $output = '<div id="tabs">
+  $output = '<div id="tabs" role="tabpanel">
               <ul>';
   foreach($ids as $id) {
     $id_name = $id;
@@ -376,6 +377,7 @@ function tab_container($atts, $content = null) {
       'names' => 'placehold',
       'numbers' => '',
       'icons' => '',
+      'class' => '',
   ), $atts ));
   $content = cleanup(str_replace('<br />', '', $content));
   $ids = explode(", ", $names);
@@ -387,7 +389,7 @@ function tab_container($atts, $content = null) {
   }
   $i = 0;
   $output = '
-    <div class="tab-container" role="tabpanel">
+    <div class="tab-container '.$class.'" role="tabpanel">
 
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">';
@@ -477,7 +479,7 @@ function recent_posts_function($atts){
           if (has_post_thumbnail()) {       // Check if post has a featured image.
             $thumbnail = get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail'));
           } else {                          // Use the default thumbnail instead.
-            $thumbnail = '<img class="homepage-thumbnail" src="'.get_template_directory_uri().'/images/generic-default-thumb.jpg">';
+            $thumbnail = '<img class="homepage-thumbnail" alt="" src="'.get_template_directory_uri().'/images/generic-default-thumb.jpg">';
           }
           if (get_post_meta(get_the_ID() , 'thumbnail', true)){                         // Check if post has custom field named thumbnail.
             $thumbnail_id = get_post_meta(get_the_ID() , 'thumbnail', true);            // Gets the contents of the custom field, which is the post ID of the thumbnail image.
@@ -507,11 +509,11 @@ function recent_posts_function($atts){
         } else {
           $return_string .=
           '<div class="news-post card">
-              <div class="news-post-image"><a href="'.get_permalink().'">'.$thumbnail.'</a></div><!-- '.$url.' -->
+              <div class="news-post-image">'.$thumbnail.'</div><!-- '.$url.' -->
               <div class="news-post-text">
                 <div class="news-post-title">
                   <header>
-                    <h3><a href="'.get_permalink().'">'.get_the_title().'</a></h3>
+                    <h3><a class="stretched-link" href="'.get_permalink().'">'.get_the_title().'</a></h3>
                     <span class="news-post-category">'.trim($output, $separator).'</span>
                     <span class="news-post-date">Posted: <i class="fa fa-calendar"></i> '.get_the_time('F jS, Y').'</span>
                   </header>

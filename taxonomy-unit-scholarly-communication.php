@@ -40,7 +40,7 @@ Description: Scholarly Commnunication archive page.
 				<div class="col-sm-9">
 					<h2 class="subpage-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h2>
 					<?php echo term_description( ) ?>
-					<div class="btn-group btn-grid-list" data-toggle="buttons">
+					<div class="btn-group btn-grid-list" data-toggle="buttons" role="group" aria-label="format">
             <label class="btn btn-primary view-button active">
               <input type="radio" name="views" autocomplete="off" value="grid" checked><i class="fa fa-th"></i> Grid
             </label>

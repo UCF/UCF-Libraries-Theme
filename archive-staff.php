@@ -34,7 +34,7 @@ Description: Archive staff member page.
 				</div><!-- col-sm-3 -->
 				<div id="content_area" class="col-sm-9">
 					<h2 class="subpage-title">All Staff</h2>
-          <div class="btn-group btn-grid-list" data-toggle="buttons">
+          <div class="btn-group btn-grid-list" data-toggle="buttons" role="group" aria-label="format">
             <label class="btn btn-primary view-button active">
               <input type="radio" name="views" autocomplete="off" value="grid" checked><i class="fa fa-th"></i> Grid
             </label>

@@ -6,7 +6,7 @@ Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
 
-Version: 1.19.11
+Version: 1.20.0
 
 */
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto:500,700,400');
@@ -25,6 +25,8 @@ Version: 1.19.11
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto";
 }
+
+a {color: #1a73b3;}
 
 /* UCF Header Override Class */
 @media (min-width: 1200px) {
@@ -90,10 +92,10 @@ img.media-object {    /* Stops media object images from breaking from img max-wi
   background-color: transparent;
 }
 .breadcrumb-separator {
-  color: #ccc;
+  color: #767676;
 }
 .breadcrumb-current{
-  color: #777;
+  color: #767676;
 }
 .header-search { margin: 1em 0; }
 @media (min-width: 768px) {
@@ -294,7 +296,7 @@ footer ul li a:hover { text-decoration: none;}
 }
 
 /* Bootstrap style override/extention */
-.nav-tabs>li>a {
+/* .nav-tabs>li>a {
   background-color: #eee;
   border: 1px solid #ddd;
   border-bottom-color: transparent;
@@ -302,6 +304,73 @@ footer ul li a:hover { text-decoration: none;}
 .nav-tabs>li>a:hover {
   background-color: #fff;
   border-bottom-color: transparent;
+} */
+
+.nav-tabs {
+  font-family: 'Montserrat';
+}
+
+/* Bootstrap style override for homepage nav tabs */
+.tab-container.homepage {
+  margin: 0;
+}
+
+.tab-container.homepage .nav-tabs {
+  border-bottom: 1px solid rgba(0,0,0,0.0);
+
+}
+.tab-container.homepage .nav-tabs>li {
+  border: 1px solid #d3d3d3;
+}
+.tab-container.homepage li.active {
+  border: 1px solid rgba(0,0,0,0.85);
+}
+.tab-container.homepage .nav-tabs>li>a {
+  margin-right: 0;
+  border: 1px solid transparent;
+  border-radius: 0px;
+  color: #000;
+  background-color: rgba(255,255,255,0.85);
+}
+.tab-container.homepage .nav-tabs>li.active>a, .tab-container.homepage .nav-tabs>li.active>a:focus, .tab-container.homepage .nav-tabs>li.active>a:hover {
+  color: #fff;
+  cursor: default;
+  font-weight: bold;
+  background-color: rgba(0,0,0,0.85);
+  /* border: 1px solid rgba(0,0,0,0.85); */
+}
+.tab-container.homepage .tab-content{
+  background-color: rgba(0,0,0,0.85);
+  color: white;
+  min-height: 20em;
+}
+
+.tab-container.homepage .tab-content>.tab-pane {
+  padding: 1em;
+}
+
+.tab-container.homepage .nav li {
+  display: block;
+  width: 100%;
+}
+
+@media (min-width: 582px) {
+  .tab-container.homepage .nav li {
+    display: block;
+    width: auto;
+  }
+}
+@media (min-width: 768px) {
+  .tab-container.homepage .nav li {
+    display: block;
+    width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  .tab-container.homepage .nav li {
+    display: block;
+    width: auto;
+  }
 }
 
 .navbar-library {
@@ -576,8 +645,21 @@ footer ul li a:hover { text-decoration: none;}
 
 .subpage-title { margin-top: 0; }
 .widget-title {
+  font-family: "Roboto";
 	border-bottom: 4px solid #555;
-	padding: 0 0 .25em;
+  padding: 0 0 0.25em;
+  font-size: 18px;
+  margin: 10px auto;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.widget-link {
+  font-family: "Roboto";
+  padding: 0 0 0.25em;
+  font-size: 18px;
+  margin: 10px auto;
+  font-weight: 500;
+  line-height: 1.1;
 }
 
 /* Widget area affix */
@@ -1221,7 +1303,7 @@ th.header.empty-cell{
 }
 
 .background-color-gray{
-	background-color: rgba(0,0,0,0.1);
+	background-color: #f2f2f2;
 	margin-bottom: -2em;
 	padding: 2em 0;
 }
@@ -1364,6 +1446,22 @@ th.header.empty-cell{
 	display:table;
 	font-size: 12px;
 	margin: 1em 0;
+  position: relative;
+}
+
+.news-post.card:hover {
+  border-radius: 2px;
+  box-shadow: 0 0 5px #555;
+}
+
+.stretched-link::after {
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
 }
 
 .news-post-title { margin: 1em 0 .5em; }
@@ -1387,7 +1485,7 @@ th.header.empty-cell{
 	margin: 0;
 }
 .news-post-category, .news-post-category a, .news-post-date, .news-post-date-small {
-	color: #999;
+	color: #767676;
 	font-size: 12px;
 }
 .news-post-date {
@@ -1435,7 +1533,7 @@ th.header.empty-cell{
 
 /* Hours Week Widget */
   .s-lc-whw thead { background-color: #F5F5F5; }
-  .s-lc-whw-head-date { color: #999; }
+  .s-lc-whw-head-date { color: #555; }
   .s-lc-whw-today-h {  background-color: #ddd; }
   .s-lc-whw-today { background-color: #F5F5F5; }
   .s-lc-whw-bh { text-align: right; white-space: nowrap; }
