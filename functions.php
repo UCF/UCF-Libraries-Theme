@@ -161,12 +161,14 @@ function wpt_register_js() {
     wp_register_script('jquery.bootstrap.min', get_template_directory_uri() . '/js/bootstrap.min.js', 'jquery');
     wp_register_script('jquery.tablesorter.min', get_template_directory_uri() . '/js/jquery.tablesorter.min.js', 'jquery');
     wp_register_script('jquery.scripts', get_template_directory_uri(). '/js/scripts.js', 'jquery');
+    wp_register_script('libanswers_chat', "https://tblc.libanswers.com/load_chat.php?hash=f2c66578fad19608e948deeac0560c14", false, null);
 
     wp_enqueue_script('jquery');
     wp_enqueue_script('jquery.ui');
     wp_enqueue_script('jquery.bootstrap.min');
     wp_enqueue_script('jquery.tablesorter.min');
     wp_enqueue_script('jquery.scripts');
+    wp_enqueue_script('libanswers_chat');
 }
 add_action( 'init', 'wpt_register_js' );
 
