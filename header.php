@@ -18,6 +18,7 @@
 		<link rel="icon" sizes="192x192" href="<?php echo get_stylesheet_directory_uri(); ?>/images/PegasusIcon.png">
 		<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" />
 		<script type="text/javascript" id="ucfhb-script" src="//universityheader.ucf.edu/bar/js/university-header.js?use-1200-breakpoint=1"></script>
+		<script src="https://tblc.libanswers.com/load_chat.php?hash=f2c66578fad19608e948deeac0560c14"></script>
 		<?php wp_head(); ?> 
 	</head>
 	<body <?php body_class('library-body'); ?>>
