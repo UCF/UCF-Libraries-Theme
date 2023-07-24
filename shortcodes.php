@@ -792,6 +792,7 @@ function hours_today_homepage( $atts ) {
 add_shortcode('hours-today-homepage', 'hours_today_homepage');
 
 
+
 /**
 * Single Department Today's Hours
 * Display the hours for a single department
@@ -1504,4 +1505,31 @@ function tech_lending_items ($atts){
   wp_reset_postdata();
 }
 add_shortcode('tech-lending-items', 'tech_lending_items');
+
+
+function occuspace_display($atts){
+  extract(shortcode_atts( array(
+    'id' => '1781',
+  ), $atts )); 
+  $json_o = occuspace_api_call($id);
+  $output = '';
+  if ($json_o !== null) {
+    foreach ($json_o->data->childCounts as $floor) {
+      $output .= '<h2>'.$floor->name.'</h2>';
+      $output .= '<p>'.($floor->percentage*100).'% Occupied</p><br>';
+    }
+  } else {
+    $output .= '<p>Null was returned</p>';
+  }
+  return $output;
+}
+add_shortcode('occuspace-diplay', 'occuspace_display');
+
+
+
+
+
+
+
+
 ?>

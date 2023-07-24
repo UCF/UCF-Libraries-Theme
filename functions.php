@@ -929,5 +929,25 @@ function primo_availability_list($json_o) {
 // }
 
 
+// API call to occuspace
+
+function occuspace_api_call($id) {
+  $url = 'https://api.occuspace.io/v1/location/'.$id.'/now';
+  $args = array( 
+    'timeout' => 120,
+    'headers' => array(
+			'Authorization' => 'Bearer rOoUTcOOSvcli1reno600000hkfclsjewt3'
+		)
+  );
+  $request = wp_remote_get($url, $args);
+  if (is_array( $request)) {
+    $json_o = json_decode($request['body']);
+    return $json_o;
+  } else {
+    $json_o = null;
+    return $json_o;
+  }
+}
+
 
 ?>
