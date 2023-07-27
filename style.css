@@ -175,6 +175,16 @@ p.comment-form-url {   /* Removes Website URL field from post comments */
 	overflow: auto;
 	margin: 0 0 2em;
 }
+
+.card.not-busy {
+  background-color: #E1EFBF;
+}
+.card.busy {
+  background-color: #FFF2BB;
+}
+.card.very-busy {
+  background-color: #F9D7C0;
+}
 .content-area { padding: 1em; }
 
 /* Side Menu */
