@@ -36,27 +36,30 @@
 								<?php if (has_post_thumbnail()): ?>
 									<div class="post-header-img"><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('full'); ?></a></div>
 								<?php else: ?>
-									<div class="post-header-img"><a href="<?php echo get_permalink(); ?>"><img alt="" src="<?php echo(get_template_directory_uri()) ?>/images/generic-default-banner.jpg"></a></div>
+									<div class="post-header-img"><a title="<?php echo get_the_title(); ?>" href="<?php echo get_permalink(); ?>"><img alt="Decorative pegasus banner" src="<?php echo(get_template_directory_uri()) ?>/images/generic-default-banner.jpg"></a></div>
 								<?php endif; ?>
 									<div class="news-post-content">
 										<div class="share-btn-group">
-			 								<a class="share-btn facebook-btn" href="javascript:share_button('http://www.facebook.com/sharer.php?u=<?php echo get_permalink(); ?>', 520, 350)">
+											<a class="share-btn facebook-btn" href="javascript:share_button('http://www.facebook.com/sharer.php?u=<?php echo get_permalink(); ?>', 520, 350)">
 												<span class="fa-stack fa-lg">
 													<i class="fa fa-circle fa-stack-2x"></i>
 													<i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
 												</span>
+												<span class="sr-only">Share "<?php echo get_the_title(); ?>" post to Facebook</span>
 											</a>
 											<a class="share-btn twitter-btn" href="javascript:share_button('http://twitter.com/share?url=<?php echo get_permalink(); ?>&text=<?php echo get_the_title(); ?>', 500, 500)">
 												<span class="fa-stack fa-lg">
 													<i class="fa fa-circle fa-stack-2x"></i>
 													<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
 												</span>
+												<span class="sr-only">Share "<?php echo get_the_title(); ?>" post to Twitter</span>
 											</a>
 											<a class="share-btn email-btn" href="mailto:?subject=<?php echo get_the_title(); ?>&body=<?php echo get_the_title(); ?> <?php echo get_permalink(); ?>">
 												<span class="fa-stack fa-lg">
 													<i class="fa fa-circle fa-stack-2x"></i>
 													<i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
 												</span>
+												<span class="sr-only">Share "<?php echo get_the_title(); ?>" post via email</span>
 											</a>		
 										</div>
 										<div class="news-post-title">

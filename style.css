@@ -175,6 +175,16 @@ p.comment-form-url {   /* Removes Website URL field from post comments */
 	overflow: auto;
 	margin: 0 0 2em;
 }
+
+.card.not-busy {
+  background-color: #E1EFBF;
+}
+.card.busy {
+  background-color: #FFF2BB;
+}
+.card.very-busy {
+  background-color: #F9D7C0;
+}
 .content-area { padding: 1em; }
 
 /* Side Menu */
@@ -294,6 +304,18 @@ footer ul li a:hover { text-decoration: none;}
    opacity: 1;
   }
 }
+/* Ask Us button */
+#lcs_slide_out_button-25335{
+border-color: #F9F9F9!important;
+font-weight: bold;
+font-family: 'Montserrat';
+padding: 12px 15px;
+}
+
+.s-lch-profile-name{
+  color:#222222;
+}
+
 
 /* Bootstrap style override/extention */
 /* .nav-tabs>li>a {

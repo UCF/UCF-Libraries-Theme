@@ -71,6 +71,9 @@
 		</footer>
 		<?php wp_footer(); ?>
 		<a class="scroll-top" href="#"><span class="glyphicon glyphicon-circle-arrow-up"></span><span class="text">Back to Top</span></a>
+		<div id="libchat_f2c66578fad19608e948deeac0560c14" style="border-color: #ffffff!important;
+font-weight: bold;
+font-family: 'Montserrat';"></div>
 		<script>
 			$('.Find').find('a').first().prepend('<span class="glyphicon glyphicon-search"></span> ');
 			$('.Services').find('a').first().prepend('<span class="glyphicon glyphicon-education"></span> ');

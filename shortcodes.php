@@ -792,6 +792,7 @@ function hours_today_homepage( $atts ) {
 add_shortcode('hours-today-homepage', 'hours_today_homepage');
 
 
+
 /**
 * Single Department Today's Hours
 * Display the hours for a single department
@@ -1504,4 +1505,65 @@ function tech_lending_items ($atts){
   wp_reset_postdata();
 }
 add_shortcode('tech-lending-items', 'tech_lending_items');
+
+
+/* 
+Occuspace Display
+Shows business of a given area within the library
+
+[occuspace-display id="1781"]
+
+*/
+
+function occuspace_display($atts){
+  extract(shortcode_atts( array(
+    'id' => '1781',
+  ), $atts )); 
+  $json_o = occuspace_api_call($id);
+  $output = '';
+  if ($json_o !== null) {
+    $output .= '<h2>'.$json_o->data->name.'</h2>
+                <div class="grid">';
+    foreach ($json_o->data->childCounts as $floor) {
+      if ($floor->isActive !== false) {
+        $percent = $floor->percentage;
+        if ($percent < .5) {
+          $busy_class = 'not-busy';
+        } else if ($percent > .8) {
+          $busy_class = 'very-busy';
+        } else {
+          $busy_class = 'busy';
+        }
+        $output .= '<div class="grid-item"><div class="card '.$busy_class.'" style="padding: 0 1em;">';
+        $output .= '<h3>'.$floor->name.'</h3>';
+        switch ($busy_class){
+          case 'not-busy':
+            $output .= '<h4>Not Busy</h4>';
+            break;
+          case 'busy':
+            $output .= '<h4>Busy</h4>';
+            break;
+          case 'very-busy':
+            $output .= '<h4>Very Busy</h4>';
+            break;
+        }
+        $output .= '<p>'.($floor->percentage*100).'% Occupied</p>';
+        $output .= '</div></div>';
+      }
+    }
+    $output .= '</div>';
+  } else {
+    $output .= '<p>Null was returned</p>';
+  }
+  return $output;
+}
+add_shortcode('occuspace-display', 'occuspace_display');
+
+
+
+
+
+
+
+
 ?>
