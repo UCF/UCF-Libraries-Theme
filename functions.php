@@ -950,4 +950,26 @@ function occuspace_api_call($id) {
 }
 
 
+// API call to labstats
+
+function labstats_api_call() {
+  $url = 'https://api.labstats.com/availability/groups';
+  $args = array( 
+    'timeout' => 120,
+    'headers' => array(
+			'Authorization' => 'd22f4613-aeec-4ac1-a889-2586b9860494',
+      'accept' => 'application/json'
+		)
+  );
+  $request = wp_remote_get($url, $args);
+  if (is_array( $request)) {
+    $json_o = json_decode($request['body']);
+    return $json_o;
+  } else {
+    $json_o = null;
+    return $json_o;
+  }
+}
+
+
 ?>
