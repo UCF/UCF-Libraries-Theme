@@ -176,6 +176,11 @@ p.comment-form-url {   /* Removes Website URL field from post comments */
 	margin: 0 0 2em;
 }
 
+.card.occupancy {
+  margin: 0;
+  padding: 0 1em;
+}
+
 .card.not-busy {
   background-color: #f3f7e9;
 }

@@ -1534,7 +1534,7 @@ function occuspace_display($atts){
           } else {
             $busy_class = 'busy';
           }
-          $output .= '<div class="grid-item"><div class="card '.$busy_class.'" style="padding: 0 1em;">';
+          $output .= '<div class="grid-item"><div class="card '.$busy_class.' occupancy">';
           $output .= '<h3 class="occupied '.$busy_class.'">'.$floor->name.'</h3>';
           switch ($busy_class){
             case 'not-busy':
