@@ -177,14 +177,23 @@ p.comment-form-url {   /* Removes Website URL field from post comments */
 }
 
 .card.not-busy {
-  background-color: #E1EFBF;
+  background-color: #f3f7e9;
 }
 .card.busy {
-  background-color: #FFF2BB;
+  background-color: #fffce7;
 }
 .card.very-busy {
-  background-color: #F9D7C0;
+  background-color: #fff6f0;
 }
+
+.occupied {
+  margin: 20px 0 20px;
+  padding: 0 0 5px;
+}
+.occupied.not-busy { border-bottom: 5px solid #5cb85c; }
+.occupied.busy { border-bottom: 5px solid #f0ad4e; }
+.occupied.very-busy { border-bottom: 5px solid #d9534f; }
+
 .content-area { padding: 1em; }
 
 /* Side Menu */
