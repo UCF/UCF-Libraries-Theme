@@ -1527,6 +1527,7 @@ function occuspace_display($atts){
       foreach ($json_o->data->childCounts as $floor) {
         if ($floor->isActive !== false) {
           $percent_occupied = $floor->percentage*100;
+          if ($percent_occupied > 100) { $percent_occupied = 100;}
           if ($percent_occupied < 50) {
             $busy_class = 'not-busy';
           } else if ($percent_occupied > 80) {
