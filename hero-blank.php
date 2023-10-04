@@ -5,6 +5,8 @@ Description: This page has a large hero image with text on top.
 */
 ?>
 
+<?php get_header(); ?>
+
 <style>
   .hero-image {
     background:url('<?php the_post_thumbnail_url( 'full' ); ?>') center center;
@@ -51,7 +53,6 @@ Description: This page has a large hero image with text on top.
 
 </style>
 
-<?php get_header(); ?>
 <div id="main">
   <header class="hero-image">
     <div class="container">
@@ -64,12 +65,18 @@ Description: This page has a large hero image with text on top.
       <?php endif; ?>
     </div>
   </header>
-  <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-    <?php the_content(__('(more...)')); ?>
-  <?php endwhile; else: ?>
-    <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
-  <?php endif; ?>
+	<div id="content">
+		<div class="row">
+			<div class="col-sm-12">
+				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+				<article>
+				<?php the_content(__('(more...)')); ?>
+				</article>
+				<hr> <?php endwhile; else: ?>
+				<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
+			</div>
+		</div>
+	</div>
 </div>
-
 
 <?php get_footer(); ?>
