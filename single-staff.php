@@ -78,6 +78,11 @@ Description: Single staff member page.
 								</div>
 							</div>
 						</article>
+						<?php if (get_the_excerpt($post->ID, true)): ?>
+							<div class="card content-area">
+								<?php the_excerpt(); ?>
+							</div>
+						<?php endif; ?>
 						<?php if($post->post_content != ""): ?>
 							<div class="card content-area">
 								<?php the_content(__('(more...)')); ?>
