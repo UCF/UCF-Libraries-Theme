@@ -886,90 +886,84 @@ add_shortcode('library-events', 'library_events');
 **/
 function computer_availability($atts) {
    extract(shortcode_atts(array(
-      'id' => '1',
+      'ids' => '1',
    ), $atts));
-  $string = wp_remote_get('http://libweb.net.ucf.edu/Web/Db.php?q=publicStatusPCs&format=json&l='.$id, array(
-    'user-agent' => 'DummyAgentForDetectMobileBrowser.php',
-    ));
-  if (is_array( $string)) {
-    $json_o = json_decode($string['body']);
-    if ($json_o != null) {
-      $computers_list = '<div class="computer-availability">';
-      if ($id == '1') {
-        $i = 1;
-        $floors = 5;
-      } elseif ($id == '5' || $id == '13') {
-        $i = 1;
-        $floors = 1;
-      } else{
+  $ids = explode(', ', $ids);
+  $json_o = labstats_api_call();
+  if ($json_o != null) {
+    $computers_list = '<div class="computer-availability">';
+    
+    // if ($id == '1') {
+    //   $i = 1;
+    //   $floors = 5;
+    // } elseif ($id == '5' || $id == '13') {
+    //   $i = 1;
+    //   $floors = 1;
+    // } else{
+    // }
+    foreach ($json_o as $location) if (in_array($location->group_id, $ids)) {
+      // $machines_in_use = 0;
+      $machines_total = $location->utilization_availability->total_count;
+      // $machines_available = 0;
+      // foreach ($json_o as $location) if ($location->location_room_floor == $i) {
+      //   $machines_in_use += $location->machinesInUse;
+      //   $machines_total += $location->machinesTotal;
+      // }
+      $machines_available = $location->utilization_availability->available_count;
+      if ($machines_total != 0) {
+        $percent_available = round(($machines_available/$machines_total)*100);
+      } else {
+        $percent_available = 0;
       }
-      while ( $i <= $floors ) {
-        $machines_in_use = 0;
-        $machines_total = 0;
-        $machines_available = 0;
-        foreach ($json_o as $location) if ($location->location_room_floor == $i) {
-          $machines_in_use += $location->machinesInUse;
-          $machines_total += $location->machinesTotal;
-        }
-        $machines_available = ($machines_total-$machines_in_use);
-        if ($machines_total != 0) {
-          $percent_available = round(($machines_available/$machines_total)*100);
+      // switch ($i) {
+      //   case 1:
+      //     $floor_number = '1st';
+      //     break;
+      //   case 2:
+      //     $floor_number = '2nd';
+      //     break;
+      //   case 3:
+      //     $floor_number = '3rd';
+      //     break;
+      //   case 4:
+      //     $floor_number = '4th';
+      //     break;
+      //   case 5:
+      //     $floor_number = '5th';
+      //     break;
+      //   default:
+      //     $floor_number = 'unknown';
+      //     break;
+      // }
+      if ($machines_available > 0) {
+        if ($percent_available > 33) {
+          $progress_color = 'progress-bar-success';
         } else {
-          $percent_available = 0;
+          $progress_color = 'progress-bar-warning';
         }
-        switch ($i) {
-          case 1:
-            $floor_number = '1st';
-            break;
-          case 2:
-            $floor_number = '2nd';
-            break;
-          case 3:
-            $floor_number = '3rd';
-            break;
-          case 4:
-            $floor_number = '4th';
-            break;
-          case 5:
-            $floor_number = '5th';
-            break;
-          default:
-            $floor_number = 'unknown';
-            break;
-        }
-        if ($machines_available > 0) {
-          if ($percent_available > 33) {
-            $progress_color = 'progress-bar-success';
-          } else {
-            $progress_color = 'progress-bar-warning';
-          }
-          
-        } else {
-          $progress_color = 'progress-bar-danger';
-        }
-        $computers_list .= '
-          <div class="row">
-            <div class="col-sm-3"><span class="floor-name">'.$floor_number.' Floor <i class="fa fa-desktop"></i>:</span></div>
-            <div class="col-sm-9">
-              <div class="progress">
-                <div class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em; width: '.$percent_available.'%;">
-                  '.$machines_available.' / '.$machines_total.'
-                </div>
+        
+      } else {
+        $progress_color = 'progress-bar-danger';
+      }
+      $computers_list .= '
+        <div class="row">
+          <div class="col-sm-3"><span class="floor-name">'.$location->group->name.' <i class="fa fa-desktop"></i>:</span></div>
+          <div class="col-sm-9">
+            <div class="progress">
+              <div class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em; width: '.$percent_available.'%;">
+                '.$machines_available.' / '.$machines_total.'
               </div>
             </div>
-          </div>';
-        $i++;
-      }
-      $computers_list .= '</div>';
-    } else {
-      $computers_list = '<p>Unable to determine computer availability.</p>';
+          </div></div>';
     }
+    $computers_list .= '</div>';
   } else {
     $computers_list = '<p>Unable to determine computer availability.</p>';
   }
   return $computers_list;
   //return '<pre>'.$string['body'].'</pre>';
 }
+
 add_shortcode('computer-availability', 'computer_availability');
 
 
@@ -1568,7 +1562,21 @@ function occuspace_display($atts){
 }
 add_shortcode('occuspace-display', 'occuspace_display');
 
+/*
+Computer Availability
+Shows how many public PCs are available
 
+[computer-availability ids="1040,1041,1042,1043,1044"]
+
+*/
+
+// function computer_availability($atts){
+//   extract(shortcode_atts( array(
+//     'ids' => '1781',
+//   ), $atts )); 
+//   $ids = explode(",", $ids);
+//   $output = '<div class="grid">';
+//   foreach ($ids as $id) {
 
 
 
