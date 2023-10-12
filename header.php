@@ -11,7 +11,7 @@
 ?><!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title><?php title_fix(wp_title( '', true, 'right' )); ?></title>
+		<title><?php wp_title( '', true, 'right' ); ?></title>
 		<meta name="viewport" content="width=device-width">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="theme-color" content="#ffcc00">
