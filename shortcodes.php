@@ -887,8 +887,11 @@ add_shortcode('library-events', 'library_events');
 function computer_availability($atts) {
    extract(shortcode_atts(array(
       'ids' => '1041',
+      'slugs' => '',
    ), $atts));
   $ids = explode(',', $ids);
+  $slugs = explode(',', $slugs);
+  $i = 0;
   global $computer_availability_json_o;  // Set a global variable to store first labstats API call.
   if ($computer_availability_json_o == null) {  // Check global variable to see if labstats API has been called.
     $json_o = labstats_api_call();
@@ -924,29 +927,34 @@ function computer_availability($atts) {
         $busy_class = 'very-busy';
       }
 
-      $output .= '
-        <div class="grid-item"><div class="card '.$busy_class.' busy-card">
-          <h3 class="busy-heading '.$busy_class.'">'.$location->group->name.' <i class="fa fa-desktop"></i></h3>';
-          switch ($busy_class){
-            case 'not-busy':
-              $output .= '<span class="busy-text">Not Busy<br>Computers Available: '.$machines_available.' / '.$machines_total.'</span>';
-              $progress_color = 'progress-bar-success';
+      $output .= '<div class="grid-item">
+                    <div class="card '.$busy_class.' busy-card">
+                      <h3 class="busy-heading '.$busy_class.'">'.$location->group->name.' <i class="fa fa-desktop"></i></h3>';
+      switch ($busy_class){
+        case 'not-busy':
+          $output .= '<span class="busy-text">Not Busy<br>Computers Available: '.$machines_available.' / '.$machines_total.'</span>';
+          $progress_color = 'progress-bar-success';
+          break;
+        case 'busy':
+          $output .= '<span class="busy-text">Busy<br>Computers Available: '.$machines_available.' / '.$machines_total.'</span>';
+          $progress_color = 'progress-bar-warning';
               break;
-            case 'busy':
-              $output .= '<span class="busy-text">Busy<br>Computers Available: '.$machines_available.' / '.$machines_total.'</span>';
-              $progress_color = 'progress-bar-warning';
-              break;
-            case 'very-busy':
-              $output .= '<span class="busy-text">Very Busy<br>Computers Available: '.$machines_available.' / '.$machines_total.'</span>';
-              $progress_color = 'progress-bar-danger';
-              break;
-          }
-          $output .= '<div class="progress">
-                       <div id="occupancy_bar" class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$percent_available.'%;">
-                       </div>
+        case 'very-busy':
+          $output .= '<span class="busy-text">Very Busy<br>Computers Available: '.$machines_available.' / '.$machines_total.'</span>';
+          $progress_color = 'progress-bar-danger';
+          break;
+      }
+      $output .= '    <div class="progress">
+                        <div id="occupancy_bar" class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$percent_available.'%;">
+                        </div>
                       </div>';
-          $output .= '</div></div>';
-
+      if ( $slugs[$i] ) {
+        $output .= '  <a class="btn btn-default" href="'.get_permalink( get_the_ID() ).$slugs[$i].'/" title="View '.$location->group->name.' Computer Map">View Computer Map</a>';
+      } else {
+        $output .= '  <a class="btn btn-default disabled" href="#" title="'.$location->group->name.' Computer Map Disabled">View Computer Map</a>';
+      }
+      $output .= '</div></div>';
+      $i++;
         // <div class="row">
         //   <div class="col-sm-3"><span class="floor-name">'.$location->group->name.' <i class="fa fa-desktop"></i>:</span></div>
         //   <div class="col-sm-9">
@@ -1472,9 +1480,9 @@ function tech_lending_items ($atts){
     $output .= '
 	    <div class="grid-item taxonomy-item">
 				<div class="thumbnail">
-          <figure>'.get_the_post_thumbnail( $post->ID,'medium').'</figure>
+          <figure><a href="'.get_permalink().'">'.get_the_post_thumbnail( $post->ID,'medium').'</a></figure>
   								<div class="caption">
-  								  <h3><a href="#">'.get_the_title().'</a></h3>
+  								  <h3><a href="'.get_permalink().'">'.get_the_title().'</a></h3>
       								<ul>';
 
       if(get_the_term_list( $post->ID, 'loan_period', true)):
