@@ -12,6 +12,27 @@ function friendly_name() {
   echo $namearray[1]." ".$namearray[0];
 }
 
+function title_fix($page_title) {
+  $new_title = '';
+  if (is_archive()) {
+    switch ($page_title) {
+      case 'Staff Archive':
+        $new_title = 'Staff Directory';
+        break;
+      case 'Tech Archive':
+        $new_title = 'Technology Lending';
+        break;
+      case 'Anatomy Archive':
+        $new_title = 'Anatomy Lending';
+        break;
+      default:
+        $new_title = $page_title;
+        break;
+    }
+  }
+  return $new_title;
+}
+
 function debug(){
   return is_ssl();
 }
@@ -111,7 +132,8 @@ function taxonomy_term_list( $taxonomy ) {
   $term_args = array(
     'hide_empty' => false,
     'orderby' => 'name',
-    'order' => 'ASC'
+    'order' => 'ASC', 
+    'heirarchical' => true,
   );
   $tax_terms = get_terms($taxonomy,$term_args);
   $term_list = '<ul>';
