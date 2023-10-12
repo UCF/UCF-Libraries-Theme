@@ -178,7 +178,7 @@ p.comment-form-url {   /* Removes Website URL field from post comments */
 
 .card.busy-card {
   margin: 0;
-  padding: 0 1em;
+  padding: 0 1em 1em;
 }
 
 .card.not-busy {
