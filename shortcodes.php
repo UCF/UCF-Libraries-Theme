@@ -881,26 +881,23 @@ add_shortcode('library-events', 'library_events');
 * Lists the number of available computers per floor
 *
 * Example:
-* [computer-availability id="1"]
+* [computer-availability ids="1041"]
 *
 **/
 function computer_availability($atts) {
    extract(shortcode_atts(array(
-      'ids' => '1',
+      'ids' => '1041',
    ), $atts));
-  $ids = explode(', ', $ids);
-  $json_o = labstats_api_call();
+  $ids = explode(',', $ids);
+  global $computer_availability_json_o;  // Set a global variable to store first labstats API call.
+  if ($computer_availability_json_o == null) {  // Check global variable to see if labstats API has been called.
+    $json_o = labstats_api_call();
+    $computer_availability_json_o = $json_o;
+  } else {
+    $json_o = $computer_availability_json_o;  // Uses previous call to poplate other instances of the shortcode on the same page.
+  }
   if ($json_o != null) {
-    $computers_list = '<div class="computer-availability">';
-    
-    // if ($id == '1') {
-    //   $i = 1;
-    //   $floors = 5;
-    // } elseif ($id == '5' || $id == '13') {
-    //   $i = 1;
-    //   $floors = 1;
-    // } else{
-    // }
+    $output = '<div class="computer-availability grid-busy">';
     foreach ($json_o as $location) if (in_array($location->group_id, $ids)) {
       // $machines_in_use = 0;
       $machines_total = $location->utilization_availability->total_count;
@@ -915,52 +912,56 @@ function computer_availability($atts) {
       } else {
         $percent_available = 0;
       }
-      // switch ($i) {
-      //   case 1:
-      //     $floor_number = '1st';
-      //     break;
-      //   case 2:
-      //     $floor_number = '2nd';
-      //     break;
-      //   case 3:
-      //     $floor_number = '3rd';
-      //     break;
-      //   case 4:
-      //     $floor_number = '4th';
-      //     break;
-      //   case 5:
-      //     $floor_number = '5th';
-      //     break;
-      //   default:
-      //     $floor_number = 'unknown';
-      //     break;
-      // }
-      if ($machines_available > 0) {
-        if ($percent_available > 33) {
-          $progress_color = 'progress-bar-success';
+
+      if ($percent_available > 20) {
+        if ($percent_available > 50) {
+          $busy_class = 'not-busy';
         } else {
-          $progress_color = 'progress-bar-warning';
+          $busy_class = 'busy';
         }
         
       } else {
-        $progress_color = 'progress-bar-danger';
+        $busy_class = 'very-busy';
       }
-      $computers_list .= '
-        <div class="row">
-          <div class="col-sm-3"><span class="floor-name">'.$location->group->name.' <i class="fa fa-desktop"></i>:</span></div>
-          <div class="col-sm-9">
-            <div class="progress">
-              <div class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em; width: '.$percent_available.'%;">
-                '.$machines_available.' / '.$machines_total.'
-              </div>
-            </div>
-          </div></div>';
+
+      $output .= '
+        <div class="grid-item"><div class="card '.$busy_class.' busy-card">
+          <h3 class="busy-heading '.$busy_class.'">'.$location->group->name.' <i class="fa fa-desktop"></i></h3>';
+          switch ($busy_class){
+            case 'not-busy':
+              $output .= '<span class="busy-text">Not Busy<br>Computers Available: '.$machines_available.' / '.$machines_total.'</span>';
+              $progress_color = 'progress-bar-success';
+              break;
+            case 'busy':
+              $output .= '<span class="busy-text">Busy<br>Computers Available: '.$machines_available.' / '.$machines_total.'</span>';
+              $progress_color = 'progress-bar-warning';
+              break;
+            case 'very-busy':
+              $output .= '<span class="busy-text">Very Busy<br>Computers Available: '.$machines_available.' / '.$machines_total.'</span>';
+              $progress_color = 'progress-bar-danger';
+              break;
+          }
+          $output .= '<div class="progress">
+                       <div id="occupancy_bar" class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$percent_available.'%;">
+                       </div>
+                      </div>';
+          $output .= '</div></div>';
+
+        // <div class="row">
+        //   <div class="col-sm-3"><span class="floor-name">'.$location->group->name.' <i class="fa fa-desktop"></i>:</span></div>
+        //   <div class="col-sm-9">
+        //     <div class="progress">
+        //       <div class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em; width: '.$percent_available.'%;">
+        //         '.$machines_available.' / '.$machines_total.'
+        //       </div>
+        //     </div>
+        //   </div></div>';
     }
-    $computers_list .= '</div>';
+    $output .= '</div>';
   } else {
-    $computers_list = '<p>Unable to determine computer availability.</p>';
+    $output = '<p>Unable to determine computer availability.</p>';
   }
-  return $computers_list;
+  return $output;
   //return '<pre>'.$string['body'].'</pre>';
 }
 
@@ -1529,19 +1530,19 @@ function occuspace_display($atts){
           } else {
             $busy_class = 'busy';
           }
-          $output .= '<div class="grid-item"><div class="card '.$busy_class.' occupancy">';
-          $output .= '<h3 class="occupied '.$busy_class.'">'.$floor->name.'</h3>';
+          $output .= '<div class="grid-item"><div class="card '.$busy_class.' busy-card">';
+          $output .= '<h3 class="busy-heading '.$busy_class.'">'.$floor->name.'</h3>';
           switch ($busy_class){
             case 'not-busy':
-              $output .= '<h4>Not Busy - '.($percent_occupied).'% Occupied</h4>';
+              $output .= '<span class="busy-text">Not Busy - '.($percent_occupied).'% Occupied</span>';
               $progress_color = 'progress-bar-success';
               break;
             case 'busy':
-              $output .= '<h4>Busy - '.($percent_occupied).'% Occupied</h4>';
+              $output .= '<span class="busy-text">Busy - '.($percent_occupied).'% Occupied</span>';
               $progress_color = 'progress-bar-warning';
               break;
             case 'very-busy':
-              $output .= '<h4>Very Busy - '.($percent_occupied).'% Occupied</h4>';
+              $output .= '<span class="busy-text">Very Busy - '.($percent_occupied).'% Occupied</span>';
               $progress_color = 'progress-bar-danger';
               break;
           }
@@ -1561,26 +1562,6 @@ function occuspace_display($atts){
   return $output;
 }
 add_shortcode('occuspace-display', 'occuspace_display');
-
-/*
-Computer Availability
-Shows how many public PCs are available
-
-[computer-availability ids="1040,1041,1042,1043,1044"]
-
-*/
-
-// function computer_availability($atts){
-//   extract(shortcode_atts( array(
-//     'ids' => '1781',
-//   ), $atts )); 
-//   $ids = explode(",", $ids);
-//   $output = '<div class="grid">';
-//   foreach ($ids as $id) {
-
-
-
-
 
 
 ?>

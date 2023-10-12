@@ -176,7 +176,7 @@ p.comment-form-url {   /* Removes Website URL field from post comments */
 	margin: 0 0 2em;
 }
 
-.card.occupancy {
+.card.busy-card {
   margin: 0;
   padding: 0 1em;
 }
@@ -191,13 +191,21 @@ p.comment-form-url {   /* Removes Website URL field from post comments */
   background-color: #fff6f0;
 }
 
-.occupied {
+.busy-heading {
   margin: 20px 0 20px;
   padding: 0 0 5px;
 }
-.occupied.not-busy { border-bottom: 5px solid #5cb85c; }
-.occupied.busy { border-bottom: 5px solid #f0ad4e; }
-.occupied.very-busy { border-bottom: 5px solid #d9534f; }
+.busy-heading.not-busy { border-bottom: 5px solid #5cb85c; }
+.busy-heading.busy { border-bottom: 5px solid #f0ad4e; }
+.busy-heading.very-busy { border-bottom: 5px solid #d9534f; }
+
+.busy-text {
+  font-size: 1.25em;
+  font-weight: 700;
+  padding: 0 0 0.25em;
+  display: block;
+  font-family: 'Roboto';
+}
 
 .content-area { padding: 1em; }
 
@@ -894,6 +902,12 @@ padding: 12px 15px;
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
+}
+
+.grid-busy {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 1rem;
 }
 
 /* Textbooks */
