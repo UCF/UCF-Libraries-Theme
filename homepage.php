@@ -83,7 +83,7 @@ $(document).ready(function() {
       else:
         $directory = get_template_directory_uri().'/images/';
         echo "let directory = '$directory';";
-        echo "let images = '$directory' + 'bg-01-main.jpg';";
+        echo "let images = '$directory' + 'bg-11-hitt-new-entrance.jpg';";
       endif;
     ?>
     $('.background-image').css({'background-image': 'url('+ images +')'});
