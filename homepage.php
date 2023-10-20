@@ -75,12 +75,18 @@ Generate a random backround from the list below.
 <script type="text/javascript">
 
 $(document).ready(function() {
-	<?php
-	 $directory = get_template_directory_uri().'/images/';
- 	 echo "var directory = '$directory';";
-	 ?>
-    var images = ['bg-01-main.jpg', 'bg-02-rosen.jpg', 'bg-03-glass.jpg', 'bg-07-studying.jpg', 'bg-09-historic.jpg', 'bg-10-ilo.jpg', 'bg-11-hitt-new-entrance.jpg'];
-    $('.background-image').css({'background-image': 'url('+ directory + images[Math.floor(Math.random() * images.length)] + ')'});
+    <?php // hooks into advanced custom fields to allow new background images to be added in the wordpress editor
+      if(get_post_meta($post->ID, 'background_images', true)):
+        $background_images = get_post_meta($post->ID, 'background_images', true);
+        echo "let images = [$background_images];";
+        echo "images = images[Math.floor(Math.random() * images.length)];";
+      else:
+        $directory = get_template_directory_uri().'/images/';
+        echo "let directory = '$directory';";
+        echo "let images = '$directory' + 'bg-01-main.jpg';";
+      endif;
+    ?>
+    $('.background-image').css({'background-image': 'url('+ images +')'});
    });
 </script>
 <?php get_footer(); ?>
