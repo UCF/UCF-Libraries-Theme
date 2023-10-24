@@ -68,19 +68,24 @@ Description: Single staff member page.
 												<?php if(get_post_meta($post->ID, 'email', true)): ?>
 													<li><i class="fa fa-envelope" data-toggle="tooltip" data-placement="right" title="Email"></i><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"> <span class="ellipsis"> <?php echo get_post_meta($post->ID, 'email', true); ?></span></a></li>
 												<?php endif; ?>
+
+												<?php if(get_the_term_list( $post->ID, 'unit', true)): ?>
+													<p><?php echo get_the_term_list( $post->ID, 'unit', 'Units &amp; Groups: ', ', ', '' ); ?></p>
+												<?php endif; ?>
 											</ul>
 											<?php endif; ?>
-											<?php if(get_the_term_list( $post->ID, 'unit', true)): ?>
-												<p><?php echo get_the_term_list( $post->ID, 'unit', 'Units &amp; Groups: ', ', ', '' ); ?></p>
+											
+											<?php if(get_post_meta($post->ID, 'cv_link', true)): ?>
+													<a class="btn btn-primary" title="Download CV for <?php friendly_name(); ?>" href="<?php echo get_post_meta($post->ID, 'cv_link', true); ?>">Download CV</a>
 											<?php endif; ?>
 										</div>
 									</div>
 								</div>
 							</div>
 						</article>
-						<?php if (get_the_excerpt($post->ID, true)): ?>
+						<?php if(get_post_meta($post->ID, 'assistance', true)): ?>
 							<div class="card content-area">
-								<?php the_excerpt(); ?>
+								<?php echo get_post_meta($post->ID, 'assistance', true); ?>
 							</div>
 						<?php endif; ?>
 						<?php if($post->post_content != ""): ?>
