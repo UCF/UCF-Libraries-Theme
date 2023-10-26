@@ -70,7 +70,7 @@ Description: Single staff member page.
 												<?php endif; ?>
 
 												<?php if(get_the_term_list( $post->ID, 'unit', true)): ?>
-													<p><?php echo get_the_term_list( $post->ID, 'unit', 'Units &amp; Groups: ', ', ', '' ); ?></p>
+													<li class="units"><?php echo get_the_term_list( $post->ID, 'unit', 'Units &amp; Groups: ', ', ', '' ); ?></li>
 												<?php endif; ?>
 											</ul>
 											<?php endif; ?>
