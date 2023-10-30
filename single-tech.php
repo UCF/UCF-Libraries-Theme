@@ -18,7 +18,7 @@ if ( substr($name, -1) == 's') {
 		<!-- single-tech template. -->
 		<div class="row">
 			<div class="col-sm-8">
-				<header><h1>Technology Lending</h1></header>
+				<header><p class="h1">Technology Lending</p></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div>
 			<div class="col-sm-4">
@@ -42,7 +42,7 @@ if ( substr($name, -1) == 's') {
 									</div>
 									<div class="col-sm-8">
 										<div class="caption">
-											<h2><?php the_title(); ?></h2>
+											<h1><?php the_title(); ?></h1>
 		    								<?php if(get_the_term_list( $post->ID, 'tech_type', true) ||
                       		get_the_term_list( $post->ID, 'loan_period', true) ||
 		    									get_the_term_list( $post->ID, 'eligible_user', true) ||
@@ -95,7 +95,7 @@ if ( substr($name, -1) == 's') {
 								</div>
 							<?php endif; ?>
 							 <div class="card" style="padding:1em;">
-								<h3 id="item_availability">Item Availability</h3>
+								<h2 id="item_availability">Item Availability</h2>
 								<?php  if(get_post_meta($post->ID, 'availability', true)): ?>
 									<p id="item_availability_message">There <span class="single-plural"></span> <strong><span class="total-items-available"></span> <?php the_title(); ?><span class="s-ending"></span> available</strong> for checkout. <a href="https://ucf-flvc.primo.exlibrisgroup.com/permalink/01FALSC_UCF/6a1ouu/alma<?php echo get_post_meta($post->ID, 'availability', true); ?>" target="_blank">View items in Primo</a></p>
 									<?php 

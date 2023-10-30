@@ -11,7 +11,7 @@ Description: Single staff member page.
 		<!-- single-staff template. -->
 		<div class="row">
 			<div class="col-sm-8">
-				<header><h1>Staff Directory</h1></header>
+				<header><p class="h1">Staff Directory</p></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div>
 			<div class="col-sm-4">
@@ -35,7 +35,7 @@ Description: Single staff member page.
 									</div>
 									<div class="col-sm-8">
 										<div class="caption">
-										<h2><?php friendly_name(); ?></h2>
+										<h1><?php friendly_name(); ?></h1>
 											<?php if(get_post_meta($post->ID, 'title', true) ||
                              get_post_meta($post->ID, 'rank', true) ||
                              get_post_meta($post->ID, 'department', true) ||
