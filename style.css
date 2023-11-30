@@ -123,7 +123,7 @@ dl.menu-list dd, dl.list-spaced dd { margin-bottom: 1.5em; }
 }
 
 p.comment-form-url {   /* Removes Website URL field from post comments */
-    display: none;
+  display: none;
 }
 
 .unavailable {color: #f00;}
