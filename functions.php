@@ -278,7 +278,7 @@ function register_cpt_staff_entities() {
       'labels' => $staff_labels,
       'hierarchical' => true,
       'description' => 'Staff names and descriptions',
-      'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions', 'author', 'hierarchical', 'page-attributes' ),
+      'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions', 'author', 'hierarchical' ),
       'taxonomies' => array( 'department', 'unit-group', 'subject' ),
       'public' => true,
       'show_ui' => true,
