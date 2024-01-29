@@ -46,13 +46,13 @@
 										</span>
 										<span class="sr-only">Share "<?php echo get_the_title(); ?>" post to Facebook</span>
 									</a>
-									<a class="share-btn twitter-btn" href="javascript:share_button('http://twitter.com/share?url=<?php echo get_permalink(); ?>&text=<?php echo get_the_title(); ?>', 500, 500)">
+									<!-- <a class="share-btn twitter-btn" href="javascript:share_button('http://twitter.com/share?url=<?php echo get_permalink(); ?>&text=<?php echo get_the_title(); ?>', 500, 500)">
 										<span class="fa-stack fa-lg">
 											<i class="fa fa-circle fa-stack-2x"></i>
 											<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
 										</span>
 										<span class="sr-only">Share "<?php echo get_the_title(); ?>" post to Twitter</span>
-									</a>
+									</a> -->
 									<a class="share-btn email-btn" href="mailto:?subject=<?php echo get_the_title(); ?>&body=<?php echo get_the_title(); ?> <?php echo get_permalink(); ?>">
 										<span class="fa-stack fa-lg">
 											<i class="fa fa-circle fa-stack-2x"></i>
