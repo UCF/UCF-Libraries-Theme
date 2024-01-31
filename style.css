@@ -1715,6 +1715,7 @@ th.header.empty-cell{
 .homepage-banner {
   color: #fff;
   font-size: 1.25em;
+  font-family: 'Montserrat';
 }
 
 .homepage-banner a {
@@ -1725,12 +1726,13 @@ th.header.empty-cell{
 
 .homepage-banner p{
   margin: 1.25em 0;
-  text-align: center;
 }
 
 .homepage-banner .close{
   color: #fff;
   text-shadow: 0 1px 0 #000;
+  opacity: 1;
+  padding: .5em;
 }
 
 .homepage-banner .close:hover{
