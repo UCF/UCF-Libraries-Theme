@@ -346,7 +346,8 @@ function widget_area_affix() {
 function homepage_banner_close() {
   $('#banner_close_btn').click(function() {
     $('#banner_message').addClass('hide');
-    document.cookie = "banner_close=true; secure";
+    $banner_id = $('#banner_message').attr('data-id');
+    document.cookie = 'banner_close='+$banner_id+'; secure';
   });
 }
 

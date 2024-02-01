@@ -63,10 +63,11 @@
 			);
 			$loop = new WP_Query( $args );
 			while ( $loop->have_posts() ) : $loop->the_post(); 
-				if (!isset($_COOKIE['banner_close'])):
+				$title = title_to_slug(get_the_title());
+				if ($_COOKIE['banner_close'] !== $title):
 				$status = strip_tags(get_the_term_list( $post->ID, 'alert-status', '', ', ', '' ));
 		?>
-			<div id="banner_message" class="homepage-banner banner-<?php echo($status); ?>">
+			<div id="banner_message" class="homepage-banner banner-<?php echo($status); ?>" data-id="<?php echo($title); ?>">
       	<div class="container">
           	<button type="button" id="banner_close_btn" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
 						<?php the_content(); ?>
