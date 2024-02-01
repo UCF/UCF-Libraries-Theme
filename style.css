@@ -1736,13 +1736,18 @@ th.header.empty-cell{
 }
 
 .homepage-banner .close:hover{
-  color: #fff;
+  color: #ddd;
   filter: alpha(opacity=100);
   opacity: 1;
 }
 
 .banner-success {
   background-color: #5cb85c;
+  color:#000;
+}
+.banner-success .close{
+  color: #000;
+  text-shadow: none;
 }
 
 .banner-info {
@@ -1751,6 +1756,12 @@ th.header.empty-cell{
 
 .banner-warning {
   background-color: #d88f27;
+  color: #000;
+}
+
+.banner-warning .close{
+  color: #000;
+  text-shadow: none;
 }
 
 .banner-danger {
