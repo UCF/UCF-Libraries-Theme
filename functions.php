@@ -279,6 +279,7 @@ function register_cpt_staff_entities() {
       'hierarchical' => true,
       'description' => 'Staff names and descriptions',
       'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions', 'author', 'hierarchical', 'page-attributes' ),
+      'show_in_rest' => true,
       'taxonomies' => array( 'department', 'unit-group', 'subject' ),
       'public' => true,
       'show_ui' => true,
@@ -315,6 +316,7 @@ function register_cpt_staff_entities() {
       'hierarchical' => true,
       'labels' => $department_labels,
       'show_ui' => true,
+      'show_in_rest' => true,
       'show_admin_column' => true,
       'query_var' => true,
       'rewrite' => array( 'slug' => 'staff', 'with_front' => false ),
@@ -340,6 +342,7 @@ function register_cpt_staff_entities() {
       'hierarchical' => true,
       'labels' => $unit_labels,
       'show_ui' => true,
+      'show_in_rest' => true,
       'show_admin_column' => true,
       'query_var' => true,
       'rewrite' => array( 'slug' => 'staff', 'with_front' => false ),
@@ -366,6 +369,7 @@ function register_cpt_staff_entities() {
       'hierarchical' => true,
       'labels' => $subject_labels,
       'show_ui' => true,
+      'show_in_rest' => true,
       'show_admin_column' => true,
       'query_var' => true,
       'rewrite' => array( 'slug' => 'subject', 'with_front' => false ),
@@ -699,6 +703,80 @@ function generate_anatomy_taxonomy_rewrite_rules( $wp_rewrite ) {
 }
 add_action('generate_rewrite_rules', 'generate_anatomy_taxonomy_rewrite_rules');
 
+
+/**
+* Alert Custom Post Type & Taxonomies
+**/
+
+function register_cpt_alert_entities() {
+
+  //Alert Custom Post Type
+    $alert_labels = array(
+      'name' => _x( 'Alert', 'alert' ),
+      'singular_name' => _x( 'Alert', 'alert' ),
+      'add_new' => _x( 'Add New', 'alert' ),
+      'add_new_item' => _x( 'Add New Alert', 'alert' ),
+      'edit_item' => _x( 'Edit Alert', 'alert' ),
+      'new_item' => _x( 'New Alert', 'alert' ),
+      'view_item' => _x( 'View Alert', 'alert' ),
+      'search_items' => _x( 'Search Alert', 'alert' ),
+      'not_found' => _x( 'No alert found', 'alert' ),
+      'not_found_in_trash' => _x( 'No alert found in Trash', 'alert' ),
+      'parent_item_colon' => _x( 'Parent Alert:', 'alert' ),
+      'menu_name' => _x( 'Alert', 'alert' ),
+    );
+
+    $alert_args = array(
+      'labels' => $alert_labels,
+      'hierarchical' => true,
+      'description' => 'Alert names and descriptions',
+      'supports' => array( 'title', 'editor', 'custom-fields', 'revisions', 'author', 'hierarchical', 'page-attributes' ),
+      'show_in_rest' => true,
+      'taxonomies' => array( 'alert-status'),
+      'public' => true,
+      'show_ui' => true,
+      'show_in_menu' => true,
+      'menu_icon' => 'dashicons-megaphone',
+      'menu_position' => 20,
+      'show_in_nav_menus' => true,
+      'publicly_queryable' => false,
+      'exclude_from_search' => true,
+      'has_archive' => true,
+      'query_var' => true,
+      'can_export' => true,
+      'rewrite' => array( 'with_front' => false ),
+      'capability_type' => 'post'
+    );
+    register_post_type( 'alert', $alert_args );
+
+  // Status Taxonomy
+    $status_labels = array(
+      'name' => _x( 'Status', 'taxonomy general name' ),
+      'singular_name' => _x( 'Status', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Search Statuses' ),
+      'all_items' => __( 'All Statuses' ),
+      'parent_item' => __( 'Parent Status' ),
+      'parent_item_colon' => __( 'Parent Status:' ),
+      'edit_item' => __( 'Edit Status' ),
+      'update_item' => __( 'Update Status' ),
+      'add_new_item' => __( 'Add New Status' ),
+      'new_item_name' => __( 'New Status Name' ),
+      'menu_name' => __( 'Status' ),
+    );
+  
+    $status_args = array(
+      'hierarchical' => true,
+      'labels' => $status_labels,
+      'show_ui' => true,
+      'show_in_rest' => true,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array( 'slug' => 'alert', 'with_front' => false ),
+    );
+    register_taxonomy('alert-status',array('alert'), $status_args );
+}
+
+add_action( 'init', 'register_cpt_alert_entities' );
 
 //Adding in Featured image feature
 if ( function_exists( 'add_theme_support' ) ) {

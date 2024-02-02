@@ -6,7 +6,7 @@ Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
 
-Version: 1.20.4
+Version: 1.21.0
 
 */
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto:500,700,400');
@@ -1715,6 +1715,7 @@ th.header.empty-cell{
 .homepage-banner {
   color: #fff;
   font-size: 1.25em;
+  font-family: 'Montserrat';
 }
 
 .homepage-banner a {
@@ -1725,22 +1726,28 @@ th.header.empty-cell{
 
 .homepage-banner p{
   margin: 1.25em 0;
-  text-align: center;
 }
 
 .homepage-banner .close{
   color: #fff;
   text-shadow: 0 1px 0 #000;
+  opacity: 1;
+  padding: .5em;
 }
 
 .homepage-banner .close:hover{
-  color: #fff;
+  color: #ddd;
   filter: alpha(opacity=100);
   opacity: 1;
 }
 
 .banner-success {
   background-color: #5cb85c;
+  color:#000;
+}
+.banner-success .close{
+  color: #000;
+  text-shadow: none;
 }
 
 .banner-info {
@@ -1749,6 +1756,12 @@ th.header.empty-cell{
 
 .banner-warning {
   background-color: #d88f27;
+  color: #000;
+}
+
+.banner-warning .close{
+  color: #000;
+  text-shadow: none;
 }
 
 .banner-danger {
