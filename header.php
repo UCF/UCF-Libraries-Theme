@@ -70,12 +70,9 @@
 			<div id="banner_message" class="homepage-banner banner-<?php echo($status); ?>" data-id="<?php echo($title); ?>">
       	<div class="container">
           	<button type="button" id="banner_close_btn" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
-						<?php print_r($_COOKIE); ?>
 						<?php the_content(); ?>
         </div>
 			</div>
-		<?php else: ?>
-			<style> #banner_message {display:none;}</style>
    	<?php endif; endwhile;
     		wp_reset_postdata(); 
 		?>
