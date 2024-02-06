@@ -72,8 +72,7 @@
           	<button type="button" id="banner_close_btn" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
 						<?php the_content(); ?>
         </div>
-      </div>
-			
+			</div>
    	<?php endif; endwhile;
     		wp_reset_postdata(); 
 		?>

@@ -340,15 +340,44 @@ function widget_area_affix() {
   };
 };
 
+// Cookies
+// =========================================
+
+function setCookie(key, value, expiry) {
+  var expires = new Date();
+  expires.setTime(expires.getTime() + (expiry * 24 * 60 * 60 * 1000));
+  document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+}
+
+function getCookie(key) {
+  var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+  return keyValue ? keyValue[2] : null;
+}
+
+function eraseCookie(key) {
+  var keyValue = getCookie(key);
+  setCookie(key, keyValue, '-1');
+}
+
 // Homepage Banner Close Button
 // =========================================
 
 function homepage_banner_close() {
-  $('#banner_close_btn').click(function() {
-    $('#banner_message').addClass('hide');
-    $banner_id = $('#banner_message').attr('data-id');
-    document.cookie = 'banner_close='+$banner_id+'; secure';
-  });
+  
+    if ($('#banner_message')){
+      $banner_id = $('#banner_message').attr('data-id');
+      
+      if (getCookie('banner_close') == $banner_id) {
+        $('#banner_message').addClass('hide');
+      } else {
+        $('#banner_close_btn').click(function() {
+          document.cookie = 'banner_close='+$banner_id+'; secure';
+          $('#banner_message').addClass('hide');
+        });
+      }
+    }
+
+ 
 }
 
 
