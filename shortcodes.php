@@ -395,6 +395,7 @@ function tab_container($atts, $content = null) {
     <ul class="nav nav-tabs" role="tablist">';
   foreach($ids as $id) {
     $icon = '';
+    $number ='';
     $id_name = $id;
     $id = str_replace(' ', '-', $id);
     $id = str_replace('.', '', $id);
@@ -403,13 +404,20 @@ function tab_container($atts, $content = null) {
     $id = str_replace('/', '', $id);
     $id = str_replace('(', '', $id);
     $id = str_replace(')', '', $id);
-    if ($icons[$i] != '') {
-      $icon = '<span class="glyphicon glyphicon-'.$icons[$i].'"></span>';
+    if ($icons != ''){
+      if ($icons[$i] != '') {
+        $icon = '<span class="glyphicon glyphicon-'.$icons[$i].'"></span>';
+      }
+    }
+    if ($numbers != ''){
+      if ($numbers[$i] != '') {
+        $number = $numbers[$i];
+      }
     }
     if($i == 0) {
-      $output .= '<li class="active" role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$numbers[$i].'</a></li>';
+      $output .= '<li class="active" role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$number.'</a></li>';
     } else {
-        $output .= '<li role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$numbers[$i].'</a></li>';
+        $output .= '<li role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$number.'</a></li>';
     }
     ++$i;
   }
