@@ -140,8 +140,8 @@ Description: Taxonomy archive page.
 													<li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
 												<?php endif; ?>
 
-												<?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array(all) )): ?>
-													<li><i class="fa fa-book" data-toggle="tooltip" data-placement="right" title="Subject"></i><?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array(all) ); ?></li>
+												<?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') )): ?>
+													<li><i class="fa fa-book" data-toggle="tooltip" data-placement="right" title="Subject"></i><?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') ); ?></li>
 												<?php endif; ?>
 
 												<?php if(get_post_meta($post->ID, 'room', true)): ?>
