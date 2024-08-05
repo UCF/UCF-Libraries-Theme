@@ -477,7 +477,7 @@ function recent_posts_function($atts){
         }
         // if ($size != 'small') {
           if (has_post_thumbnail()) {       // Check if post has a featured image.
-            $thumbnail = get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail'));
+            $thumbnail = get_the_post_thumbnail( null,'homepage-thumbnail', array('class' => 'homepage-thumbnail'));
           } else {                          // Use the default thumbnail instead.
             $thumbnail = '<img class="homepage-thumbnail" alt="" src="'.get_template_directory_uri().'/images/generic-default-thumb.jpg">';
           }
@@ -509,7 +509,7 @@ function recent_posts_function($atts){
         } else {
           $return_string .=
           '<div class="news-post card">
-              <div class="news-post-image">'.$thumbnail.'</div><!-- '.$url.' -->
+              <div class="news-post-image">'.$thumbnail.'</div>
               <div class="news-post-text">
                 <div class="news-post-title">
                   <header>
