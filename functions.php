@@ -118,15 +118,15 @@ function taxonomy_term_list( $taxonomy ) {
   $tax_terms = get_terms($taxonomy,$term_args);
   $term_list = '<ul>';
   foreach ($tax_terms as $tax_term) {
-    // if ($tax_term->parent == 0) {
-      $term_list .= '<li><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all Staff in %s" ), $tax_term->name ) . '">' . $tax_term->name.'</a></li>';
+    $term_list .= '<li><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all Staff in %s" ), $tax_term->name ) . '">' . $tax_term->name.'</a></li>';
+    $term_children = get_terms($taxonomy, array( 'parent' => $tax_term->term_id));
+    if ($term_children) {
       $term_list .= '<ul>';
-      $term_children = get_terms($taxonomy, array( 'parent' => $tax_term->term_id));
       foreach ($term_children as $term_child) {
         $term_list .= '<li><a href="' . esc_attr(get_term_link($term_child, $taxonomy)) . '" title="' . sprintf( __( "View all Staff in %s" ), $term_child->name ) . '">' . $term_child->name.'</a></li>';
       }
       $term_list .= '</ul>';
-    // }
+    }
   }
   $term_list .= '</ul>';
   echo $term_list;
