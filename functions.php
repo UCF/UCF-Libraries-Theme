@@ -1024,7 +1024,7 @@ function occuspace_api_call($id) {
   $args = array( 
     'timeout' => 120,
     'headers' => array(
-			'Authorization' => 'Bearer rOoUTcOOSvcli1reno600000hkfclsjewt3'
+			'Authorization' => 'Bearer xmEDKp7UWuclzk1584u00000is3c6xt34ea'
 		)
   );
   $request = wp_remote_get($url, $args);
