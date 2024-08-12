@@ -115,7 +115,7 @@ function textbook_items_object($query_params) {
 	$response = wp_remote_get( $url, $args );
 	// remove_filter( 'http_request_args', 'limit_redirects' );
 
-	if ( is_wp_error( $request ) ) {
+	if ( is_wp_error( $response ) ) {
 		return null;
 	}
   // This step captures the response to collect the headers
@@ -176,7 +176,7 @@ function textbook_object_content($json_o){
   // Iterate through each textbook object to make a new item for the grid.
   foreach ($json_o->results as $item){
     $instructions = '';
-    if ($item->configured_field_t_instructions[0]){
+    if (isset($item->configured_field_t_instructions)){
       $instructions = ' <a class="btn btn-default" target="_blank" href="'.$item->configured_field_t_instructions[0].'" title="View instructions for accessing '.$item->title.' on ProQuest.">View Instructions</a>';
     }
     $content .= '

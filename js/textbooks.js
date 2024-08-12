@@ -4,7 +4,7 @@ let query_parameters = '?' + instructor + '&' + course_number;
 const spinner = '<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';
 
 function display_textbooks(query_parameters) {
-  // This part is just for making the code work on the WAMP server
+  // This part is just for making the code work on the WAMP server and pantheon dev and test
   let current_url = window.location.href;
   let localhost_domain = '';
   if (current_url.includes('localhost')){
@@ -14,6 +14,9 @@ function display_textbooks(query_parameters) {
     if (current_url.includes('library_test')){
       localhost_domain = '/library_test';
     }
+  }
+  if (current_url.includes('library-ucf-edu')){
+    localhost_domain = '/library-ucf-edu';
   }
   // Normal code starts here
   if (!query_parameters){

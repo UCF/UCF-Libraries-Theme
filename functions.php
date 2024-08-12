@@ -113,11 +113,20 @@ function taxonomy_term_list( $taxonomy ) {
     'orderby' => 'name',
     'order' => 'ASC', 
     'heirarchical' => true,
+    'parent' => 0,
   );
   $tax_terms = get_terms($taxonomy,$term_args);
   $term_list = '<ul>';
   foreach ($tax_terms as $tax_term) {
-    $term_list .= '<li><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all posts in %s" ), $tax_term->name ) . '">' . $tax_term->name.'</a></li>';
+    $term_list .= '<li><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all Staff in %s" ), $tax_term->name ) . '">' . $tax_term->name.'</a></li>';
+    $term_children = get_terms($taxonomy, array( 'parent' => $tax_term->term_id));
+    if ($term_children) {
+      $term_list .= '<ul>';
+      foreach ($term_children as $term_child) {
+        $term_list .= '<li><a href="' . esc_attr(get_term_link($term_child, $taxonomy)) . '" title="' . sprintf( __( "View all Staff in %s" ), $term_child->name ) . '">' . $term_child->name.'</a></li>';
+      }
+      $term_list .= '</ul>';
+    }
   }
   $term_list .= '</ul>';
   echo $term_list;
@@ -1015,7 +1024,7 @@ function occuspace_api_call($id) {
   $args = array( 
     'timeout' => 120,
     'headers' => array(
-			'Authorization' => 'Bearer rOoUTcOOSvcli1reno600000hkfclsjewt3'
+			'Authorization' => 'Bearer xmEDKp7UWuclzk1584u00000is3c6xt34ea'
 		)
   );
   $request = wp_remote_get($url, $args);

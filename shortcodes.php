@@ -395,6 +395,7 @@ function tab_container($atts, $content = null) {
     <ul class="nav nav-tabs" role="tablist">';
   foreach($ids as $id) {
     $icon = '';
+    $number ='';
     $id_name = $id;
     $id = str_replace(' ', '-', $id);
     $id = str_replace('.', '', $id);
@@ -403,13 +404,20 @@ function tab_container($atts, $content = null) {
     $id = str_replace('/', '', $id);
     $id = str_replace('(', '', $id);
     $id = str_replace(')', '', $id);
-    if ($icons[$i] != '') {
-      $icon = '<span class="glyphicon glyphicon-'.$icons[$i].'"></span>';
+    if ($icons != ''){
+      if ($icons[$i] != '') {
+        $icon = '<span class="glyphicon glyphicon-'.$icons[$i].'"></span>';
+      }
+    }
+    if ($numbers != ''){
+      if ($numbers[$i] != '') {
+        $number = $numbers[$i];
+      }
     }
     if($i == 0) {
-      $output .= '<li class="active" role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$numbers[$i].'</a></li>';
+      $output .= '<li class="active" role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$number.'</a></li>';
     } else {
-        $output .= '<li role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$numbers[$i].'</a></li>';
+        $output .= '<li role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$number.'</a></li>';
     }
     ++$i;
   }
@@ -477,7 +485,7 @@ function recent_posts_function($atts){
         }
         // if ($size != 'small') {
           if (has_post_thumbnail()) {       // Check if post has a featured image.
-            $thumbnail = get_the_post_thumbnail( $post_id,'homepage-thumbnail', array('class' => 'homepage-thumbnail'));
+            $thumbnail = get_the_post_thumbnail( null,'homepage-thumbnail', array('class' => 'homepage-thumbnail'));
           } else {                          // Use the default thumbnail instead.
             $thumbnail = '<img class="homepage-thumbnail" alt="" src="'.get_template_directory_uri().'/images/generic-default-thumb.jpg">';
           }
@@ -509,7 +517,7 @@ function recent_posts_function($atts){
         } else {
           $return_string .=
           '<div class="news-post card">
-              <div class="news-post-image">'.$thumbnail.'</div><!-- '.$url.' -->
+              <div class="news-post-image">'.$thumbnail.'</div>
               <div class="news-post-text">
                 <div class="news-post-title">
                   <header>
