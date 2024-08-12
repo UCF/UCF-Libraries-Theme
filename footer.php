@@ -58,7 +58,7 @@
         </nav>
 			</div>
 			<div class="social-btn-group">
-        <a class="facebook-btn" href="https://www.facebook.com/ucflibrary/" target="_blank"><i class="fa fa-facebook-square"></i><span class="sr-only">Follow on Facebook</span></a>
+        <a class="facebook-btn" href="https://www.facebook.com/ucflibraries/" target="_blank"><i class="fa fa-facebook-square"></i><span class="sr-only">Follow on Facebook</span></a>
         <!-- <a class="twitter-btn" href="https://twitter.com/UCFLibrary"  target="_blank"><i class="fa fa-twitter-square"></i><span class="sr-only">Follow on Twitter</span></a> -->
         <a class="instagram-btn"  href="https://www.instagram.com/ucflibraries/" target="_blank"><i class="fa fa-instagram"></i><span class="sr-only">Follow us on Instagram</span></a>
         <!-- <a class="tumblr-btn" href="http://ucflibrary.tumblr.com/" target="_blank"><i class="fa fa-tumblr-square"></i><span class="sr-only">Follow us on Tumblr</span></a> -->
