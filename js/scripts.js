@@ -367,14 +367,14 @@ function homepage_banner_close() {
     if ($('#banner_message')){
       $banner_id = $('#banner_message').attr('data-id');
       
-      if (getCookie('banner_close') == $banner_id) {
-        $('#banner_message').addClass('hide');
-      } else {
-        $('#banner_close_btn').click(function() {
-          document.cookie = 'banner_close='+$banner_id+'; secure';
-          $('#banner_message').addClass('hide');
-        });
-      }
+      if (getCookie('banner_close') !== $banner_id) {
+        $('#banner_message').addClass('show');
+      } 
+      $('#banner_close_btn').click(function() {
+        document.cookie = 'banner_close='+$banner_id+'; secure';
+        $('#banner_message').removeClass('show');
+      });
+
     }
 
  
