@@ -109,7 +109,7 @@ function title_to_slug($string) {
 
 function taxonomy_term_list( $taxonomy ) {
   $term_args = array(
-    'hide_empty' => false,
+    'hide_empty' => true,
     'orderby' => 'name',
     'order' => 'ASC', 
     'heirarchical' => true,
@@ -134,7 +134,7 @@ function taxonomy_term_list( $taxonomy ) {
 
 // Creates list items for sidebar taxonmy filter lists
 function taxonomy_filter ($taxonomy_name) {
-	$taxonomy_terms = get_terms(['taxonomy' => $taxonomy_name, 'hide_empty' => false,]);
+	$taxonomy_terms = get_terms(['taxonomy' => $taxonomy_name, 'hide_empty' => true,]);
 	$output = '<ul>';
   foreach($taxonomy_terms as $taxonomy_term) {
 		$slug = str_replace('-amp', '', title_to_slug($taxonomy_term -> name));

@@ -25,24 +25,24 @@ function textbook_objects_display($atts) {
                     <p>'.$desc.'</p>
                     <form id="textbook_search_form" action="javascript:void(0);">
                       <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
+                          <label for="book_title">Book Title</label>
+                          <input class="form-control" name="book_title" id="book_title" type="text">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-md-4">
                           <label for="course_number">Course Number</label>
                           <input class="form-control" name="course_number" id="course_number" type="text">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                           <label for="course_department">Course Department</label>
                           <select class="form-control" name="course_department" id="course_department">
                             <option></option>
                             '.$option_list.'
                           </select>
                         </div>
-                      </div>
-                      <div class="row">
-                        <div class="form-group col-md-6">
-                          <label for="book_title">Book Title</label>
-                          <input class="form-control" name="book_title" id="book_title" type="text">
-                        </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                           <label for="instructor">Course Instructor</label>
                           <input class="form-control" name="instructor" id="instructor" type="text">
                         </div>
@@ -179,6 +179,9 @@ function textbook_object_content($json_o){
     if (isset($item->configured_field_t_instructions)){
       $instructions = ' <a class="btn btn-default" target="_blank" href="'.$item->configured_field_t_instructions[0].'" title="View instructions for accessing '.$item->title.' on ProQuest.">View Instructions</a>';
     }
+    if (isset($item->download_link)){
+      $download_link = ' <a class="btn btn-primary" target="_blank" href="'.$item->download_link.'" title="Read Full Text URL for '.$item->title.'">Read Full Text</a>';
+    }
     $content .= '
       <div class="grid-item">
         <div class="card">
@@ -191,7 +194,7 @@ function textbook_object_content($json_o){
               <li><strong>Course Instructor</strong>: '.display_array($item->configured_field_t_instructors).'</li>
               <li><strong>License</strong>: '.display_array($item->configured_field_t_license).'</li>
             </ul>
-            <a class="btn btn-primary" target="_blank" href="'.$item->download_link.'" title="Read Full Text URL for '.$item->title.'">Read Full Text</a>
+            '.$download_link. '
             '.$instructions.'
           </div><!-- caption -->
         </div><!-- thumbnail -->

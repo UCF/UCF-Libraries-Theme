@@ -66,16 +66,12 @@ Description: This page has a large hero image with text on top.
     </div>
   </header>
 	<div id="content">
-		<div class="row">
-			<div class="col-sm-12">
-				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-				<article>
-				<?php the_content(__('(more...)')); ?>
-				</article>
-				<hr> <?php endwhile; else: ?>
-				<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
-			</div>
-		</div>
+    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+    <article>
+    <?php the_content(__('(more...)')); ?>
+    </article>
+    <?php endwhile; else: ?>
+    <p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 	</div>
 </div>
 
