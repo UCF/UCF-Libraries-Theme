@@ -759,7 +759,7 @@ function hours_week_calendar( $atts ) {
 
   <div id="s-lc-whw'.$id.'"></div>
   <script>
-  $(function(){
+  jQuery(function(){
   var week'.$id.' = new $.LibCalWeeklyGrid( $("#s-lc-whw'.$id.'"), { iid: 246, lid: '.$id.',  weeks: '.$weeks.' });
   });
   </script>';
@@ -1347,9 +1347,9 @@ function countdown_timer($atts, $content = null) {
       </div>
     </div>
     <script>
-      $(document).ready(function () {
+      jQuery(document).ready(function () {
         var date = new Date('.$year.', '.($month-1).', '.$day.', '.$hour.', '.$minute.');
-        var $display = $("#countdown_timer");
+        var $display = jQuery("#countdown_timer");
         countdown($display, date);
         timer_interval = setInterval(function () { countdown($display, date); }, 1000);
       });
@@ -1416,8 +1416,8 @@ function referral_message($atts, $content = null) {
     return '<!-- URL match! -->
       <!-- Referral URL = '.$referral_url.'-->
       <script>
-        $(document).ready(function() {
-          $(\'#modal_match\').modal(\'show\');
+        jQuery(document).ready(function() {
+          jQuery(\'#modal_match\').modal(\'show\');
         });
       </script>
     ';
@@ -1425,8 +1425,8 @@ function referral_message($atts, $content = null) {
     return '<!-- No URL match! -->
       <!-- Referral URL = '.$referral_url.'-->
       <script>
-        $(document).ready(function() {
-          $(\'#modal_no_match\').modal(\'show\');
+        jQuery(document).ready(function() {
+          jQuery(\'#modal_no_match\').modal(\'show\');
         });
       </script>
     ';

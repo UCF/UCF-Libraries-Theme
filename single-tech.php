@@ -129,31 +129,31 @@ if ( substr($name, -1) == 's') {
 			percent_available = Math.round((available_items / total_items) * 100);
 			
 			if (available_items > 0) {
-				$('#item_availability_bar').addClass('progress-bar-success');
+				jQuery('#item_availability_bar').addClass('progress-bar-success');
 			} else {
-				$('#item_availability_bar').addClass('progress-bar-warning');
+				jQuery('#item_availability_bar').addClass('progress-bar-warning');
 			}
 
-			$('#item_availability_bar').css('width', percent_available+'%').attr('aria-valuenow', percent_available);   
-			$('.total-items-available').text(available_items);
-			$('.total-items').text(total_items);
+			jQuery('#item_availability_bar').css('width', percent_available+'%').attr('aria-valuenow', percent_available);   
+			jQuery('.total-items-available').text(available_items);
+			jQuery('.total-items').text(total_items);
 			if (available_items == 1) {
-				$('.single-plural').text('is');
+				jQuery('.single-plural').text('is');
 			} else {
-				$('.single-plural').text('are');
+				jQuery('.single-plural').text('are');
 			}
 			if (available_items != 1 && has_s == 0 ){
-				$('.s-ending').text('s');
+				jQuery('.s-ending').text('s');
 			}
 		} else {
-			$('#item_availability_bar').addClass('progress-bar-danger');
-			$('#item_availability_bar').css('width', '100%').attr('aria-valuenow', 100);   
-			$('#item_availability_bar').text("There was an error locating this item's availabilty status.");
-			$('#item_availability_message').text("There was an error locating this item's availabilty status.");
+			jQuery('#item_availability_bar').addClass('progress-bar-danger');
+			jQuery('#item_availability_bar').css('width', '100%').attr('aria-valuenow', 100);   
+			jQuery('#item_availability_bar').text("There was an error locating this item's availabilty status.");
+			jQuery('#item_availability_message').text("There was an error locating this item's availabilty status.");
 		}
 	}
 
-	$(document).ready(function(){
+	jQuery(document).ready(function(){
 		availability_status();
 	});
 </script>

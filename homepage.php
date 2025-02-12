@@ -32,7 +32,7 @@ Generate a random backround from the list below.
 </div>
 <script type="text/javascript">
 
-$(document).ready(function() {
+jQuery(document).ready(function() {
     <?php // hooks into advanced custom fields to allow new background images to be added in the wordpress editor
       if(get_post_meta($post->ID, 'background_images', true)):
         $background_images = get_post_meta($post->ID, 'background_images', true);
@@ -44,7 +44,7 @@ $(document).ready(function() {
         echo "let images = '$directory' + 'bg-11-hitt-new-entrance.jpg';";
       endif;
     ?>
-    $('.background-image').css({'background-image': 'url('+ images +')'});
+    jQuery('.background-image').css({'background-image': 'url('+ images +')'});
    });
 </script>
 <?php get_footer(); ?>
