@@ -571,7 +571,7 @@ function pre_check_box() {
   if(document.location.search.length) {
     if ($filter) {
       let filter_array = $filter.split('+');
-      filter_array.forEach(element => jQuery('#'+element).attr('checked', 'checked'));
+      filter_array.forEach(element => jQuery('#'+element).prop('checked', 'checked'));
       taxonomy_filter(categories);
     }
   }
