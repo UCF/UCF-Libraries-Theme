@@ -167,13 +167,13 @@ add_action( 'init', 'register_my_menus' );
 function wpt_register_js() {
     wp_deregister_script('jquery');
     wp_register_script('jquery', "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js", false, null);
-    wp_register_script('jquery.ui', "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js", false, null);
+    // wp_register_script('jquery.ui', "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js", false, null);
     wp_register_script('jquery.bootstrap.min', get_template_directory_uri() . '/js/bootstrap.min.js', 'jquery');
     wp_register_script('jquery.tablesorter.min', get_template_directory_uri() . '/js/jquery.tablesorter.min.js', 'jquery');
     wp_register_script('jquery.scripts', get_template_directory_uri(). '/js/scripts.js', 'jquery');
 
     wp_enqueue_script('jquery');
-    wp_enqueue_script('jquery.ui');
+    // wp_enqueue_script('jquery.ui');
     wp_enqueue_script('jquery.bootstrap.min');
     wp_enqueue_script('jquery.tablesorter.min');
     wp_enqueue_script('jquery.scripts');
@@ -182,15 +182,15 @@ add_action( 'init', 'wpt_register_js' );
 
 function wpt_register_css() {
     wp_register_style( 'normalize', get_stylesheet_directory_uri() . '/css/normalize.css', array(), '1', 'all' );
-    wp_register_style( 'jquery.ui.css', "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css");
+    // wp_register_style( 'jquery.ui.css', "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css");
     wp_register_style( 'bootstrap.min', get_stylesheet_directory_uri() . '/css/bootstrap.min.css', array(), '1', 'all' );
     wp_register_style( 'font-awesome.min.css', get_stylesheet_directory_uri() . '/css/font-awesome.min.css', array(), '1', 'all' );
-    wp_register_style( 'style', get_stylesheet_directory_uri() . '/style.css', array('normalize','jquery.ui.css','bootstrap.min','font-awesome.min.css'), '1', 'all' );
+    wp_register_style( 'style', get_stylesheet_directory_uri() . '/style.css', array('normalize','bootstrap.min','font-awesome.min.css'), '1', 'all' );
  //   wp_register_style( 'gravity-bootstrap', get_stylesheet_directory_uri() . '/css/gravity-bootstrap.css' );
 
 
     wp_enqueue_style( 'normalize');
-    wp_enqueue_style( 'jquery.ui.css');
+    // wp_enqueue_style( 'jquery.ui.css');
     wp_enqueue_style( 'bootstrap.min' );
     wp_enqueue_style( 'font-awesome.min.css' );
     wp_enqueue_style( 'style');
