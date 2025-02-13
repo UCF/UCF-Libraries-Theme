@@ -1534,7 +1534,7 @@ function occuspace_display($atts){
   $output = '<div class="grid">';
   foreach ($ids as $id) {
     $json_o = occuspace_api_call($id);
-    if ($json_o !== null) {
+    if (!empty( $json_o->data->childCounts)) {
       foreach ($json_o->data->childCounts as $floor) {
         if ($floor->isActive !== false) {
           $percent_occupied = $floor->percentage*100;
@@ -1571,7 +1571,7 @@ function occuspace_display($atts){
       }
       
     } else {
-      $output .= '<p>Null was returned</p>';
+      $output .= '<p>No data was found.</p>';
     }
   }
   $output .= '</div>';
