@@ -222,8 +222,8 @@ let categories = [
 ]
 jQuery('.taxonomy-filter').on('change', 'input:checkbox', function (){taxonomy_filter(categories);});
 jQuery('#clear_all').on('click', function(){
-    jQuery('input:checkbox').removeAttr('checked');
-    taxonomy_filter(categories);
+  jQuery('input:checkbox').prop('checked', false);
+  taxonomy_filter(categories);
 });
 jQuery(document).ready( function(){
   jQuery('.lds-spinner').hide();

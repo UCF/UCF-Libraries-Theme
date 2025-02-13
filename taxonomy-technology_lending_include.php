@@ -240,7 +240,7 @@ Description: Include file for Tech Lending Taxonomies.
 	</div><!-- background-color-gray -->
 </div><!-- main -->
 <script>
-let categories = [
+const categories = [
   {
     'name' : 'library',
     'filter' : ''
@@ -260,7 +260,7 @@ let categories = [
 ]
 jQuery('.taxonomy-filter').on('change', 'input:checkbox', function (){taxonomy_filter(categories);});
 jQuery('#clear_all').on('click', function(){
-    jQuery('input:checkbox').removeAttr('checked');
+    jQuery('input:checkbox').prop('checked', false);
     taxonomy_filter(categories);
 });
 jQuery(document).ready( function(){
