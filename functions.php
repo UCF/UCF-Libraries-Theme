@@ -924,8 +924,8 @@ add_filter('wp_kses_allowed_html', 'mawaha_filter_allowed_html', 10, 2);
  * Primo API call function
  * Access the availability of an item in Primo and return an array ($available_items, $total_items)
  */
-function primo_availability_api_call($mmsid, $limit){
-  $url = 'https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/'.$mmsid.'/holdings/all/items?limit='.$limit.'&offset=0&order_by=description&direction=asc&view=brief&apikey=l8xxbd732e64a6fb41e4af79c0260aa7a809';
+function primo_availability_api_call($mmsid, $limit, $offset) {
+  $url = 'https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/'.$mmsid.'/holdings/all/items?limit='.$limit.'&offset='.$offset.'&order_by=description&direction=asc&view=brief&apikey=l8xxbd732e64a6fb41e4af79c0260aa7a809';
   $request = wp_remote_get($url, array( 
     'timeout' => 120,
     'headers' => array(
@@ -979,20 +979,22 @@ function primo_availability_list($json_o) {
           <tbody>
     ';
     foreach ($json_o->item as $item){
-      $output .= '<tr>';
-      $output .= '<td>'.$item->item_data->description.'</td>';
-      if ($item->item_data->base_status->value != 1){
-        if ($item->item_data->process_type->value == 'LOAN') {
-          $output .= '<td>On Loan</td>';
+      if (!($item->item_data->base_status->value == 0 && $item->item_data->process_type->value !== 'LOAN')) {
+        $output .= '<tr>';
+        $output .= '<td>'.$item->item_data->description.'</td>';
+        if ($item->item_data->base_status->value != 1){
+          if ($item->item_data->process_type->value == 'LOAN') {
+            $output .= '<td>On Loan</td>';
+          } else {
+            $output .= '<td>Item Unavailable</td>'; // Should not appear as all Unavailable itmes should have been removed.
+          }
         } else {
-          $output .= '<td>Item Unavailable</td>';
+          $output .= '<td>Item available for checkout</td>';
         }
-      } else {
-        $output .= '<td>Item available for checkout</td>';
+        
+        $output .= '<td>'.$item->item_data->policy->desc.'</td>';
+        $output .= '</tr>';
       }
-      
-      $output .= '<td>'.$item->item_data->policy->desc.'</td>';
-      $output .= '</tr>';
     }
     $output .= '
           </tbody>
