@@ -922,7 +922,7 @@ add_filter('wp_kses_allowed_html', 'mawaha_filter_allowed_html', 10, 2);
 
 /**
  * Primo API call function
- * Access the availability of an item in Primo and return an array ($available_items, $total_items)
+ * Access the availability of an item in Primo and return an array ($available_items, $total_items, $offset)
  */
 function primo_availability_api_call($mmsid, $limit, $offset) {
   $url = 'https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/'.$mmsid.'/holdings/all/items?limit='.$limit.'&offset='.$offset.'&order_by=description&direction=asc&view=brief&apikey=l8xxbd732e64a6fb41e4af79c0260aa7a809';
