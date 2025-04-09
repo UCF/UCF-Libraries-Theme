@@ -126,6 +126,46 @@ p.comment-form-url {   /* Removes Website URL field from post comments */
   display: none;
 }
 
+.gold-btn {
+  font-family: Montserrat;
+  font-size: 2rem;
+  color: #000;
+  border-width: 3px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  white-space: normal;
+  background-color: #fc0;
+  border-color: #fc0;
+  display: inline-block;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 2rem 2.5rem;
+  transition: all .2s ease-in-out;
+
+}
+
+.gold-btn:hover {
+  background-color: #e0b400;
+  border-color: #e0b400;
+  color: #000;
+  text-decoration: none;
+}
+.gold-btn:focus {
+  background-color: #e0b400;
+  border-color: #e0b400;
+  color: #000;
+  text-decoration: none;
+}
+
+
 .unavailable {color: #f00;}
 
 /* Google Search override */
