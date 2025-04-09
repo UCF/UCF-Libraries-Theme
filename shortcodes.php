@@ -576,12 +576,11 @@ function youtube_video($atts) {
   extract(shortcode_atts( array(
       'id' => '62NEzgmqwx0',
       'width' => '100%',
-      'list' => '',
       'title' => 'Youtube Video',
   ), $atts ));
   return '<div class="responsive-wrapper" style="max-width:'.$width.';">
             <div class="responsive-container youtube">
-             <iframe title="'.$title.'"" src="https://youtube.com/embed/'.$id.'?list='.$list.'" frameborder="0" allowfullscreen></iframe>
+              <iframe src="https://www.youtube.com/embed/'.$id.'?si=ucflibrary" title="'.$title.'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
           </div>';
 }
