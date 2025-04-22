@@ -20,9 +20,17 @@ Description: This template is only for including a staff member card onto a page
 												<li><span class="glyphicon glyphicon-user" data-toggle="tooltip" data-placement="right" title="Position"></span> <?php echo get_post_meta($post->ID, 'title', true); ?></li>
 											<?php endif; ?>
 
+											<?php if(get_post_meta($post->ID, 'rank', true)): ?>
+                        						<li><i class="fa fa-graduation-cap" data-toggle="tooltip" data-placement="right" title="Rank"></i><?php echo get_post_meta($post->ID, 'rank', true); ?></li>
+                     						<?php endif; ?>
+
 											<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
 												<li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
 											<?php endif; ?>
+
+											<?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') )): ?>
+  												<li><i class="fa fa-book" data-toggle="tooltip" data-placement="right" title="Subject"></i><?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') ); ?></li>
+  											<?php endif; ?>
 
 											<?php if(get_post_meta($post->ID, 'room', true)): ?>
 												<li><span class="glyphicon glyphicon-map-marker" data-toggle="tooltip" data-placement="right" title="Location"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
