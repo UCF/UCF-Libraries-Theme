@@ -54,11 +54,12 @@ Description: Taxonomy archive page.
                 <table class="table table-striped table-sorter">
                   <thead>
                     <tr>
-                      <th class="empty-cell"></th>
-                      <th><span class="glyphicon glyphicon-user"></span> Name</th>
+                      <th class="empty-cell"><span class="sr-only">Staff Image</span></th>
+                      <th style="min-width: 10em;"><span class="glyphicon glyphicon-user"></span> Name</th>
                       <th><i class="fa fa-bookmark"></i> Title</th>
                       <th><i class="fa fa-graduation-cap"></i> Rank</th>
                       <th><i class="fa fa-university"></i> Department</th>
+                      <th><i class="fa fa-book"></i> Subject</th>
                       <th style="min-width: 10em;"><span class="glyphicon glyphicon-phone-alt"></span> Phone</th>
                       <th style="min-width: 6em;"><i class="fa fa-envelope"></i> Email</th>
                     </tr>
@@ -84,6 +85,11 @@ Description: Taxonomy archive page.
                         <?php endif; ?>
                       </td>
                       <td>
+                        <?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') )): ?>
+                          <?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') ); ?>
+                        <?php endif; ?>
+                      </td>
+                      <td>
                         <?php if(get_post_meta($post->ID, 'phone', true)): ?>
                           <?php echo get_post_meta($post->ID, 'phone', true); ?>
                         <?php endif; ?>
@@ -96,6 +102,7 @@ Description: Taxonomy archive page.
                     </tr>
                   <?php endwhile; else: ?>
                     <tr>
+                      <td></td>
                       <td></td>
                       <td></td>
                       <td></td>
