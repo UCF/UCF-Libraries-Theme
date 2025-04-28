@@ -52,17 +52,19 @@ Description: Taxonomy archive page.
             <div class="card">
               <div class="table-responsive">
                 <table class="table table-striped table-sorter">
-                  <thead>
+                <thead>
                     <tr>
-                      <th class="empty-cell"></th>
-                      <th><span class="glyphicon glyphicon-user"></span> Name</th>
+                      <th class="empty-cell"><span class="sr-only">Staff Image</span></th>
+                      <th style="min-width: 10em;"><span class="glyphicon glyphicon-user"></span> Name</th>
                       <th><i class="fa fa-bookmark"></i> Title</th>
                       <th><i class="fa fa-graduation-cap"></i> Rank</th>
+                      <th><i class="fa fa-university"></i> Department</th>
                       <th><i class="fa fa-book"></i> Subject</th>
                       <th style="min-width: 10em;"><span class="glyphicon glyphicon-phone-alt"></span> Phone</th>
                       <th style="min-width: 6em;"><i class="fa fa-envelope"></i> Email</th>
                     </tr>
                   </thead>
+
                   <tbody>
                   <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                     <tr>
@@ -76,6 +78,11 @@ Description: Taxonomy archive page.
                       <td>
                         <?php if(get_post_meta($post->ID, 'rank', true)): ?>
                           <?php echo get_post_meta($post->ID, 'rank', true); ?>
+                        <?php endif; ?>
+                      </td>
+                      <td>
+                        <?php if(get_the_term_list( $post->ID, 'department', true)): ?>
+                          <?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?>
                         <?php endif; ?>
                       </td>
                       <td>
@@ -96,6 +103,7 @@ Description: Taxonomy archive page.
                     </tr>
                   <?php endwhile; else: ?>
                     <tr>
+                      <td></td>
                       <td></td>
                       <td></td>
                       <td></td>
