@@ -117,11 +117,11 @@ Description: Taxonomy archive page.
               </div>
             </div>
           </div>
-          <div id="grid_view" class="directory row view view-active">
+					<div id="grid_view" class="directory grid view view-active">
 					 <?php $i = 0; ?>
 					 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 							<?php $i++; ?>
-							<div class="col-xs-6 col-md-4 col-lg-3">
+  						<div class="grid-item ">
 				    		<div class="thumbnail">
   				    			<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
   									<div class="caption">
@@ -164,17 +164,8 @@ Description: Taxonomy archive page.
   										<?php endif; ?>
   									</div><!-- caption -->
 								</div><!-- thumbnail -->
-							</div><!-- col-xs-6 col-md-4 col-lg-3 -->
-							<?php if ($i % 4 == 0) : //adds a clearfix every 3 items. ?>
-									<div class="clearfix visible-lg-block"></div>
-							<?php endif; ?>
-							<?php if ($i % 3 == 0) : //adds a clearfix every 2 items. ?>
-									<div class="clearfix visible-md-block"></div>
-							<?php endif; ?>
-							<?php if ($i % 2 == 0) : //adds a clearfix every 3 items. ?>
-									<div class="clearfix visible-sm-block visible-xs-block"></div>
-							<?php endif; ?>	
-					 <?php endwhile; else: ?>
+              </div><!-- grid-item -->
+              <?php endwhile; else: ?>
            <p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 					</div><!-- directory row -->
 					<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?>

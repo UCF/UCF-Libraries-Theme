@@ -65,7 +65,7 @@ function subject_dropdown( $taxonomy ) {
 				<div class="col-sm-12">
 					<h2 class="subpage-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h2>
 					<?php echo term_description( ) ?>
-					<div class="row">
+					<div class="grid-larger">
 						<?php $i = 0; ?>
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 							<?php $subjects = explode(", ", get_post_meta($post->ID, 'primary-subject', true)); ?>
@@ -135,7 +135,7 @@ function subject_dropdown( $taxonomy ) {
 							}?>
 							<?php if($match == 0) : ?>
 							<?php $i++; ?>
-							<div class="col-sm-6 col-md-3">
+  						<div class="grid-item ">
 								<!-- <h4>&nbsp;</h4>									 -->
 				    		<div class="thumbnail">
 				    				<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
@@ -182,13 +182,7 @@ function subject_dropdown( $taxonomy ) {
   										<?php endif; ?>
   									</div><!-- caption -->
 								</div><!-- thumbnail -->
-							</div><!-- col-sm-6 col-md-3 -->
-							<?php if ($i % 4 == 0) : //adds a clearfix every 4 items. ?>
-									<div class="clearfix visible-md-block visible-lg-block"></div>
-							<?php endif; ?>
-							<?php if ($i % 2 == 0) : //adds a clearfix every 2 items. ?>
-									<div class="clearfix visible-sm-block"></div>
-							<?php endif; ?>
+							</div><!-- grid-item -->
 							<?php endif; ?>
             <?php endwhile; else: ?>
               <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
