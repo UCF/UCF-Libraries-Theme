@@ -936,7 +936,7 @@ padding: 12px 15px;
 /* CSS Grid for Staff, Tech Lending, and Anatomy Lending*/
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 1rem;
 }
 
@@ -955,6 +955,18 @@ padding: 12px 15px;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 1rem;
 }
+
+.grid-larger {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 1rem;
+}
+@media (min-width: 500px) {
+  .grid-larger {
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  }
+}
+
 
 /* Textbooks */
 
@@ -1196,6 +1208,12 @@ label.filter-checkbox input ~ .checkbox-container .checkbox-custom:after {
     max-width: none;
 }
 
+.college-icon {
+  width: 11px;
+  position: absolute;
+  left: -1.5em;
+  top: 0.2em;
+}
 
 /* Table Sorter */
 
