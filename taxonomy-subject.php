@@ -73,8 +73,8 @@ function subject_dropdown( $taxonomy ) {
 								$subject = preg_replace('/&/', '&amp;', $subject);
 								if ($subject == $term->name) : ?>
 								<?php $i++; ?>
-									<div class="col-sm-6 col-md-3">
-										<h4 class="primary">Primary Librarian</h4>
+								<div class="grid-item ">
+									<p class="primary">Primary Librarian</p>
 						    		<div class="thumbnail">
 						    				<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
   											<div class="caption">
@@ -100,6 +100,7 @@ function subject_dropdown( $taxonomy ) {
   														<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
   															<li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
   														<?php endif; ?>
+															
   														<?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') )): ?>
   															<li><i class="fa fa-book" data-toggle="tooltip" data-placement="right" title="Subject"></i><?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') ); ?></li>
   														<?php endif; ?>
@@ -119,7 +120,7 @@ function subject_dropdown( $taxonomy ) {
   												<?php endif; ?>
   											</div><!-- caption -->
 										</div><!-- thumbnail -->
-									</div><!-- col-sm-6 col-md-3 -->
+									</div><!-- grid-item -->
 								<?php endif; ?>
 							<?php	} ?>
 						<?php endwhile;?>
@@ -162,6 +163,10 @@ function subject_dropdown( $taxonomy ) {
   												<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
   													<li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
   												<?php endif; ?>
+
+													<?php if(get_post_meta($post->ID, 'college', true)): ?>
+														<li><img class="college-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/images/PegasusIcon.png" data-toggle="tooltip" data-placement="right" title="College Liason"><?php echo get_post_meta($post->ID, 'college', true); ?></li>
+													<?php endif; ?>
 
   												<?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') )): ?>
   													<li><i class="fa fa-book" data-toggle="tooltip" data-placement="right" title="Subject"></i><?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') ); ?></li>
