@@ -122,7 +122,11 @@ function generate_term_list($taxonomy, $parent_id = 0) {
   }
   $queried_object = get_queried_object();
   $post_term_id = $queried_object->term_id;
-  $term_list = '<ul>';
+  if ($parent_id == 0) {
+    $term_list = '<ul class="tree">';
+  } else {
+    $term_list = '<ul>';
+  }
   foreach ($terms as $term) {
     if($post_term_id == $term->term_id) {
       $active_class = 'class="active-term"';
