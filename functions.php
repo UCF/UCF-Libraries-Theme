@@ -107,30 +107,41 @@ function title_to_slug($string) {
   return $string;
 }
 
-function taxonomy_term_list( $taxonomy ) {
+// Creates a list of taxonomy terms for the sidebar
+function generate_term_list($taxonomy, $parent_id = 0) { 
   $term_args = array(
     'hide_empty' => true,
     'orderby' => 'name',
-    'order' => 'ASC', 
-    'heirarchical' => true,
-    'parent' => 0,
+    'order' => 'ASC',
+    'hierarchical' => true,
+    'parent' => $parent_id,
   );
-  $tax_terms = get_terms($taxonomy,$term_args);
+  $terms = get_terms($taxonomy, $term_args);
+  if (empty($terms) || is_wp_error($terms)) {
+    return '';
+  }
+  $queried_object = get_queried_object();
+  $post_term_id = $queried_object->term_id;
   $term_list = '<ul>';
-  foreach ($tax_terms as $tax_term) {
-    $term_list .= '<li><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all Staff in %s" ), $tax_term->name ) . '">' . $tax_term->name.'</a></li>';
-    $term_children = get_terms($taxonomy, array( 'parent' => $tax_term->term_id));
-    if ($term_children) {
-      $term_list .= '<ul>';
-      foreach ($term_children as $term_child) {
-        $term_list .= '<li><a href="' . esc_attr(get_term_link($term_child, $taxonomy)) . '" title="' . sprintf( __( "View all Staff in %s" ), $term_child->name ) . '">' . $term_child->name.'</a></li>';
-      }
-      $term_list .= '</ul>';
+  foreach ($terms as $term) {
+    if($post_term_id == $term->term_id) {
+      $active_class = 'class="active-term"';
+    } else {
+      $active_class = '';
     }
+    $term_list .= '<li><a '.$active_class.' href="' . esc_attr(get_term_link($term, $taxonomy)) . '" title="' . sprintf(__( "View all Staff in %s" ), $term->name) . '">' . $term->name . '</a>';
+    $term_list .= generate_term_list($taxonomy, $term->term_id); // Recursive call for child terms
+    $term_list .= '</li>';
   }
   $term_list .= '</ul>';
-  echo $term_list;
+
+  return $term_list;
 }
+
+// Usage
+// echo generate_term_list($taxonomy);
+
+
 
 // Creates list items for sidebar taxonmy filter lists
 function taxonomy_filter ($taxonomy_name) {
