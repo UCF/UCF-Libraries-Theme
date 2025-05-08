@@ -149,7 +149,7 @@ Description: Taxonomy archive page.
 												<?php endif; ?>
 
                         <?php if(get_post_meta($post->ID, 'college', true)): ?>
-													<li><img class="college-icon" src="http://localhost/library-test/wp-content/themes/UCF-Libraries-Theme/images/PegasusIcon.png" data-toggle="tooltip" data-placement="right" title="College"><?php echo get_post_meta($post->ID, 'college', true); ?></li>
+													<li><img class="college-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/images/PegasusIcon.png" data-toggle="tooltip" data-placement="right" title="College"><?php echo get_post_meta($post->ID, 'college', true); ?></li>
 												<?php endif; ?>
 
 												<?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') )): ?>
