@@ -819,10 +819,22 @@ padding: 12px 15px;
 .view table { font-size: 12px; }
 
 /*Staff Directories*/
-.primary {
-  margin-top: 15px;
-  margin-bottom: 5px;
+
+.active-term {
+    font-weight: bold;
 }
+
+.primary {
+  margin: 0.75em 0 0.5em -0.5em;
+  padding: 0 .25em;
+  font-size: 1.25em;
+  font-weight: bold;
+  font-family: "Roboto";
+  background-color: #ffcc00;
+  position: absolute;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
 .thumbnail { border: none; }
 .thumbnail.single { box-shadow: none; }
 .caption ul { padding-left: 20px;}
