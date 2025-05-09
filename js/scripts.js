@@ -10,20 +10,20 @@
 //=======================
 
 function expandMenus() {
-    $('.sidebar-collapse .collapse').addClass('in');
-    $('.sidebar-collapse .collapse').attr("aria-expanded","true");
-    $('.sidebar-collapse .collapse').css('height','');
-    $('.menu-toggle').attr("aria-expanded","true");
-    $('.menu-toggle').removeClass('collapsed');
-    $('.menu-toggle .glyphicon').removeClass("glyphicon-plus-sign").addClass("glyphicon-minus-sign");
+    jQuery('.sidebar-collapse .collapse').addClass('in');
+    jQuery('.sidebar-collapse .collapse').attr("aria-expanded","true");
+    jQuery('.sidebar-collapse .collapse').css('height','');
+    jQuery('.menu-toggle').attr("aria-expanded","true");
+    jQuery('.menu-toggle').removeClass('collapsed');
+    jQuery('.menu-toggle .glyphicon').removeClass("glyphicon-plus-sign").addClass("glyphicon-minus-sign");
 }
 
 function collapseMenus() {
-    $('.sidebar-collapse .collapse').removeClass('in');
-    $('.sidebar-collapse .collapse').attr("aria-expanded","false");
-    $('.menu-toggle').attr("aria-expanded","false");
-    $('.menu-toggle').addClass('collapsed');
-    $('.menu-toggle .glyphicon').removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");
+    jQuery('.sidebar-collapse .collapse').removeClass('in');
+    jQuery('.sidebar-collapse .collapse').attr("aria-expanded","false");
+    jQuery('.menu-toggle').attr("aria-expanded","false");
+    jQuery('.menu-toggle').addClass('collapsed');
+    jQuery('.menu-toggle .glyphicon').removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");
 }
 
 //(Depricated) Generate a random string for use in ID override
@@ -39,7 +39,7 @@ function collapseMenus() {
 function collapse_sidebar(){
   
   //Collapse the sidebar menus when less than 768
-  if ($(window).width() < 768){  
+  if (jQuery(window).width() < 768){  
 	collapseMenus();
 	$menus_open = false;
   } else {
@@ -47,33 +47,33 @@ function collapse_sidebar(){
   }
 
   //Locate the toggle buttons of the sidebar and assign an ID based on the button text
-  $('.custom-sidebar').each(function() {
-  	$id = $(this).find('.menu-toggle').text().replaceAll(' ', '_');
-  	$(this).find('.collapse').prop('id', $id);
-  	$(this).find('.menu-toggle').prop('href', '#'+$id);
+  jQuery('.custom-sidebar').each(function() {
+  	$id = jQuery(this).find('.menu-toggle').text().replaceAll(' ', '_');
+  	jQuery(this).find('.collapse').prop('id', $id);
+  	jQuery(this).find('.menu-toggle').prop('href', '#'+$id);
   });
   
 };
 
-$(window).resize(function(){
-  if ($(window).width() >= 768 && !$menus_open){  
+jQuery(window).resize(function(){
+  if (jQuery(window).width() >= 768 && !$menus_open){  
     expandMenus();
     $menus_open = true;
   }
-  if ($(window).width() < 768 && $menus_open){  
+  if (jQuery(window).width() < 768 && $menus_open){  
 	collapseMenus();
 	$menus_open = false;
   }
 });
 
-$(document).on("hide.bs.collapse show.bs.collapse", ".collapse", function (event) {
-  $(this).prev().find(".glyphicon").toggleClass("glyphicon-plus-sign glyphicon-minus-sign");
+jQuery(document).on("hide.bs.collapse show.bs.collapse", ".collapse", function (event) {
+  jQuery(this).prev().find(".glyphicon").toggleClass("glyphicon-plus-sign glyphicon-minus-sign");
 });
 
 
 // Javascript to enable link to tab
 // =================================
-$.extend({
+jQuery.extend({
   getUrlVars: function(){
     var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -86,7 +86,7 @@ $.extend({
     return vars;
   },
   getUrlVar: function(name){
-    return $.getUrlVars()[name];
+    return jQuery.getUrlVars()[name];
   }
 });
 
@@ -94,30 +94,30 @@ $.extend({
 // Example: <a href="library.ucf.edu/?tab=#Tab-One&anchor=#Anchor-3">Link to Anchor-3 inside Tab-One on a different page.</a>
 function tab_linking(){
   var hash = window.location.hash;
-  var tab = $.getUrlVar('tab');
-  var anchor = $.getUrlVar('anchor');
+  var tab = jQuery.getUrlVar('tab');
+  var anchor = jQuery.getUrlVar('anchor');
   var prefix = "tab_";
   var id = hash.replace(prefix,"");
   if(document.location.search.length) {
     if (tab && anchor) {
-      $('ul.nav a[href="' + tab + '"]').tab('show');
-      $('html, body').animate({
-          scrollTop: $(anchor).offset().top
+      jQuery('ul.nav a[href="' + tab + '"]').tab('show');
+      jQuery('html, body').animate({
+          scrollTop: jQuery(anchor).offset().top
       }, 10);    
     } 
   } else if (hash) {
-    $('.nav-tabs a[href='+id+']').tab('show');
-    $('html, body').animate({scrollTop:$(id).position().top}, 0);
+    jQuery('.nav-tabs a[href='+id+']').tab('show');
+    jQuery('html, body').animate({scrollTop:jQuery(id).position().top}, 0);
   } 
 
 // Links to an anchor inside of a tab and scrolls the page to the anchor. Only works on page that CONTAINS the tabs.
 // Example: <a href="library.ucf.edu/#Anchor" data-tab="Tab-Name">Link to Anchor inside of Tab-Name on same page</a>
-  $('a[data-tab]').on('click', function() { 
-    var othertab = $(this).attr('data-tab'),
-        target = $(this).attr('href');
-      $('ul.nav a[href="' + othertab + '"]').tab('show');
-      $('html, body').animate({
-          scrollTop: $(target).offset().top
+  jQuery('a[data-tab]').on('click', function() { 
+    var othertab = jQuery(this).attr('data-tab'),
+        target = jQuery(this).attr('href');
+      jQuery('ul.nav a[href="' + othertab + '"]').tab('show');
+      jQuery('html, body').animate({
+          scrollTop: jQuery(target).offset().top
       }, 10);    
   });
 
@@ -126,7 +126,7 @@ function tab_linking(){
 
 
 // Change hash for page-reload
-$('.nav-tabs a').on('shown', function (e) {
+jQuery('.nav-tabs a').on('shown', function (e) {
     window.location.hash = e.target.hash.replace("#", "#" + prefix);
 });
 
@@ -134,34 +134,34 @@ $('.nav-tabs a').on('shown', function (e) {
 //Login Modal Launch
 //==================
 function login_modal_launch () {
-  $('.login-button').click(function() {
-    $('#login_modal').modal('show');
+  jQuery('.login-button').click(function() {
+    jQuery('#login_modal').modal('show');
   });
 };
 
 //Enable Tooltips
 //===============
 function enable_tooltips() {
-    $('[data-toggle="tooltip"]').tooltip();
+    jQuery('[data-toggle="tooltip"]').tooltip();
 };
 
 // Apply bootstrap styles to gravity forms
 //========================================
 function bootstrap_gravity_forms() {
-  $(".gform_wrapper input:text").addClass("form-control");
-  $(".gform_wrapper textarea").addClass("form-control");
-  $(".gform_wrapper select").addClass("form-control");
-  $(".gform_wrapper input:submit").addClass("btn btn-primary");
-  $(".gform_wrapper input:radio").each(function(){
-    $(this).next('label').andSelf().wrapAll('<div class="radio"/>');
+  jQuery(".gform_wrapper input:text").addClass("form-control");
+  jQuery(".gform_wrapper textarea").addClass("form-control");
+  jQuery(".gform_wrapper select").addClass("form-control");
+  jQuery(".gform_wrapper input:submit").addClass("btn btn-primary");
+  jQuery(".gform_wrapper input:radio").each(function(){
+    jQuery(this).next('label').andSelf().wrapAll('<div class="radio"/>');
   });
-  // $(".gform_wrapper .clear-multi").addClass("form-inline");
+  // jQuery(".gform_wrapper .clear-multi").addClass("form-inline");
 };
 
 // Apply btn class to footer My Account Button
 //============================================
 function my_account_btn() {
-  $(".my-account a").addClass("btn btn-primary");
+  jQuery(".my-account a").addClass("btn btn-primary");
 };
 
 
@@ -170,16 +170,16 @@ function my_account_btn() {
 
 function scroll_top_btn() {
 
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 500) {
-            $('.scroll-top').fadeIn();
+    jQuery(window).scroll(function () {
+        if (jQuery(this).scrollTop() > 500) {
+            jQuery('.scroll-top').fadeIn();
         } else {
-            $('.scroll-top').fadeOut();
+            jQuery('.scroll-top').fadeOut();
         }
     });
 
-    $('.scroll-top').click(function () {
-        $("html, body").animate({
+    jQuery('.scroll-top').click(function () {
+        jQuery("html, body").animate({
             scrollTop: 0
         }, 600);
         return false;
@@ -306,10 +306,10 @@ function share_button(url, winWidth, winHeight) {
 //=========================================
 
 function grid_list_toggle() {
-  $('.view-button').click(function() {
-    var test = $(this).children("input[name$='views']").val();
-    $('.view').removeClass('view-active');
-    $('#' + test + '_view').addClass('view-active');
+  jQuery('.view-button').click(function() {
+    var test = jQuery(this).children("input[name$='views']").val();
+    jQuery('.view').removeClass('view-active');
+    jQuery('#' + test + '_view').addClass('view-active');
   });
 };
 
@@ -318,7 +318,7 @@ function grid_list_toggle() {
 // =========================================
 
 function table_sorter_init() { 
-  $(".table-sorter").tablesorter(); 
+  jQuery(".table-sorter").tablesorter(); 
 }; 
 
 
@@ -326,18 +326,20 @@ function table_sorter_init() {
 // =========================================
 
 function widget_area_affix() {
-  if ( $('#sidebar').outerHeight(true) < $('#content_area').outerHeight(true) ) {
-    $('#widget-area').affix({
-      offset: {
-        top: function () {
-          return (this.top = ( $('#ucfhb').outerHeight(true) + $('.main-header').outerHeight(true) + $('#title_bar').outerHeight(true) + 30 ) )
-        },
-        bottom: function () {
-          return (this.bottom = ( $('footer').outerHeight(true) + 60 ) )
+  if ( jQuery('#sidebar').length > 0 ) {
+    if ( jQuery('#sidebar').outerHeight(true) < jQuery('#content_area').outerHeight(true) ) {
+      jQuery('#widget-area').affix({
+        offset: {
+          top: function () {
+            return (this.top = ( jQuery('#ucfhb').outerHeight(true) + jQuery('.main-header').outerHeight(true) + jQuery('#title_bar').outerHeight(true) + 30 ) )
+          },
+          bottom: function () {
+            return (this.bottom = ( jQuery('footer').outerHeight(true) + 60 ) )
+          }
         }
-      }
-    });
-  };
+      });
+    };
+  }
 };
 
 // Cookies
@@ -364,15 +366,15 @@ function eraseCookie(key) {
 
 function homepage_banner_close() {
   
-    if ($('#banner_message')){
-      $banner_id = $('#banner_message').attr('data-id');
+    if (jQuery('#banner_message')){
+      $banner_id = jQuery('#banner_message').attr('data-id');
       
       if (getCookie('banner_close') !== $banner_id) {
-        $('#banner_message').addClass('show');
+        jQuery('#banner_message').addClass('show');
       } 
-      $('#banner_close_btn').click(function() {
+      jQuery('#banner_close_btn').click(function() {
         document.cookie = 'banner_close='+$banner_id+'; secure';
-        $('#banner_message').removeClass('show');
+        jQuery('#banner_message').removeClass('show');
       });
 
     }
@@ -386,10 +388,10 @@ function homepage_banner_close() {
 
 function computer_availability(id) {
   var feed_url = "http://libweb.net.ucf.edu/Web/Db.php?q=publicStatusPCs&format=json&l=" + id;
-  $.getJSON( feed_url, function( data ) {
+  jQuery.getJSON( feed_url, function( data ) {
     var availability_content = '#computer_availability' + id;
     var computer_total = '#computer_total' + id;
-    $(availability_content).empty();
+    jQuery(availability_content).empty();
     var all_floor_total = 0;
     var floors = 1;
     if (id == 1) {
@@ -399,7 +401,7 @@ function computer_availability(id) {
       var machines_in_use = 0;
       var machines_total = 0;
       var machines_available = 0;
-      $.each(data, function(key, value){
+      jQuery.each(data, function(key, value){
         if (this.location_room_floor == i) {
           machines_in_use += parseInt(this.machinesInUse);
           machines_total += parseInt(this.machinesTotal);
@@ -442,7 +444,7 @@ function computer_availability(id) {
         var progress_color = 'progress-bar-warning';
       }
 
-      $(availability_content).append(' \
+      jQuery(availability_content).append(' \
         <div class="row"> \
           <div class="col-sm-3"> \
             <span class="floor-name">'+ floor_number +' Floor <i class="fa fa-desktop"></i>:</span> \
@@ -457,7 +459,7 @@ function computer_availability(id) {
         </div>');
       all_floor_total += machines_available;
     }
-    $(computer_total).text(all_floor_total);
+    jQuery(computer_total).text(all_floor_total);
     setTimeout(computer_availability, 10000, id);
   });
 }
@@ -502,7 +504,7 @@ function countdown($display, collision) {
           '<span style="color: #a00;"><span class="hours">0</span> Hours <span class="minutes">0</span> Minutes <span class="seconds">0</span> Seconds</span>'            
         );
     if (document.cookie.replace(/(?:(?:^|.*;\s*)modal_used\s*\=\s*([^;]*).*$)|^.*$/, "$1") !== "true") {
-      $('#countdown_finished').modal('show');
+      jQuery('#countdown_finished').modal('show');
       document.cookie = "modal_used=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
     }
     
@@ -531,13 +533,13 @@ function get_time_zone_offset() {
 */
 function taxonomy_filter(categories) {
   if (categories) {
-    let $lis = $('.taxonomy-item');	 
-    let $checked =$('input:checkbox:checked');
+    let $lis = jQuery('.taxonomy-item');	 
+    let $checked =jQuery('input:checkbox:checked');
     if ($checked.length)
     {						
       categories.forEach(function(cat) { 
         cat.filter = '';
-        $($checked).each(function(index, element){   
+        jQuery($checked).each(function(index, element){   
           if (element.dataset.category == cat.name) {                         
             if (cat.filter == '') {
               cat.filter += '[data-'+cat.name+'~="' + element.value + '"]'; 
@@ -565,11 +567,11 @@ function taxonomy_filter(categories) {
 
 //This function checks a checkbox that has the same id as the hash
 function pre_check_box() {
-  let $filter = $.getUrlVar('filter');
+  let $filter = jQuery.getUrlVar('filter');
   if(document.location.search.length) {
     if ($filter) {
       let filter_array = $filter.split('+');
-      filter_array.forEach(element => $('#'+element).attr('checked', 'checked'));
+      filter_array.forEach(element => jQuery('#'+element).prop('checked', 'checked'));
       taxonomy_filter(categories);
     }
   }
@@ -578,7 +580,7 @@ function pre_check_box() {
 // Load all functions when Dom Ready
 // =========================================
 
-$(document).ready( function() {
+jQuery(document).ready( function() {
   collapse_sidebar();
   tab_linking();
   login_modal_launch();

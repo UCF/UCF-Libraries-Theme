@@ -75,10 +75,10 @@
 font-weight: bold;
 font-family: 'Montserrat';"></div>
 		<script>
-			$('.Find').find('a').first().prepend('<span class="glyphicon glyphicon-search"></span> ');
-			$('.Services').find('a').first().prepend('<span class="glyphicon glyphicon-education"></span> ');
-			$('.About').find('a').first().prepend('<span class="glyphicon glyphicon-info-sign"></span> ');
-			$('.Help').find('a').first().prepend('<span class="glyphicon glyphicon-question-sign"></span> ');
+			jQuery('.Find').find('a').first().prepend('<span class="glyphicon glyphicon-search"></span> ');
+			jQuery('.Services').find('a').first().prepend('<span class="glyphicon glyphicon-education"></span> ');
+			jQuery('.About').find('a').first().prepend('<span class="glyphicon glyphicon-info-sign"></span> ');
+			jQuery('.Help').find('a').first().prepend('<span class="glyphicon glyphicon-question-sign"></span> ');
 		</script>
 	</body>
 </html>

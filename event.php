@@ -70,44 +70,44 @@ remove_filter( 'the_content', 'wpautop' );
 <script>
 function fix_header_top() {
 
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > $('#hero_image').outerHeight(true) + $('#ucfhb').outerHeight(true)) {
-            $('#navbar_events').addClass('navbar-fixed-top');
-            $('body').addClass('fixed-header-padding');
+    jQuery(window).scroll(function () {
+        if (jQuery(this).scrollTop() > jQuery('#hero_image').outerHeight(true) + jQuery('#ucfhb').outerHeight(true)) {
+            jQuery('#navbar_events').addClass('navbar-fixed-top');
+            jQuery('body').addClass('fixed-header-padding');
         } else {
-            $('#navbar_events').removeClass('navbar-fixed-top');
-            $('body').removeClass('fixed-header-padding');
+            jQuery('#navbar_events').removeClass('navbar-fixed-top');
+            jQuery('body').removeClass('fixed-header-padding');
         }
     });
 
 };
 
 function add_scroll_spy(){
-  $('body').attr('data-spy', 'scroll');
-  $('body').attr('data-target', '#navbar_events');
-  $('body').attr('data-offset', '51');
+  jQuery('body').attr('data-spy', 'scroll');
+  jQuery('body').attr('data-target', '#navbar_events');
+  jQuery('body').attr('data-offset', '51');
 }
 
 //Scrolls the page to the element the link is pointed to.
 function scroll_to_element(){
-	$('.scroll-to-element').click(function(e) {
-		var jump = $(this).attr('href');
-		var new_position = $(jump).offset();
-		$('html, body').stop().animate({ scrollTop: new_position.top - 49 }, 500);
+	jQuery('.scroll-to-element').click(function(e) {
+		var jump = jQuery(this).attr('href');
+		var new_position = jQuery(jump).offset();
+		jQuery('html, body').stop().animate({ scrollTop: new_position.top - 49 }, 500);
 		e.preventDefault();
-    $("#main_menu").collapse('hide');
+    jQuery("#main_menu").collapse('hide');
 	})
 
 }
 
-$(document).ready( function() {
+jQuery(document).ready( function() {
   fix_header_top();
   add_scroll_spy();
   scroll_to_element();
 
-  $('body').removeClass('library-body');
-  $('.main-header').remove();
-  $('.main-footer').remove();
+  jQuery('body').removeClass('library-body');
+  jQuery('.main-header').remove();
+  jQuery('.main-footer').remove();
 });
 </script>
 <?php get_footer(); ?>

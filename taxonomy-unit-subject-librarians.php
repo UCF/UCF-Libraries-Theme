@@ -52,17 +52,19 @@ Description: Taxonomy archive page.
             <div class="card">
               <div class="table-responsive">
                 <table class="table table-striped table-sorter">
-                  <thead>
+                <thead>
                     <tr>
-                      <th class="empty-cell"></th>
-                      <th><span class="glyphicon glyphicon-user"></span> Name</th>
+                      <th class="empty-cell"><span class="sr-only">Staff Image</span></th>
+                      <th style="min-width: 10em;"><span class="glyphicon glyphicon-user"></span> Name</th>
                       <th><i class="fa fa-bookmark"></i> Title</th>
                       <th><i class="fa fa-graduation-cap"></i> Rank</th>
-                      <th><i class="fa fa-book"></i> Subject</th>
+                      <th><i class="fa fa-university"></i> Department</th>
+                      <th style="min-width: 6.75em;"><i class="fa fa-book"></i> Subject</th>
                       <th style="min-width: 10em;"><span class="glyphicon glyphicon-phone-alt"></span> Phone</th>
                       <th style="min-width: 6em;"><i class="fa fa-envelope"></i> Email</th>
                     </tr>
                   </thead>
+
                   <tbody>
                   <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                     <tr>
@@ -76,6 +78,11 @@ Description: Taxonomy archive page.
                       <td>
                         <?php if(get_post_meta($post->ID, 'rank', true)): ?>
                           <?php echo get_post_meta($post->ID, 'rank', true); ?>
+                        <?php endif; ?>
+                      </td>
+                      <td>
+                        <?php if(get_the_term_list( $post->ID, 'department', true)): ?>
+                          <?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?>
                         <?php endif; ?>
                       </td>
                       <td>
@@ -100,6 +107,7 @@ Description: Taxonomy archive page.
                       <td></td>
                       <td></td>
                       <td></td>
+                      <td></td>
                       <td></td>                      
                       <td></td>
                       <td></td>
@@ -110,11 +118,11 @@ Description: Taxonomy archive page.
               </div>
             </div>
           </div>
-          <div id="grid_view" class="directory row view view-active">
+					<div id="grid_view" class="directory grid view view-active">
 						<?php $i = 0; ?>
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 							<?php $i++; ?>
-							<div class="col-xs-6 col-md-4 col-lg-3">
+  						<div class="grid-item ">
 				    		<div class="thumbnail">
 				    			<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
 									<div class="caption">
@@ -140,6 +148,10 @@ Description: Taxonomy archive page.
 													<li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
 												<?php endif; ?>
 
+                        <?php if(get_post_meta($post->ID, 'college', true)): ?>
+													<li><img class="college-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/images/PegasusIcon.png" data-toggle="tooltip" data-placement="right" title="College"><?php echo get_post_meta($post->ID, 'college', true); ?></li>
+												<?php endif; ?>
+
 												<?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') )): ?>
 													<li><i class="fa fa-book" data-toggle="tooltip" data-placement="right" title="Subject"></i><?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') ); ?></li>
 												<?php endif; ?>
@@ -159,16 +171,7 @@ Description: Taxonomy archive page.
 										<?php endif; ?>
 									</div><!-- caption -->
 								</div><!-- thumbnail -->
-							</div><!-- col-xs-6 col-md-4 col-lg-3 -->
-							<?php if ($i % 4 == 0) : //adds a clearfix every 3 items. ?>
-									<div class="clearfix visible-lg-block"></div>
-							<?php endif; ?>
-							<?php if ($i % 3 == 0) : //adds a clearfix every 2 items. ?>
-									<div class="clearfix visible-md-block"></div>
-							<?php endif; ?>
-							<?php if ($i % 2 == 0) : //adds a clearfix every 3 items. ?>
-									<div class="clearfix visible-sm-block visible-xs-block"></div>
-							<?php endif; ?>	
+              </div><!-- grid-item -->
             <?php endwhile; else: ?>
               <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
             <?php endif; ?>

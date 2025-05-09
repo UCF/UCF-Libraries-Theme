@@ -5,7 +5,7 @@
 		<div class="sidebar-collapse">
 			<div class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></div>
 				<div class="collapse in" id="Library">
-					<?php taxonomy_term_list('library');	?>
+					<?php echo(generate_term_list('library'));	?>
 				</div>
 			</div>
 		</div><!-- .widget-area -->

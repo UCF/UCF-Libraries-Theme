@@ -107,30 +107,49 @@ function title_to_slug($string) {
   return $string;
 }
 
-function taxonomy_term_list( $taxonomy ) {
+// Creates a list of taxonomy terms for the sidebar
+function generate_term_list($taxonomy, $parent_id = 0) { 
   $term_args = array(
     'hide_empty' => true,
     'orderby' => 'name',
-    'order' => 'ASC', 
-    'heirarchical' => true,
-    'parent' => 0,
+    'order' => 'ASC',
+    'hierarchical' => true,
+    'parent' => $parent_id,
   );
-  $tax_terms = get_terms($taxonomy,$term_args);
-  $term_list = '<ul>';
-  foreach ($tax_terms as $tax_term) {
-    $term_list .= '<li><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all Staff in %s" ), $tax_term->name ) . '">' . $tax_term->name.'</a></li>';
-    $term_children = get_terms($taxonomy, array( 'parent' => $tax_term->term_id));
-    if ($term_children) {
-      $term_list .= '<ul>';
-      foreach ($term_children as $term_child) {
-        $term_list .= '<li><a href="' . esc_attr(get_term_link($term_child, $taxonomy)) . '" title="' . sprintf( __( "View all Staff in %s" ), $term_child->name ) . '">' . $term_child->name.'</a></li>';
-      }
-      $term_list .= '</ul>';
+  $terms = get_terms($taxonomy, $term_args);
+  if (empty($terms) || is_wp_error($terms)) {
+    return '';
+  }
+  $queried_object = get_queried_object();
+  if (isset($queried_object->term_id)) {
+    $post_term_id = $queried_object->term_id;
+  } else {
+    $post_term_id ='';
+  }
+  if ($parent_id == 0) {
+    $term_list = '<ul class="tree">';
+  } else {
+    $term_list = '<ul>';
+  }
+  foreach ($terms as $term) {
+    if($post_term_id == $term->term_id) {
+      $active_class = 'class="active-term"';
+    } else {
+      $active_class = '';
     }
+    $term_list .= '<li><a '.$active_class.' href="' . esc_attr(get_term_link($term, $taxonomy)) . '" title="' . sprintf(__( "View all Staff in %s" ), $term->name) . '">' . $term->name . '</a>';
+    $term_list .= generate_term_list($taxonomy, $term->term_id); // Recursive call for child terms
+    $term_list .= '</li>';
   }
   $term_list .= '</ul>';
-  echo $term_list;
+
+  return $term_list;
 }
+
+// Usage
+// echo generate_term_list($taxonomy);
+
+
 
 // Creates list items for sidebar taxonmy filter lists
 function taxonomy_filter ($taxonomy_name) {
@@ -166,14 +185,14 @@ add_action( 'init', 'register_my_menus' );
 
 function wpt_register_js() {
     wp_deregister_script('jquery');
-    wp_register_script('jquery', "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js", false, null);
-    wp_register_script('jquery.ui', "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js", false, null);
+    wp_register_script('jquery', "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js", false, null);
+    // wp_register_script('jquery.ui', "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js", false, null);
     wp_register_script('jquery.bootstrap.min', get_template_directory_uri() . '/js/bootstrap.min.js', 'jquery');
     wp_register_script('jquery.tablesorter.min', get_template_directory_uri() . '/js/jquery.tablesorter.min.js', 'jquery');
     wp_register_script('jquery.scripts', get_template_directory_uri(). '/js/scripts.js', 'jquery');
 
     wp_enqueue_script('jquery');
-    wp_enqueue_script('jquery.ui');
+    // wp_enqueue_script('jquery.ui');
     wp_enqueue_script('jquery.bootstrap.min');
     wp_enqueue_script('jquery.tablesorter.min');
     wp_enqueue_script('jquery.scripts');
@@ -182,15 +201,15 @@ add_action( 'init', 'wpt_register_js' );
 
 function wpt_register_css() {
     wp_register_style( 'normalize', get_stylesheet_directory_uri() . '/css/normalize.css', array(), '1', 'all' );
-    wp_register_style( 'jquery.ui.css', "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css");
+    // wp_register_style( 'jquery.ui.css', "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css");
     wp_register_style( 'bootstrap.min', get_stylesheet_directory_uri() . '/css/bootstrap.min.css', array(), '1', 'all' );
     wp_register_style( 'font-awesome.min.css', get_stylesheet_directory_uri() . '/css/font-awesome.min.css', array(), '1', 'all' );
-    wp_register_style( 'style', get_stylesheet_directory_uri() . '/style.css', array('normalize','jquery.ui.css','bootstrap.min','font-awesome.min.css'), '1', 'all' );
+    wp_register_style( 'style', get_stylesheet_directory_uri() . '/style.css', array('normalize','bootstrap.min','font-awesome.min.css'), '1', 'all' );
  //   wp_register_style( 'gravity-bootstrap', get_stylesheet_directory_uri() . '/css/gravity-bootstrap.css' );
 
 
     wp_enqueue_style( 'normalize');
-    wp_enqueue_style( 'jquery.ui.css');
+    // wp_enqueue_style( 'jquery.ui.css');
     wp_enqueue_style( 'bootstrap.min' );
     wp_enqueue_style( 'font-awesome.min.css' );
     wp_enqueue_style( 'style');
@@ -922,10 +941,10 @@ add_filter('wp_kses_allowed_html', 'mawaha_filter_allowed_html', 10, 2);
 
 /**
  * Primo API call function
- * Access the availability of an item in Primo and return an array ($available_items, $total_items)
+ * Access the availability of an item in Primo and return an array ($available_items, $total_items, $offset)
  */
-function primo_availability_api_call($mmsid, $limit){
-  $url = 'https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/'.$mmsid.'/holdings/all/items?limit='.$limit.'&offset=0&order_by=description&direction=asc&view=brief&apikey=l8xxbd732e64a6fb41e4af79c0260aa7a809';
+function primo_availability_api_call($mmsid, $limit, $offset) {
+  $url = 'https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/'.$mmsid.'/holdings/all/items?limit='.$limit.'&offset='.$offset.'&order_by=description&direction=asc&view=brief&apikey=l8xxbd732e64a6fb41e4af79c0260aa7a809';
   $request = wp_remote_get($url, array( 
     'timeout' => 120,
     'headers' => array(
@@ -937,7 +956,12 @@ function primo_availability_api_call($mmsid, $limit){
 // var_dump($data_api);
   if (is_array( $request)) {
     $json_o = json_decode($request['body']);
-    return $json_o;
+    if (isset($json_o->item)){
+      return $json_o;
+    } else {
+      $json_o = null;
+      return $json_o;
+    }
   } else {
     $json_o = null;
     return $json_o;
@@ -979,20 +1003,22 @@ function primo_availability_list($json_o) {
           <tbody>
     ';
     foreach ($json_o->item as $item){
-      $output .= '<tr>';
-      $output .= '<td>'.$item->item_data->description.'</td>';
-      if ($item->item_data->base_status->value != 1){
-        if ($item->item_data->process_type->value == 'LOAN') {
-          $output .= '<td>On Loan</td>';
+      if (!($item->item_data->base_status->value == 0 && $item->item_data->process_type->value !== 'LOAN')) {
+        $output .= '<tr>';
+        $output .= '<td>'.$item->item_data->description.'</td>';
+        if ($item->item_data->base_status->value != 1){
+          if ($item->item_data->process_type->value == 'LOAN') {
+            $output .= '<td>On Loan</td>';
+          } else {
+            $output .= '<td>Item Unavailable</td>'; // Should not appear as all Unavailable itmes should have been removed.
+          }
         } else {
-          $output .= '<td>Item Unavailable</td>';
+          $output .= '<td>Item available for checkout</td>';
         }
-      } else {
-        $output .= '<td>Item available for checkout</td>';
+        
+        $output .= '<td>'.$item->item_data->policy->desc.'</td>';
+        $output .= '</tr>';
       }
-      
-      $output .= '<td>'.$item->item_data->policy->desc.'</td>';
-      $output .= '</tr>';
     }
     $output .= '
           </tbody>

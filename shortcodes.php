@@ -576,12 +576,11 @@ function youtube_video($atts) {
   extract(shortcode_atts( array(
       'id' => '62NEzgmqwx0',
       'width' => '100%',
-      'list' => '',
       'title' => 'Youtube Video',
   ), $atts ));
   return '<div class="responsive-wrapper" style="max-width:'.$width.';">
             <div class="responsive-container youtube">
-             <iframe title="'.$title.'"" src="https://youtube.com/embed/'.$id.'?list='.$list.'" frameborder="0" allowfullscreen></iframe>
+              <iframe src="https://www.youtube.com/embed/'.$id.'?si=ucflibrary" title="'.$title.'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
           </div>';
 }
@@ -759,7 +758,7 @@ function hours_week_calendar( $atts ) {
 
   <div id="s-lc-whw'.$id.'"></div>
   <script>
-  $(function(){
+  jQuery(function(){
   var week'.$id.' = new $.LibCalWeeklyGrid( $("#s-lc-whw'.$id.'"), { iid: 246, lid: '.$id.',  weeks: '.$weeks.' });
   });
   </script>';
@@ -1347,9 +1346,9 @@ function countdown_timer($atts, $content = null) {
       </div>
     </div>
     <script>
-      $(document).ready(function () {
+      jQuery(document).ready(function () {
         var date = new Date('.$year.', '.($month-1).', '.$day.', '.$hour.', '.$minute.');
-        var $display = $("#countdown_timer");
+        var $display = jQuery("#countdown_timer");
         countdown($display, date);
         timer_interval = setInterval(function () { countdown($display, date); }, 1000);
       });
@@ -1416,8 +1415,8 @@ function referral_message($atts, $content = null) {
     return '<!-- URL match! -->
       <!-- Referral URL = '.$referral_url.'-->
       <script>
-        $(document).ready(function() {
-          $(\'#modal_match\').modal(\'show\');
+        jQuery(document).ready(function() {
+          jQuery(\'#modal_match\').modal(\'show\');
         });
       </script>
     ';
@@ -1425,8 +1424,8 @@ function referral_message($atts, $content = null) {
     return '<!-- No URL match! -->
       <!-- Referral URL = '.$referral_url.'-->
       <script>
-        $(document).ready(function() {
-          $(\'#modal_no_match\').modal(\'show\');
+        jQuery(document).ready(function() {
+          jQuery(\'#modal_no_match\').modal(\'show\');
         });
       </script>
     ';
@@ -1534,7 +1533,7 @@ function occuspace_display($atts){
   $output = '<div class="grid">';
   foreach ($ids as $id) {
     $json_o = occuspace_api_call($id);
-    if ($json_o !== null) {
+    if (!empty( $json_o->data->childCounts)) {
       foreach ($json_o->data->childCounts as $floor) {
         if ($floor->isActive !== false) {
           $percent_occupied = $floor->percentage*100;
@@ -1571,7 +1570,7 @@ function occuspace_display($atts){
       }
       
     } else {
-      $output .= '<p>Null was returned</p>';
+      $output .= '<p>No data was found.</p>';
     }
   }
   $output .= '</div>';

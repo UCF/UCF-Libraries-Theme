@@ -49,10 +49,11 @@ Description: Archive staff member page.
                   <thead>
                     <tr>
                       <th class="empty-cell"><span class="sr-only">Staff Image</span></th>
-                      <th><span class="glyphicon glyphicon-user"></span> Name</th>
+                      <th style="min-width: 10em;"><span class="glyphicon glyphicon-user"></span> Name</th>
                       <th><i class="fa fa-bookmark"></i> Title</th>
                       <th><i class="fa fa-graduation-cap"></i> Rank</th>
                       <th><i class="fa fa-university"></i> Department</th>
+                      <th style="min-width: 6.75em;"><i class="fa fa-book"></i> Subject</th>
                       <th style="min-width: 10em;"><span class="glyphicon glyphicon-phone-alt"></span> Phone</th>
                       <th style="min-width: 6em;"><i class="fa fa-envelope"></i> Email</th>
                     </tr>
@@ -78,6 +79,11 @@ Description: Archive staff member page.
                         <?php endif; ?>
                       </td>
                       <td>
+                        <?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') )): ?>
+                          <?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') ); ?>
+                        <?php endif; ?>
+                      </td>
+                      <td>
                         <?php if(get_post_meta($post->ID, 'phone', true)): ?>
                           <?php echo get_post_meta($post->ID, 'phone', true); ?>
                         <?php endif; ?>
@@ -94,6 +100,7 @@ Description: Archive staff member page.
                       <td></td>
                       <td></td>
                       <td></td>
+                      <td></td>
                       <td></td>                      
                       <td></td>
                       <td></td>
@@ -104,11 +111,11 @@ Description: Archive staff member page.
               </div>
             </div>
           </div>
-          <div id="grid_view" class="directory row view view-active">
+					<div id="grid_view" class="directory grid view view-active">
   					<?php $i = 0; ?>
   					<?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
   						<?php $i++; ?>
-  						<div class="col-xs-6 col-md-4 col-lg-3">
+  						<div class="grid-item ">
   			    		<div class="thumbnail">
   			    			<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
     							<div class="caption">
@@ -134,6 +141,10 @@ Description: Archive staff member page.
   											<li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
   										<?php endif; ?>
 
+                      <?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') )): ?>
+  													<li><i class="fa fa-book" data-toggle="tooltip" data-placement="right" title="Subject"></i><?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') ); ?></li>
+  												<?php endif; ?>
+
   										<?php if(get_post_meta($post->ID, 'room', true)): ?>
   											<li><span class="glyphicon glyphicon-map-marker" data-toggle="tooltip" data-placement="right" title="Location"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
   										<?php endif; ?>
@@ -147,18 +158,9 @@ Description: Archive staff member page.
   										<?php endif; ?>
     								</ul>
       							<?php endif; ?>
-      						</div><!-- caption -->
+                    </div><!-- caption -->
       					</div><!-- thumbnail -->
-    					</div><!-- col-xs-6 col-md-4 col-lg-3 -->
-              <?php if ($i % 4 == 0) : //adds a clearfix every 3 items. ?>
-                  <div class="clearfix visible-lg-block"></div>
-              <?php endif; ?>
-              <?php if ($i % 3 == 0) : //adds a clearfix every 2 items. ?>
-                  <div class="clearfix visible-md-block"></div>
-              <?php endif; ?>
-              <?php if ($i % 2 == 0) : //adds a clearfix every 3 items. ?>
-                  <div class="clearfix visible-sm-block visible-xs-block"></div>
-              <?php endif; ?> 
+    					</div><!-- grid-item -->
             <?php endwhile; else: ?>
             <?php wpbeginner_numeric_posts_nav(); ?>
   					<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?>
