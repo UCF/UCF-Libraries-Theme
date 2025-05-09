@@ -836,7 +836,7 @@ padding: 12px 15px;
 }
 
 /* Sidebar Tree */
-.tree {
+/* .tree {
   --spacing: 2rem;
   --radius: 5px;
   --tree-color: #337ab7;
@@ -883,7 +883,7 @@ padding: 12px 15px;
   height: calc(2 * var(--radius));
   border-radius: 50%;
   background: var(--tree-color);
-}
+} */
 
 
 .tree details[open] > ul::before {
