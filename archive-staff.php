@@ -53,7 +53,7 @@ Description: Archive staff member page.
                       <th><i class="fa fa-bookmark"></i> Title</th>
                       <th><i class="fa fa-graduation-cap"></i> Rank</th>
                       <th><i class="fa fa-university"></i> Department</th>
-                      <th><i class="fa fa-book"></i> Subject</th>
+                      <th style="min-width: 6.75em;"><i class="fa fa-book"></i> Subject</th>
                       <th style="min-width: 10em;"><span class="glyphicon glyphicon-phone-alt"></span> Phone</th>
                       <th style="min-width: 6em;"><i class="fa fa-envelope"></i> Email</th>
                     </tr>
