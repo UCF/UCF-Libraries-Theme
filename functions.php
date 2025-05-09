@@ -121,7 +121,11 @@ function generate_term_list($taxonomy, $parent_id = 0) {
     return '';
   }
   $queried_object = get_queried_object();
-  $post_term_id = $queried_object->term_id;
+  if (isset($queried_object->term_id)) {
+    $post_term_id = $queried_object->term_id;
+  } else {
+    $post_term_id ='';
+  }
   if ($parent_id == 0) {
     $term_list = '<ul class="tree">';
   } else {
@@ -952,7 +956,12 @@ function primo_availability_api_call($mmsid, $limit, $offset) {
 // var_dump($data_api);
   if (is_array( $request)) {
     $json_o = json_decode($request['body']);
-    return $json_o;
+    if (isset($json_o->item)){
+      return $json_o;
+    } else {
+      $json_o = null;
+      return $json_o;
+    }
   } else {
     $json_o = null;
     return $json_o;
