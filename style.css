@@ -890,6 +890,13 @@ padding: 12px 15px;
   background-position: calc(-2 * var(--radius)) 0;
 }
 
+.college-icon {
+  width: 11px;
+  position: absolute;
+  left: -1.5em;
+  top: 0.2em;
+}
+
 .thumbnail { border: none; }
 .thumbnail.single { box-shadow: none; }
 .caption ul { padding-left: 20px;}
@@ -920,6 +927,7 @@ padding: 12px 15px;
 { color: #fff; }
 .caption ul, .caption p { font-size: 9px; }
 .directory-single .caption ul, .directory-single .caption p { font-size: 14px; }
+.directory-single ul .college-icon { width: 14px;}
 .caption h3 { font-size: 12px; }
 
 @media (min-width: 768px) {
@@ -935,6 +943,7 @@ padding: 12px 15px;
 		width: auto;
 	}*/
 	.caption ul, .caption p { font-size: 11px; }
+  .directory-single .college-icon { width: 11px;}
 	.caption h3 { font-size: 17px; }
 }
 
@@ -1275,12 +1284,7 @@ label.filter-checkbox input ~ .checkbox-container .checkbox-custom:after {
     max-width: none;
 }
 
-.college-icon {
-  width: 11px;
-  position: absolute;
-  left: -1.5em;
-  top: 0.2em;
-}
+
 
 /* Table Sorter */
 
