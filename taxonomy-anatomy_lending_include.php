@@ -14,7 +14,8 @@ Description: anatomy library archive page.
       array(
         'orderby' => 'title',
         'order' => 'ASC',
-        'posts_per_page' => 1000
+        'posts_per_page' => 1000,
+        'post_type' => 'anatomy'
       )
 	  )
   );
