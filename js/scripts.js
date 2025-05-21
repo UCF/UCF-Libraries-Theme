@@ -577,6 +577,23 @@ function pre_check_box() {
   }
 }
 
+// Replace spaces with - and remove special characters from a string
+function sanitizeString(str) {
+  return str
+    .replace(/\s+/g, '-')         // Replace spaces with -
+    .replace(/[^a-zA-Z0-9\-]/g, '') // Remove special characters except -
+    .toLowerCase();               // Optional: make lowercase
+}
+
+// Example usage:
+// let clean = sanitizeString("Hello World! @2025");
+// Result: "hello-world-2025"
+
+function subject_filter() {
+document.getElementById("subject_slug").value = sanitizeString(document.getElementById("choose_subject").value);
+document.forms["subject_filter"].submit();
+}
+
 // Load all functions when Dom Ready
 // =========================================
 
