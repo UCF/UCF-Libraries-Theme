@@ -116,24 +116,24 @@ function generate_term_list($taxonomy, $parent_id = 0) {
     'hierarchical' => true,
     'parent' => $parent_id,
   );
-  $terms = get_terms($taxonomy, $term_args);
-  if (empty($terms) || is_wp_error($terms)) {
+  $terms = get_terms($taxonomy, $term_args);  
+  if (empty($terms) || is_wp_error($terms)) { 
     return '';
   }
-  $queried_object = get_queried_object();
-  if (isset($queried_object->term_id)) {
-    $post_term_id = $queried_object->term_id;
+  $queried_object = get_queried_object(); 
+  if (isset($queried_object->term_id)) { // Check if we are on a taxonomy archive page
+    $post_term_id = $queried_object->term_id; // Get the current archive page term ID
   } else {
-    $post_term_id ='';
+    $post_term_id =''; // Default to empty if not on a taxonomy archive page
   }
   if ($parent_id == 0) {
-    $term_list = '<ul class="tree">';
+    $term_list = '<ul class="tree">'; // Top-level terms
   } else {
     $term_list = '<ul>';
   }
   foreach ($terms as $term) {
-    if($post_term_id == $term->term_id) {
-      $active_class = 'class="active-term"';
+    if($post_term_id == $term->term_id) { // Check if the term is the current one
+      $active_class = 'class="active-term"'; // Add active class to the current term
     } else {
       $active_class = '';
     }
