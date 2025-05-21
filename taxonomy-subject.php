@@ -21,20 +21,45 @@ Description: Taxonomy Subject archive page.
 function subject_dropdown( $taxonomy ) {
 	$terms = get_terms( $taxonomy );
 	if ( $terms ) {
-		printf( '<form action="" method="get" style="display:inline-block;"><label for="choose_subject" class="sr-only"> Choose Subject</label><div class="input-group"</div><select name="%s" id="choose_subject"  class="form-control"><option value="-- Choose a Subject --">-- Choose a Subject --</option>', esc_attr( $taxonomy ) );
+		printf( '<form id="subject_filter" action="" method="get" style="display:inline-block;"><label for="choose_subject" class="sr-only"> Choose Subject</label><div class="input-group"><input list="subjects" id="choose_subject"  class="form-control"><datalist id="subjects">' );
 		foreach ( $terms as $term ) {
 			if ($term->slug == 'all') {
-				printf( '<option value="%s">%s</option>', esc_attr( $term->slug ), esc_html( $term->name ) );
+				printf( '<option value="All"></option>');
 			}
 		}
 		foreach ( $terms as $term ) {
 			if ($term->slug != 'all') {
-				printf( '<option value="%s">%s</option>', esc_attr( $term->slug ), esc_html( $term->name ) );
+				printf( '<option value="%s"></option>', esc_html( $term->name ) );
 			}
 		}
-		print( '</select><span class="input-group-btn"><button class="btn btn-primary" type="submit">Submit</button></span></div></form>' );
+		printf( '</datalist>
+		<input type="hidden" name="%s" id="subject_slug" value="">
+		<span class="input-group-btn"><button class="btn btn-primary" type="submit" onclick="subject_filter()">Submit</button></span></div></form>', esc_html( $taxonomy ) );
 	}
 }
+ function subject_description( ) {
+// Get current term object
+        $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+        if ( $term ) {
+          if ( $term->parent && $term->parent != 0 ) {
+            // Term has a parent, get parent term object
+            $parent_term = get_term( $term->parent, $term->taxonomy );
+            if ( $parent_term && ! is_wp_error( $parent_term ) ) {
+              // Print parent term description
+              echo term_description( $parent_term->term_id, $parent_term->taxonomy );
+            } else {
+              // Fallback to current term description
+              echo term_description( $term->term_id, $term->taxonomy );
+            }
+          } else {
+            // No parent, print current term description
+            echo term_description( $term->term_id, $term->taxonomy );
+          }
+        } else {
+          // Fallback if no term found
+          echo term_description();
+        }
+ }
 ?>
 
 <?php get_header(); ?>
@@ -49,10 +74,12 @@ function subject_dropdown( $taxonomy ) {
 		    <div class="header-search"><?php get_search_form(); ?></div>
 		  </div><!-- col-sm-4 -->
 		</div><!-- row -->
+		<div class="tech-description">
+      <?php subject_description( ) ?>
+    </div>
 		<div class="row">
 			<div class="col-sm-12">
-				<p>Use the drop down menu to view the librarian(s) associated with each subject. You can also view the librarians at the <a href="<?php bloginfo('url'); ?>/staff/curriculum-materials-center/">the Curriculum Materials Center (CMC)</a>, <a href="<?php bloginfo('url'); ?>/staff/downtown/">Downtown Library</a>, and the <a href="<?php bloginfo('url'); ?>/staff/ucf-connect-libraries/">UCF Connect Libraries</a>.</p>
-				<p><strong>Choose Librarians by Subject:</strong></p> 
+				<span><strong>Choose Librarians by Subject:</strong></span> 
 				<div class="row">
 					<div class="col-md-6"><p><?php subject_dropdown( 'subject' ); ?></p></div>
 				</div>
@@ -64,7 +91,6 @@ function subject_dropdown( $taxonomy ) {
 			<div class="row">
 				<div class="col-sm-12">
 					<h2 class="subpage-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h2>
-					<?php echo term_description( ) ?>
 					<div class="grid-larger">
 						<?php $i = 0; ?>
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
