@@ -94,7 +94,7 @@ function subject_dropdown( $taxonomy ) {
 					<div class="grid-larger">
 						<?php $i = 0; ?>
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-							<?php $subjects = explode(", ", get_post_meta($post->ID, 'primary-subject', true)); ?>
+							<?php $subjects = explode("; ", get_post_meta($post->ID, 'primary-subject', true)); ?>
 							<?php foreach ($subjects as $subject) {
 								$subject = preg_replace('/&/', '&amp;', $subject);
 								if ($subject == $term->name) : ?>
@@ -156,7 +156,7 @@ function subject_dropdown( $taxonomy ) {
 						<?php endwhile;?>
 						<?php endif; ?>					
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-							<?php $subjects = explode(", ", get_post_meta($post->ID, 'primary-subject', true)); ?>
+							<?php $subjects = explode("; ", get_post_meta($post->ID, 'primary-subject', true)); ?>
 							<?php $match = 0; ?>
 							<?php foreach ($subjects as $subject) {
 								$subject = preg_replace('/&/', '&amp;', $subject);
