@@ -883,12 +883,12 @@ padding: 12px 15px;
   height: calc(2 * var(--radius));
   border-radius: 50%;
   background: var(--tree-color);
-} */
+}
 
 
 .tree details[open] > ul::before {
   background-position: calc(-2 * var(--radius)) 0;
-}
+} */
 
 .college-icon {
   width: 11px;
@@ -904,8 +904,10 @@ padding: 12px 15px;
 
 .caption .glyphicon, .caption .fa {
 	position: absolute;
-	left: -1.5em;
+	left: -2em;
  	top: 0.2em;
+  width: 2em;
+  text-align: center;
 }
 .caption .fa-bookmark {
   padding-left: 2px;
