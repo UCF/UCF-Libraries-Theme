@@ -46,9 +46,9 @@ function fbShare(url, title, descr, image, winWidth, winHeight) {
                 	</header>
 								</div>
 								<?php the_content(__('(more...)')); ?>
-					 			<?php if ( comments_open() || get_comments_number() ) {
-									comments_template( $file, $separate_comments ); 
-								}?>
+					 			<?php //if ( comments_open() || get_comments_number() ) {
+									//comments_template( $file, $separate_comments ); 
+								//}?>
               </div>
 				    </div>
 				  </article>
