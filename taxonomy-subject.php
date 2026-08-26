@@ -128,7 +128,7 @@ function subject_dropdown( $taxonomy ) {
   														<?php endif; ?>
 
 														<?php if(get_post_meta($post->ID, 'college', true)): ?>
-															<li><img class="college-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/images/PegasusIcon.png" data-toggle="tooltip" data-placement="right" title="College Lead"><?php echo get_post_meta($post->ID, 'college', true); ?></li>
+															<li><img class="college-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/images/PegasusIcon.png" data-toggle="tooltip" data-placement="right" alt="College Lead" title="College Lead"><?php echo get_post_meta($post->ID, 'college', true); ?></li>
 														<?php endif; ?>
 															
   														<?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') )): ?>
