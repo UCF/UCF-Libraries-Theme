@@ -2,23 +2,13 @@
 <div id="main">
 	<div id="title_bar" class="container">
 	<!-- category.php -->
-		<div class="row">
-			<div class="col-sm-8">
-				<header><h1><a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ) ?>">News &amp; Blog</a></h1></header>
+				<header><h1><a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ) ?>">News</a></h1></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
-			</div>
-			<div class="col-sm-4">
-				<div class="header-search"><?php get_search_form(); ?></div>
-			</div>
-		</div>
+
 	</div>
 	<div  class="background-color-gray">
 		<div id="content" class="container">
-			<div class="row">
-				<div id="sidebar" class="col-sm-3">
-					<?php get_sidebar(); ?>
-				</div>
-				<div id="content_area" class="col-sm-9">
+
 					<h2 class="subpage-title"><?php single_cat_title('Category: '); ?></h2>
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 						<?php	
@@ -79,7 +69,6 @@
 					<?php wpbeginner_numeric_posts_nav(); ?>
 				</div>
 			</div>
-		</div>
 	</div>
 </div>
 
