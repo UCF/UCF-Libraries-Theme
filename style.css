@@ -768,7 +768,7 @@ padding: 12px 15px;
   .alignright		{ float: right; margin: 0 0 1em 1em; }
   .alignleft		{ float: left; margin: 0 1em 1em 0; }
   .floatleft		{ float: left; }
-  .size-full		{ max-width: 100%; height: auto; }
+  .size-full		{ width: 100%; height: auto; }
 }
 
 @media (max-width: 767px) {
@@ -1702,6 +1702,77 @@ th.header.empty-cell{
   background-color: rgba(0, 0, 0, .85);
   padding: 3em 0;
   color: #eee;
+}
+
+/* News and Events Filters */
+.news-filters {
+    margin: 2rem 0 3rem;
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+}
+
+.filter-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: .5rem 1.25rem;
+
+    background: #fff;
+    color: var(--ink);
+
+    border-radius: .5rem;
+
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+
+    transition: all .25s ease;
+}
+
+.filter-btn:hover {
+    background: var(--ucf-gold);
+    color: #000;
+    transform: translateY(-2px);
+}
+
+.filter-btn.active,
+.current-cat .filter-btn {
+    background: #000;
+    color: #fff;
+}
+.filter-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .filter-btn {    margin: .35rem .25rem;}
+    .filter-buttons {
+        margin: .25em 0;
+        display: none;
+        flex-direction: column;
+    }
+
+    .filter-buttons.open {
+        display: flex;
+    }
+
+    .filter-toggle {
+        display: block;
+
+        width: 100%;
+        padding: 1rem;
+
+        border: 1px solid #ddd;
+        background: #fff;
+        border-radius: 8px;
+
+        font-weight: 600;
+        text-align: left;
+    }
 }
 
 /*Homepage News*/
