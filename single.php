@@ -36,7 +36,7 @@
 								</div>
 								<?php the_content(__('(more...)')); ?>
 								<div class="clearfix"></div>
-								<?php comments_template( $file, $separate_comments ); ?>
+								<?php comments_template(); ?>
 							</div>
 						</div>
 					</article>
