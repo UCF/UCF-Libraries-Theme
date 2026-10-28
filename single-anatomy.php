@@ -87,12 +87,27 @@ if ( substr($name, -1) == 's') {
 								<?php  if(get_post_meta($post->ID, 'availability', true)): ?>
 									<p id="item_availability_message">There <span class="single-plural"></span> <strong><span class="total-items-available"></span> <?php the_title(); ?><span class="s-ending"></span> available</strong> for checkout. <a href="https://ucf-flvc.primo.exlibrisgroup.com/permalink/01FALSC_UCF/6a1ouu/alma<?php echo get_post_meta($post->ID, 'availability', true); ?>" target="_blank">View items in Primo</a></p>
 									<?php 
-										$json_o = primo_availability_api_call(get_post_meta($post->ID, 'availability', true), 100);	
-										$availability = primo_availability_calc($json_o);
-										$availability_list = primo_availability_list($json_o);
-										echo($availability_list);
+										$limit = 100; // Limit the number of records returned by the API call
+										$json_o = primo_availability_api_call(get_post_meta($post->ID, 'availability', true), $limit, 0);	
+										if (($json_o !== null)){
+											$record_count = $json_o->total_record_count; // Total number of records
+											// If the total number of records is greater than the limit, we need to make additional API calls to get all the records.	
+											if ($record_count > $limit) {
+												$record_count -= $limit; // Subtract the first 100 records from the total
+												while ($record_count > 0) { // Loop through the remaining records
+													$json_o_temp = primo_availability_api_call(get_post_meta($post->ID, 'availability', true), $limit, $limit);
+													$json_o->item = array_merge($json_o->item, $json_o_temp->item); // Merge the new records with the existing records
+													$record_count -= $limit; // Subtract the number of records we just retrieved from the total
+												}
+											}
+											$availability = primo_availability_calc($json_o);
+											$availability_list = primo_availability_list($json_o);
+											echo($availability_list);
+										} else {
+											$availability = array(-1, -1, -1);
+										}
 									?>
-								<?php  else: ?>	
+								<?php  else: $availability = array(-1, -1);?>	
 									<p> This item is not tracked in our availability system. </p>
 								<?php  endif; ?>
 							</div> 

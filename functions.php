@@ -116,24 +116,24 @@ function generate_term_list($taxonomy, $parent_id = 0) {
     'hierarchical' => true,
     'parent' => $parent_id,
   );
-  $terms = get_terms($taxonomy, $term_args);
-  if (empty($terms) || is_wp_error($terms)) {
+  $terms = get_terms($taxonomy, $term_args);  
+  if (empty($terms) || is_wp_error($terms)) { 
     return '';
   }
-  $queried_object = get_queried_object();
-  if (isset($queried_object->term_id)) {
-    $post_term_id = $queried_object->term_id;
+  $queried_object = get_queried_object(); 
+  if (isset($queried_object->term_id)) { // Check if we are on a taxonomy archive page
+    $post_term_id = $queried_object->term_id; // Get the current archive page term ID
   } else {
-    $post_term_id ='';
+    $post_term_id =''; // Default to empty if not on a taxonomy archive page
   }
   if ($parent_id == 0) {
-    $term_list = '<ul class="tree">';
+    $term_list = '<ul class="tree">'; // Top-level terms
   } else {
     $term_list = '<ul>';
   }
   foreach ($terms as $term) {
-    if($post_term_id == $term->term_id) {
-      $active_class = 'class="active-term"';
+    if($post_term_id == $term->term_id) { // Check if the term is the current one
+      $active_class = 'class="active-term"'; // Add active class to the current term
     } else {
       $active_class = '';
     }
@@ -181,39 +181,72 @@ add_action( 'init', 'register_my_menus' );
 
 
 //This section below loads the javascript and css used throughout the entire site
-//. ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . 
 
 function wpt_register_js() {
-    wp_deregister_script('jquery');
-    wp_register_script('jquery', "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js", false, null);
-    // wp_register_script('jquery.ui', "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js", false, null);
-    wp_register_script('jquery.bootstrap.min', get_template_directory_uri() . '/js/bootstrap.min.js', 'jquery');
-    wp_register_script('jquery.tablesorter.min', get_template_directory_uri() . '/js/jquery.tablesorter.min.js', 'jquery');
-    wp_register_script('jquery.scripts', get_template_directory_uri(). '/js/scripts.js', 'jquery');
 
-    wp_enqueue_script('jquery');
-    // wp_enqueue_script('jquery.ui');
-    wp_enqueue_script('jquery.bootstrap.min');
-    wp_enqueue_script('jquery.tablesorter.min');
-    wp_enqueue_script('jquery.scripts');
+    $theme_version = wp_get_theme()->get( 'Version' );
+
+    wp_enqueue_script(
+        'bootstrap',
+        get_template_directory_uri() . '/js/bootstrap.min.js',
+        array( 'jquery' ),
+        $theme_version,
+        true
+    );
+
+    wp_enqueue_script(
+        'tablesorter',
+        get_template_directory_uri() . '/js/jquery.tablesorter.min.js',
+        array( 'jquery' ),
+        $theme_version,
+        true
+    );
+
+    wp_enqueue_script(
+        'library-scripts',
+        get_template_directory_uri() . '/js/scripts.js',
+        array( 'jquery', 'bootstrap', 'tablesorter' ),
+        $theme_version,
+        true
+    );
 }
-add_action( 'init', 'wpt_register_js' );
+add_action( 'wp_enqueue_scripts', 'wpt_register_js' );
 
 function wpt_register_css() {
-    wp_register_style( 'normalize', get_stylesheet_directory_uri() . '/css/normalize.css', array(), '1', 'all' );
-    // wp_register_style( 'jquery.ui.css', "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css");
-    wp_register_style( 'bootstrap.min', get_stylesheet_directory_uri() . '/css/bootstrap.min.css', array(), '1', 'all' );
-    wp_register_style( 'font-awesome.min.css', get_stylesheet_directory_uri() . '/css/font-awesome.min.css', array(), '1', 'all' );
-    wp_register_style( 'style', get_stylesheet_directory_uri() . '/style.css', array('normalize','bootstrap.min','font-awesome.min.css'), '1', 'all' );
- //   wp_register_style( 'gravity-bootstrap', get_stylesheet_directory_uri() . '/css/gravity-bootstrap.css' );
 
+    $theme_version = wp_get_theme()->get( 'Version' );
 
-    wp_enqueue_style( 'normalize');
-    // wp_enqueue_style( 'jquery.ui.css');
-    wp_enqueue_style( 'bootstrap.min' );
-    wp_enqueue_style( 'font-awesome.min.css' );
-    wp_enqueue_style( 'style');
- //   wp_enqueue_style( 'gravity-bootstrap');
+    wp_enqueue_style(
+        'normalize',
+        get_stylesheet_directory_uri() . '/css/normalize.css',
+        array(),
+        $theme_version,
+        'all'
+    );
+
+    wp_enqueue_style(
+        'bootstrap',
+        get_stylesheet_directory_uri() . '/css/bootstrap.min.css',
+        array(),
+        $theme_version,
+        'all'
+    );
+
+    wp_enqueue_style(
+        'font-awesome',
+        get_stylesheet_directory_uri() . '/css/font-awesome.min.css',
+        array(),
+        $theme_version,
+        'all'
+    );
+
+    wp_enqueue_style(
+        'library-style',
+        get_stylesheet_uri(),
+        array( 'normalize', 'bootstrap', 'font-awesome' ),
+        $theme_version,
+        'all'
+    );
 }
 add_action( 'wp_enqueue_scripts', 'wpt_register_css' );
 
@@ -438,298 +471,298 @@ add_action('generate_rewrite_rules', 'generate_staff_taxonomy_rewrite_rules');
 * Technology Lending Custom Post Type & Taxonomies
 **/
 
-function register_technology_lending_entities() {
+// function register_technology_lending_entities() {
 
   //Technology Lending Custom Post Type
-    $technology_labels = array(
-        'name' => _x( 'Tech', 'tech' ),
-        'singular_name' => _x( 'Tech', 'tech' ),
-        'add_new' => _x( 'Add New', 'tech' ),
-        'add_new_item' => _x( 'Add New Tech Item', 'tech' ),
-        'edit_item' => _x( 'Edit Tech Item', 'tech' ),
-        'new_item' => _x( 'New Tech Item', 'tech' ),
-        'view_item' => _x( 'View Tech Item', 'tech' ),
-        'search_items' => _x( 'Search Tech Items', 'tech' ),
-        'not_found' => _x( 'No tech item found', 'tech' ),
-        'not_found_in_trash' => _x( 'No tech found in Trash', 'tech' ),
-        'parent_item_colon' => _x( 'Parent Tech:', 'tech' ),
-        'menu_name' => _x( 'Tech Lending', 'tech' ),
-    );
+    // $technology_labels = array(
+    //     'name' => _x( 'Tech', 'tech' ),
+    //     'singular_name' => _x( 'Tech', 'tech' ),
+    //     'add_new' => _x( 'Add New', 'tech' ),
+    //     'add_new_item' => _x( 'Add New Tech Item', 'tech' ),
+    //     'edit_item' => _x( 'Edit Tech Item', 'tech' ),
+    //     'new_item' => _x( 'New Tech Item', 'tech' ),
+    //     'view_item' => _x( 'View Tech Item', 'tech' ),
+    //     'search_items' => _x( 'Search Tech Items', 'tech' ),
+    //     'not_found' => _x( 'No tech item found', 'tech' ),
+    //     'not_found_in_trash' => _x( 'No tech found in Trash', 'tech' ),
+    //     'parent_item_colon' => _x( 'Parent Tech:', 'tech' ),
+    //     'menu_name' => _x( 'Tech Lending', 'tech' ),
+    // );
 
-    $technology_args = array(
-        'labels' => $technology_labels,
-        'hierarchical' => true,
-        'description' => 'Tech names and descriptions',
-        'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions', 'author'),
-        'taxonomies' => array( 'tech_type', 'loan_period'),
-        'public' => true,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'menu_icon' => 'dashicons-laptop',
-        'menu_position' => 21,
-        'show_in_nav_menus' => true,
-        'publicly_queryable' => true,
-        'exclude_from_search' => false,
-        'has_archive' => true,
-        'query_var' => true,
-        'can_export' => true,
-        'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
-        'capability_type' => 'post'
-    );
-    register_post_type( 'tech', $technology_args );
+    // $technology_args = array(
+    //     'labels' => $technology_labels,
+    //     'hierarchical' => true,
+    //     'description' => 'Tech names and descriptions',
+    //     'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions', 'author'),
+    //     'taxonomies' => array( 'tech_type', 'loan_period'),
+    //     'public' => true,
+    //     'show_ui' => true,
+    //     'show_in_menu' => true,
+    //     'menu_icon' => 'dashicons-laptop',
+    //     'menu_position' => 21,
+    //     'show_in_nav_menus' => true,
+    //     'publicly_queryable' => true,
+    //     'exclude_from_search' => false,
+    //     'has_archive' => true,
+    //     'query_var' => true,
+    //     'can_export' => true,
+    //     'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
+    //     'capability_type' => 'post'
+    // );
+    // register_post_type( 'tech', $technology_args );
 
   // Tech Type Taxonomy
-    $tech_type_labels = array(
-        'name' => _x( 'Tech Type', 'taxonomy general name' ),
-        'singular_name' => _x( 'Tech Type', 'taxonomy singular name' ),
-        'search_items' =>  __( 'Search Tech Type' ),
-        'all_items' => __( 'All Tech Types' ),
-        'parent_item' => __( 'Parent Tech Type' ),
-        'parent_item_colon' => __( 'Parent Tech Type:' ),
-        'edit_item' => __( 'Edit Tech Type' ),
-        'update_item' => __( 'Update Tech Type' ),
-        'add_new_item' => __( 'Add New Tech Type' ),
-        'new_item_name' => __( 'New Tech Type Name' ),
-        'menu_name' => __( 'Tech Type' ),
-    );
+    // $tech_type_labels = array(
+    //     'name' => _x( 'Tech Type', 'taxonomy general name' ),
+    //     'singular_name' => _x( 'Tech Type', 'taxonomy singular name' ),
+    //     'search_items' =>  __( 'Search Tech Type' ),
+    //     'all_items' => __( 'All Tech Types' ),
+    //     'parent_item' => __( 'Parent Tech Type' ),
+    //     'parent_item_colon' => __( 'Parent Tech Type:' ),
+    //     'edit_item' => __( 'Edit Tech Type' ),
+    //     'update_item' => __( 'Update Tech Type' ),
+    //     'add_new_item' => __( 'Add New Tech Type' ),
+    //     'new_item_name' => __( 'New Tech Type Name' ),
+    //     'menu_name' => __( 'Tech Type' ),
+    // );
 
-    $tech_type_args = array(
-      'hierarchical' => true,
-      'labels' => $tech_type_labels,
-      'show_ui' => true,
-      'show_admin_column' => true,
-      'query_var' => true,
-      'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
-    );
-    register_taxonomy('tech_type',array('tech'), $tech_type_args );
+    // $tech_type_args = array(
+    //   'hierarchical' => true,
+    //   'labels' => $tech_type_labels,
+    //   'show_ui' => true,
+    //   'show_admin_column' => true,
+    //   'query_var' => true,
+    //   'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
+    // );
+    // register_taxonomy('tech_type',array('tech'), $tech_type_args );
 
   // Loan Period Taxonomy
-    $loan_period_labels = array(
-      'name' => _x( 'Loan Period', 'taxonomy general name' ),
-      'singular_name' => _x( 'Loan Period', 'taxonomy singular name' ),
-      'search_items' =>  __( 'Search Loan Periods' ),
-      'all_items' => __( 'All Loan Periods' ),
-      'parent_item' => __( 'Parent Loan Period' ),
-      'parent_item_colon' => __( 'Parent Loan Period:' ),
-      'edit_item' => __( 'Edit Loan Period' ),
-      'update_item' => __( 'Update Loan Period' ),
-      'add_new_item' => __( 'Add New Loan Period' ),
-      'new_item_name' => __( 'New Loan Period Name' ),
-      'menu_name' => __( 'Loan Period' ),
-    );
+    // $loan_period_labels = array(
+    //   'name' => _x( 'Loan Period', 'taxonomy general name' ),
+    //   'singular_name' => _x( 'Loan Period', 'taxonomy singular name' ),
+    //   'search_items' =>  __( 'Search Loan Periods' ),
+    //   'all_items' => __( 'All Loan Periods' ),
+    //   'parent_item' => __( 'Parent Loan Period' ),
+    //   'parent_item_colon' => __( 'Parent Loan Period:' ),
+    //   'edit_item' => __( 'Edit Loan Period' ),
+    //   'update_item' => __( 'Update Loan Period' ),
+    //   'add_new_item' => __( 'Add New Loan Period' ),
+    //   'new_item_name' => __( 'New Loan Period Name' ),
+    //   'menu_name' => __( 'Loan Period' ),
+    // );
 
-    $loan_period_args = array(
-      'hierarchical' => true,
-      'labels' => $loan_period_labels,
-      'show_ui' => true,
-      'show_admin_column' => true,
-      'query_var' => true,
-      'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
-    );
-    register_taxonomy('loan_period',array('tech'), $loan_period_args );
+    // $loan_period_args = array(
+    //   'hierarchical' => true,
+    //   'labels' => $loan_period_labels,
+    //   'show_ui' => true,
+    //   'show_admin_column' => true,
+    //   'query_var' => true,
+    //   'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
+    // );
+    // register_taxonomy('loan_period',array('tech'), $loan_period_args );
 
   // Eligible User Taxonomy
-    $eligible_user_labels = array(
-      'name' => _x( 'Eligible User', 'taxonomy general name' ),
-      'singular_name' => _x( 'Eligible User', 'taxonomy singular name' ),
-      'search_items' =>  __( 'Search Eligible Users' ),
-      'all_items' => __( 'All Eligible Users' ),
-      'parent_item' => __( 'Parent Eligible User' ),
-      'parent_item_colon' => __( 'Parent Eligible User:' ),
-      'edit_item' => __( 'Edit Eligible User' ),
-      'update_item' => __( 'Update Eligible User' ),
-      'add_new_item' => __( 'Add New Eligible User' ),
-      'new_item_name' => __( 'New Eligible User Name' ),
-      'menu_name' => __( 'Eligible User' ),
-    );
+    // $eligible_user_labels = array(
+    //   'name' => _x( 'Eligible User', 'taxonomy general name' ),
+    //   'singular_name' => _x( 'Eligible User', 'taxonomy singular name' ),
+    //   'search_items' =>  __( 'Search Eligible Users' ),
+    //   'all_items' => __( 'All Eligible Users' ),
+    //   'parent_item' => __( 'Parent Eligible User' ),
+    //   'parent_item_colon' => __( 'Parent Eligible User:' ),
+    //   'edit_item' => __( 'Edit Eligible User' ),
+    //   'update_item' => __( 'Update Eligible User' ),
+    //   'add_new_item' => __( 'Add New Eligible User' ),
+    //   'new_item_name' => __( 'New Eligible User Name' ),
+    //   'menu_name' => __( 'Eligible User' ),
+    // );
 
-    $eligible_user_args = array(
-      'hierarchical' => true,
-      'labels' => $eligible_user_labels,
-      'show_ui' => true,
-      'show_admin_column' => true,
-      'query_var' => true,
-      'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
-    );
-    register_taxonomy('eligible_user',array('tech'), $eligible_user_args );
+    // $eligible_user_args = array(
+    //   'hierarchical' => true,
+    //   'labels' => $eligible_user_labels,
+    //   'show_ui' => true,
+    //   'show_admin_column' => true,
+    //   'query_var' => true,
+    //   'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
+    // );
+    // register_taxonomy('eligible_user',array('tech'), $eligible_user_args );
 
   // Library Taxonomy
-    $library_labels = array(
-      'name' => _x( 'Library', 'taxonomy general name' ),
-      'singular_name' => _x( 'Library', 'taxonomy singular name' ),
-      'search_items' =>  __( 'Search Librarys' ),
-      'all_items' => __( 'All Librarys' ),
-      'parent_item' => __( 'Parent Library' ),
-      'parent_item_colon' => __( 'Parent Library:' ),
-      'edit_item' => __( 'Edit Library' ),
-      'update_item' => __( 'Update Library' ),
-      'add_new_item' => __( 'Add New Library' ),
-      'new_item_name' => __( 'New Library Name' ),
-      'menu_name' => __( 'Library' ),
-    );
+//     $library_labels = array(
+//       'name' => _x( 'Library', 'taxonomy general name' ),
+//       'singular_name' => _x( 'Library', 'taxonomy singular name' ),
+//       'search_items' =>  __( 'Search Librarys' ),
+//       'all_items' => __( 'All Librarys' ),
+//       'parent_item' => __( 'Parent Library' ),
+//       'parent_item_colon' => __( 'Parent Library:' ),
+//       'edit_item' => __( 'Edit Library' ),
+//       'update_item' => __( 'Update Library' ),
+//       'add_new_item' => __( 'Add New Library' ),
+//       'new_item_name' => __( 'New Library Name' ),
+//       'menu_name' => __( 'Library' ),
+//     );
 
-    $library_args = array(
-      'hierarchical' => true,
-      'labels' => $library_labels,
-      'show_ui' => true,
-      'show_admin_column' => true,
-      'query_var' => true,
-      'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
-    );
-    register_taxonomy('library',array('tech'), $library_args );
-}
+//     $library_args = array(
+//       'hierarchical' => true,
+//       'labels' => $library_labels,
+//       'show_ui' => true,
+//       'show_admin_column' => true,
+//       'query_var' => true,
+//       'rewrite' => array( 'slug' => 'technology-lending', 'with_front' => false ),
+//     );
+//     register_taxonomy('library',array('tech'), $library_args );
+// }
 
-add_action( 'init', 'register_technology_lending_entities' );
+// add_action( 'init', 'register_technology_lending_entities' );
 
 
 // Slug rewrite for technology lending custom post type and taxonomies
-function generate_tech_taxonomy_rewrite_rules( $wp_rewrite ) {
-  $rules = array();
-  $post_types = get_post_types( array( 'name' => 'tech', 'public' => true, '_builtin' => false ), 'objects' );
-  $taxonomies = get_taxonomies( array( 'name' => 'tech_type', 'public' => true, '_builtin' => false ), 'objects' );
-  $taxonomies += get_taxonomies( array( 'name' => 'loan_period', 'public' => true, '_builtin' => false ), 'objects' );
-  $taxonomies += get_taxonomies( array( 'name' => 'eligible_user', 'public' => true, '_builtin' => false ), 'objects' );
-  $taxonomies += get_taxonomies( array( 'name' => 'library', 'public' => true, '_builtin' => false ), 'objects' );
+// function generate_tech_taxonomy_rewrite_rules( $wp_rewrite ) {
+//   $rules = array();
+//   $post_types = get_post_types( array( 'name' => 'tech', 'public' => true, '_builtin' => false ), 'objects' );
+//   $taxonomies = get_taxonomies( array( 'name' => 'tech_type', 'public' => true, '_builtin' => false ), 'objects' );
+//   $taxonomies += get_taxonomies( array( 'name' => 'loan_period', 'public' => true, '_builtin' => false ), 'objects' );
+//   $taxonomies += get_taxonomies( array( 'name' => 'eligible_user', 'public' => true, '_builtin' => false ), 'objects' );
+//   $taxonomies += get_taxonomies( array( 'name' => 'library', 'public' => true, '_builtin' => false ), 'objects' );
 
-  foreach ( $post_types as $post_type ) {
-    $post_type_name = $post_type->name; // 'developer'
-    $post_type_slug = $post_type->rewrite['slug']; // 'developers'
+//   foreach ( $post_types as $post_type ) {
+//     $post_type_name = $post_type->name; // 'developer'
+//     $post_type_slug = $post_type->rewrite['slug']; // 'developers'
 
-    foreach ( $taxonomies as $taxonomy ) {
-      if ( $taxonomy->object_type[0] == $post_type_name ) {
-        $terms = get_categories( array( 'type' => $post_type_name, 'taxonomy' => $taxonomy->name, 'hide_empty' => 0 ) );
-        foreach ( $terms as $term ) {
-          $rules[$post_type_slug . '/' . $term->slug . '/?$'] = 'index.php?' . $term->taxonomy . '=' . $term->slug;
-        }
-      }
-    }
-  }
-  $wp_rewrite->rules = $rules + $wp_rewrite->rules;
-}
-add_action('generate_rewrite_rules', 'generate_tech_taxonomy_rewrite_rules');
+//     foreach ( $taxonomies as $taxonomy ) {
+//       if ( $taxonomy->object_type[0] == $post_type_name ) {
+//         $terms = get_categories( array( 'type' => $post_type_name, 'taxonomy' => $taxonomy->name, 'hide_empty' => 0 ) );
+//         foreach ( $terms as $term ) {
+//           $rules[$post_type_slug . '/' . $term->slug . '/?$'] = 'index.php?' . $term->taxonomy . '=' . $term->slug;
+//         }
+//       }
+//     }
+//   }
+//   $wp_rewrite->rules = $rules + $wp_rewrite->rules;
+// }
+// add_action('generate_rewrite_rules', 'generate_tech_taxonomy_rewrite_rules');
 
 
 /**
 * Anatomy Lending Custom Post Type & Taxonomies
 **/
 
-function register_anatomy_lending_entities() {
+// function register_anatomy_lending_entities() {
 
   //Anatomy Lending Custom Post Type
-    $anatomy_labels = array(
-        'name' => _x( 'Anatomy', 'anatomy' ),
-        'singular_name' => _x( 'Anatomy', 'anatomy' ),
-        'add_new' => _x( 'Add New', 'anatomy' ),
-        'add_new_item' => _x( 'Add New Anatomy Item', 'anatomy' ),
-        'edit_item' => _x( 'Edit Anatomy Item', 'anatomy' ),
-        'new_item' => _x( 'New Anatomy Item', 'anatomy' ),
-        'view_item' => _x( 'View Anatomy Item', 'anatomy' ),
-        'search_items' => _x( 'Search Anatomy Items', 'anatomy' ),
-        'not_found' => _x( 'No anatomy item found', 'anatomy' ),
-        'not_found_in_trash' => _x( 'No anatomy found in Trash', 'anatomy' ),
-        'parent_item_colon' => _x( 'Parent Anatomy:', 'anatomy' ),
-        'menu_name' => _x( 'Anatomy Lending', 'anatomy' ),
-    );
+    // $anatomy_labels = array(
+    //     'name' => _x( 'Anatomy', 'anatomy' ),
+    //     'singular_name' => _x( 'Anatomy', 'anatomy' ),
+    //     'add_new' => _x( 'Add New', 'anatomy' ),
+    //     'add_new_item' => _x( 'Add New Anatomy Item', 'anatomy' ),
+    //     'edit_item' => _x( 'Edit Anatomy Item', 'anatomy' ),
+    //     'new_item' => _x( 'New Anatomy Item', 'anatomy' ),
+    //     'view_item' => _x( 'View Anatomy Item', 'anatomy' ),
+    //     'search_items' => _x( 'Search Anatomy Items', 'anatomy' ),
+    //     'not_found' => _x( 'No anatomy item found', 'anatomy' ),
+    //     'not_found_in_trash' => _x( 'No anatomy found in Trash', 'anatomy' ),
+    //     'parent_item_colon' => _x( 'Parent Anatomy:', 'anatomy' ),
+    //     'menu_name' => _x( 'Anatomy Lending', 'anatomy' ),
+    // );
 
-    $anatomy_args = array(
-        'labels' => $anatomy_labels,
-        'hierarchical' => true,
-        'description' => 'Anatomy names and descriptions',
-        'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions', 'author'),
-        'taxonomies' => array( 'anatomy_type', 'a_library'),
-        'public' => true,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'menu_icon' => 'dashicons-universal-access-alt',
-        'menu_position' => 21,
-        'show_in_nav_menus' => true,
-        'publicly_queryable' => true,
-        'exclude_from_search' => false,
-        'has_archive' => true,
-        'query_var' => true,
-        'can_export' => true,
-        'rewrite' => array( 'slug' => 'anatomy-lending', 'with_front' => false ),
-        'capability_type' => 'post'
-    );
-    register_post_type( 'anatomy', $anatomy_args );
+    // $anatomy_args = array(
+    //     'labels' => $anatomy_labels,
+    //     'hierarchical' => true,
+    //     'description' => 'Anatomy names and descriptions',
+    //     'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions', 'author'),
+    //     'taxonomies' => array( 'anatomy_type', 'a_library'),
+    //     'public' => true,
+    //     'show_ui' => true,
+    //     'show_in_menu' => true,
+    //     'menu_icon' => 'dashicons-universal-access-alt',
+    //     'menu_position' => 21,
+    //     'show_in_nav_menus' => true,
+    //     'publicly_queryable' => true,
+    //     'exclude_from_search' => false,
+    //     'has_archive' => true,
+    //     'query_var' => true,
+    //     'can_export' => true,
+    //     'rewrite' => array( 'slug' => 'anatomy-lending', 'with_front' => false ),
+    //     'capability_type' => 'post'
+    // );
+    // register_post_type( 'anatomy', $anatomy_args );
 
   // Anatomy Type Taxonomy
-    $anatomy_type_labels = array(
-        'name' => _x( 'Anatomy Type', 'taxonomy general name' ),
-        'singular_name' => _x( 'Anatomy Type', 'taxonomy singular name' ),
-        'search_items' =>  __( 'Search Anatomy Type' ),
-        'all_items' => __( 'All Anatomy Types' ),
-        'parent_item' => __( 'Parent Anatomy Type' ),
-        'parent_item_colon' => __( 'Parent Anatomy Type:' ),
-        'edit_item' => __( 'Edit Anatomy Type' ),
-        'update_item' => __( 'Update Anatomy Type' ),
-        'add_new_item' => __( 'Add New Anatomy Type' ),
-        'new_item_name' => __( 'New Anatomy Type Name' ),
-        'menu_name' => __( 'Anatomy Type' ),
-    );
+    // $anatomy_type_labels = array(
+    //     'name' => _x( 'Anatomy Type', 'taxonomy general name' ),
+    //     'singular_name' => _x( 'Anatomy Type', 'taxonomy singular name' ),
+    //     'search_items' =>  __( 'Search Anatomy Type' ),
+    //     'all_items' => __( 'All Anatomy Types' ),
+    //     'parent_item' => __( 'Parent Anatomy Type' ),
+    //     'parent_item_colon' => __( 'Parent Anatomy Type:' ),
+    //     'edit_item' => __( 'Edit Anatomy Type' ),
+    //     'update_item' => __( 'Update Anatomy Type' ),
+    //     'add_new_item' => __( 'Add New Anatomy Type' ),
+    //     'new_item_name' => __( 'New Anatomy Type Name' ),
+    //     'menu_name' => __( 'Anatomy Type' ),
+    // );
 
-    $anatomy_type_args = array(
-      'hierarchical' => true,
-      'labels' => $anatomy_type_labels,
-      'show_ui' => true,
-      'show_admin_column' => true,
-      'query_var' => true,
-      'rewrite' => array( 'slug' => 'anatomy-lending', 'with_front' => false ),
-    );
-    register_taxonomy('anatomy_type',array('anatomy'), $anatomy_type_args );
+    // $anatomy_type_args = array(
+    //   'hierarchical' => true,
+    //   'labels' => $anatomy_type_labels,
+    //   'show_ui' => true,
+    //   'show_admin_column' => true,
+    //   'query_var' => true,
+    //   'rewrite' => array( 'slug' => 'anatomy-lending', 'with_front' => false ),
+    // );
+    // register_taxonomy('anatomy_type',array('anatomy'), $anatomy_type_args );
 
   // Library Taxonomy
-    $a_library_labels = array(
-      'name' => _x( 'Library', 'taxonomy general name' ),
-      'singular_name' => _x( 'Library', 'taxonomy singular name' ),
-      'search_items' =>  __( 'Search Libraries' ),
-      'all_items' => __( 'All Libraries' ),
-      'parent_item' => __( 'Parent Library' ),
-      'parent_item_colon' => __( 'Parent Library:' ),
-      'edit_item' => __( 'Edit Library' ),
-      'update_item' => __( 'Update Library' ),
-      'add_new_item' => __( 'Add New Library' ),
-      'new_item_name' => __( 'New Library Name' ),
-      'menu_name' => __( 'Library' ),
-    );
+//     $a_library_labels = array(
+//       'name' => _x( 'Library', 'taxonomy general name' ),
+//       'singular_name' => _x( 'Library', 'taxonomy singular name' ),
+//       'search_items' =>  __( 'Search Libraries' ),
+//       'all_items' => __( 'All Libraries' ),
+//       'parent_item' => __( 'Parent Library' ),
+//       'parent_item_colon' => __( 'Parent Library:' ),
+//       'edit_item' => __( 'Edit Library' ),
+//       'update_item' => __( 'Update Library' ),
+//       'add_new_item' => __( 'Add New Library' ),
+//       'new_item_name' => __( 'New Library Name' ),
+//       'menu_name' => __( 'Library' ),
+//     );
 
-    $a_library_args = array(
-      'hierarchical' => true,
-      'labels' => $a_library_labels,
-      'show_ui' => true,
-      'show_admin_column' => true,
-      'query_var' => true,
-      'rewrite' => array( 'slug' => 'anatomy-lending', 'with_front' => false ),
-    );
-    register_taxonomy('a_library',array('anatomy'), $a_library_args );
-}
+//     $a_library_args = array(
+//       'hierarchical' => true,
+//       'labels' => $a_library_labels,
+//       'show_ui' => true,
+//       'show_admin_column' => true,
+//       'query_var' => true,
+//       'rewrite' => array( 'slug' => 'anatomy-lending', 'with_front' => false ),
+//     );
+//     register_taxonomy('a_library',array('anatomy'), $a_library_args );
+// }
 
-add_action( 'init', 'register_anatomy_lending_entities' );
+// add_action( 'init', 'register_anatomy_lending_entities' );
 
 
 // Slug rewrite for anatomy lending custom post type and taxonomies
-function generate_anatomy_taxonomy_rewrite_rules( $wp_rewrite ) {
-  $rules = array();
-  $post_types = get_post_types( array( 'name' => 'anatomy', 'public' => true, '_builtin' => false ), 'objects' );
-  $taxonomies = get_taxonomies( array( 'name' => 'anatomy_type', 'public' => true, '_builtin' => false ), 'objects' );
-  $taxonomies += get_taxonomies( array( 'name' => 'a_library', 'public' => true, '_builtin' => false ), 'objects' );
+// function generate_anatomy_taxonomy_rewrite_rules( $wp_rewrite ) {
+//   $rules = array();
+//   $post_types = get_post_types( array( 'name' => 'anatomy', 'public' => true, '_builtin' => false ), 'objects' );
+//   $taxonomies = get_taxonomies( array( 'name' => 'anatomy_type', 'public' => true, '_builtin' => false ), 'objects' );
+//   $taxonomies += get_taxonomies( array( 'name' => 'a_library', 'public' => true, '_builtin' => false ), 'objects' );
 
-  foreach ( $post_types as $post_type ) {
-    $post_type_name = $post_type->name; // 'developer'
-    $post_type_slug = $post_type->rewrite['slug']; // 'developers'
+//   foreach ( $post_types as $post_type ) {
+//     $post_type_name = $post_type->name; // 'developer'
+//     $post_type_slug = $post_type->rewrite['slug']; // 'developers'
 
-    foreach ( $taxonomies as $taxonomy ) {
-      if ( $taxonomy->object_type[0] == $post_type_name ) {
-        $terms = get_categories( array( 'type' => $post_type_name, 'taxonomy' => $taxonomy->name, 'hide_empty' => 0 ) );
-        foreach ( $terms as $term ) {
-          $rules[$post_type_slug . '/' . $term->slug . '/?$'] = 'index.php?' . $term->taxonomy . '=' . $term->slug;
-        }
-      }
-    }
-  }
-  $wp_rewrite->rules = $rules + $wp_rewrite->rules;
-}
-add_action('generate_rewrite_rules', 'generate_anatomy_taxonomy_rewrite_rules');
+//     foreach ( $taxonomies as $taxonomy ) {
+//       if ( $taxonomy->object_type[0] == $post_type_name ) {
+//         $terms = get_categories( array( 'type' => $post_type_name, 'taxonomy' => $taxonomy->name, 'hide_empty' => 0 ) );
+//         foreach ( $terms as $term ) {
+//           $rules[$post_type_slug . '/' . $term->slug . '/?$'] = 'index.php?' . $term->taxonomy . '=' . $term->slug;
+//         }
+//       }
+//     }
+//   }
+//   $wp_rewrite->rules = $rules + $wp_rewrite->rules;
+// }
+// add_action('generate_rewrite_rules', 'generate_anatomy_taxonomy_rewrite_rules');
 
 
 /**

@@ -1,13 +1,5 @@
 <?php get_header(); ?>
-<!-- <script>
 
-function fbShare(url, title, descr, image, winWidth, winHeight) {
-  var winTop = (screen.height / 2) - (winHeight / 2);
-  var winLeft = (screen.width / 2) - (winWidth / 2);
-  window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
-}
-
-</script> -->
 <div id="main">
 	<div id="title_bar" class="container">
 	<!-- home.php -->
@@ -16,8 +8,29 @@ function fbShare(url, title, descr, image, winWidth, winHeight) {
 	</div>
 	<div  class="background-color-gray">
 		<div id="content" class="container">
+				<div id="content_area">					
+					<section class="news-filters">
+						<button class="filter-toggle" aria-expanded="false">All Topics</button>
+						<div class="filter-buttons">
+							<?php
+							$categories = get_categories([
+								'taxonomy'   => 'category',
+								'hide_empty' => true,
+								'orderby'    => 'name',
+								'hierarchical' => true,
+								// 'parent'     => 0
+							]);
 
-				<div id="content_area">
+							foreach ($categories as $category) :
+							?>
+								<a href="<?php echo esc_url(
+									get_category_link($category->term_id)
+								); ?>" class="filter-btn">
+								<?php echo esc_html($category->name); ?>
+								</a>
+							<?php endforeach; ?>
+						</div>
+					</section>
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					<?php	
 						$categories = get_the_category();
@@ -34,7 +47,7 @@ function fbShare(url, title, descr, image, winWidth, winHeight) {
 						<?php if (has_post_thumbnail()): ?>
 							<div class="post-header-img"><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('full'); ?></a></div>
 						<?php else: ?>
-							<div class="post-header-img"><a title="<?php echo get_the_title(); ?>" href="<?php echo get_permalink(); ?>"><img alt="Decorative pegasus banner" src="<?php echo(get_template_directory_uri()) ?>/images/generic-default-banner.jpg"></a></div>
+							<div class="post-header-img"><a title="<?php echo get_the_title(); ?>" href="<?php echo get_permalink(); ?>"><img class="size-full" alt="Decorative pegasus banner" src="<?php echo(get_template_directory_uri()) ?>/images/generic-default-banner.jpg"></a></div>
 						<?php endif; ?>
 						<div class="news-post-content">
 
@@ -46,9 +59,9 @@ function fbShare(url, title, descr, image, winWidth, winHeight) {
                 	</header>
 								</div>
 								<?php the_content(__('(more...)')); ?>
-					 			<?php if ( comments_open() || get_comments_number() ) {
-									comments_template( $file, $separate_comments ); 
-								}?>
+					 			<?php //if ( comments_open() || get_comments_number() ) {
+									//comments_template( $file, $separate_comments ); 
+								//}?>
               </div>
 				    </div>
 				  </article>
@@ -57,9 +70,18 @@ function fbShare(url, title, descr, image, winWidth, winHeight) {
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 					<?php wpbeginner_numeric_posts_nav(); ?>
 				</div>
-				<?php get_sidebar(); ?>
 		</div>
 
 	</div>
 </div>
+<script>
+  const filterToggle = document.querySelector('.filter-toggle');
+  const filterButtons = document.querySelector('.filter-buttons');
+
+  filterToggle.addEventListener('click', () => {
+	const expanded = filterToggle.getAttribute('aria-expanded') === 'true';
+	filterToggle.setAttribute('aria-expanded', !expanded);
+	filterButtons.classList.toggle('show');
+  });
+  </script>
 <?php get_footer(); ?>

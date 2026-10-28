@@ -5,7 +5,7 @@ Description: This page contains now elements of wordpress. It is used purely for
 */
 ?>
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 
 <head>
 <meta content="en-us" http-equiv="Content-Language">

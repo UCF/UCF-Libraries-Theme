@@ -95,7 +95,7 @@ if ( substr($name, -1) == 's') {
 									</section>
 								</div>
 							<?php endif; ?>
-							 <div class="card" style="padding:1em;">
+							<div class="card" style="padding:1em;">
 								<h2 id="item_availability">Item Availability</h2>
 								<?php  if(get_post_meta($post->ID, 'availability', true)): ?>
 									<p id="item_availability_message">There <span class="single-plural"></span> <strong><span class="total-items-available"></span> <?php the_title(); ?><span class="s-ending"></span> available</strong> for checkout. <a href="https://ucf-flvc.primo.exlibrisgroup.com/permalink/01FALSC_UCF/6a1ouu/alma<?php echo get_post_meta($post->ID, 'availability', true); ?>" target="_blank">View items in Primo</a></p>
@@ -117,10 +117,10 @@ if ( substr($name, -1) == 's') {
 											$availability_list = primo_availability_list($json_o);
 											echo($availability_list);
 										} else {
-											$availability = array(-1,-1);
+											$availability = array(-1, -1, -1);
 										}
 									?>
-								<?php  else: ?>	
+								<?php  else: $availability = array(-1, -1);?>	
 									<p> This item is not tracked in our availability system. </p>
 								<?php  endif; ?>
 							</div> 
@@ -135,10 +135,11 @@ if ( substr($name, -1) == 's') {
 <script type="text/javascript">
 // Adds all objects with status "Not Checked Out" and prints them into objects with class .total-items-available
 	function availability_status() {
-		let available_items = <?php	echo($availability[0]); ?>,
-				total_items = <?php	echo($availability[1]); ?>,
-				percent_available = 0,
-				has_s = <?php echo($has_s); ?>;
+		const available_items = <?php	echo($availability[0]); ?>;
+		const	total_items = <?php	echo($availability[1]); ?>;
+		const	has_s = <?php echo($has_s); ?>;
+		let	percent_available = 0;
+
 
 		if (total_items != -1) {
 			if (total_items < 0){ total_items = 0;}

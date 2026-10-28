@@ -7,6 +7,29 @@
 
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,500,700|Roboto:500,700,400');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:500,700,800');
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700');
+
+/* Color variables */
+:root {
+--ucf-gold: #EDB80D; 
+--ucf-gold-hover: #C99A05;
+--ucf-black: #121212;
+--ink: #0a0a0a;
+--text-body: #1A1A1A;
+--text-secondary: #565656;
+--text-secondary-dark: #B3B3B3;
+--horizon-blue: #4a8fba;
+--blue-tint: #8EC2DD;
+--link-blue: #1F6A9A;
+--link-blue-hover: #12496C;
+--light-gray: #eeeeee;
+--white: #ffffff;
+--paper-alt: #F4F3F0;
+--ta-teal: #16bfcc;
+--ta-teal-hover: #138b95;
+--dark-gray: #333333;
+}
 
 body {
   background-color: #fff;
@@ -69,15 +92,7 @@ body {
 }
 
 .lib-header {
-  background: #ffcc00;
-/* Old browsers */background: -moz-linear-gradient(top, #ffcc00 0%, #e5af00 100%); /* FF3.6+ */;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffcc00), color-stop(100%,#e5af00)); /* Chrome,Safari4+ */;
-  background: -webkit-linear-gradient(top, #ffcc00 0%,#e5af00 100%); /* Chrome10+,Safari5.1+ */;
-  background: -o-linear-gradient(top, #ffcc00 0%,#e5af00 100%); /* Opera 11.10+ */;
-  background: -ms-linear-gradient(top, #ffcc00 0%,#e5af00 100%); /* IE10+ */;
-  background: linear-gradient(to bottom, #ffcc00 0%,#e5af00 100%); /* W3C */;
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffcc00', endColorstr='#e5af00',GradientType=0 ); /* IE6-9 */;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  background: var(--ucf-gold);
   overflow: auto;
   line-height: 50px;
 }
@@ -271,18 +286,4 @@ body {
 }
 .branding-container {
   padding: 10px 0;
-}
-
-/* /////////////////////////////////////////////////////
-
-Illiad Header include begins
-
-///////////////////////////////////////////////////// */
-
-.illiad-header {
-  position: relative;
-}
-
-.illiad-main {
-  margin: 0 2%;
 }

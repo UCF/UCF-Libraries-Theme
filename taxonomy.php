@@ -11,7 +11,8 @@ Description: Taxonomy archive page.
       array(
         'orderby' => 'title',
         'order' => 'ASC',
-        'posts_per_page' => 200
+        'posts_per_page' => 200,
+        'post_type' => 'staff'
       )
 	  )
   );
@@ -144,6 +145,10 @@ Description: Taxonomy archive page.
     												<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
     													<li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
     												<?php endif; ?>
+
+                            <?php if(get_post_meta($post->ID, 'college', true)): ?>
+													<li><img class="college-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/images/PegasusIcon.png" data-toggle="tooltip" data-placement="right" title="College Lead"><?php echo get_post_meta($post->ID, 'college', true); ?></li>
+												<?php endif; ?>
 
                             <?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') )): ?>
                               <li><i class="fa fa-book" data-toggle="tooltip" data-placement="right" title="Subject"></i><?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') ); ?></li>
