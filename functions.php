@@ -212,6 +212,18 @@ function wpt_register_js() {
 }
 add_action( 'wp_enqueue_scripts', 'wpt_register_js' );
 
+// Register LibCal scripts
+function wpt_register_libcal() {
+    wp_register_script(
+        'libcal-hours',
+        'https://api3.libcal.com/js/hours_grid.js?002',
+        array( 'jquery' ),
+        null,
+        true
+    );
+}
+add_action( 'wp_enqueue_scripts', 'wpt_register_libcal' );
+
 function wpt_register_css() {
 
     $theme_version = wp_get_theme()->get( 'Version' );

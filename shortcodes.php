@@ -748,22 +748,46 @@ add_shortcode('instruction-calendar', 'instruction_calendar');
 *Example:
 *[hours-calendar id="0"]
 **/
-function hours_week_calendar( $atts ) {
-  extract(shortcode_atts( array(
-    'id' => '0',
-    'weeks' => '16',
-  ), $atts ));
-  return '
-  <script src="https://api3.libcal.com/js/hours_grid.js?002"></script>
 
-  <div id="s-lc-whw'.$id.'"></div>
-  <script>
-  jQuery(function(){
-  var week'.$id.' = new $.LibCalWeeklyGrid( $("#s-lc-whw'.$id.'"), { iid: 246, lid: '.$id.',  weeks: '.$weeks.' });
-  });
-  </script>';
+function hours_week_calendar( $atts ) {
+    wp_enqueue_script( 'libcal-hours' );
+    $atts = shortcode_atts(
+        array(
+            'id'    => '0',
+            'weeks' => '16',
+        ),
+        $atts,
+        'hours-calendar'
+    );
+
+    $id    = absint( $atts['id'] );
+    $weeks = absint( $atts['weeks'] );
+
+    wp_add_inline_script(
+        'libcal-hours',
+        sprintf(
+            'jQuery(function($){
+                new jQuery.LibCalWeeklyGrid(
+                    $("#s-lc-whw%d"),
+                    {
+                        iid: 246,
+                        lid: %d,
+                        weeks: %d
+                    }
+                );
+            });',
+            $id,
+            $id,
+            $weeks
+        )
+    );
+
+    return sprintf(
+        '<div id="s-lc-whw%d"></div>',
+        $id
+    );
 }
-add_shortcode('hours-calendar', 'hours_week_calendar');
+add_shortcode( 'hours-calendar', 'hours_week_calendar' );
 
 
 /**
