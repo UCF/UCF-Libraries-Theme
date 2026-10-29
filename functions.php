@@ -224,6 +224,20 @@ function wpt_register_libcal() {
 }
 add_action( 'wp_enqueue_scripts', 'wpt_register_libcal' );
 
+// Register RSS2JSON script for the Stars feed
+function wpt_register_stars_feed() {
+
+    wp_register_script(
+        'rss2json-gfapi',
+        'https://rss2json.com/gfapi.js',
+        array(),
+        null,
+        true
+    );
+
+}
+add_action( 'wp_enqueue_scripts', 'wpt_register_stars_feed' );
+
 function wpt_register_css() {
 
     $theme_version = wp_get_theme()->get( 'Version' );

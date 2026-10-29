@@ -262,35 +262,35 @@ function librarian_newsletter_feed(librarian) {
 // STARS Publication feed list
 //=======================================
 
-function stars_feed_list(feed_url, container_ID, number) {
-  google.load("feeds", "1");
-  function initialize() {
-    var feed = new google.feeds.Feed(feed_url);
-    feed.setNumEntries(number);
-    feed.load(function(result) {
-      if (!result.error) {
-        var container = document.getElementById(container_ID);
-        var ul = document.createElement("ul");
-        for (var i = 0; i < result.feed.entries.length; i++) {
-          var entry = result.feed.entries[i];
-          var li = document.createElement("li");
-          var link = document.createElement("a");
-          link.setAttribute('href', entry.link);
-          link.appendChild(document.createTextNode(entry.title));
-          li.appendChild(link);
-          ul.appendChild(li);
-        }
-        container.appendChild(ul);
-      } else {
-        var container = document.getElementById(container_ID);
-        var h4 = document.createElement("h4");
-        h4.appendChild(document.createTextNode('STARS feed unavailable at this time.'));
-        container.appendChild(h4);          
-    }
-    });
-  }
-  google.setOnLoadCallback(initialize);
-}
+// function stars_feed_list(feed_url, container_ID, number) {
+//   google.load("feeds", "1");
+//   function initialize() {
+//     var feed = new google.feeds.Feed(feed_url);
+//     feed.setNumEntries(number);
+//     feed.load(function(result) {
+//       if (!result.error) {
+//         var container = document.getElementById(container_ID);
+//         var ul = document.createElement("ul");
+//         for (var i = 0; i < result.feed.entries.length; i++) {
+//           var entry = result.feed.entries[i];
+//           var li = document.createElement("li");
+//           var link = document.createElement("a");
+//           link.setAttribute('href', entry.link);
+//           link.appendChild(document.createTextNode(entry.title));
+//           li.appendChild(link);
+//           ul.appendChild(li);
+//         }
+//         container.appendChild(ul);
+//       } else {
+//         var container = document.getElementById(container_ID);
+//         var h4 = document.createElement("h4");
+//         h4.appendChild(document.createTextNode('STARS feed unavailable at this time.'));
+//         container.appendChild(h4);          
+//     }
+//     });
+//   }
+//   google.setOnLoadCallback(initialize);
+// }
 
 // Share Button
 //=========================================
