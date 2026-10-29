@@ -748,22 +748,46 @@ add_shortcode('instruction-calendar', 'instruction_calendar');
 *Example:
 *[hours-calendar id="0"]
 **/
-function hours_week_calendar( $atts ) {
-  extract(shortcode_atts( array(
-    'id' => '0',
-    'weeks' => '16',
-  ), $atts ));
-  return '
-  <script src="https://api3.libcal.com/js/hours_grid.js?002"></script>
 
-  <div id="s-lc-whw'.$id.'"></div>
-  <script>
-  jQuery(function(){
-  var week'.$id.' = new $.LibCalWeeklyGrid( $("#s-lc-whw'.$id.'"), { iid: 246, lid: '.$id.',  weeks: '.$weeks.' });
-  });
-  </script>';
+function hours_week_calendar( $atts ) {
+    wp_enqueue_script( 'libcal-hours' );
+    $atts = shortcode_atts(
+        array(
+            'id'    => '0',
+            'weeks' => '16',
+        ),
+        $atts,
+        'hours-calendar'
+    );
+
+    $id    = absint( $atts['id'] );
+    $weeks = absint( $atts['weeks'] );
+
+    wp_add_inline_script(
+        'libcal-hours',
+        sprintf(
+            'jQuery(function($){
+                new jQuery.LibCalWeeklyGrid(
+                    $("#s-lc-whw%d"),
+                    {
+                        iid: 246,
+                        lid: %d,
+                        weeks: %d
+                    }
+                );
+            });',
+            $id,
+            $id,
+            $weeks
+        )
+    );
+
+    return sprintf(
+        '<div id="s-lc-whw%d"></div>',
+        $id
+    );
 }
-add_shortcode('hours-calendar', 'hours_week_calendar');
+add_shortcode( 'hours-calendar', 'hours_week_calendar' );
 
 
 /**
@@ -1090,25 +1114,61 @@ function newsletter_feed($atts) {
 add_shortcode('newsletter-feed', 'newsletter_feed');
 
 
+
 /**
-* STARS Most Recent RSS Feed
-* Inserts Feed for Most Recent Publications
-*
-*[stars-feed-list feed_url="ttps://stars.library.ucf.edu/topdownloads.html" container_id="top_download_feed"]
-*
-**/
-function stars_feed_list($atts) {
-  extract(shortcode_atts(array(
-      'feed_url' => 'https://stars.library.ucf.edu/topdownloads.html',
-      'container_id' => 'feed_container',
-      'number' => '10',
-  ), $atts));
-  $output = '<div id="'.$container_id.'"></div>
-  <script type="text/javascript" src="https://rss2json.com/gfapi.js"></script>
-  <script> stars_feed_list("'.$feed_url.'","'.$container_id.'","'.$number.'") </script>';
-  return $output;
+ * STARS RSS Feed List
+ *
+ * Example:
+ * [stars-feed-list feed_url="https://stars.library.ucf.edu/recent.rss" number="10" container_id="recent_download_feed"]
+ * [stars-feed-list feed_url="https://stars.library.ucf.edu/top.rss" number="10" container_id="top_download_feed"]
+ */
+function stars_feed_list( $atts ) {
+
+    $atts = shortcode_atts(
+        array(
+            'feed_url'     => 'https://stars.library.ucf.edu/recent.rss',
+            'container_id' => 'feed_container',
+            'number'       => 10,
+        ),
+        $atts,
+        'stars-feed-list'
+    );
+
+    include_once( ABSPATH . WPINC . '/feed.php' );
+
+    $rss = fetch_feed( esc_url_raw( $atts['feed_url'] ) );
+
+    if ( is_wp_error( $rss ) ) {
+        return '<p>STARS feed unavailable at this time.</p>';
+    }
+
+    $maxitems = $rss->get_item_quantity( (int) $atts['number'] );
+    $items    = $rss->get_items( 0, $maxitems );
+
+    if ( empty( $items ) ) {
+        return '<p>STARS feed unavailable at this time.</p>';
+    }
+
+    $output = '<div id="' . esc_attr( $atts['container_id'] ) . '">';
+    $output .= '<ul>';
+
+    foreach ( $items as $item ) {
+
+        $output .= sprintf(
+            '<li><a href="%s">%s</a></li>',
+            esc_url( $item->get_permalink() ),
+            esc_html( $item->get_title() )
+        );
+
+    }
+
+    $output .= '</ul>';
+    $output .= '</div>';
+
+    return $output;
 }
-add_shortcode('stars-feed-list', 'stars_feed_list');
+
+add_shortcode( 'stars-feed-list', 'stars_feed_list' );
 
 
 /**
