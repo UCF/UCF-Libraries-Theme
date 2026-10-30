@@ -1104,24 +1104,131 @@ function primo_availability_list($json_o) {
 
 // API call to occuspace
 
-function occuspace_api_call($id) {
-  $url = 'https://api.occuspace.io/v1/location/'.$id.'/now';
-  $args = array( 
-    'timeout' => 120,
-    'headers' => array(
-			'Authorization' => 'Bearer xmEDKp7UWuclzk1584u00000is3c6xt34ea'
-		)
-  );
-  $request = wp_remote_get($url, $args);
-  if (is_array( $request)) {
-    $json_o = json_decode($request['body']);
-    return $json_o;
-  } else {
-    $json_o = null;
-    return $json_o;
-  }
-}
+// function occuspace_api_call($id) {
+//   $url = 'https://api.occuspace.io/v1/location/'.$id.'/now';
+//   $args = array( 
+//     'timeout' => 120,
+//     'headers' => array(
+// 			'Authorization' => 'Bearer xmEDKp7UWuclzk1584u00000is3c6xt34ea'
+// 		)
+//   );
+//   $request = wp_remote_get($url, $args);
+//   if (is_array( $request)) {
+//     $json_o = json_decode($request['body']);
+//     return $json_o;
+//   } else {
+//     $json_o = null;
+//     return $json_o;
+//   }
+// }
 
+add_action('rest_api_init', function () {
+
+    register_rest_route('occuspace/v1', '/occupancy', [
+        'methods'             => 'GET',
+        'callback'            => 'occuspace_rest_callback',
+        'permission_callback' => '__return_true',
+    ]);
+
+});
+
+function occuspace_rest_callback( WP_REST_Request $request ) {
+
+    $ids = $request->get_param('ids');
+
+    if (empty($ids)) {
+        return rest_ensure_response([]);
+    }
+
+    $ids = explode(',', $ids);
+    $results = [];
+    foreach ($ids as $id) {
+        $id = trim($id);
+        /*
+         * Check for cached API response
+         */
+        $cache_key = 'occuspace_' . $id;
+        $json      = get_transient($cache_key);
+
+        /*
+         * No cache? Call Occuspace API
+         */
+        if ($json === false) {
+            $url = 'https://api.occuspace.io/v1/location/' . $id . '/now';
+            $response = wp_remote_get($url, [
+                'timeout' => 30,
+                'headers' => [
+                    'Authorization' => 'Bearer xmEDKp7UWuclzk1584u00000is3c6xt34ea'
+                ]
+            ]);
+
+            if (is_wp_error($response)) {
+                continue;
+            }
+
+            $body = wp_remote_retrieve_body($response);
+
+            if (empty($body)) {
+                continue;
+            }
+
+            $json = json_decode($body);
+
+            if (!$json) {
+                continue;
+            }
+
+            /*
+             * Cache for 60 seconds
+             */
+            set_transient(
+                $cache_key,
+                $json,
+                60
+            );
+        }
+
+        /*
+         * Process floors
+         */
+        if (!empty($json->data->childCounts)) {
+
+            foreach ($json->data->childCounts as $floor) {
+
+                if ($floor->isActive === false) {
+                    continue;
+                }
+
+                $percent_occupied = round(
+                    min(100, $floor->percentage * 100)
+                );
+
+                if ($percent_occupied < 50) {
+                    $busy_class = 'not-busy';
+                    $label = 'Not Busy';
+                }
+                elseif ($percent_occupied > 80) {
+                    $busy_class = 'very-busy';
+                    $label = 'Very Busy';
+                }
+                else {
+                    $busy_class = 'busy';
+                    $label = 'Busy';
+                }
+
+                $results[] = [
+                    'id' => $floor->id,
+                    'name' => $floor->name,
+                    'percentage' => $percent_occupied,
+                    'status' => $label,
+                    'class' => $busy_class
+                ];
+            }
+        }
+    }
+
+    return rest_ensure_response($results);
+}
 
 // API call to labstats
 
