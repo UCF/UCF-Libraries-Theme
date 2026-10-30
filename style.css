@@ -6,7 +6,7 @@ Author URI: https://github.com/rciullo
 Description: This is the theme of University of Central Florida Libraries.
 Text Domain: UCFLibraries
 
-Version: 1.21.5
+Version: 1.22.0
 
 */
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Roboto:500,700,400');
@@ -542,7 +542,7 @@ padding: 12px 15px;
 }
 
 .navbar-library .navbar-text {
-	color: #222;
+	color: var(--ucf-black);
 }
 
 
@@ -553,7 +553,7 @@ padding: 12px 15px;
 }
 
 .navbar-library .navbar-nav > li > a {
-	color: #222;
+	color: var(--ucf-black);
 	text-transform: uppercase;
   font-weight: 700;
 }
@@ -573,8 +573,8 @@ padding: 12px 15px;
 }
 .navbar-library .navbar-toggle {
 	border-color: none;
-	background-color: #222;
-	color: #222;
+	background-color: var(--ucf-black);
+	color: var(--ucf-black);
 	margin-top: 12px;
 }
 .navbar-library .navbar-toggle:hover, .navbar-library .navbar-toggle:focus {
@@ -1324,6 +1324,14 @@ label.filter-checkbox input ~ .checkbox-container .checkbox-custom:after {
   }
 }
 
+/* Availability Updated Text */
+.availability-updated {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
 
 /* Media Cards */
 .card .media {
