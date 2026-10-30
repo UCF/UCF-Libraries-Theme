@@ -1133,26 +1133,7 @@ function primo_availability_list($json_o) {
 // }
 
 
-// API call to occuspace
-
-// function occuspace_api_call($id) {
-//   $url = 'https://api.occuspace.io/v1/location/'.$id.'/now';
-//   $args = array( 
-//     'timeout' => 120,
-//     'headers' => array(
-// 			'Authorization' => 'Bearer xmEDKp7UWuclzk1584u00000is3c6xt34ea'
-// 		)
-//   );
-//   $request = wp_remote_get($url, $args);
-//   if (is_array( $request)) {
-//     $json_o = json_decode($request['body']);
-//     return $json_o;
-//   } else {
-//     $json_o = null;
-//     return $json_o;
-//   }
-// }
-
+/// Occuspace API call function
 
 function occuspace_rest_callback( WP_REST_Request $request ) {
 
@@ -1252,15 +1233,13 @@ function occuspace_rest_callback( WP_REST_Request $request ) {
   return rest_ensure_response($results);
 }
 
-// API call to labstats
-
-// function labstats_api_call() {
-//   $url = 'https://api.labstats.com/availability/groups';
+// Old occuspace API call function, replaced with occuspace_rest_callback() above
+// function occuspace_api_call($id) {
+//   $url = 'https://api.occuspace.io/v1/location/'.$id.'/now';
 //   $args = array( 
 //     'timeout' => 120,
 //     'headers' => array(
-// 			'Authorization' => 'd22f4613-aeec-4ac1-a889-2586b9860494',
-//       'accept' => 'application/json'
+// 			'Authorization' => 'Bearer xmEDKp7UWuclzk1584u00000is3c6xt34ea'
 // 		)
 //   );
 //   $request = wp_remote_get($url, $args);
@@ -1272,6 +1251,9 @@ function occuspace_rest_callback( WP_REST_Request $request ) {
 //     return $json_o;
 //   }
 // }
+
+/// LabStats API call function
+
 function get_labstats_data() {
 
     $cache_key = 'ucf_labstats_data';
@@ -1328,5 +1310,25 @@ function library_labstats_endpoint() {
 
     return rest_ensure_response( $data );
 }
+// old labstats API call function, replaced with get_labstats_data() above
+// function labstats_api_call() {
+//   $url = 'https://api.labstats.com/availability/groups';
+//   $args = array( 
+//     'timeout' => 120,
+//     'headers' => array(
+// 			'Authorization' => 'd22f4613-aeec-4ac1-a889-2586b9860494',
+//       'accept' => 'application/json'
+// 		)
+//   );
+//   $request = wp_remote_get($url, $args);
+//   if (is_array( $request)) {
+//     $json_o = json_decode($request['body']);
+//     return $json_o;
+//   } else {
+//     $json_o = null;
+//     return $json_o;
+//   }
+// }
+
 
 ?>
