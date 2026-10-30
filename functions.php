@@ -999,6 +999,37 @@ function mawaha_filter_allowed_html($allowed, $context){
 add_filter('wp_kses_allowed_html', 'mawaha_filter_allowed_html', 10, 2);
 
 /**
+ * REST API endpoints initialization
+ * */
+
+// REST API endpoint for occuspace occupancy data
+add_action('rest_api_init', function () {
+
+    register_rest_route('occuspace/v1', '/occupancy', [
+        'methods'             => 'GET',
+        'callback'            => 'occuspace_rest_callback',
+        'permission_callback' => '__return_true',
+    ]);
+
+});
+
+// REST API endpoint for labstats data
+add_action( 'rest_api_init', function () {
+
+    register_rest_route(
+        'library/v1',
+        '/labstats',
+        array(
+            'methods'  => 'GET',
+            'callback' => 'library_labstats_endpoint',
+            'permission_callback' => '__return_true',
+        )
+    );
+
+} );
+
+
+/**
  * Primo API call function
  * Access the availability of an item in Primo and return an array ($available_items, $total_items, $offset)
  */
@@ -1122,134 +1153,180 @@ function primo_availability_list($json_o) {
 //   }
 // }
 
-add_action('rest_api_init', function () {
-
-    register_rest_route('occuspace/v1', '/occupancy', [
-        'methods'             => 'GET',
-        'callback'            => 'occuspace_rest_callback',
-        'permission_callback' => '__return_true',
-    ]);
-
-});
 
 function occuspace_rest_callback( WP_REST_Request $request ) {
 
-    $ids = $request->get_param('ids');
+  $ids = $request->get_param('ids');
 
-    if (empty($ids)) {
-        return rest_ensure_response([]);
+  if (empty($ids)) {
+      return rest_ensure_response([]);
+  }
+
+  $ids = explode(',', $ids);
+  $results = [];
+  foreach ($ids as $id) {
+    $id = trim($id);
+    /*
+      * Check for cached API response
+      */
+    $cache_key = 'occuspace_' . $id;
+    $json      = get_transient($cache_key);
+
+    /*
+      * No cache? Call Occuspace API
+      */
+    if ($json === false) {
+      $url = 'https://api.occuspace.io/v1/location/' . $id . '/now';
+      $response = wp_remote_get($url, [
+        'timeout' => 30,
+        'headers' => [
+            'Authorization' => 'Bearer xmEDKp7UWuclzk1584u00000is3c6xt34ea'
+        ]
+      ]);
+
+      if (is_wp_error($response)) {
+          continue;
+      }
+
+      $body = wp_remote_retrieve_body($response);
+
+      if (empty($body)) {
+        continue;
+      }
+
+      $json = json_decode($body);
+
+      if (!$json) {
+        continue;
+      }
+
+      /*
+        * Cache for 1 minute to avoid hitting the API too often
+        */
+      set_transient(
+        $cache_key,
+        $json,
+        1 * MINUTE_IN_SECONDS
+      );
     }
 
-    $ids = explode(',', $ids);
-    $results = [];
-    foreach ($ids as $id) {
-        $id = trim($id);
-        /*
-         * Check for cached API response
-         */
-        $cache_key = 'occuspace_' . $id;
-        $json      = get_transient($cache_key);
+    /*
+      * Process floors
+      */
+    if (!empty($json->data->childCounts)) {
 
-        /*
-         * No cache? Call Occuspace API
-         */
-        if ($json === false) {
-            $url = 'https://api.occuspace.io/v1/location/' . $id . '/now';
-            $response = wp_remote_get($url, [
-                'timeout' => 30,
-                'headers' => [
-                    'Authorization' => 'Bearer xmEDKp7UWuclzk1584u00000is3c6xt34ea'
-                ]
-            ]);
+      foreach ($json->data->childCounts as $floor) {
 
-            if (is_wp_error($response)) {
-                continue;
-            }
-
-            $body = wp_remote_retrieve_body($response);
-
-            if (empty($body)) {
-                continue;
-            }
-
-            $json = json_decode($body);
-
-            if (!$json) {
-                continue;
-            }
-
-            /*
-             * Cache for 60 seconds
-             */
-            set_transient(
-                $cache_key,
-                $json,
-                60
-            );
+        if ($floor->isActive === false) {
+            continue;
         }
 
-        /*
-         * Process floors
-         */
-        if (!empty($json->data->childCounts)) {
+        $percent_occupied = round(
+            min(100, $floor->percentage * 100)
+        );
 
-            foreach ($json->data->childCounts as $floor) {
-
-                if ($floor->isActive === false) {
-                    continue;
-                }
-
-                $percent_occupied = round(
-                    min(100, $floor->percentage * 100)
-                );
-
-                if ($percent_occupied < 50) {
-                    $busy_class = 'not-busy';
-                    $label = 'Not Busy';
-                }
-                elseif ($percent_occupied > 80) {
-                    $busy_class = 'very-busy';
-                    $label = 'Very Busy';
-                }
-                else {
-                    $busy_class = 'busy';
-                    $label = 'Busy';
-                }
-
-                $results[] = [
-                    'id' => $floor->id,
-                    'name' => $floor->name,
-                    'percentage' => $percent_occupied,
-                    'status' => $label,
-                    'class' => $busy_class
-                ];
-            }
+        if ($percent_occupied < 50) {
+            $busy_class = 'not-busy';
+            $label = 'Not Busy';
         }
+        elseif ($percent_occupied > 80) {
+            $busy_class = 'very-busy';
+            $label = 'Very Busy';
+        }
+        else {
+            $busy_class = 'busy';
+            $label = 'Busy';
+        }
+
+        $results[] = [
+            'id' => $floor->id,
+            'name' => $floor->name,
+            'percentage' => $percent_occupied,
+            'status' => $label,
+            'class' => $busy_class
+        ];
+      }
     }
+  }
 
-    return rest_ensure_response($results);
+  return rest_ensure_response($results);
 }
 
 // API call to labstats
 
-function labstats_api_call() {
-  $url = 'https://api.labstats.com/availability/groups';
-  $args = array( 
-    'timeout' => 120,
-    'headers' => array(
-			'Authorization' => 'd22f4613-aeec-4ac1-a889-2586b9860494',
-      'accept' => 'application/json'
-		)
-  );
-  $request = wp_remote_get($url, $args);
-  if (is_array( $request)) {
-    $json_o = json_decode($request['body']);
-    return $json_o;
-  } else {
-    $json_o = null;
-    return $json_o;
-  }
+// function labstats_api_call() {
+//   $url = 'https://api.labstats.com/availability/groups';
+//   $args = array( 
+//     'timeout' => 120,
+//     'headers' => array(
+// 			'Authorization' => 'd22f4613-aeec-4ac1-a889-2586b9860494',
+//       'accept' => 'application/json'
+// 		)
+//   );
+//   $request = wp_remote_get($url, $args);
+//   if (is_array( $request)) {
+//     $json_o = json_decode($request['body']);
+//     return $json_o;
+//   } else {
+//     $json_o = null;
+//     return $json_o;
+//   }
+// }
+function get_labstats_data() {
+
+    $cache_key = 'ucf_labstats_data';
+    $cached = get_transient( $cache_key );
+
+    if ( false !== $cached ) {
+        return $cached;
+    }
+
+    $response = wp_remote_get(
+        'https://api.labstats.com/availability/groups',
+        array(
+            'timeout' => 30,
+            'headers' => array(
+                'Authorization' => 'd22f4613-aeec-4ac1-a889-2586b9860494',
+                'Accept'        => 'application/json',
+            ),
+        )
+    );
+
+    if ( is_wp_error( $response ) ) {
+        return false;
+    }
+
+    $body = wp_remote_retrieve_body( $response );
+    $data = json_decode( $body );
+
+    if ( empty( $data ) ) {
+        return false;
+    }
+    // Cache the data for 5 minutes to reduce API calls
+    set_transient(
+        $cache_key,
+        $data,
+        5 * MINUTE_IN_SECONDS 
+    );
+
+    return $data;
 }
 
+function library_labstats_endpoint() {
+
+    $data = get_labstats_data();
+
+    if ( ! $data ) {
+
+        return new WP_Error(
+            'labstats_error',
+            'Unable to retrieve LabStats data.',
+            array( 'status' => 500 )
+        );
+
+    }
+
+    return rest_ensure_response( $data );
+}
 
 ?>
