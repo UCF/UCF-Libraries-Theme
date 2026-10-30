@@ -57,7 +57,16 @@ function loadOccuspace(container) {
         });
 
         html += '</div>';
+        const updated = new Date().toLocaleTimeString([], {
+            hour: 'numeric',
+            minute: '2-digit'
+        });
 
+        html += `
+            <p class="availability-updated">
+                Availability data last updated at ${updated}.
+            </p>
+        `;
         container.innerHTML = html;
     })
     .catch(error => {
@@ -75,7 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
             loadOccuspace(container);
         };
         refreshData();
-        setInterval(refreshData, 90000); // every 90 seconds
+        setInterval(() => {
+            if (!document.hidden) {
+                refreshData();
+            }
+        }, 90000); // every 90 seconds
     });
 
 });

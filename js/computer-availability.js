@@ -112,6 +112,17 @@ function fetchComputerAvailabilityData(container) {
                         </div>
                     `;
                 });
+                const updated = new Date().toLocaleTimeString([], {
+                    hour: 'numeric',
+                    minute: '2-digit'
+                });
+
+                html += `
+                    </div>
+                    <p class="availability-updated">
+                        Availability data last updated at ${updated}.
+                    </p>
+                `;
             container.innerHTML = html;
         })
         .catch(error => {
@@ -133,7 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
             fetchComputerAvailabilityData(container);
         };
         refreshData();
-        setInterval(refreshData, 360000);   // Refresh every 6 minutes
+        setInterval(() => {
+            if (!document.hidden) {
+                refreshData();
+            }
+        }, 360000);   // Refresh every 6 minutes
 
     });
 
