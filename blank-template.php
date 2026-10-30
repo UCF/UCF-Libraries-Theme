@@ -13,11 +13,13 @@ Description: This page contains now elements of wordpress. It is used purely for
 <title><?php the_title(); ?></title>
 <meta content="width=device-width" name="viewport">
 <meta content="IE=edge" http-equiv="X-UA-Compatible">
+<?php wp_head(); ?>
 </head>
 <body>
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 	<?php the_content(__('(more...)')); ?>
 <?php endwhile; else: ?>
 <?php _e('Sorry, no posts matched your criteria.'); ?><?php endif; ?>
+<?php wp_footer(); ?>
 </body>
 </html>
