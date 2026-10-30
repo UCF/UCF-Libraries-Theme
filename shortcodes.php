@@ -1585,58 +1585,88 @@ Shows business of a given area within the library
 
 */
 
-function occuspace_display($atts){
-  extract(shortcode_atts( array(
-    'ids' => '1781',
-  ), $atts )); 
-  $ids = explode(",", $ids);
-  $output = '<div class="grid">';
-  foreach ($ids as $id) {
-    $json_o = occuspace_api_call($id);
-    if (!empty( $json_o->data->childCounts)) {
-      foreach ($json_o->data->childCounts as $floor) {
-        if ($floor->isActive !== false) {
-          $percent_occupied = $floor->percentage*100;
-          if ($percent_occupied > 100) { $percent_occupied = 100;}
-          if ($percent_occupied < 50) {
-            $busy_class = 'not-busy';
-          } else if ($percent_occupied > 80) {
-            $busy_class = 'very-busy';
-          } else {
-            $busy_class = 'busy';
-          }
-          $output .= '<div id="id_'.$floor->id.'" class="grid-item"><div class="card '.$busy_class.' busy-card">';
-          $output .= '<h3 class="busy-heading '.$busy_class.'">'.$floor->name.'</h3>';
-          switch ($busy_class){
-            case 'not-busy':
-              $output .= '<span class="busy-text">Not Busy - '.($percent_occupied).'% Occupied</span>';
-              $progress_color = 'progress-bar-success';
-              break;
-            case 'busy':
-              $output .= '<span class="busy-text">Busy - '.($percent_occupied).'% Occupied</span>';
-              $progress_color = 'progress-bar-warning';
-              break;
-            case 'very-busy':
-              $output .= '<span class="busy-text">Very Busy - '.($percent_occupied).'% Occupied</span>';
-              $progress_color = 'progress-bar-danger';
-              break;
-          }
-          $output .= '<div class="progress">
-									     <div id="occupancy_bar" class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_occupied.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$percent_occupied.'%;">
-									     </div>
-									    </div>';
-          $output .= '</div></div>';
-        }
-      }
+// function occuspace_display($atts){
+//   extract(shortcode_atts( array(
+//     'ids' => '1781',
+//   ), $atts )); 
+//   $ids = explode(",", $ids);
+//   $output = '<div class="grid">';
+//   foreach ($ids as $id) {
+//     $json_o = occuspace_api_call($id);
+//     if (!empty( $json_o->data->childCounts)) {
+//       foreach ($json_o->data->childCounts as $floor) {
+//         if ($floor->isActive !== false) {
+//           $percent_occupied = $floor->percentage*100;
+//           if ($percent_occupied > 100) { $percent_occupied = 100;}
+//           if ($percent_occupied < 50) {
+//             $busy_class = 'not-busy';
+//           } else if ($percent_occupied > 80) {
+//             $busy_class = 'very-busy';
+//           } else {
+//             $busy_class = 'busy';
+//           }
+//           $output .= '<div id="id_'.$floor->id.'" class="grid-item"><div class="card '.$busy_class.' busy-card">';
+//           $output .= '<h3 class="busy-heading '.$busy_class.'">'.$floor->name.'</h3>';
+//           switch ($busy_class){
+//             case 'not-busy':
+//               $output .= '<span class="busy-text">Not Busy - '.($percent_occupied).'% Occupied</span>';
+//               $progress_color = 'progress-bar-success';
+//               break;
+//             case 'busy':
+//               $output .= '<span class="busy-text">Busy - '.($percent_occupied).'% Occupied</span>';
+//               $progress_color = 'progress-bar-warning';
+//               break;
+//             case 'very-busy':
+//               $output .= '<span class="busy-text">Very Busy - '.($percent_occupied).'% Occupied</span>';
+//               $progress_color = 'progress-bar-danger';
+//               break;
+//           }
+//           $output .= '<div class="progress">
+// 									     <div id="occupancy_bar" class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_occupied.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$percent_occupied.'%;">
+// 									     </div>
+// 									    </div>';
+//           $output .= '</div></div>';
+//         }
+//       }
       
-    } else {
-      $output .= '<p>No data was found.</p>';
-    }
-  }
-  $output .= '</div>';
-  return $output;
+//     } else {
+//       $output .= '<p>No data was found.</p>';
+//     }
+//   }
+//   $output .= '</div>';
+//   return $output;
+// }
+// add_shortcode('occuspace-display', 'occuspace_display');
+
+function occuspace_display($atts) {
+
+    wp_register_script(
+        'occuspace-js',
+        get_stylesheet_directory_uri() . '/js/occuspace.js',
+        [],
+        '1.0',
+        true
+    );
+
+    wp_localize_script(
+        'occuspace-js',
+        'occuspaceData',
+        [
+            'restUrl' => rest_url('occuspace/v1/occupancy')
+        ]
+    );
+
+    wp_enqueue_script('occuspace-js');
+
+    $atts = shortcode_atts([
+        'ids' => '1781',
+    ], $atts);
+
+    return sprintf(
+        '<div class="occuspace-container" data-ids="%s"><div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><p style="text-align: center;">Loading occupancy data...</p></div>',
+        esc_attr($atts['ids'])
+    );
 }
 add_shortcode('occuspace-display', 'occuspace_display');
-
 
 ?>
