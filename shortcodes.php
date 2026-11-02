@@ -912,99 +912,131 @@ add_shortcode('library-events', 'library_events');
 * Lists the number of available computers per floor
 *
 * Example:
-* [computer-availability ids="1041"]
+* [computer-availability ids="1041, 1042, 1044" slugs="jch-2nd-floor,jch-3rd-floor,jch-5th-floor"]
 *
 **/
-function computer_availability($atts) {
-   extract(shortcode_atts(array(
-      'ids' => '1041',
-      'slugs' => '',
-   ), $atts));
-  $ids = explode(',', $ids);
-  $slugs = explode(',', $slugs);
-  $i = 0;
-  global $computer_availability_json_o;  // Set a global variable to store first labstats API call.
-  if ($computer_availability_json_o == null) {  // Check global variable to see if labstats API has been called.
-    $json_o = labstats_api_call();
-    $computer_availability_json_o = $json_o;
-  } else {
-    $json_o = $computer_availability_json_o;  // Uses previous call to poplate other instances of the shortcode on the same page.
-  }
-  if ($json_o != null) {
-    $output = '<div class="computer-availability grid-busy">';
-    foreach ($json_o as $location) if (in_array($location->group_id, $ids)) {
-      // $machines_in_use = 0;
-      $machines_total = $location->utilization_availability->total_count;
-      // $machines_available = 0;
-      // foreach ($json_o as $location) if ($location->location_room_floor == $i) {
-      //   $machines_in_use += $location->machinesInUse;
-      //   $machines_total += $location->machinesTotal;
-      // }
-      $machines_available = $location->utilization_availability->available_count;
-      if ($machines_total != 0) {
-        $percent_available = round(($machines_available/$machines_total)*100);
-      } else {
-        $percent_available = 0;
-      }
 
-      if ($percent_available > 20) {
-        if ($percent_available > 50) {
-          $busy_class = 'not-busy';
-        } else {
-          $busy_class = 'busy';
-        }
-        
-      } else {
-        $busy_class = 'very-busy';
-      }
+function computer_availability( $atts ) {
+    wp_enqueue_script(
+        'computer-availability',
+        get_stylesheet_directory_uri() .
+        '/js/computer-availability.js',
+        [],
+        wp_get_theme()->get( 'Version' ),
+        true
+    );
 
-      $output .= '<div class="grid-item">
-                    <div class="card '.$busy_class.' busy-card">
-                      <h3 class="busy-heading '.$busy_class.'">'.$location->group->name.' <i class="fa fa-desktop"></i></h3>';
-      switch ($busy_class){
-        case 'not-busy':
-          $output .= '<span class="busy-text">Not Busy<br>Computers Available: '.$machines_available.' / '.$machines_total.'</span>';
-          $progress_color = 'progress-bar-success';
-          break;
-        case 'busy':
-          $output .= '<span class="busy-text">Busy<br>Computers Available: '.$machines_available.' / '.$machines_total.'</span>';
-          $progress_color = 'progress-bar-warning';
-              break;
-        case 'very-busy':
-          $output .= '<span class="busy-text">Very Busy<br>Computers Available: '.$machines_available.' / '.$machines_total.'</span>';
-          $progress_color = 'progress-bar-danger';
-          break;
-      }
-      $output .= '    <div class="progress">
-                        <div id="occupancy_bar" class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$percent_available.'%;">
-                        </div>
-                      </div>';
-      if ( $slugs[$i] ) {
-        $output .= '  <a class="btn btn-default" href="'.get_permalink( get_the_ID() ).$slugs[$i].'/" title="View '.$location->group->name.' Computer Map">View Computer Map</a>';
-      } else {
-        $output .= '  <a class="btn btn-default disabled" href="#" title="'.$location->group->name.' Computer Map Disabled">View Computer Map</a>';
-      }
-      $output .= '</div></div>';
-      $i++;
-        // <div class="row">
-        //   <div class="col-sm-3"><span class="floor-name">'.$location->group->name.' <i class="fa fa-desktop"></i>:</span></div>
-        //   <div class="col-sm-9">
-        //     <div class="progress">
-        //       <div class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em; width: '.$percent_available.'%;">
-        //         '.$machines_available.' / '.$machines_total.'
-        //       </div>
-        //     </div>
-        //   </div></div>';
-    }
-    $output .= '</div>';
-  } else {
-    $output = '<p>Unable to determine computer availability.</p>';
-  }
-  return $output;
-  //return '<pre>'.$string['body'].'</pre>';
+    wp_localize_script(
+        'computer-availability',
+        'computerAvailability',
+        [
+            'restUrl' => rest_url(
+                'library/v1/labstats'
+            ),
+        ]
+    );
+    $atts = shortcode_atts([
+            'ids'   => '1041',
+            'slugs' => '',
+        ],
+        $atts
+    );
+
+    ob_start();
+
+    return sprintf(
+        '<div class="computer-availability-container"
+            data-ids="%s"
+            data-slugs="%s"
+            data-base-url="%s">
+            <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <p style="text-align: center;">Loading computer availability...</p>
+        </div>',
+        esc_attr($atts['ids']),
+        esc_attr($atts['slugs']),
+        esc_url(get_permalink())
+    );
+
+    return ob_get_clean();
 }
 
 add_shortcode('computer-availability', 'computer_availability');
+
+
+// function computer_availability($atts) {
+//    extract(shortcode_atts(array(
+//       'ids' => '1041',
+//       'slugs' => '',
+//    ), $atts));
+//   $ids = explode(',', $ids);
+//   $slugs = explode(',', $slugs);
+//   $i = 0;
+//   global $computer_availability_json_o;  // Set a global variable to store first labstats API call.
+//   if ($computer_availability_json_o == null) {  // Check global variable to see if labstats API has been called.
+//     $json_o = labstats_api_call();
+//     $computer_availability_json_o = $json_o;
+//   } else {
+//     $json_o = $computer_availability_json_o;  // Uses previous call to poplate other instances of the shortcode on the same page.
+//   }
+//   if ($json_o != null) {
+//     $output = '<div class="computer-availability grid-busy">';
+//     foreach ($json_o as $location) if (in_array($location->group_id, $ids)) {
+//       $machines_total = $location->utilization_availability->total_count;
+//       $machines_available = $location->utilization_availability->available_count;
+//       if ($machines_total != 0) {
+//         $percent_available = round(($machines_available/$machines_total)*100);
+//       } else {
+//         $percent_available = 0;
+//       }
+
+//       if ($percent_available > 20) {
+//         if ($percent_available > 50) {
+//           $busy_class = 'not-busy';
+//         } else {
+//           $busy_class = 'busy';
+//         }
+        
+//       } else {
+//         $busy_class = 'very-busy';
+//       }
+
+//       $output .= '<div class="grid-item">
+//                     <div class="card '.$busy_class.' busy-card">
+//                       <h3 class="busy-heading '.$busy_class.'">'.$location->group->name.' <i class="fa fa-desktop"></i></h3>';
+//       switch ($busy_class){
+//         case 'not-busy':
+//           $output .= '<span class="busy-text">Not Busy<br>Computers Available: '.$machines_available.' / '.$machines_total.'</span>';
+//           $progress_color = 'progress-bar-success';
+//           break;
+//         case 'busy':
+//           $output .= '<span class="busy-text">Busy<br>Computers Available: '.$machines_available.' / '.$machines_total.'</span>';
+//           $progress_color = 'progress-bar-warning';
+//               break;
+//         case 'very-busy':
+//           $output .= '<span class="busy-text">Very Busy<br>Computers Available: '.$machines_available.' / '.$machines_total.'</span>';
+//           $progress_color = 'progress-bar-danger';
+//           break;
+//       }
+//       $output .= '    <div class="progress">
+//                         <div id="occupancy_bar" class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_available.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$percent_available.'%;">
+//                         </div>
+//                       </div>';
+//       if ( $slugs[$i] ) {
+//         $output .= '  <a class="btn btn-default" href="'.get_permalink( get_the_ID() ).$slugs[$i].'/" title="View '.$location->group->name.' Computer Map">View Computer Map</a>';
+//       } else {
+//         $output .= '  <a class="btn btn-default disabled" href="#" title="'.$location->group->name.' Computer Map Disabled">View Computer Map</a>';
+//       }
+//       $output .= '</div></div>';
+//       $i++;
+//     }
+//     $output .= '</div>';
+//   } else {
+//     $output = '<p>Unable to determine computer availability.</p>';
+//   }
+//   return $output;
+// }
+
+// add_shortcode('computer-availability', 'computer_availability');
 
 
 /**
@@ -1585,58 +1617,88 @@ Shows business of a given area within the library
 
 */
 
-function occuspace_display($atts){
-  extract(shortcode_atts( array(
-    'ids' => '1781',
-  ), $atts )); 
-  $ids = explode(",", $ids);
-  $output = '<div class="grid">';
-  foreach ($ids as $id) {
-    $json_o = occuspace_api_call($id);
-    if (!empty( $json_o->data->childCounts)) {
-      foreach ($json_o->data->childCounts as $floor) {
-        if ($floor->isActive !== false) {
-          $percent_occupied = $floor->percentage*100;
-          if ($percent_occupied > 100) { $percent_occupied = 100;}
-          if ($percent_occupied < 50) {
-            $busy_class = 'not-busy';
-          } else if ($percent_occupied > 80) {
-            $busy_class = 'very-busy';
-          } else {
-            $busy_class = 'busy';
-          }
-          $output .= '<div id="id_'.$floor->id.'" class="grid-item"><div class="card '.$busy_class.' busy-card">';
-          $output .= '<h3 class="busy-heading '.$busy_class.'">'.$floor->name.'</h3>';
-          switch ($busy_class){
-            case 'not-busy':
-              $output .= '<span class="busy-text">Not Busy - '.($percent_occupied).'% Occupied</span>';
-              $progress_color = 'progress-bar-success';
-              break;
-            case 'busy':
-              $output .= '<span class="busy-text">Busy - '.($percent_occupied).'% Occupied</span>';
-              $progress_color = 'progress-bar-warning';
-              break;
-            case 'very-busy':
-              $output .= '<span class="busy-text">Very Busy - '.($percent_occupied).'% Occupied</span>';
-              $progress_color = 'progress-bar-danger';
-              break;
-          }
-          $output .= '<div class="progress">
-									     <div id="occupancy_bar" class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_occupied.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$percent_occupied.'%;">
-									     </div>
-									    </div>';
-          $output .= '</div></div>';
-        }
-      }
+// function occuspace_display($atts){
+//   extract(shortcode_atts( array(
+//     'ids' => '1781',
+//   ), $atts )); 
+//   $ids = explode(",", $ids);
+//   $output = '<div class="grid">';
+//   foreach ($ids as $id) {
+//     $json_o = occuspace_api_call($id);
+//     if (!empty( $json_o->data->childCounts)) {
+//       foreach ($json_o->data->childCounts as $floor) {
+//         if ($floor->isActive !== false) {
+//           $percent_occupied = $floor->percentage*100;
+//           if ($percent_occupied > 100) { $percent_occupied = 100;}
+//           if ($percent_occupied < 50) {
+//             $busy_class = 'not-busy';
+//           } else if ($percent_occupied > 80) {
+//             $busy_class = 'very-busy';
+//           } else {
+//             $busy_class = 'busy';
+//           }
+//           $output .= '<div id="id_'.$floor->id.'" class="grid-item"><div class="card '.$busy_class.' busy-card">';
+//           $output .= '<h3 class="busy-heading '.$busy_class.'">'.$floor->name.'</h3>';
+//           switch ($busy_class){
+//             case 'not-busy':
+//               $output .= '<span class="busy-text">Not Busy - '.($percent_occupied).'% Occupied</span>';
+//               $progress_color = 'progress-bar-success';
+//               break;
+//             case 'busy':
+//               $output .= '<span class="busy-text">Busy - '.($percent_occupied).'% Occupied</span>';
+//               $progress_color = 'progress-bar-warning';
+//               break;
+//             case 'very-busy':
+//               $output .= '<span class="busy-text">Very Busy - '.($percent_occupied).'% Occupied</span>';
+//               $progress_color = 'progress-bar-danger';
+//               break;
+//           }
+//           $output .= '<div class="progress">
+// 									     <div id="occupancy_bar" class="progress-bar '.$progress_color.'" role="progressbar" aria-valuenow="'.$percent_occupied.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$percent_occupied.'%;">
+// 									     </div>
+// 									    </div>';
+//           $output .= '</div></div>';
+//         }
+//       }
       
-    } else {
-      $output .= '<p>No data was found.</p>';
-    }
-  }
-  $output .= '</div>';
-  return $output;
+//     } else {
+//       $output .= '<p>No data was found.</p>';
+//     }
+//   }
+//   $output .= '</div>';
+//   return $output;
+// }
+// add_shortcode('occuspace-display', 'occuspace_display');
+
+function occuspace_display($atts) {
+
+    wp_register_script(
+        'occuspace-js',
+        get_stylesheet_directory_uri() . '/js/occuspace.js',
+        [],
+        '1.0',
+        true
+    );
+
+    wp_localize_script(
+        'occuspace-js',
+        'occuspaceData',
+        [
+            'restUrl' => rest_url('occuspace/v1/occupancy')
+        ]
+    );
+
+    wp_enqueue_script('occuspace-js');
+
+    $atts = shortcode_atts([
+        'ids' => '1781',
+    ], $atts);
+
+    return sprintf(
+        '<div class="occuspace-container" data-ids="%s"><div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><p style="text-align: center;">Loading occupancy data...</p></div>',
+        esc_attr($atts['ids'])
+    );
 }
 add_shortcode('occuspace-display', 'occuspace_display');
-
 
 ?>
