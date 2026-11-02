@@ -14,7 +14,7 @@
 </script>
 
  <form role="form" class="search search-site" action="<?php bloginfo('siteurl'); ?>/" id="searchform" method="get">
-    <label for="site_search" class="sr-only">Search Website</label>
+    <label for="site_search" class="visually-hidden">Search Website</label>
     <div class="input-group">
         <input type="text" class="form-control" id="site_search" name="s" placeholder="Search Libraries Website" />
         <span class="input-group-btn">

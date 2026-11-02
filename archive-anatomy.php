@@ -72,7 +72,7 @@ Description: Archive anatomy page.
                 <table class="table table-striped table-sorter anatomy-list">
                   <thead>
                     <tr>
-                      <th class="empty-cell"><span class="sr-only">Item Image</span></th>
+                      <th class="empty-cell"><span class="visually-hidden">Item Image</span></th>
                       <th><i class="fa fa-exclamation-circle"></i> Item Name</th>
                       <th><i class="fa fa-info-circle"></i> Anatomy Type</th>
                       <th><i class="fa fa-university"></i> Library</th>

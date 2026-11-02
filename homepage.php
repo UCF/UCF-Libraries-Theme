@@ -23,7 +23,7 @@ Generate a random backround from the list below.
 
 
 <?php get_header(); ?>
-<h1 class="sr-only"><?php bloginfo('name')?> Homepage</h1>
+<h1 class="visually-hidden"><?php bloginfo('name')?> Homepage</h1>
 <div id="main">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
   		<?php the_content(__('(more...)')); ?>

@@ -48,7 +48,7 @@ Description: Archive staff member page.
                 <table class="table table-striped table-sorter">
                   <thead>
                     <tr>
-                      <th class="empty-cell"><span class="sr-only">Staff Image</span></th>
+                      <th class="empty-cell"><span class="visually-hidden">Staff Image</span></th>
                       <th style="min-width: 10em;"><span class="glyphicon glyphicon-user"></span> Name</th>
                       <th><i class="fa fa-bookmark"></i> Title</th>
                       <th><i class="fa fa-graduation-cap"></i> Rank</th>

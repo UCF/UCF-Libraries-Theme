@@ -21,7 +21,7 @@ Description: Taxonomy Subject archive page.
 function subject_dropdown( $taxonomy ) {
 	$terms = get_terms( $taxonomy );
 	if ( $terms ) {
-		printf( '<form id="subject_filter" action="" method="get" style="display:inline-block;"><label for="choose_subject" class="sr-only"> Choose Subject</label><div class="input-group"><input list="subjects" id="choose_subject"  class="form-control"><datalist id="subjects">' );
+		printf( '<form id="subject_filter" action="" method="get" style="display:inline-block;"><label for="choose_subject" class="visually-hidden"> Choose Subject</label><div class="input-group"><input list="subjects" id="choose_subject"  class="form-control"><datalist id="subjects">' );
 		foreach ( $terms as $term ) {
 			if ($term->slug == 'all') {
 				printf( '<option value="All"></option>');

@@ -28,7 +28,7 @@
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
 						<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
-							<span class="sr-only">Toggle navigation</span>
+							<span class="visually-hidden">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>

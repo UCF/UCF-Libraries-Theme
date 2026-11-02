@@ -34,11 +34,11 @@ function search_quicksearch( $form ) {
       <input name="groupid" type="hidden" value="main">
       <input name="profile" type="hidden" value="eds">
       <input name="guidedField_3" type="hidden" value="">
-      <label class="sr-only" for="ebscohostsearchtext">Search All</label>
+      <label class="visually-hidden" for="ebscohostsearchtext">Search All</label>
       <div class="input-group">
         <input id="ebscohostsearchtext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search Databases, Articles, and Catalog" results="5" size="60" type="text" x-webkit-speech="" >
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearchtext\').val(), \'QuickSearch\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
+          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearchtext\').val(), \'QuickSearch\');"><span class="glyphicon glyphicon-search"></span><span class="visually-hidden">Search</span></button>
         </span>
       </div>
     </form>
@@ -68,11 +68,11 @@ add_shortcode('search-quicksearch', 'search_quicksearch');
 //       <input name="groupid" type="hidden" value="main">
 //       <input name="profile" type="hidden" value="eds">
 //       <input name="guidedField_3" type="hidden" value="">
-//       <label class="sr-only" for="ebscohostsearchtext">Search All</label>
+//       <label class="visually-hidden" for="ebscohostsearchtext">Search All</label>
 //       <div class="input-group">
 //         <input id="ebscohostsearchwebcoursestext" autosave="UCFLibrary SiteSearch" class="form-control" class="textbox" name="bQuery" placeholder="Search Databases, Articles, and Catalog" results="5" size="60" type="text" x-webkit-speech="" >
 //         <span class="input-group-btn">
-//           <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearchwebcoursestext\').val(), \'QuickSearch-webcourses\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
+//           <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearchwebcoursestext\').val(), \'QuickSearch-webcourses\');"><span class="glyphicon glyphicon-search"></span><span class="visually-hidden">Search</span></button>
 //         </span>
 //       </div>
 //     </form>
@@ -91,7 +91,7 @@ add_shortcode('search-quicksearch', 'search_quicksearch');
 function search_quicksearch_articles( $form ){
   $form = '
     <form role="form" class="search search-articles" action="https://search.ebscohost.com/login.aspx?" method="GET" onsubmit="ebscoPreProcess(this)">
-      <label for="ebscohostsearcharticletext" class="sr-only">Search</label>
+      <label for="ebscohostsearcharticletext" class="visually-hidden">Search</label>
       <input name="direct" type="hidden" value="true">
       <input name="site" type="hidden" value="ehost-live">
       <input name="scope" type="hidden" value="site">
@@ -106,7 +106,7 @@ function search_quicksearch_articles( $form ){
       <div class="input-group">
         <input id="ebscohostsearcharticletext" autosave="UCFLibrary SiteSearch" class="form-control" name="bQuery" placeholder="Search Articles" results="5" type="text" x-webkit-speech="">
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearcharticletext\').val(), \'Article Search\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
+          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#ebscohostsearcharticletext\').val(), \'Article Search\');"><span class="glyphicon glyphicon-search"></span><span class="visually-hidden">Search</span></button>
         </span>
       </div>
     </form>
@@ -124,16 +124,16 @@ add_shortcode('search-quicksearch-articles', 'search_quicksearch_articles');
 function search_catalog( $form ){
   $form = '
     <form role="form" class="search search-catalog"  id="advanced" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp?ADV=S">
-      <label for="catalog_search" class="sr-only">Search catalog</label>
+      <label for="catalog_search" class="visually-hidden">Search catalog</label>
       <div class="input-group">
         <input id="catalog_search" type="text" name="t1" value="" placeholder="Search the Catalog" class="form-control" />
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#catalog_search\').val(), \'Catalog Search\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
+          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#catalog_search\').val(), \'Catalog Search\');"><span class="glyphicon glyphicon-search"></span><span class="visually-hidden">Search</span></button>
         </span>
       </div>
       <div class="row" style="margin-top: 1.5em;">
         <div class="col-sm-6">
-          <label for="catsearch" class="sr-only">Choose Type</label>
+          <label for="catsearch" class="visually-hidden">Choose Type</label>
           <select title="index" id="catsearch" name="k1" class="form-control">
             <option value="kw" selected="">Any Field</option>
             <option value="ti">Title</option>
@@ -145,7 +145,7 @@ function search_catalog( $form ){
           </select>
         </div>
         <div class="col-sm-6">
-          <label for="avli" class="sr-only">Choose Location</label>
+          <label for="avli" class="visually-hidden">Choose Location</label>
           <select id="avli" name="avli" class="form-control">
             <option value="" selected="selected">Any Locations</option>
             <option value="CFORLANDO">John&nbsp;C.&nbsp;Hitt</option>
@@ -192,11 +192,11 @@ add_shortcode('search-catalog', 'search_catalog');
 function search_textbooks( $form ){
   $form = '
     <form role="form" class="search search-textbooks"  id="textbook_search_form" name="textbook_search_form" action="https://reserves.catalog.fcla.edu/cf.jsp?">
-      <label for="textbook_search" class="sr-only">Search Textbooks</label>
+      <label for="textbook_search" class="visually-hidden">Search Textbooks</label>
       <div class="input-group">
         <input id="textbook_search" type="text" name="Ntt" value="" placeholder="Search for textbooks" class="form-control" />
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#textbook_search\').val(), \'Textbook Search\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
+          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#textbook_search\').val(), \'Textbook Search\');"><span class="glyphicon glyphicon-search"></span><span class="visually-hidden">Search</span></button>
         </span>
       </div>
       <input name="CRopt" type="hidden" value="TAP">
@@ -217,14 +217,14 @@ add_shortcode('search-textbooks', 'search_textbooks');
 function search_videos( $form ) {
   $form = '
   <form role="form" class="search search-videos" id="advanced_video" name="searchAdv" action="https://cf.catalog.fcla.edu/cf.jsp">
-    <label for="video_search" class="sr-only">Find DVDs, streaming videos, and VHS</label>
+    <label for="video_search" class="visually-hidden">Find DVDs, streaming videos, and VHS</label>
     <input type="hidden" name="k1" value="kw">
     <input name="ADV" type="hidden" value="S">
     <input type="hidden" name="fa" value="Video all formats">
     <div class="input-group">
       <input class="form-control" id="video_search" type="text" name="t1" size="40" placeholder="Search UCF\'s Video Collections" value="">
       <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#video_search\').val(), \'Video Search\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
+        <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#video_search\').val(), \'Video Search\');"><span class="glyphicon glyphicon-search"></span><span class="visually-hidden">Search</span></button>
       </span>
     </div>
     <div class="input-group" style="margin-top: .5em;">
@@ -250,11 +250,11 @@ function search_scua($form) {
 
         <input name="ADV" type="hidden" value="S">
         <input type="hidden" id="avli" name="avli" value="CFSPECIALCOLL">
-        <label for="scua_search" class="sr-only">Search</label>
+        <label for="scua_search" class="visually-hidden">Search</label>
         <div class="input-group">
           <input id="scua_search" name="t1" class="form-control" type="search" placeholder="Special Collections Search" />
           <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#scua_search\').val(), \'SCUA Search\');"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
+          <button type="submit" class="btn btn-primary" onclick="__gaTracker(\'send\', \'event\', \'outbound-search\', $(\'#scua_search\').val(), \'SCUA Search\');"><span class="glyphicon glyphicon-search"></span><span class="visually-hidden">Search</span></button>
           </span>
         </div>
       </form>
@@ -273,13 +273,13 @@ function search_stars($form) {
     $form = '
       <form method="get" action="https://stars.library.ucf.edu/do/search/" id="sidebar-search">
         <fieldset>    
-          <legend class="sr-only">Search Collection</legend>  
-          <label for="search" class="sr-only">Search </label>          
+          <legend class="visually-hidden">Search Collection</legend>  
+          <label for="search" class="visually-hidden">Search </label>          
           <div class="input-group">
             <input class="form-control" type="text" name="q" class="search" id="search" placeholder="Search Collection">
             <input name="fq" type="hidden" value="virtual_ancestor_link:&quot;https://stars.library.ucf.edu/&quot;">
             <span class="input-group-btn">  
-              <button type="submit" class="btn btn-default" name="query" value="Search"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
+              <button type="submit" class="btn btn-default" name="query" value="Search"><span class="glyphicon glyphicon-search"></span><span class="visually-hidden">Search</span></button>
             </span>        
           </div>     
         </fieldset>
@@ -1340,11 +1340,11 @@ function image_slider($atts, $content = null) {
       <!-- Controls -->
       <a class="left carousel-control" href="#'.$id.'" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
+        <span class="visually-hidden">Previous</span>
       </a>
       <a class="right carousel-control" href="#'.$id.'" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
+        <span class="visually-hidden">Next</span>
       </a>
     </div>
    ';
