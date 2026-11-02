@@ -973,7 +973,7 @@ function mawaha_filter_allowed_html($allowed, $context){
         $allowed['a']['data-dismiss'] = true;
         $allowed['a']['data-parent'] = true;
         $allowed['a']['data-placement'] = true;
-        $allowed['a']['data-target'] = true;
+        $allowed['a']['data-bs-target'] = true;
         $allowed['a']['aria-controls'] = true;
         $allowed['a']['aria-expanded'] = true;
         $allowed['a']['aria-label'] = true;
@@ -982,7 +982,7 @@ function mawaha_filter_allowed_html($allowed, $context){
         $allowed['button']['data-bs-toggle'] = true;
         $allowed['button']['data-dismiss'] = true;
         $allowed['button']['data-placement'] = true;
-        $allowed['button']['data-target'] = true;
+        $allowed['button']['data-bs-target'] = true;
         $allowed['button']['aria-label'] = true;
         $allowed['button']['aria-labelledby'] = true;
         $allowed['button']['aria-hidden'] = true;

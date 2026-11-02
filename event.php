@@ -84,7 +84,7 @@ function fix_header_top() {
 
 function add_scroll_spy(){
   jQuery('body').attr('data-spy', 'scroll');
-  jQuery('body').attr('data-target', '#navbar_events');
+  jQuery('body').attr('data-bs-target', '#navbar_events');
   jQuery('body').attr('data-offset', '51');
 }
 

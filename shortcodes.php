@@ -1264,7 +1264,7 @@ function hiring_status($atts) {
       } else {
         $hiring_url_fws = '';
       }
-      $output .= '<dt>'.$department['label'].':</dt><dd><i class="fa fa-check-circle"></i> is actively seeking applications. <button class="btn btn-default" type="button" data-bs-toggle="modal" data-target="#'.$department['value'].'">View Job Details</button>';
+      $output .= '<dt>'.$department['label'].':</dt><dd><i class="fa fa-check-circle"></i> is actively seeking applications. <button class="btn btn-default" type="button" data-bs-toggle="modal" data-bs-target="#'.$department['value'].'">View Job Details</button>';
       if ($hiring_url_ops !='') {
         $output .= ' <a class="btn btn-primary" href="'.$hiring_url_ops.'" target="_blank">Apply (OPS)</a>';
       } 
@@ -1327,9 +1327,9 @@ function image_slider($atts, $content = null) {
     <div id="'.$id.'" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
-        <li data-target="#'.$id.'" data-slide-to="0" class="active"></li>';
+        <li data-bs-target="#'.$id.'" data-slide-to="0" class="active"></li>';
   for ($i=1; $i < $number; $i++) { 
-    $output .= '<li data-target="#'.$id.'" data-slide-to="'.$i.'"></li>';
+    $output .= '<li data-bs-target="#'.$id.'" data-slide-to="'.$i.'"></li>';
   }
   $output .='     
       </ol>
