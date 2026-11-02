@@ -38,13 +38,13 @@ Description: Archive anatomy page.
                 <p>Select filters below to narrow results:</p>
                 <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
                 <div class="sidebar-collapse">
-                  <div class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></div>
+                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></div>
                   <div class="collapse in" id="Library">
                     <?php taxonomy_filter('a_library'); ?>
                   </div>
                 </div>
                 <div class="sidebar-collapse">
-                  <div class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Anatomy_Type" aria-expanded="true" aria-controls="Anatomy_Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Anatomy Type</a></div>
+                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Anatomy_Type" aria-expanded="true" aria-controls="Anatomy_Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Anatomy Type</a></div>
                   <div class="collapse in" id="Anatomy_Type">
                     <?php taxonomy_filter('anatomy_type'); ?>
                   </div>
@@ -57,7 +57,7 @@ Description: Archive anatomy page.
           <div class="anatomy-description">
             <?php dynamic_sidebar( 'anatomy-lending' ); ?>
           </div>
-          <div class="btn-group btn-grid-list" data-toggle="buttons" style="margin-bottom: 1em" role="group" aria-label="format">
+          <div class="btn-group btn-grid-list" data-bs-toggle="buttons" style="margin-bottom: 1em" role="group" aria-label="format">
             <label class="btn btn-primary view-button active">
               <input type="radio" name="views" autocomplete="off" value="grid" checked><i class="fa fa-th"></i> Grid
             </label>
@@ -167,16 +167,16 @@ Description: Archive anatomy page.
                     ): ?>
     								<ul>
   										<?php if(get_the_term_list( $post->ID, 'anatomy_type', true)): ?>
-  											<li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Anatomy Type"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'anatomy_type', '', ', ', '' )); ?></li>
+  											<li><i class="fa fa-info-circle" data-bs-toggle="tooltip" data-placement="right" title="Anatomy Type"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'anatomy_type', '', ', ', '' )); ?></li>
   										<?php endif; ?>
                       <?php if(get_the_term_list( $post->ID, 'a_library', true)): ?>
-                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'a_library', '', ', ', '' )); ?></li>
+                        <li><i class="fa fa-university" data-bs-toggle="tooltip" data-placement="right" title="Library"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'a_library', '', ', ', '' )); ?></li>
                       <?php endif; ?>
                       <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
-                        <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fines & Policies"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fines & Policies</a></li>
+                        <li><i class="fa fa-usd" data-bs-toggle="tooltip" data-placement="right" title="Fines & Policies"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fines & Policies</a></li>
                       <?php endif; ?>
                       <?php /* if(get_post_meta($post->ID, 'availability', true)): ?>
-  											<li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_permalink(); ?>#item_availability">Check Availability</a></li>
+  											<li><i class="fa fa-check-circle" data-bs-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php echo get_permalink(); ?>#item_availability">Check Availability</a></li>
   										<?php endif; */ ?>
     								</ul>
       							<?php endif; ?>

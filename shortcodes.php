@@ -415,9 +415,9 @@ function tab_container($atts, $content = null) {
       }
     }
     if($i == 0) {
-      $output .= '<li class="active" role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$number.'</a></li>';
+      $output .= '<li class="active" role="presentation"><a data-bs-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$number.'</a></li>';
     } else {
-        $output .= '<li role="presentation"><a data-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$number.'</a></li>';
+        $output .= '<li role="presentation"><a data-bs-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$number.'</a></li>';
     }
     ++$i;
   }
@@ -1264,7 +1264,7 @@ function hiring_status($atts) {
       } else {
         $hiring_url_fws = '';
       }
-      $output .= '<dt>'.$department['label'].':</dt><dd><i class="fa fa-check-circle"></i> is actively seeking applications. <button class="btn btn-default" type="button" data-toggle="modal" data-target="#'.$department['value'].'">View Job Details</button>';
+      $output .= '<dt>'.$department['label'].':</dt><dd><i class="fa fa-check-circle"></i> is actively seeking applications. <button class="btn btn-default" type="button" data-bs-toggle="modal" data-target="#'.$department['value'].'">View Job Details</button>';
       if ($hiring_url_ops !='') {
         $output .= ' <a class="btn btn-primary" href="'.$hiring_url_ops.'" target="_blank">Apply (OPS)</a>';
       } 
@@ -1585,7 +1585,7 @@ function tech_lending_items ($atts){
       								<ul>';
 
       if(get_the_term_list( $post->ID, 'loan_period', true)):
-        $output .= '<li><i class="fa fa-hourglass" data-toggle="tooltip" data-placement="right" title="Loan Period"></i>';
+        $output .= '<li><i class="fa fa-hourglass" data-bs-toggle="tooltip" data-placement="right" title="Loan Period"></i>';
         $terms = get_the_terms ( $post->ID, 'loan_period', true);
         foreach ($terms as $term) {
           $output .= '<span class="loan-period lp-'.$term->slug.'">'.$term->name.'</span> ';
@@ -1593,7 +1593,7 @@ function tech_lending_items ($atts){
         $output .= '<li>';
       endif;
       if(get_the_term_list( $post->ID, 'eligible_user', true)):
-         $output .= '<li><i class="fa fa-users" data-toggle="tooltip" data-placement="right" title="Eligible Users"></i>'. strip_tags(get_the_term_list( $post->ID, "eligible_user", "", ", ", "" )).'</li>';
+         $output .= '<li><i class="fa fa-users" data-bs-toggle="tooltip" data-placement="right" title="Eligible Users"></i>'. strip_tags(get_the_term_list( $post->ID, "eligible_user", "", ", ", "" )).'</li>';
       endif;
     $output .= '</ul>
   						</div><!-- caption -->

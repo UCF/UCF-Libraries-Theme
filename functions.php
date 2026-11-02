@@ -285,7 +285,7 @@ function theme_slug_widgets_init() {
         'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'theme-slug' ),
         'before_widget' => '<div class="sidebar-collapse custom-sidebar">',
         'after_widget'  => '</div></div>',
-        'before_title'  => '<div class="widget-title"><a class="menu-toggle" data-toggle="collapse" aria-expanded="true" aria-controls="collapseExample"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span>',
+        'before_title'  => '<div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapseExample"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span>',
         'after_title'   => '</a></div><div class="collapse in">',
     ) );
 }
@@ -969,7 +969,7 @@ function mawaha_filter_allowed_html($allowed, $context){
     if ($context === 'post')
     {
             // Example case
-        $allowed['a']['data-toggle'] = true;
+        $allowed['a']['data-bs-toggle'] = true;
         $allowed['a']['data-dismiss'] = true;
         $allowed['a']['data-parent'] = true;
         $allowed['a']['data-placement'] = true;
@@ -979,7 +979,7 @@ function mawaha_filter_allowed_html($allowed, $context){
         $allowed['a']['aria-label'] = true;
         $allowed['a']['aria-labelledby'] = true;
         $allowed['a']['aria-hidden'] = true;
-        $allowed['button']['data-toggle'] = true;
+        $allowed['button']['data-bs-toggle'] = true;
         $allowed['button']['data-dismiss'] = true;
         $allowed['button']['data-placement'] = true;
         $allowed['button']['data-target'] = true;

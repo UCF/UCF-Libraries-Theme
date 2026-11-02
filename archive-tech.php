@@ -38,25 +38,25 @@ Description: Archive tech page.
                 <p>Select filters below to narrow results:</p>
                 <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
                 <div class="sidebar-collapse">
-                  <div class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></div>
+                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></div>
                   <div class="collapse in" id="Library">
                     <?php taxonomy_filter('library');	?>
                   </div>
                 </div>
                 <div class="sidebar-collapse">
-                  <div class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Tech_Type" aria-expanded="true" aria-controls="Tech_Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Tech Type</a></div>
+                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Tech_Type" aria-expanded="true" aria-controls="Tech_Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Tech Type</a></div>
                   <div class="collapse in" id="Tech_Type">
                       <?php taxonomy_filter('tech_type');	?>
                   </div>
                 </div>
                 <div class="sidebar-collapse">
-                  <div class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Loan_Period" aria-expanded="true" aria-controls="Loan_Period"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-hourglass"></i> Loan Period</a></div>
+                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Loan_Period" aria-expanded="true" aria-controls="Loan_Period"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-hourglass"></i> Loan Period</a></div>
                   <div class="collapse in" id="Loan_Period">
                       <?php taxonomy_filter('loan_period');	?>
                   </div>
                 </div>
                 <div class="sidebar-collapse">
-                  <div class="widget-title"><a class="menu-toggle" data-toggle="collapse" href="#Eligible_User" aria-expanded="true" aria-controls="Eligible_User"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-users"></i> Eligible User</a></div>
+                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Eligible_User" aria-expanded="true" aria-controls="Eligible_User"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-users"></i> Eligible User</a></div>
                   <div class="collapse in" id="Eligible_User">
                       <?php taxonomy_filter('eligible_user');	?>
                   </div>
@@ -69,7 +69,7 @@ Description: Archive tech page.
           <div class="tech-description">
             <?php dynamic_sidebar( 'technology-lending' ); ?>
           </div>
-          <div class="btn-group btn-grid-list" data-toggle="buttons" style="margin-bottom: 1em">
+          <div class="btn-group btn-grid-list" data-bs-toggle="buttons" style="margin-bottom: 1em">
             <label class="btn btn-primary view-button active">
               <input type="radio" name="views" autocomplete="off" value="grid" checked><i class="fa fa-th"></i> Grid
             </label>
@@ -190,22 +190,22 @@ Description: Archive tech page.
                     ): ?>
     								<ul>
   										<?php if(get_the_term_list( $post->ID, 'tech_type', true)): ?>
-  											<li><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Tech Type"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'tech_type', '', ', ', '' )); ?></li>
+  											<li><i class="fa fa-info-circle" data-bs-toggle="tooltip" data-placement="right" title="Tech Type"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'tech_type', '', ', ', '' )); ?></li>
   										<?php endif; ?>
                       <?php if(get_the_term_list( $post->ID, 'loan_period', true)): ?>
-                        <li><i class="fa fa-hourglass" data-toggle="tooltip" data-placement="right" title="Loan Period"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'loan_period', '', ', ', '' )); ?></li>
+                        <li><i class="fa fa-hourglass" data-bs-toggle="tooltip" data-placement="right" title="Loan Period"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'loan_period', '', ', ', '' )); ?></li>
                       <?php endif; ?>
                       <?php if(get_the_term_list( $post->ID, 'eligible_user', true)): ?>
-                        <li><i class="fa fa-users" data-toggle="tooltip" data-placement="right" title="Eligible Users"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' )); ?></li>
+                        <li><i class="fa fa-users" data-bs-toggle="tooltip" data-placement="right" title="Eligible Users"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'eligible_user', '', ', ', '' )); ?></li>
                       <?php endif; ?>
                       <?php if(get_the_term_list( $post->ID, 'library', true)): ?>
-                        <li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Library"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'library', '', ', ', '' )); ?></li>
+                        <li><i class="fa fa-university" data-bs-toggle="tooltip" data-placement="right" title="Library"></i><?php echo strip_tags(get_the_term_list( $post->ID, 'library', '', ', ', '' )); ?></li>
                       <?php endif; ?>
                       <?php if(get_post_meta($post->ID, 'fine-policy', true)): ?>
-                        <li><i class="fa fa-usd" data-toggle="tooltip" data-placement="right" title="Fine Policy"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
+                        <li><i class="fa fa-usd" data-bs-toggle="tooltip" data-placement="right" title="Fine Policy"></i> <a href="<?php echo get_post_meta($post->ID, 'fine-policy', true); ?>">Fine Policy</a></li>
                       <?php endif; ?>
                       <?php  if(get_post_meta($post->ID, 'availability', true)): ?>
-  											<li><i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php  echo get_permalink(); ?>#item_availability">Check Availability</a></li>
+  											<li><i class="fa fa-check-circle" data-bs-toggle="tooltip" data-placement="right" title="Check Availability"></i> <a href="<?php  echo get_permalink(); ?>#item_availability">Check Availability</a></li>
   										<?php  endif; ?>
     								</ul>
       							<?php endif; ?>

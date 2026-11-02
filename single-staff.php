@@ -46,35 +46,35 @@ Description: Single staff member page.
 											): ?>
 											<ul>
 												<?php if(get_post_meta($post->ID, 'title', true)): ?>
-    											<li><i class="fa fa-bookmark" data-toggle="tooltip" data-placement="right" title="Title"></i><?php echo get_post_meta($post->ID, 'title', true); ?></li>
+    											<li><i class="fa fa-bookmark" data-bs-toggle="tooltip" data-placement="right" title="Title"></i><?php echo get_post_meta($post->ID, 'title', true); ?></li>
 												<?php endif; ?>
 
 												<?php if(get_post_meta($post->ID, 'rank', true)): ?>
-    											<li><i class="fa fa-graduation-cap" data-toggle="tooltip" data-placement="right" title="Rank"></i><?php echo get_post_meta($post->ID, 'rank', true); ?></li>
+    											<li><i class="fa fa-graduation-cap" data-bs-toggle="tooltip" data-placement="right" title="Rank"></i><?php echo get_post_meta($post->ID, 'rank', true); ?></li>
 												<?php endif; ?>
 
 												<?php if(get_the_term_list( $post->ID, 'department', true)): ?>
-													<li><i class="fa fa-university" data-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
+													<li><i class="fa fa-university" data-bs-toggle="tooltip" data-placement="right" title="Department"></i><?php echo get_the_term_list( $post->ID, 'department', '', ', ', '' ); ?></li>
 												<?php endif; ?>
 
 												<?php if(get_post_meta($post->ID, 'college', true)): ?>
-													<li><img class="college-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/images/PegasusIcon.png" data-toggle="tooltip" data-placement="right" alt="College Lead" title="College Lead"><?php echo get_post_meta($post->ID, 'college', true); ?></li>
+													<li><img class="college-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/images/PegasusIcon.png" data-bs-toggle="tooltip" data-placement="right" alt="College Lead" title="College Lead"><?php echo get_post_meta($post->ID, 'college', true); ?></li>
 												<?php endif; ?>
 
 												<?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') )): ?>
-  													<li><i class="fa fa-book" data-toggle="tooltip" data-placement="right" title="Subject"></i><?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') ); ?></li>
+  													<li><i class="fa fa-book" data-bs-toggle="tooltip" data-placement="right" title="Subject"></i><?php echo get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') ); ?></li>
   												<?php endif; ?>
 
 												<?php if(get_post_meta($post->ID, 'room', true)): ?>
-													<li><span class="glyphicon glyphicon-map-marker" data-toggle="tooltip" data-placement="right" title="Location"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
+													<li><span class="glyphicon glyphicon-map-marker" data-bs-toggle="tooltip" data-placement="right" title="Location"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
 												<?php endif; ?>
 
 												<?php if(get_post_meta($post->ID, 'phone', true)): ?>
-													<li><span class="glyphicon glyphicon-phone-alt" data-toggle="tooltip" data-placement="right" title="Phone"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
+													<li><span class="glyphicon glyphicon-phone-alt" data-bs-toggle="tooltip" data-placement="right" title="Phone"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
 												<?php endif; ?>
 
 												<?php if(get_post_meta($post->ID, 'email', true)): ?>
-													<li><i class="fa fa-envelope" data-toggle="tooltip" data-placement="right" title="Email"></i><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"> <span class="ellipsis"> <?php echo get_post_meta($post->ID, 'email', true); ?></span></a></li>
+													<li><i class="fa fa-envelope" data-bs-toggle="tooltip" data-placement="right" title="Email"></i><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"> <span class="ellipsis"> <?php echo get_post_meta($post->ID, 'email', true); ?></span></a></li>
 												<?php endif; ?>
 
 												<?php if(get_the_term_list( $post->ID, 'unit', true)): ?>
