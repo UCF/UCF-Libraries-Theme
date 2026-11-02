@@ -18,7 +18,7 @@
     <div class="input-group">
         <input type="text" class="form-control" id="site_search" name="s" placeholder="Search Libraries Website" />
         <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary" onclick="__gaTracker('send', 'event', 'internal-search', $('#site_search').val(), 'Site Search');"><span class="glyphicon glyphicon-search"></span><strong> Search</strong></button>
+            <button type="submit" class="btn btn-primary" onclick="__gaTracker('send', 'event', 'internal-search', $('#site_search').val(), 'Site Search');"><i class="fa fa-search" aria-hidden="true"></i><strong> Search</strong></button>
         </span>
     </div>
 </form>
