@@ -46,7 +46,7 @@ Description: Include file for Tech Lending Taxonomies.
                 <?php if ($current_taxonomy != 'library'): ?>
                 <div class="sidebar-collapse">
                   <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></div>
-                  <div class="collapse in" id="Library">
+                  <div class="collapse show" id="Library">
                     <?php taxonomy_filter('library');	?>
                   </div>
                 </div>
@@ -54,7 +54,7 @@ Description: Include file for Tech Lending Taxonomies.
                 <?php if ($current_taxonomy != 'tech_type'): ?>
                 <div class="sidebar-collapse">
                   <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Tech_Type" aria-expanded="true" aria-controls="Tech Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Tech Type</a></div>
-                  <div class="collapse in" id="Tech_Type">
+                  <div class="collapse show" id="Tech_Type">
                       <?php taxonomy_filter('tech_type');	?>
                   </div>
                 </div>
@@ -62,7 +62,7 @@ Description: Include file for Tech Lending Taxonomies.
                 <?php if ($current_taxonomy != 'loan_period'): ?>
                 <div class="sidebar-collapse">
                   <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Loan_Period" aria-expanded="true" aria-controls="Loan Period"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-hourglass"></i> Loan Period</a></div>
-                  <div class="collapse in" id="Loan_Period">
+                  <div class="collapse show" id="Loan_Period">
                       <?php taxonomy_filter('loan_period');	?>
                   </div>
                 </div>
@@ -70,7 +70,7 @@ Description: Include file for Tech Lending Taxonomies.
                 <?php if ($current_taxonomy != 'eligible_user'): ?>
                 <div class="sidebar-collapse">
                   <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Eligible_User" aria-expanded="true" aria-controls="Eligible User"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-users"></i> Eligible User</a></div>
-                  <div class="collapse in" id="Eligible_User">
+                  <div class="collapse show" id="Eligible_User">
                       <?php taxonomy_filter('eligible_user');	?>
                   </div>
                 </div>

@@ -39,25 +39,25 @@ Description: Archive tech page.
                 <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
                 <div class="sidebar-collapse">
                   <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></div>
-                  <div class="collapse in" id="Library">
+                  <div class="collapse show" id="Library">
                     <?php taxonomy_filter('library');	?>
                   </div>
                 </div>
                 <div class="sidebar-collapse">
                   <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Tech_Type" aria-expanded="true" aria-controls="Tech_Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Tech Type</a></div>
-                  <div class="collapse in" id="Tech_Type">
+                  <div class="collapse show" id="Tech_Type">
                       <?php taxonomy_filter('tech_type');	?>
                   </div>
                 </div>
                 <div class="sidebar-collapse">
                   <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Loan_Period" aria-expanded="true" aria-controls="Loan_Period"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-hourglass"></i> Loan Period</a></div>
-                  <div class="collapse in" id="Loan_Period">
+                  <div class="collapse show" id="Loan_Period">
                       <?php taxonomy_filter('loan_period');	?>
                   </div>
                 </div>
                 <div class="sidebar-collapse">
                   <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Eligible_User" aria-expanded="true" aria-controls="Eligible_User"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-users"></i> Eligible User</a></div>
-                  <div class="collapse in" id="Eligible_User">
+                  <div class="collapse show" id="Eligible_User">
                       <?php taxonomy_filter('eligible_user');	?>
                   </div>
                 </div>
