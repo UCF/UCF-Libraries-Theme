@@ -578,28 +578,6 @@ add_shortcode('recent-posts', 'recent_posts_function');
 
 
 /**
-*Icon shortcode
-*Create either a glyphicon or  anywhere on the page.
-*
-*Example:
-*[icon name="search" type="fa"]
-*
-**/
-function icon_graphic($atts) {
-  extract(shortcode_atts( array(
-      'name' => 'search',
-      'type' => ''
-  ), $atts ));
-  if ($type == 'fa') {
-    return '<i class="fa fa-'.$name.'"></i>';
-  } else {
-    return '<span class="glyphicon glyphicon-'.$name.'"></span>';
-  }
-}
-add_shortcode('icon', 'icon_graphic');
-
-
-/**
 *Youtube shortcode
 *Create embeded youtube links that are responsive.
 *
