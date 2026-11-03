@@ -205,6 +205,10 @@ p.comment-form-url {   /* Removes Website URL field from post comments */
 
 .unavailable {color: #f00;}
 
+.collapse-icon {
+  float: right;
+}
+
 /* Google Search override */
 
 #Search_Results .gsc-selected-option-container.gsc-inline-block {
@@ -390,11 +394,21 @@ footer ul li a:hover { text-decoration: none;}
   position: fixed;
   bottom: 5%;
   right: 5%;
-  display: none;
   text-align: center;
-  opacity: .5;
   cursor: pointer;
   font-weight: 700;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .scroll-top .glyphicon {
@@ -406,14 +420,10 @@ footer ul li a:hover { text-decoration: none;}
   display: block;
 }
 
-.scroll-top:hover {
+.scroll-top.visible:hover {
   opacity: 1;
 }
-@media (min-width: 992px) {
-  .scroll-top {
-   opacity: 1;
-  }
-}
+
 /* Ask Us button */
 #lcs_slide_out_button-25335{
 border-color: #F9F9F9!important;
