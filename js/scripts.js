@@ -2,73 +2,99 @@
 *Custom functions for the Library Wordpress Theme
 */
 
-// Manually Adjust the UCF Header bar
-//===================================
 
+// COLLAPSING SIDEBAR MENU
+// =======================
 
-//COLLAPSING SIDEBAR MENU
-//=======================
+let menusOpen = true;
 
 function expandMenus() {
-    jQuery('.sidebar-collapse .collapse').addClass('in');
-    jQuery('.sidebar-collapse .collapse').attr("aria-expanded","true");
-    jQuery('.sidebar-collapse .collapse').css('height','');
-    jQuery('.menu-toggle').attr("aria-expanded","true");
-    jQuery('.menu-toggle').removeClass('collapsed');
-    jQuery('.menu-toggle .glyphicon').removeClass("glyphicon-plus-sign").addClass("glyphicon-minus-sign");
+    document.querySelectorAll('.sidebar-collapse .collapse').forEach(menu => {
+        bootstrap.Collapse.getOrCreateInstance(menu, {
+            toggle: false
+        }).show();
+    });
+
+    document.querySelectorAll('.menu-toggle').forEach(toggle => {
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.classList.remove('collapsed');
+    });
 }
 
 function collapseMenus() {
-    jQuery('.sidebar-collapse .collapse').removeClass('in');
-    jQuery('.sidebar-collapse .collapse').attr("aria-expanded","false");
-    jQuery('.menu-toggle').attr("aria-expanded","false");
-    jQuery('.menu-toggle').addClass('collapsed');
-    jQuery('.menu-toggle .glyphicon').removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");
+    document.querySelectorAll('.sidebar-collapse .collapse').forEach(menu => {
+        bootstrap.Collapse.getOrCreateInstance(menu, {
+            toggle: false
+        }).hide();
+    });
+
+    document.querySelectorAll('.menu-toggle').forEach(toggle => {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.classList.add('collapsed');
+    });
 }
 
-//(Depricated) Generate a random string for use in ID override
-// function get_random_string() {
-//     $text = "";
-//     $possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-//     for( var i=0; i < 10; i++ )
-//         $text += $possible.charAt(Math.floor(Math.random() * $possible.length));
-//     return $text;
-// }
+function collapse_sidebar() {
 
+    if (window.innerWidth < 768 && menusOpen) {
+        collapseMenus();
+        menusOpen = false;
+    }
 
-function collapse_sidebar(){
-  
-  //Collapse the sidebar menus when less than 768
-  if (jQuery(window).width() < 768){  
-	collapseMenus();
-	$menus_open = false;
-  } else {
-	$menus_open = true;
-  }
+    if (window.innerWidth >= 768 && !menusOpen) {
+        expandMenus();
+        menusOpen = true;
+    }
 
-  //Locate the toggle buttons of the sidebar and assign an ID based on the button text
-  jQuery('.custom-sidebar').each(function() {
-  	$id = jQuery(this).find('.menu-toggle').text().replaceAll(' ', '_');
-  	jQuery(this).find('.collapse').prop('id', $id);
-  	jQuery(this).find('.menu-toggle').prop('href', '#'+$id);
-  });
-  
-};
+    document.querySelectorAll('.custom-sidebar').forEach(sidebar => {
 
-jQuery(window).resize(function(){
-  if (jQuery(window).width() >= 768 && !$menus_open){  
-    expandMenus();
-    $menus_open = true;
-  }
-  if (jQuery(window).width() < 768 && $menus_open){  
-	collapseMenus();
-	$menus_open = false;
-  }
+        const toggle = sidebar.querySelector('.menu-toggle');
+        const collapse = sidebar.querySelector('.collapse');
+
+        if (!toggle || !collapse) {
+            return;
+        }
+
+        const id = toggle.textContent.trim().replace(/\s+/g, '_');
+
+        collapse.id = id;
+
+        toggle.setAttribute('href', '#' + id);
+        toggle.setAttribute('data-bs-toggle', 'collapse');
+        toggle.setAttribute('data-bs-target', '#' + id);
+        toggle.setAttribute('aria-controls', id);
+    });
+}
+
+// Bootstrap 5 collapse events
+document.addEventListener('shown.bs.collapse', event => {
+
+    const icon = event.target
+        .previousElementSibling
+        ?.querySelector('.collapse-icon');
+
+    if (icon) {
+        icon.classList.remove('fa-plus-circle');
+        icon.classList.add('fa-minus-circle');
+    }
 });
 
-jQuery(document).on("hide.bs.collapse show.bs.collapse", ".collapse", function (event) {
-  jQuery(this).prev().find(".glyphicon").toggleClass("glyphicon-plus-sign glyphicon-minus-sign");
+document.addEventListener('hidden.bs.collapse', event => {
+
+    const icon = event.target
+        .previousElementSibling
+        ?.querySelector('.collapse-icon');
+
+    if (icon) {
+        icon.classList.remove('fa-minus-circle');
+        icon.classList.add('fa-plus-circle');
+    }
 });
+
+window.addEventListener('resize', collapse_sidebar);
+
+document.addEventListener('DOMContentLoaded', collapse_sidebar);
+
 
 
 // Javascript to enable link to tab
@@ -170,22 +196,29 @@ function my_account_btn() {
 
 function scroll_top_btn() {
 
-    jQuery(window).scroll(function () {
-        if (jQuery(this).scrollTop() > 500) {
-            jQuery('.scroll-top').fadeIn();
-        } else {
-            jQuery('.scroll-top').fadeOut();
-        }
+    const scrollTopButton = document.querySelector('.scroll-top');
+
+    if (!scrollTopButton) {
+        return;
+    }
+
+    window.addEventListener('scroll', () => {
+        scrollTopButton.classList.toggle(
+            'visible',
+            window.scrollY > 500
+        );
     });
 
-    jQuery('.scroll-top').click(function () {
-        jQuery("html, body").animate({
-            scrollTop: 0
-        }, 600);
-        return false;
-    });
+    scrollTopButton.addEventListener('click', event => {
 
-};
+        event.preventDefault();
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
 
 // Scholarly Communication Discovery Feed
 //=======================================
