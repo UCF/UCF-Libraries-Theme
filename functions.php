@@ -285,8 +285,8 @@ function theme_slug_widgets_init() {
         'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'theme-slug' ),
         'before_widget' => '<div class="sidebar-collapse custom-sidebar">',
         'after_widget'  => '</div></div>',
-        'before_title'  => '<div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapseExample"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span>',
-        'after_title'   => '</a></div><div class="collapse in">',
+        'before_title'  => '<div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapseExample"><i class="fa fa-minus-circle collapse-icon" aria-hidden="true"></i>',
+        'after_title'   => '</a></div><div class="collapse show">',
     ) );
 }
 add_action( 'widgets_init', 'theme_slug_widgets_init' );
