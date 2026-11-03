@@ -404,20 +404,40 @@ function tab_container($atts, $content = null) {
     $id = str_replace('/', '', $id);
     $id = str_replace('(', '', $id);
     $id = str_replace(')', '', $id);
-    if ($icons != ''){
-      if ($icons[$i] != '') {
-        $icon = '<span class="glyphicon glyphicon-'.$icons[$i].'"></span>';
-      }
+    if (!empty($icons[$i])) {
+        $icon = '<i class="fa '.$icons[$i].'" aria-hidden="true"></i>';
     }
-    if ($numbers != ''){
-      if ($numbers[$i] != '') {
+    if (!empty($numbers[$i])) {
         $number = $numbers[$i];
-      }
     }
     if($i == 0) {
-      $output .= '<li class="active" role="presentation"><a data-bs-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$number.'</a></li>';
+      $output .= '<li class="nav-item" role="presentation">
+                    <button
+                        class="nav-link active"
+                        id="'.$id.'-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#'.$id.'"
+                        type="button"
+                        role="tab"
+                        aria-controls="'.$id.'"
+                        aria-selected="true">
+                        '.$icon.' '.$id_name.' '.$number.'
+                    </button>
+                  </li>';
     } else {
-        $output .= '<li role="presentation"><a data-bs-toggle="tab" href="#'.$id.'" title="'.$id_name.'" aria-controls="'.$id.'" role="tab" >'.$icon.' '.$id_name.' '.$number.'</a></li>';
+        $output .= '<li class="nav-item" role="presentation">
+                      <button
+                          class="nav-link"
+                          id="'.$id.'-tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#'.$id.'"
+                          type="button"
+                          role="tab"
+                          aria-controls="'.$id.'"
+                          aria-selected="false">
+                          '.$icon.' '.$id_name.' '.$number.'
+                      </button>
+                    </li>';
     }
     ++$i;
   }
@@ -442,7 +462,21 @@ function tab_pane($atts, $content = null) {
   $name = str_replace('/', '', $name);
   $name = str_replace('(', '', $name);
   $name = str_replace(')', '', $name);
-  return '<div role="tabpanel" class="tab-pane '.$active.'" id="'.$name.'">'.do_shortcode($content).'</div>';
+
+  $is_active = ($active !== '');
+  $classes = 'tab-pane fade';
+
+  if ($is_active) {
+      $classes .= ' show active';
+  }
+
+  return '<div
+            class="'.$classes.'"
+            id="'.$name.'"
+            role="tabpanel"
+            aria-labelledby="'.$name.'-tab">'
+            .do_shortcode($content).
+          '</div>';
 }
 add_shortcode('tab-pane', 'tab_pane');
 
@@ -888,8 +922,8 @@ function library_events($atts) {
             <span class="eventDate"><ul><li class="eventMonth">'.$month.'</li><li class="eventDay">'.$day.'</li><li class="eventYear">'.$year.'</li><li class="eventDate">'.$event->starts.'</li></ul></span>
             <ul class="eventInfo">
               <li class="eventTitle"><a href="'.$event->url.'" title="'.$event->title.'" target="_blank">'.$event->title.'</a></li>
-              <li class="eventTime"><span class="glyphicon glyphicon-time"></span> '.$start_time.' - '.$end_time.'</li>
-              <li class="eventLocation"><span class="glyphicon glyphicon-map-marker"></span> <a href="'.$event->location_url.'">'.$event->location.'</a></li>
+              <li class="eventTime"><i class="fa fa-clock-o" aria-hidden="true"></i> '.$start_time.' - '.$end_time.'</li>
+              <li class="eventLocation"><i class="fa fa-map-marker" aria-hidden="true"></i> <a href="'.$event->location_url.'">'.$event->location.'</a></li>
             </ul>
           </article>';
         if(++$i == $number) break;

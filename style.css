@@ -35,6 +35,8 @@ Version: 1.22.0
 --dark-gray: #333333;
 }
 
+.visually-hidden {display: none;}
+
 .library-body {
   font-family: "Droid Sans", sans-serif;
   background-color: #222;
@@ -411,11 +413,11 @@ footer ul li a:hover { text-decoration: none;}
     pointer-events: auto;
 }
 
-.scroll-top .glyphicon {
+.scroll-top .fa {
   font-size: 40px;
 }
 .scroll-top .text {
-  margin-top: -5px;
+  /* margin-top: -5px; */
   font-size: 11px;
   display: block;
 }

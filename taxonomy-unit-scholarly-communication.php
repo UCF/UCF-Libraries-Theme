@@ -55,11 +55,11 @@ Description: Scholarly Commnunication archive page.
                   <thead>
                     <tr>
                       <th class="empty-cell"></th>
-                      <th><span class="glyphicon glyphicon-user"></span> Name</th>
+                      <th><i class="fa fa-user" aria-hidden="true"></i> Name</th>
                       <th><i class="fa fa-bookmark"></i> Title</th>
                       <th><i class="fa fa-graduation-cap"></i> Rank</th>
                       <th><i class="fa fa-university"></i> Department</th>
-                      <th style="min-width: 10em;"><span class="glyphicon glyphicon-phone-alt"></span> Phone</th>
+                      <th style="min-width: 10em;"><i class="fa fa-phone" aria-hidden="true"></i> Phone</th>
                       <th style="min-width: 6em;"><i class="fa fa-envelope"></i> Email</th>
                     </tr>
                   </thead>

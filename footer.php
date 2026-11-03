@@ -70,7 +70,7 @@
 			<p style="margin-top: 2em; text-align: center; color:#ccc;">Copyright ©<?php echo date("Y"); ?> UCF Libraries</p>
 		</footer>
 		<?php wp_footer(); ?>
-		<a class="scroll-top" href="#"><span class="glyphicon glyphicon-circle-arrow-up"></span><span class="text">Back to Top</span></a>
+		<a class="scroll-top" href="#"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i><span class="text">Back to Top</span></a>
 		<div id="libchat_f2c66578fad19608e948deeac0560c14"></div>
 	</body>
 </html>
