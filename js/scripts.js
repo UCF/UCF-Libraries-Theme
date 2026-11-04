@@ -195,19 +195,28 @@ jQuery('.nav-tabs a').on('shown', function (e) {
 
 //Login Modal Launch
 //==================
-function login_modal_launch () {
-  bootstrap.Modal.getOrCreateInstance(
-      document.getElementById('login_modal')
-  ).show();
-};
+function login_modal_launch() {
+
+    const modalElement =
+        document.getElementById('login_modal');
+
+    if (modalElement) {
+
+        bootstrap.Modal
+            .getOrCreateInstance(modalElement)
+            .show();
+
+    }
+}
 
 //Enable Tooltips
 //===============
-document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    .forEach(el => {
-        new bootstrap.Tooltip(el);
-    });
-
+function enable_tooltips() {
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        .forEach(el => {
+            new bootstrap.Tooltip(el);
+        });
+}
 
 // Apply bootstrap styles to gravity forms
 //========================================
@@ -377,41 +386,41 @@ function share_button(url, winWidth, winHeight) {
 //=========================================
 
 function grid_list_toggle() {
-  jQuery('.view-button').click(function() {
-    var test = jQuery(this).children("input[name$='views']").val();
-    jQuery('.view').removeClass('view-active');
-    jQuery('#' + test + '_view').addClass('view-active');
-  });
-};
 
+    document.querySelectorAll('.view-button').forEach(button => {
 
-// Table Sorter intialize
-// =========================================
+        button.addEventListener('click', () => {
 
-function table_sorter_init() { 
-  jQuery(".table-sorter").tablesorter(); 
-}; 
+            const input = button.querySelector(
+                'input[name$="views"]'
+            );
 
+            if (!input) {
+                return;
+            }
 
-// Widget Area Affix
-// =========================================
+            const view = input.value;
 
-function widget_area_affix() {
-  if ( jQuery('#sidebar').length > 0 ) {
-    if ( jQuery('#sidebar').outerHeight(true) < jQuery('#content_area').outerHeight(true) ) {
-      jQuery('#widget-area').affix({
-        offset: {
-          top: function () {
-            return (this.top = ( jQuery('#ucfhb').outerHeight(true) + jQuery('.main-header').outerHeight(true) + jQuery('#title_bar').outerHeight(true) + 30 ) )
-          },
-          bottom: function () {
-            return (this.bottom = ( jQuery('footer').outerHeight(true) + 60 ) )
-          }
-        }
-      });
-    };
-  }
-};
+            document
+                .querySelectorAll('.view')
+                .forEach(el =>
+                    el.classList.remove('view-active')
+                );
+
+            const target = document.getElementById(
+                view + '_view'
+            );
+
+            if (target) {
+                target.classList.add('view-active');
+            }
+
+        });
+
+    });
+
+}
+
 
 // Cookies
 // =========================================
@@ -665,6 +674,92 @@ document.getElementById("subject_slug").value = sanitizeString(document.getEleme
 document.forms["subject_filter"].submit();
 }
 
+// Table Sorter
+// =========================================  
+function initializeTableSorters() {
+
+    document.querySelectorAll('.table-sorter').forEach(table => {
+
+        const headers = table.querySelectorAll('th');
+
+        headers.forEach((header, columnIndex) => {
+
+            // Match old jQuery Tablesorter classes
+            header.classList.add('header');
+
+            header.addEventListener('click', () => {
+
+                const tbody = table.tBodies[0];
+
+                if (!tbody) {
+                    return;
+                }
+
+                // Remove existing sort classes from all headers
+                headers.forEach(th => {
+                    th.classList.remove(
+                        'headerSortUp',
+                        'headerSortDown'
+                    );
+                });
+
+                const rows = Array.from(tbody.rows);
+
+                const currentColumn =
+                    table.dataset.sortColumn;
+
+                const currentDirection =
+                    table.dataset.sortDirection;
+
+                const ascending =
+                    currentColumn != columnIndex ||
+                    currentDirection !== 'asc';
+
+                rows.sort((a, b) => {
+
+                    const aText =
+                        a.cells[columnIndex]?.textContent.trim() ?? '';
+
+                    const bText =
+                        b.cells[columnIndex]?.textContent.trim() ?? '';
+
+                    return ascending
+                        ? aText.localeCompare(
+                            bText,
+                            undefined,
+                            { numeric: true }
+                        )
+                        : bText.localeCompare(
+                            aText,
+                            undefined,
+                            { numeric: true }
+                        );
+
+                });
+
+                rows.forEach(row => tbody.appendChild(row));
+
+                table.dataset.sortColumn =
+                    columnIndex;
+
+                table.dataset.sortDirection =
+                    ascending ? 'asc' : 'desc';
+
+                // Apply old Tablesorter classes
+                if (ascending) {
+                    header.classList.add('headerSortUp');
+                } else {
+                    header.classList.add('headerSortDown');
+                }
+
+            });
+
+        });
+
+    });
+
+}
+
 // Load all functions when Dom Ready
 // =========================================
 
@@ -678,6 +773,5 @@ document.addEventListener('DOMContentLoaded', () => {
   my_account_btn();
   scroll_top_btn();
   grid_list_toggle();
-  table_sorter_init();
-  widget_area_affix();
+  initializeTableSorters();
 });
