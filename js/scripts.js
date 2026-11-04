@@ -97,58 +97,94 @@ document.addEventListener('DOMContentLoaded', collapse_sidebar);
 
 
 
-// Javascript to enable link to tab
-// =================================
-jQuery.extend({
-  getUrlVars: function(){
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for(var i = 0; i < hashes.length; i++)
-    {
-      hash = hashes[i].split('=');
-      vars.push(hash[0]);
-      vars[hash[0]] = hash[1];
+// Bootstrap Tab Deep Linking
+// ==========================
+
+function tab_linking() {
+
+    function showTabForElement(element) {
+
+        const tabPane = element.closest('.tab-pane');
+
+        if (!tabPane) {
+            return;
+        }
+
+        const tabId = tabPane.id;
+
+        const trigger = document.querySelector(
+            `[data-bs-target="#${tabId}"]`
+        );
+
+        if (trigger) {
+            bootstrap.Tab
+                .getOrCreateInstance(trigger)
+                .show();
+        }
     }
-    return vars;
-  },
-  getUrlVar: function(name){
-    return jQuery.getUrlVars()[name];
-  }
-});
 
-// Links to an anchor inside of a tab and scrolls the page to the anchor. Only works on page that does NOT contain the tabs
-// Example: <a href="library.ucf.edu/?tab=#Tab-One&anchor=#Anchor-3">Link to Anchor-3 inside Tab-One on a different page.</a>
-function tab_linking(){
-  var hash = window.location.hash;
-  var tab = jQuery.getUrlVar('tab');
-  var anchor = jQuery.getUrlVar('anchor');
-  var prefix = "tab_";
-  var id = hash.replace(prefix,"");
-  if(document.location.search.length) {
-    if (tab && anchor) {
-      jQuery('ul.nav a[href="' + tab + '"]').tab('show');
-      jQuery('html, body').animate({
-          scrollTop: jQuery(anchor).offset().top
-      }, 10);    
-    } 
-  } else if (hash) {
-    jQuery('.nav-tabs a[href='+id+']').tab('show');
-    jQuery('html, body').animate({scrollTop:jQuery(id).position().top}, 0);
-  } 
+    function activateHashTarget() {
 
-// Links to an anchor inside of a tab and scrolls the page to the anchor. Only works on page that CONTAINS the tabs.
-// Example: <a href="library.ucf.edu/#Anchor" data-tab="Tab-Name">Link to Anchor inside of Tab-Name on same page</a>
-  jQuery('a[data-tab]').on('click', function() { 
-    var othertab = jQuery(this).attr('data-tab'),
-        target = jQuery(this).attr('href');
-      jQuery('ul.nav a[href="' + othertab + '"]').tab('show');
-      jQuery('html, body').animate({
-          scrollTop: jQuery(target).offset().top
-      }, 10);    
-  });
+        const hash = window.location.hash;
 
-};
+        if (!hash) {
+            return;
+        }
 
+        const target = document.querySelector(hash);
+
+        if (!target) {
+            return;
+        }
+
+        showTabForElement(target);
+
+        setTimeout(() => {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }, 150);
+    }
+
+    // Handle page load
+    activateHashTarget();
+
+    // Handle clicking links on the same page
+    document.addEventListener('click', event => {
+
+        const link = event.target.closest('a[href^="#"]');
+
+        if (!link) {
+            return;
+        }
+
+        const hash = link.getAttribute('href');
+
+        if (!hash || hash === '#') {
+            return;
+        }
+
+        const target = document.querySelector(hash);
+
+        if (!target) {
+            return;
+        }
+
+        showTabForElement(target);
+
+        setTimeout(() => {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }, 150);
+
+    });
+
+    // Handle browser back/forward navigation
+    window.addEventListener('hashchange', activateHashTarget);
+}
 
 
 // Change hash for page-reload
@@ -160,16 +196,18 @@ jQuery('.nav-tabs a').on('shown', function (e) {
 //Login Modal Launch
 //==================
 function login_modal_launch () {
-  jQuery('.login-button').click(function() {
-    jQuery('#login_modal').modal('show');
-  });
+  bootstrap.Modal.getOrCreateInstance(
+      document.getElementById('login_modal')
+  ).show();
 };
 
 //Enable Tooltips
 //===============
-function enable_tooltips() {
-    jQuery('[data-toggle="tooltip"]').tooltip();
-};
+document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    .forEach(el => {
+        new bootstrap.Tooltip(el);
+    });
+
 
 // Apply bootstrap styles to gravity forms
 //========================================
@@ -630,7 +668,7 @@ document.forms["subject_filter"].submit();
 // Load all functions when Dom Ready
 // =========================================
 
-jQuery(document).ready( function() {
+document.addEventListener('DOMContentLoaded', () => {
   collapse_sidebar();
   tab_linking();
   login_modal_launch();
