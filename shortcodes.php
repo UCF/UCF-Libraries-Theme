@@ -778,16 +778,14 @@ function hours_week_calendar( $atts ) {
     wp_add_inline_script(
         'libcal-hours',
         sprintf(
-            'jQuery(function($){
-                new jQuery.LibCalWeeklyGrid(
-                    $("#s-lc-whw%d"),
-                    {
-                        iid: 246,
-                        lid: %d,
-                        weeks: %d
-                    }
-                );
-            });',
+            'new jQuery.LibCalWeeklyGrid(
+                jQuery("#s-lc-whw%d"),
+                {
+                    iid: 246,
+                    lid: %d,
+                    weeks: %d
+                }
+            );',
             $id,
             $id,
             $weeks
