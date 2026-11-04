@@ -186,26 +186,17 @@ function wpt_register_js() {
 
     $theme_version = wp_get_theme()->get( 'Version' );
 
-    wp_enqueue_script(
-        'bootstrap',
-        get_template_directory_uri() . '/js/bootstrap.min.js',
-        array( 'jquery' ),
-        $theme_version,
-        true
-    );
-
-    wp_enqueue_script(
-        'tablesorter',
-        get_template_directory_uri() . '/js/jquery.tablesorter.min.js',
-        array( 'jquery' ),
-        $theme_version,
-        true
-    );
-
+wp_enqueue_script(
+    'bootstrap',
+    get_template_directory_uri() . '/js/bootstrap.bundle.min.js',
+    array(),
+    $theme_version,
+    true
+);
     wp_enqueue_script(
         'library-scripts',
         get_template_directory_uri() . '/js/scripts.js',
-        array( 'jquery', 'bootstrap', 'tablesorter' ),
+        array( 'bootstrap' ),
         $theme_version,
         true
     );
