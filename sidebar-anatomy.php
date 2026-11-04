@@ -5,7 +5,7 @@
 		<div id="widget-area" class="widget-area" role="complementary">
 		<h3><a href="<?php echo get_post_type_archive_link( 'anatomy' ); ?>">View All Anatomy</a></h3>
 			<div class="sidebar-collapse">
-				<h4 class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></h4>
+				<h4 class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><i class="fa fa-minus-circle collapse-icon" aria-hidden="true"></i><i class="fa fa-university"></i> Library</a></h4>
 				<div class="collapse show" id="Library">
 					<?php echo(generate_term_list('a_library')); ?>
 				</div>

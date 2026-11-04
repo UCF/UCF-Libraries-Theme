@@ -136,15 +136,15 @@ function subject_dropdown( $taxonomy ) {
   														<?php endif; ?>
   														
   														<?php if(get_post_meta($post->ID, 'room', true)): ?>
-  															<li><span class="glyphicon glyphicon-map-marker" data-bs-toggle="tooltip" data-placement="right" title="Location"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
+  															<li><i class="fa fa-map-marker" aria-hidden="true" data-bs-toggle="tooltip" data-placement="right" title="Location"></i> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
   														<?php endif; ?>
 
   														<?php if(get_post_meta($post->ID, 'phone', true)): ?>
-  															<li><span class="glyphicon glyphicon-phone-alt" data-bs-toggle="tooltip" data-placement="right" title="Phone"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
+  															<li><i class="fa fa-phone-square" aria-hidden="true" data-bs-toggle="tooltip" data-placement="right" title="Phone"></i><?php echo get_post_meta($post->ID, 'phone', true); ?></li>
   														<?php endif; ?>
 
   														<?php if(get_post_meta($post->ID, 'email', true)): ?>
-  															<li><span class="glyphicon glyphicon-envelope" data-bs-toggle="tooltip" data-placement="right" title="Email"></span><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"><span class="ellipsis"> <?php echo get_post_meta($post->ID, 'email', true); ?></span></a></li>
+  															<li><i class="fa fa-envelope" aria-hidden="true" data-bs-toggle="tooltip" data-placement="right" title="Email"></i><a href="mailto:<?php echo get_post_meta($post->ID, 'email', true); ?>"><span class="ellipsis"> <?php echo get_post_meta($post->ID, 'email', true); ?></span></a></li>
   														<?php endif; ?>
   												</ul>
   												<?php endif; ?>
@@ -203,11 +203,11 @@ function subject_dropdown( $taxonomy ) {
   												<?php endif; ?>
   												
   												<?php if(get_post_meta($post->ID, 'room', true)): ?>
-  													<li><span class="glyphicon glyphicon-map-marker" data-bs-toggle="tooltip" data-placement="right" title="Location"></span> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
+  													<li><i class="fa fa-map-marker" aria-hidden="true" data-bs-toggle="tooltip" data-placement="right" title="Location"></i> <?php echo get_post_meta($post->ID, 'room', true); ?></li>
   												<?php endif; ?>
 
   												<?php if(get_post_meta($post->ID, 'phone', true)): ?>
-  													<li><span class="glyphicon glyphicon-phone-alt" data-bs-toggle="tooltip" data-placement="right" title="Phone"></span> <?php echo get_post_meta($post->ID, 'phone', true); ?></li>
+  													<li><i class="fa fa-phone-square" aria-hidden="true" data-bs-toggle="tooltip" data-placement="right" title="Phone"></i><?php echo get_post_meta($post->ID, 'phone', true); ?></li>
   												<?php endif; ?>
 
   												<?php if(get_post_meta($post->ID, 'email', true)): ?>

@@ -49,7 +49,7 @@ Description: anatomy library archive page.
                 <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
                 <?php if ($current_taxonomy != 'a_library'): ?>
                 <div class="sidebar-collapse">
-                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></div>
+                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><i class="fa fa-minus-circle collapse-icon" aria-hidden="true"></i><i class="fa fa-university"></i> Library</a></div>
                   <div class="collapse show" id="Library">
                     <?php taxonomy_filter('a_library'); ?>
                   </div>
@@ -57,7 +57,7 @@ Description: anatomy library archive page.
                 <?php endif; ?>
                 <?php if ($current_taxonomy != 'anatomy_type'): ?>
                 <div class="sidebar-collapse">
-                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Anatomy_Type" aria-expanded="true" aria-controls="Anatomy_Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Anatomy Type</a></div>
+                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Anatomy_Type" aria-expanded="true" aria-controls="Anatomy_Type"><i class="fa fa-minus-circle collapse-icon" aria-hidden="true"></i><i class="fa fa-info-circle" aria-hidden="true"></i> Anatomy Type</a></div>
                   <div class="collapse show" id="Anatomy_Type">
                     <?php taxonomy_filter('anatomy_type'); ?>
                   </div>

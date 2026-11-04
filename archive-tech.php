@@ -38,25 +38,25 @@ Description: Archive tech page.
                 <p>Select filters below to narrow results:</p>
                 <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
                 <div class="sidebar-collapse">
-                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-university"></i> Library</a></div>
+                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Library" aria-expanded="true" aria-controls="Library"><i class="fa fa-minus-circle collapse-icon" aria-hidden="true"></i><i class="fa fa-university"></i> Library</a></div>
                   <div class="collapse show" id="Library">
                     <?php taxonomy_filter('library');	?>
                   </div>
                 </div>
                 <div class="sidebar-collapse">
-                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Tech_Type" aria-expanded="true" aria-controls="Tech_Type"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-info-circle" aria-hidden="true"></i> Tech Type</a></div>
+                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Tech_Type" aria-expanded="true" aria-controls="Tech_Type"><i class="fa fa-minus-circle collapse-icon" aria-hidden="true"></i><i class="fa fa-info-circle" aria-hidden="true"></i> Tech Type</a></div>
                   <div class="collapse show" id="Tech_Type">
                       <?php taxonomy_filter('tech_type');	?>
                   </div>
                 </div>
                 <div class="sidebar-collapse">
-                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Loan_Period" aria-expanded="true" aria-controls="Loan_Period"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-hourglass"></i> Loan Period</a></div>
+                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Loan_Period" aria-expanded="true" aria-controls="Loan_Period"><i class="fa fa-minus-circle collapse-icon" aria-hidden="true"></i><i class="fa fa-hourglass"></i> Loan Period</a></div>
                   <div class="collapse show" id="Loan_Period">
                       <?php taxonomy_filter('loan_period');	?>
                   </div>
                 </div>
                 <div class="sidebar-collapse">
-                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Eligible_User" aria-expanded="true" aria-controls="Eligible_User"><span class="glyphicon glyphicon-minus-sign" style="float:right"></span><i class="fa fa-users"></i> Eligible User</a></div>
+                  <div class="widget-title"><a class="menu-toggle" data-bs-toggle="collapse" href="#Eligible_User" aria-expanded="true" aria-controls="Eligible_User"><i class="fa fa-minus-circle collapse-icon" aria-hidden="true"></i><i class="fa fa-users"></i> Eligible User</a></div>
                   <div class="collapse show" id="Eligible_User">
                       <?php taxonomy_filter('eligible_user');	?>
                   </div>
