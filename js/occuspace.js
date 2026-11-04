@@ -15,15 +15,15 @@ function loadOccuspace(container) {
 
             switch (floor.class) {
                 case 'not-busy':
-                    progressClass = 'progress-bar-success';
+                    progressClass = 'bg-success';
                     break;
 
                 case 'busy':
-                    progressClass = 'progress-bar-warning';
+                    progressClass = 'bg-warning';
                     break;
 
                 case 'very-busy':
-                    progressClass = 'progress-bar-danger';
+                    progressClass = 'bg-danger';
                     break;
             }
 
@@ -40,7 +40,7 @@ function loadOccuspace(container) {
                             - ${floor.percentage}% Occupied
                         </span>
 
-                        <div class="progress">
+                        <div class="progress" role="progressbar" aria-valuenow="${floor.percentage}" aria-valuemin="0" aria-valuemax="100">
                             <div
                                 class="progress-bar ${progressClass}"
                                 role="progressbar"
