@@ -42,7 +42,7 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) {
 		 */
 		public function start_lvl( &$output, $depth = 0, $args = array() ) {
 			$indent  = str_repeat( "\t", $depth );
-			$output .= "\n$indent<ul role=\"menu\" class=\" dropdown-menu\" >\n";
+			$output .= "\n$indent<ul class=\"dropdown-menu\">\n";
 		}
 
 		/**
@@ -107,9 +107,9 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) {
 				// If item has_children add atts to a.
 				if ( isset( $args->has_children ) && $args->has_children && 0 === $depth ) {
 					$atts['href']          = '#';
-					$atts['data-bs-toggle']   = 'dropdown';
-					$atts['class']         = 'dropdown-toggle';
-					$atts['aria-haspopup'] = 'true';
+					$atts['data-bs-toggle'] = 'dropdown';
+					$atts['class'] = 'dropdown-toggle';
+					$atts['aria-expanded'] = 'false';
 				} else {
 					$atts['href'] = ! empty( $item->url ) ? $item->url : '';
 				}
@@ -137,19 +137,15 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) {
 				 * property is NOT null we apply it as the class name for the glyphicon.
 				 */
 				if ( ! empty( $item->attr_title ) ) {
-					$pos = strpos( esc_attr( $item->attr_title ), 'glyphicon' );
-					if ( false !== $pos ) {
-						$item_output .= '<a' . $icon_attributes . ' title="' . esc_attr( $item->title ) . '"><span class="glyphicon ' . esc_attr( $item->attr_title ) . '" aria-hidden="true"></span>&nbsp;';
-					} else {
-						$item_output .= '<a' . $icon_attributes . ' title="' . esc_attr( $item->title ) . '"><i class="fa ' . esc_attr( $item->attr_title ) . '" aria-hidden="true"></i>&nbsp;';
-					}
+					$item_output .= '<a' . $icon_attributes . ' title="' . esc_attr( $item->title ) . '">';
+					$item_output .= '<i class="fa ' . esc_attr( $item->attr_title ) . '" aria-hidden="true"></i>&nbsp;';
 				} else {
 					$item_output .= '<a' . $attributes . '>';
 				}
 				$item_output .= isset( $args->link_before ) ? $args->link_before : '';
 				$item_output .= apply_filters( 'the_title', $item->title, $item->ID );
 				$item_output .= isset( $args->link_after ) ? $args->link_after: '';
-				$item_output .= ( isset( $args->has_children ) && $args->has_children && 0 === $depth ) ? ' <span class="caret"></span></a>' : '</a>';
+				$item_output .= ( isset( $args->has_children ) && $args->has_children && 0 === $depth ) ?  $item_output .= '</a>' : '</a>';
 				$item_output .= isset( $args->after ) ? $args->after : '';
 				$output      .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 			} // End if().
