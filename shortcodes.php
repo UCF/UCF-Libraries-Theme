@@ -1311,15 +1311,15 @@ add_shortcode('databases','databases');
 * Places a bootstrap image slider onto the page
 *
 * [image-slider id="id" number="3"]
-* <div class="item active">
+* <div class="carousel-item active">
 *   <img src="" alt="" />
 *   <div class="carousel-caption">Caption #1</div>
 * </div>
-* <div class="item">
+* <div class="carousel-item">
 *   <img src="" alt="" />
 *   <div class="carousel-caption">Caption #2</div>
 * </div>
-* <div class="item">
+* <div class="carousel-item">
 *   <img src="" alt="" />
 *   <div class="carousel-caption">Caption #3</div>
 * </div>
@@ -1327,41 +1327,92 @@ add_shortcode('databases','databases');
 **/
 
 function image_slider($atts, $content = null) {
-    extract(shortcode_atts( array(
-      'id' => 'image_slider',
-      'number' => 3,
-  ), $atts ));
-  $content = str_replace('<p>', '', $content);
-  $content = str_replace('</p>', '', $content);
-  $content = str_replace('<br>', '', $content);
-  $content = str_replace('<br />', '', $content);
-  $output =' 
-    <div id="'.$id.'" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-bs-target="#'.$id.'" data-slide-to="0" class="active"></li>';
-  for ($i=1; $i < $number; $i++) { 
-    $output .= '<li data-bs-target="#'.$id.'" data-slide-to="'.$i.'"></li>';
-  }
-  $output .='     
-      </ol>
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner">
-      '.shortcode_unautop( $content ).'
-      </div>
-      <!-- Controls -->
-      <a class="left carousel-control" href="#'.$id.'" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#'.$id.'" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </a>
-    </div>
-   ';
-   return $output;
+
+    extract(shortcode_atts(array(
+        'id'     => 'image_slider',
+        'number' => 3,
+    ), $atts));
+
+    $content = str_replace('<p>', '', $content);
+    $content = str_replace('</p>', '', $content);
+    $content = str_replace('<br>', '', $content);
+    $content = str_replace('<br />', '', $content);
+
+    $output = '
+    <div id="'.$id.'" class="carousel slide" data-bs-ride="carousel">
+
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+
+            <button
+                type="button"
+                data-bs-target="#'.$id.'"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1">
+            </button>';
+
+    for ($i = 1; $i < $number; $i++) {
+
+        $output .= '
+            <button
+                type="button"
+                data-bs-target="#'.$id.'"
+                data-bs-slide-to="'.$i.'"
+                aria-label="Slide '.($i + 1).'">
+            </button>';
+    }
+
+    $output .= '
+        </div>
+
+        <!-- Slides -->
+        <div class="carousel-inner">
+            '.shortcode_unautop($content).'
+        </div>
+
+        <!-- Previous -->
+        <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#'.$id.'"
+            data-bs-slide="prev">
+
+            <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true">
+            </span>
+
+            <span class="visually-hidden">
+                Previous
+            </span>
+
+        </button>
+
+        <!-- Next -->
+        <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#'.$id.'"
+            data-bs-slide="next">
+
+            <span
+                class="carousel-control-next-icon"
+                aria-hidden="true">
+            </span>
+
+            <span class="visually-hidden">
+                Next
+            </span>
+
+        </button>
+
+    </div>';
+
+    return $output;
 }
+
 add_shortcode('image-slider', 'image_slider');
 
 
