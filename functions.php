@@ -1,5 +1,4 @@
 <?php
-    require_once('wp_bootstrap_navwalker.php');
     require_once('breadcrumbs.php');
     require_once('shortcodes.php');
     require_once('textbook-api.php');
@@ -281,6 +280,60 @@ function theme_slug_widgets_init() {
     ) );
 }
 add_action( 'widgets_init', 'theme_slug_widgets_init' );
+
+// Add nav-item class to menu items in the Header Menu
+add_filter(
+    'nav_menu_css_class',
+    function ( $classes, $item, $args, $depth ) {
+
+        if ( isset( $args->menu ) && 'Header Menu' === $args->menu ) {
+            $classes[] = 'nav-item';
+        }
+
+        return $classes;
+
+    },
+    10,
+    4
+);
+
+// Add nav-link class to menu links in the Header Menu
+add_filter(
+    'nav_menu_link_attributes',
+    function ( $atts, $item, $args, $depth ) {
+
+        if ( isset( $args->menu ) && 'Header Menu' === $args->menu ) {
+            $atts['class'] = 'nav-link';
+        }
+
+        return $atts;
+
+    },
+    10,
+    4
+);
+
+// Add active class to current menu item and aria-current attribute
+add_filter(
+    'nav_menu_link_attributes',
+    function ( $atts, $item ) {
+
+        if ( in_array( 'current-menu-item', $item->classes, true ) ) {
+            $atts['class'] = trim(
+                ( $atts['class'] ?? '' ) . ' active'
+            );
+
+            $atts['aria-current'] = 'page';
+        }
+
+        return $atts;
+
+    },
+    10,
+    2
+);
+
+
 
 // Commented out this code to make the menu work on categories and tags. Can't remember what this was used for. Leaving commented out for now.
 // add_filter('pre_get_posts', 'query_post_type');
