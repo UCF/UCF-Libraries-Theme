@@ -6,8 +6,12 @@ Description: This template is only for including a staff member card onto a page
 ?>
 <?php the_post(); ?>
 <div class="thumbnail">
-	<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
-	<div class="caption">
+	<div class="card content-card">
+		<a href="<?php echo get_permalink(); ?>">
+			<figure><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail', 'alt' => '')); ?></figure>
+			<h3  id="staff-name-<?php echo $post->ID; ?>"><?php friendly_name(); ?></h3>
+		</a>
+		<div class="caption">
 		<h3><a href="<?php echo get_permalink(); ?>"><?php friendly_name(); ?></a></h3>
 		<?php if(get_post_meta($post->ID, 'title', true) ||
 			get_post_meta($post->ID, 'room', true) ||

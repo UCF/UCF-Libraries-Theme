@@ -27,8 +27,8 @@ Description: Single staff member page.
 				</div>
 				<div id="content_area" class="col-sm-9">
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-						<article class="clearfix">
-							<div class="thumbnail">
+						<article>
+							<div class="card thumbnail content-card">
 								<div class="row">
 									<div class="col-sm-4">
 										<figure><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></figure>

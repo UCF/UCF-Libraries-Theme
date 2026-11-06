@@ -29,19 +29,20 @@ Description: Archive staff member page.
 	<div  class="background-color-gray">
 		<div id="content" class="container">
 			<div class="row">
-				<div id="sidebar" class="col-sm-3">
+				<div id="sidebar" class="col-md-3">
 					<?php get_sidebar('staff'); ?>
-				</div><!-- col-sm-3 -->
-				<div id="content_area" class="col-sm-9">
+				</div><!-- col-md-3 -->
+				<div id="content_area" class="col-md-9">
 					<h2 class="subpage-title">All Staff</h2>
-          <div class="btn-group btn-grid-list" data-bs-toggle="buttons" role="group" aria-label="format">
-            <label class="btn btn-primary view-button active">
-              <input type="radio" name="views" autocomplete="off" value="grid" checked><i class="fa fa-th"></i> Grid
-            </label>
-            <label class="btn btn-primary view-button">
-              <input type="radio" name="views"  autocomplete="off" value="list"> <i class="fa fa-th-list"></i> List
-            </label>
-          </div>
+          <fieldset>
+            <legend class="visually-hidden">View Options</legend>
+            <div class="btn-group btn-grid-list" data-bs-toggle="buttons" role="radiogroup" aria-label="Grid or List View Toggle">
+              <input type="radio" class="btn-check" name="views" id="grid_view_btn" value="grid" checked> 
+              <label class="btn btn-primary " for="grid_view_btn"><i class="fa fa-th"></i> Grid</label>
+              <input type="radio" class="btn-check" name="views" id="list_view_btn" value="list"> 
+              <label class="btn btn-primary " for="list_view_btn"><i class="fa fa-th-list"></i> List</label>
+            </div>
+          </fieldset>
           <div id="list_view" class="view">
             <div class="card">
               <div class="table-responsive">
@@ -61,7 +62,7 @@ Description: Archive staff member page.
                   <tbody>
                   <?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
                     <tr>
-                      <td><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('thumbnail', array('class' => 'list-thumbnail')); ?></a></td>
+                      <td><?php the_post_thumbnail('thumbnail', array('class' => 'list-thumbnail', 'alt' => '')); ?></td>
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></td>
                       <td>
                         <?php if(get_post_meta($post->ID, 'title', true)): ?>
@@ -111,15 +112,18 @@ Description: Archive staff member page.
               </div>
             </div>
           </div>
-					<div id="grid_view" class="directory grid view view-active">
+					<div id="grid_view" class="directory grid view">
   					<?php $i = 0; ?>
   					<?php if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post(); ?>
   						<?php $i++; ?>
   						<div class="grid-item ">
-  			    		<div class="thumbnail">
-  			    			<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
+  			    		<div class="card content-card">
+                  <a href="<?php echo get_permalink(); ?>">
+                    <figure><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail', 'alt' => '')); ?></figure>
+                    <h3  id="staff-name-<?php echo $post->ID; ?>"><?php the_title(); ?></h3>
+                  </a>
     							<div class="caption">
-    								<h3><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h3>
+    								
     								<?php if(get_post_meta($post->ID, 'title', true) ||
                              get_post_meta($post->ID, 'rank', true) ||
                              get_post_meta($post->ID, 'department', true) ||
@@ -142,7 +146,7 @@ Description: Archive staff member page.
   										<?php endif; ?>
 
                       <?php if(get_post_meta($post->ID, 'college', true)): ?>
-													<li><img class="college-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/images/PegasusIcon.png" data-bs-toggle="tooltip" data-placement="right" title="College Lead"><?php echo get_post_meta($post->ID, 'college', true); ?></li>
+													<li><img alt="College Lead" class="college-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/images/PegasusIcon.png" data-bs-toggle="tooltip" data-placement="right" title="College Lead"><?php echo get_post_meta($post->ID, 'college', true); ?></li>
 												<?php endif; ?>
 
                       <?php if(get_modified_term_list( $post->ID, 'subject', '', ', ', '', array('all') )): ?>
@@ -170,7 +174,7 @@ Description: Archive staff member page.
   					<?php wp_reset_query(); // Restore global post data stomped by the_post(). ?>
   					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
   				</div><!-- directory row -->
-  			</div><!-- col-sm-9 -->
+  			</div><!-- col-md-9 -->
   		</div><!-- row -->
   	</div><!-- container -->
   </div><!-- background-color-gray -->
