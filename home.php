@@ -3,12 +3,17 @@
 <div id="main">
 	<div id="title_bar" class="container">
 	<!-- home.php -->
-		<header><h1>News</h1></header>
-		<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
+		<div class="row">
+			<div class="col-md-12">
+				<header><h1>News</h1></header>
+				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
+			</div>
+		</div>
 	</div>
 	<div  class="background-color-gray">
 		<div id="content" class="container">
-				<div id="content_area">					
+			<div class="row">
+				<div id="content_area" class="col-md-12">
 					<section class="news-filters">
 						<button class="filter-toggle" aria-expanded="false">All Topics</button>
 						<div class="filter-buttons">
@@ -71,7 +76,7 @@
 					<?php wpbeginner_numeric_posts_nav(); ?>
 				</div>
 		</div>
-
+	  </div>
 	</div>
 </div>
 <script>

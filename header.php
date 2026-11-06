@@ -68,8 +68,12 @@
 					?>
 						<div id="banner_message" class="homepage-banner banner-<?php echo($status); ?>" data-id="<?php echo($title); ?>">
 							<div class="container">
+								<div class="row">
+									<div class="col-sm-12">
 									<button type="button" id="banner_close_btn" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
 									<?php the_content(); ?>
+									</div>
+								</div>	
 							</div>
 						</div>
    			<?php endif; endwhile;
