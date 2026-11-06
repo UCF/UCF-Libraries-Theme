@@ -49,6 +49,11 @@ body {
 
 .sr-only {display: none;}
 
+
+.main-header .container {
+    padding-right: 0;
+}
+
 .library-body {
   font-family: "Droid Sans", sans-serif;
   background-color: #222;
@@ -61,6 +66,12 @@ body {
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto", sans-serif;
+}
+
+@media (min-width: 1200px) {
+    .h1, h1 {
+        font-size: 3.5rem;
+    }
 }
 
 a {color: #1a73b3;}
@@ -287,7 +298,7 @@ p.comment-form-url {   /* Removes Website URL field from post comments */
 	background-color: #fff;
 	border-radius: 2px;
 	overflow: auto;
-	margin: 0 0 2em;
+	/* margin: 0 0 2em; */
 }
 
 .card.busy-card {
@@ -305,13 +316,17 @@ p.comment-form-url {   /* Removes Website URL field from post comments */
   background-color: #fff6f0;
 }
 
+.card.busy-card .progress {
+    height: 20px;
+}
+
 .busy-heading {
   margin: 20px 0 20px;
   padding: 0 0 5px;
 }
-.busy-heading.not-busy { border-bottom: 5px solid #5cb85c; }
-.busy-heading.busy { border-bottom: 5px solid #f0ad4e; }
-.busy-heading.very-busy { border-bottom: 5px solid #d9534f; }
+.busy-heading.not-busy { border-bottom: 5px solid rgb(var(--bs-success-rgb)); }
+.busy-heading.busy { border-bottom: 5px solid rgb(var(--bs-warning-rgb)); }
+.busy-heading.very-busy { border-bottom: 5px solid rgb(var(--bs-danger-rgb)); }
 
 .busy-text {
   font-size: 1.25em;
@@ -320,6 +335,8 @@ p.comment-form-url {   /* Removes Website URL field from post comments */
   display: block;
   font-family: 'Roboto';
 }
+
+
 
 .content-area { padding: 1em; }
 
@@ -547,8 +564,11 @@ padding: 12px 15px;
 	font-size: 1.25em;
 	line-height: 2;
 	margin: 0;
-  padding: .25em 0;
+  padding: 0;
 	font-family: 'Montserrat', 'Roboto', sans-serif;
+}
+.navbar.navbar-library {
+  --bs-navbar-nav-link-padding-x: 1rem;
 }
 .navbar-library .navbar-brand {
 	color: #222;
@@ -560,7 +580,7 @@ padding: 12px 15px;
   /* margin: .25em 0 .35em; */
   margin-top: 6px;
   line-height: 20px;
-  padding: 15px 15px;
+  padding: 22px 0;
 }
 @media (min-width: 768px) {
   .navbar-library .navbar-brand {
@@ -570,9 +590,8 @@ padding: 12px 15px;
 }
 
 .navbar-library .navbar-brand:hover, .navbar-library .navbar-brand:focus {
-	color: #fff;
-	background-color: transparent;
-	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+	/* color: #fff; */
+	background-color: rgba(0, 0, 0, .1);
 }
 
 .navbar-library .navbar-text {
@@ -593,14 +612,10 @@ padding: 12px 15px;
   padding: 15px 10px;
 }
 .navbar-library .navbar-nav > li > a:hover, .navbar-library .navbar-nav > li > a:focus {
-	color: #fff;
-	background-color: transparent;
-	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+	background-color: rgba(0, 0, 0, .1);
 }
 .navbar-library .navbar-nav > .active > a, .navbar-library .navbar-nav > .active > a:hover, .navbar-library .navbar-nav > .active > a:focus {
-	color: #fff;
-	background-color: transparent;
-	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+	background-color: rgba(0, 0, 0, .1);
 }
 .navbar-library .navbar-nav > .disabled > a, .navbar-library .navbar-nav > .disabled > a:hover, .navbar-library .navbar-nav > .disabled > a:focus {
 	color: #ccc;
@@ -978,7 +993,7 @@ padding: 12px 15px;
 .caption ul { padding-left: 20px;}
 .caption ul li {list-style: none; position: relative;}
 
-.caption .glyphicon, .caption .fa {
+.caption .fa {
 	position: absolute;
 	left: -2em;
  	top: 0.2em;
@@ -989,20 +1004,31 @@ padding: 12px 15px;
   padding-left: 2px;
 }
 
-.caption h1,
-.caption h2,
-.caption h3,
-.caption h4 {
+.content-card {
+  overflow: visible;
+  padding: .5rem;
+}
+
+.content-card h1,
+.content-card h2,
+.content-card h3,
+.content-card h4 {
   background: #222;
   color: #fff;
-  padding: .25em 0 .25em 1em;
-  margin: -1.25em 0 .5em -1.25em;
+  padding: .5rem 0 .5rem 1.6rem;
+  margin: -2.5rem 0 .5rem -1.25rem;
   position: relative;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
-.caption h3 a,
-.caption h4 a
-{ color: #fff; }
+.content-card > a{ 
+  color: #fff; 
+  text-decoration: none;
+}
+.content-card > a:hover{ 
+  color: #fff; 
+  text-decoration: underline;
+}
+
 .caption ul, .caption p { font-size: 9px; }
 .directory-single .caption ul, .directory-single .caption p { font-size: 14px; }
 .directory-single ul .college-icon { width: 14px;}
@@ -1030,7 +1056,7 @@ padding: 12px 15px;
 	  margin-top: -9px;
 	}
   .caption h1 {
-    margin: -0.25em 0 0.25em -1em;
+    margin: 0 0 1.25rem -1rem;
   }
 }
 
@@ -1092,6 +1118,7 @@ padding: 12px 15px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 1rem;
+  height: auto;
 }
 
 .grid-item {
