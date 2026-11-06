@@ -453,17 +453,18 @@ function eraseCookie(key) {
 // Homepage Banner Close Button
 // =========================================
 
-function homepage_banner_close() {
-  
-    if (jQuery('#banner_message')){
-      $banner_id = jQuery('#banner_message').attr('data-id');
-      
-      if (getCookie('banner_close') !== $banner_id) {
-        jQuery('#banner_message').addClass('show');
-      } 
-      jQuery('#banner_close_btn').click(function() {
-        document.cookie = 'banner_close='+$banner_id+'; secure';
-        jQuery('#banner_message').removeClass('show');
+function website_banner() {
+
+    if (document.querySelectorAll('#banner_message')) {
+      var banner_id = document.querySelector('#banner_message').getAttribute('data-id');
+      console.log('banner_id: ' + banner_id);
+      if (getCookie('banner_close') !== banner_id) {
+        console.log('banner_close cookie not set or does not match banner_id');
+        document.querySelector('#banner_message').classList.add('show');
+      }
+      document.querySelector('#banner_close_btn').addEventListener('click', function() {
+        document.cookie = 'banner_close='+banner_id+'; secure';
+        document.querySelector('#banner_message').classList.remove('show');
       });
 
     }
@@ -694,7 +695,7 @@ document.addEventListener('DOMContentLoaded', () => {
   collapse_sidebar();
   tab_linking();
   login_modal_launch();
-  homepage_banner_close();
+  website_banner();
   enable_tooltips();
   bootstrap_gravity_forms();
   my_account_btn();
