@@ -387,40 +387,49 @@ function share_button(url, winWidth, winHeight) {
 
 function grid_list_toggle() {
 
-    document.querySelectorAll('.view-button').forEach(button => {
+    function activateView(viewName) {
 
-        button.addEventListener('click', () => {
-
-            const input = button.querySelector(
-                'input[name$="views"]'
-            );
-
-            if (!input) {
-                return;
-            }
-
-            const view = input.value;
-
-            document
-                .querySelectorAll('.view')
-                .forEach(el =>
-                    el.classList.remove('view-active')
-                );
-
-            const target = document.getElementById(
-                view + '_view'
-            );
-
-            if (target) {
-                target.classList.add('view-active');
-            }
-
+        document.querySelectorAll('.view').forEach(view => {
+            view.classList.remove('view-active');
         });
+
+        const target = document.getElementById(
+            viewName + '_view'
+        );
+
+        if (target) {
+            target.classList.add('view-active');
+        }
+    }
+
+    function syncCurrentView() {
+
+        const checkedView = document.querySelector(
+            'input[name="views"]:checked'
+        );
+
+        if (checkedView) {
+            activateView(checkedView.value);
+        }
+    }
+
+    document.addEventListener('change', event => {
+
+        if (!event.target.matches('input[name="views"]')) {
+            return;
+        }
+
+        activateView(event.target.value);
 
     });
 
-}
+    // Initial load
+    syncCurrentView();
 
+    // Browser back/forward cache
+    window.addEventListener('pageshow', syncCurrentView);
+
+}
 
 // Cookies
 // =========================================

@@ -41,14 +41,15 @@ Description: Taxonomy archive page.
 				<div id="content_area" class="col-sm-9">
 					<h2 class="subpage-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h2>
 					<?php echo term_description( ) ?>
-          <div class="btn-group btn-grid-list" data-bs-toggle="buttons" role="group" aria-label="format">
-            <label class="btn btn-primary view-button active">
-              <input type="radio" name="views" autocomplete="off" value="grid" checked><i class="fa fa-th"></i> Grid
-            </label>
-            <label class="btn btn-primary view-button">
-              <input type="radio" name="views"  autocomplete="off" value="list"> <i class="fa fa-th-list"></i> List
-            </label>
-          </div>
+          <fieldset>
+            <legend class="visually-hidden">View Options</legend>
+            <div class="btn-group btn-grid-list" data-bs-toggle="buttons" role="radiogroup" aria-label="Grid or List View Toggle">
+              <input type="radio" class="btn-check" name="views" id="grid_view_btn" value="grid" checked> 
+              <label class="btn btn-primary " for="grid_view_btn"><i class="fa fa-th"></i> Grid</label>
+              <input type="radio" class="btn-check" name="views" id="list_view_btn" value="list"> 
+              <label class="btn btn-primary " for="list_view_btn"><i class="fa fa-th-list"></i> List</label>
+            </div>
+          </fieldset>
           <div id="list_view" class="view">
             <div class="card">
               <div class="table-responsive">
@@ -68,7 +69,7 @@ Description: Taxonomy archive page.
                   <tbody>
                   <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                     <tr>
-                      <td><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('thumbnail', array('class' => 'list-thumbnail')); ?></a></td>
+                      <td><?php the_post_thumbnail('thumbnail', array('class' => 'list-thumbnail', 'alt' => '')); ?></td>
                       <td><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></td>
                       <td>
                         <?php if(get_post_meta($post->ID, 'title', true)): ?>
@@ -123,10 +124,12 @@ Description: Taxonomy archive page.
 					 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 							<?php $i++; ?>
   						<div class="grid-item ">
-				    		<div class="thumbnail">
-  				    			<figure><a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail')); ?></a></figure>
+				    		<div class="card content-card">
+                  <a href="<?php echo get_permalink(); ?>">
+                    <figure><?php the_post_thumbnail('staff-thumbnail', array('class' => 'staff-thumbnail', 'alt' => '')); ?></figure>
+                    <h3  id="staff-name-<?php echo $post->ID; ?>"><?php the_title(); ?></h3>
+                  </a>
   									<div class="caption">
-  										<h3><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h3>
   										<?php if(get_post_meta($post->ID, 'title', true) ||
   											 get_post_meta($post->ID, 'room', true) ||
   											 get_post_meta($post->ID, 'phone', true) ||
