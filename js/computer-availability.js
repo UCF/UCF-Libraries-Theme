@@ -41,17 +41,17 @@ function fetchComputerAvailabilityData(container) {
 
                     if (percentAvailable > 50) {
                         busyClass = 'not-busy';
-                        progressColor = 'progress-bar-success';
+                        progressColor = 'bg-success';
                         statusText = 'Not Busy';
                     }
                     else if (percentAvailable > 20) {
                         busyClass = 'busy';
-                        progressColor = 'progress-bar-warning';
+                        progressColor = 'bg-warning';
                         statusText = 'Busy';
                     }
                     else {
                         busyClass = 'very-busy';
-                        progressColor = 'progress-bar-danger';
+                        progressColor = 'bg-danger';
                         statusText = 'Very Busy';
                     }
 
