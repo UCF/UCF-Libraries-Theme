@@ -1688,7 +1688,12 @@ th.header.empty-cell{
     }
 }
 
-/*Homepage News*/
+/*News*/
+
+.news-article {
+  margin-bottom: 2rem;
+}
+
 .news-post {
 	display:table;
 	font-size: 12px;
