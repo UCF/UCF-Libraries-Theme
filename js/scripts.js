@@ -594,6 +594,45 @@ document.getElementById("subject_slug").value = sanitizeString(document.getEleme
 document.forms["subject_filter"].submit();
 }
 
+
+// Today's Hours
+// =====================
+function loadTodayHours() {
+
+    const elements = document.querySelectorAll('.department-hours');
+
+    if (!elements.length) {
+        return;
+    }
+
+    fetch(libcal_Hours_Data.rest_url)
+        .then(response => response.json())
+        .then(data => {
+
+            if (!data.locations) {
+                return;
+            }
+
+            elements.forEach(element => {
+
+                const lid = parseInt(element.dataset.lid, 10);
+
+                const location = data.locations.find(
+                    loc => parseInt(loc.lid, 10) === lid
+                );
+
+                element.innerHTML = location
+                    ? location.rendered
+                    : 'Hours unavailable';
+            });
+        })
+        .catch(() => {
+            elements.forEach(element => {
+                element.textContent = 'Hours unavailable';
+            });
+        });
+}
+
 // Load all functions when Dom Ready
 // =========================================
 
@@ -609,4 +648,5 @@ jQuery(document).ready( function() {
   grid_list_toggle();
   table_sorter_init();
   widget_area_affix();
+  loadTodayHours();
 });

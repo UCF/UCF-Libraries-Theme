@@ -1028,6 +1028,20 @@ add_action( 'rest_api_init', function () {
 
 } );
 
+// REST API endpoint for libcal hours data
+add_action( 'rest_api_init', function () {
+
+    register_rest_route(
+        'library/v1',
+        '/hours-today',
+        array(
+            'methods'  => 'GET',
+            'callback' => 'library_hours_endpoint',
+            'permission_callback' => '__return_true',
+        )
+    );
+
+} );
 
 /**
  * Primo API call function
@@ -1330,5 +1344,51 @@ function library_labstats_endpoint() {
 //   }
 // }
 
+// LibCal API call function
+function get_libcal_hours_data() {
+
+    $cache_key = 'libcal_hours_today';
+    $hours = get_transient( $cache_key );
+
+    if ( false === $hours ) {
+
+        $response = wp_remote_get(
+            'https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json',
+            array( 'timeout' => 15 )
+        );
+
+        if ( is_wp_error( $response ) ) {
+            return array();
+        }
+
+        $hours = json_decode(
+            wp_remote_retrieve_body( $response ),
+            true
+        );
+
+        set_transient(
+            $cache_key,
+            $hours,
+            15 * MINUTE_IN_SECONDS
+        );
+    }
+
+    return $hours;
+}
+// REST API endpoint for LibCal hours data
+function library_hours_endpoint() {
+
+    $data = get_libcal_hours_data();
+
+    if ( false === $data ) {
+        return new WP_Error(
+            'hours_error',
+            'Unable to retrieve hours data.',
+            array( 'status' => 500 )
+        );
+    }
+
+    return rest_ensure_response( $data );
+}
 
 ?>

@@ -798,29 +798,29 @@ add_shortcode( 'hours-calendar', 'hours_week_calendar' );
 *[hours-today-homepage ids="1206, 1209, 10190, 1211"]
 *
 **/
-function hours_today_homepage( $atts ) {
-  extract(shortcode_atts( array(
-    'ids' => '1206, 1209, 1211',
-  ), $atts ));
-  $ids = explode(', ', $ids);
-  $string = wp_remote_get('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json', array( 'timeout' => 15 ));
-  if (is_array( $string)) {
-    $json_o = json_decode($string['body']);
-    if ($json_o != null) {
-      $hours_list = '<dl class="dl-horizontal homepage">';
-      foreach ($json_o->locations as $location) if (in_array($location->lid, $ids)) {    
-        $hours_list .= '<dt><a href="'.$location->url.'">'.$location->name.'</a></dt><dd>'.$location->rendered.'</dd>';
-      }
-      $hours_list .= '</dl>';
-    } else {
-      $hours_list = '<p style="text-align: center">Unable to load hours.</p>';
-    }
-  } else {
-    $hours_list = '<p style="text-align: center">Unable to load hours.</p>';
-  }
-  return $hours_list;
-}
-add_shortcode('hours-today-homepage', 'hours_today_homepage');
+// function hours_today_homepage( $atts ) {
+//   extract(shortcode_atts( array(
+//     'ids' => '1206, 1209, 1211',
+//   ), $atts ));
+//   $ids = explode(', ', $ids);
+//   $string = wp_remote_get('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json', array( 'timeout' => 15 ));
+//   if (is_array( $string)) {
+//     $json_o = json_decode($string['body']);
+//     if ($json_o != null) {
+//       $hours_list = '<dl class="dl-horizontal homepage">';
+//       foreach ($json_o->locations as $location) if (in_array($location->lid, $ids)) {    
+//         $hours_list .= '<dt><a href="'.$location->url.'">'.$location->name.'</a></dt><dd>'.$location->rendered.'</dd>';
+//       }
+//       $hours_list .= '</dl>';
+//     } else {
+//       $hours_list = '<p style="text-align: center">Unable to load hours.</p>';
+//     }
+//   } else {
+//     $hours_list = '<p style="text-align: center">Unable to load hours.</p>';
+//   }
+//   return $hours_list;
+// }
+// add_shortcode('hours-today-homepage', 'hours_today_homepage');
 
 
 
@@ -833,27 +833,29 @@ add_shortcode('hours-today-homepage', 'hours_today_homepage');
 *
 **/
 function hours_today_single( $atts ) {
-  extract(shortcode_atts( array(
-    'id' => '1206',
-  ), $atts ));
-  $string = wp_remote_get('https://api3.libcal.com/api_hours_today.php?iid=246&lid=0&format=json', array( 'timeout' => 15 ));
-  if (is_array( $string)) {
-    $json_o = json_decode($string['body']);
-    if ($json_o != null) {
-      $hours = '';
-      foreach ($json_o->locations as $location) if ($location->lid == $id) {
-        $hours .= '<span class="department-hours"><!-- '.$location->name.'-->'.$location->rendered.'</span>';
-      }
-    } else {
-      $hours = '<p>Unable to load hours.</p>';
-    }
-  } else {
-    $hours = '<p>Unable to load hours.</p>';
-  }
 
-  return $hours;
+    $atts = shortcode_atts(
+        array(
+            'id' => '1206',
+        ),
+        $atts
+    );
+
+    wp_localize_script(
+        'library-scripts',
+        'libcal_Hours_Data',
+        array(
+            'rest_url' => rest_url( 'library/v1/hours-today' ),
+        )
+    );
+
+    return sprintf(
+        '<span class="department-hours" data-lid="%s">Loading hours...</span>',
+        esc_attr( $atts['id'] )
+    );
 }
-add_shortcode('hours-today-single', 'hours_today_single');
+
+add_shortcode( 'hours-today-single', 'hours_today_single' );
 
 
 /**
