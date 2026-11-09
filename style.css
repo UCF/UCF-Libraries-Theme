@@ -49,6 +49,9 @@ body {
 
 .sr-only {display: none;}
 
+.show {
+    display: block!important;
+}
 
 .main-header .container {
     padding-right: 0;
@@ -1910,14 +1913,15 @@ th.header.empty-cell{
 
 /* Homepage Message Banner */
 .homepage-banner {
-  color: #fff;
+  /* color: #fff; */
   font-size: 1.25em;
   font-family: 'Montserrat';
   display: none;
+  margin-bottom: 0;
 }
 
 .homepage-banner a {
-  color: #fff;
+  /* color: #fff; */
   font-weight: bold;
   text-decoration: underline;
 }
@@ -1927,10 +1931,13 @@ th.header.empty-cell{
 }
 
 .homepage-banner .close{
-  color: #fff;
+  /* color: #fff; */
   text-shadow: 0 1px 0 #000;
   opacity: 1;
   padding: .5em;
+  float: right;
+  border: none;
+  background-color: transparent;
 }
 
 .homepage-banner .close:hover{
@@ -1940,20 +1947,20 @@ th.header.empty-cell{
 }
 
 .banner-success {
-  background-color: #5cb85c;
-  color:#000;
+  background-color: rgb(var(--bs-success-rgb));
+  color:#fff;
 }
 .banner-success .close{
-  color: #000;
+  color: #fff;
   text-shadow: none;
 }
 
 .banner-info {
-  background-color: #337ab7;
+  background-color: rgb(var(--bs-info-rgb));
 }
 
 .banner-warning {
-  background-color: #d88f27;
+  background-color: rgb(var(--bs-warning-rgb));
   color: #000;
 }
 
@@ -1963,7 +1970,13 @@ th.header.empty-cell{
 }
 
 .banner-danger {
-  background-color: #aa0000;
+  color: #fff;  
+  background-color: rgb(var(--bs-danger-rgb));
+}
+
+.banner-danger .close{
+  color: #fff;
+  text-shadow: none;
 }
 
 /*Posts*/
