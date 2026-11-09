@@ -454,17 +454,18 @@ function eraseCookie(key) {
 // =========================================
 
 function website_banner() {
+    const banner = document.querySelector('#banner_message');
+    const bannerCloseBtn = document.querySelector('#banner_close_btn');
 
     if (document.querySelectorAll('#banner_message')) {
-      var banner_id = document.querySelector('#banner_message').getAttribute('data-id');
-      console.log('banner_id: ' + banner_id);
+
+      const banner_id = banner.getAttribute('data-id');
       if (getCookie('banner_close') !== banner_id) {
-        console.log('banner_close cookie not set or does not match banner_id');
-        document.querySelector('#banner_message').classList.add('show');
+        banner.classList.add('show');
       }
-      document.querySelector('#banner_close_btn').addEventListener('click', function() {
+      bannerCloseBtn.addEventListener('click', function() {
         document.cookie = 'banner_close='+banner_id+'; secure';
-        document.querySelector('#banner_message').classList.remove('show');
+        // banner.classList.remove('show');
       });
 
     }
