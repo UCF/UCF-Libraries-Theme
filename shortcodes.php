@@ -279,7 +279,7 @@ function search_stars($form) {
             <input class="form-control" type="text" name="q" class="search" id="search" placeholder="Search Collection">
             <input name="fq" type="hidden" value="virtual_ancestor_link:&quot;https://stars.library.ucf.edu/&quot;">
             <span class="input-group-btn">  
-              <button type="submit" class="btn btn-default" name="query" value="Search"><i class="fa fa-search" aria-hidden="true"></i><span class="visually-hidden">Search</span></button>
+              <button type="submit" class="btn btn-secondary" name="query" value="Search"><i class="fa fa-search" aria-hidden="true"></i><span class="visually-hidden">Search</span></button>
             </span>        
           </div>     
         </fieldset>
@@ -899,7 +899,7 @@ function library_events($atts) {
           <article>
             <span class="eventDate"><ul><li class="eventMonth">'.$month.'</li><li class="eventDay">'.$day.'</li><li class="eventYear">'.$year.'</li><li class="eventDate">'.$event->starts.'</li></ul></span>
             <ul class="eventInfo">
-              <li class="eventTitle"><a href="'.$event->url.'" title="'.$event->title.'" target="_blank">'.$event->title.'</a></li>
+              <li class="eventTitle"><a href="'.$event->url.'" target="_blank">'.$event->title.'</a></li>
               <li class="eventTime"><i class="fa fa-clock-o" aria-hidden="true"></i> '.$start_time.' - '.$end_time.'</li>
               <li class="eventLocation"><i class="fa fa-map-marker" aria-hidden="true"></i> <a href="'.$event->location_url.'">'.$event->location.'</a></li>
             </ul>
@@ -1276,7 +1276,7 @@ function hiring_status($atts) {
       } else {
         $hiring_url_fws = '';
       }
-      $output .= '<dt>'.$department['label'].':</dt><dd><i class="fa fa-check-circle"></i> is actively seeking applications. <button class="btn btn-default" type="button" data-bs-toggle="modal" data-bs-target="#'.$department['value'].'">View Job Details</button>';
+      $output .= '<dt>'.$department['label'].':</dt><dd><i class="fa fa-check-circle"></i> is actively seeking applications. <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#'.$department['value'].'">View Job Details</button>';
       if ($hiring_url_ops !='') {
         $output .= ' <a class="btn btn-primary" href="'.$hiring_url_ops.'" target="_blank">Apply (OPS)</a>';
       } 
