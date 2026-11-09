@@ -2,12 +2,17 @@
 <div id="main">
 	<div id="title_bar" class="container">
 	<!-- single.php -->
+	 	<div class="row">
+			<div class="col-sm-12">
 				<header><h1><a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ) ?>">News</a></h1></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
+			</div>
+		</div>
 	</div>
 	<div  class="background-color-gray">
 		<div id="content" class="container">
-
+			<div class="row">
+				<div class="col-sm-12">
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					<?php	
 						$categories = get_the_category();
@@ -44,6 +49,7 @@
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 				</div>
 			</div>
+		</div>				
 	</div>
 </div>
 <?php get_footer(); ?>
