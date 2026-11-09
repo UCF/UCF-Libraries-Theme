@@ -66,11 +66,11 @@
 					if (!isset($banner_cookie)):
 						$status = strip_tags(get_the_term_list( $post->ID, 'alert-status', '', ', ', '' ));
 					?>
-						<div id="banner_message" class="homepage-banner banner-<?php echo($status); ?>" data-id="<?php echo($title); ?>">
+						<div id="banner_message" class="homepage-banner alert alert-<?php echo($status); ?> alert-dismissible fade" data-id="<?php echo($title); ?>" role="alert">
 							<div class="container">
 								<div class="row">
 									<div class="col-sm-12">
-									<button type="button" id="banner_close_btn" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
+									<button type="button" id="banner_close_btn" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									<?php the_content(); ?>
 									</div>
 								</div>	
