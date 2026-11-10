@@ -4,7 +4,9 @@
 	<!-- single.php -->
 	 	<div class="row">
 			<div class="col-sm-12">
-				<header><h1><a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ) ?>">News</a></h1></header>
+				<header class="mt-5 mb-4">
+					<a class="news-back-link fs-2 fw-semibold" href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>"><i class="fa fa-arrow-left"></i> News</a>
+				</header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div>
 		</div>
@@ -24,25 +26,23 @@
 				          }
 				        }
 			        ?>
-					<article>
-						<div class="card">
-						<?php if (has_post_thumbnail()): ?>
-							<div class="post-header-img"><?php the_post_thumbnail('full'); ?></div>
-						<?php else: ?>
-							<div class="post-header-img"><img class="size-full" alt="Decorative pegasus banner" src="<?php echo(get_template_directory_uri()) ?>/images/generic-default-banner.jpg"></div>
-						<?php endif; ?>
-							<div class="news-post-content">
-								<div class="news-post-title">
-									<header>
-					                  <h2><?php echo get_the_title(); ?></h2>
-					                  <span class="news-post-category"><?php echo trim($output, $separator); ?></span>
-                					  <span class="news-post-date">Posted: <i class="fa fa-calendar"></i> <?php echo get_the_time('F jS, Y'); ?></span>
-               						</header>
-								</div>
-								<?php the_content(__('(more...)')); ?>
-								<div class="clearfix"></div>
-								<?php comments_template(); ?>
+					<article class="card shadow-sm">
+					<?php if (has_post_thumbnail()): ?>
+						<div class="post-header-img"><?php the_post_thumbnail('full'); ?></div>
+					<?php else: ?>
+						<div class="post-header-img"><img class="size-full"  alt="" aria-hidden="true" src="<?php echo(get_template_directory_uri()) ?>/images/generic-default-banner.jpg"></div>
+					<?php endif; ?>
+						<div class="news-post-content">
+							<div class="news-post-title">
+								<header>
+									<h1 class="display-3 fw-semibold"><?php echo get_the_title(); ?></h1>
+									<div class="news-post-meta" aria-label="Post metadata">
+									<span class="news-post-category"><?php echo trim($output, $separator); ?></span>
+									<time class="news-post-date">Posted: <i class="fa fa-calendar"></i> <?php echo get_the_time('F jS, Y'); ?></time>
+									</div>
+								</header>
 							</div>
+							<?php the_content(__('(more...)')); ?>
 						</div>
 					</article>
 					<?php endwhile; else: ?>

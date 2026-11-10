@@ -12,7 +12,7 @@ Description: Use if a page requires a sidebar.
 	<!-- page_sidebar.php -->
 		<div class="row">
 			<div class="col-sm-8">
-				<header><h1><?php the_title(); ?></h1></header>
+				<header><h1 class="display-3 fw-semibold mt-5 mb-3"><?php the_title(); ?></h1></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div>
 			<div class="col-sm-4">

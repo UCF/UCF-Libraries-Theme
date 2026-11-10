@@ -24,7 +24,7 @@ Description: Taxonomy archive page.
 	 <!-- taxonomy.php -->
 		<div class="row">
 			<div class="col-sm-8">
-				<header><h1>Staff Directory</h1></header>
+				<header><h1 class="display-3 fw-semibold mt-5 mb-3">Staff Directory</h1></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div><!-- col-sm-8 -->
 			<div class="col-sm-4">
@@ -39,7 +39,7 @@ Description: Taxonomy archive page.
 					<?php get_sidebar('staff'); ?>
 				</div><!-- col-sm-3 -->
 				<div id="content_area" class="col-sm-9">
-					<h2 class="subpage-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h2>
+					<h2 class="display-5 fw-semibold mt-3 mb-3"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h2>
 					<?php echo term_description( ) ?>
           <fieldset>
             <legend class="visually-hidden">View Options</legend>

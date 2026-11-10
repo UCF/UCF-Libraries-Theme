@@ -11,7 +11,7 @@ Description: This page template does not have a sidebar.
 	<!-- no_sidebar -->
 		<div class="row">
 			<div class="col-sm-8">
-				<header><h1><?php the_title(); ?></h1></header>
+				<header><h1 class="display-3 fw-semibold mt-5 mb-3"><?php the_title(); ?></h1></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div>
 			<div class="col-sm-4">
@@ -20,12 +20,16 @@ Description: This page template does not have a sidebar.
 		</div>
 	</div>
 	<div id="content" class="container">
-		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<article>
-		<?php the_content(__('(more...)')); ?>
-		</article>
-		<?php endwhile; else: ?>
-		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
+		<div class="row">
+			<div class="col-sm-12">
+				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+				<article>
+				<?php the_content(__('(more...)')); ?>
+				</article>
+				<?php endwhile; else: ?>
+				<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
+			</div>
+		</div>
 	</div>
 </div>
 <?php get_footer(); ?>

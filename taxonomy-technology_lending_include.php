@@ -24,7 +24,7 @@ Description: Include file for Tech Lending Taxonomies.
 	 <!-- taxonomy.php -->
 		<div class="row">
 			<div class="col-sm-8">
-				<header><h1>Technology Lending</h1></header>
+				<header><h1 class="display-3 fw-semibold mt-5 mb-3">Technology Lending</h1></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div><!-- col-sm-8 -->
 			<div class="col-sm-4">
@@ -40,7 +40,7 @@ Description: Include file for Tech Lending Taxonomies.
             <div id="secondary" class="secondary taxonomy-filter">
               <div id="widget-area-2" class="widget-area" role="complementary">
                 <p class="widget-link"><a href="<?php echo get_post_type_archive_link( 'tech' ); ?>">View All Technology</a></p>
-                <h2>Filters</h2>
+                <h2 class="display-5 fw-semibold mt-3 mb-3">Filters</h2>
                 <p>Select filters below to narrow results:</p>
                 <p style="text-align:center;"><button id="clear_all" class="btn btn-default">Clear All Filters</button></p>
                 <?php if ($current_taxonomy != 'library'): ?>

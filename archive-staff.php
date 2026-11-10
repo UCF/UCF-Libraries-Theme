@@ -18,7 +18,7 @@ Description: Archive staff member page.
 	<div id="title_bar" class="container">
 		<div class="row">
 			<div class="col-sm-8">
-				<header><h1>Staff Directory</h1></header>
+				<header><h1 class="display-3 fw-semibold mt-5 mb-3">Staff Directory</h1></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div><!-- col-sm-8 -->
 			<div class="col-sm-4">
@@ -33,7 +33,7 @@ Description: Archive staff member page.
 					<?php get_sidebar('staff'); ?>
 				</div><!-- col-md-3 -->
 				<div id="content_area" class="col-md-9">
-					<h2 class="subpage-title">All Staff</h2>
+					<h2 class="display-5 fw-semibold mt-3 mb-3">All Staff</h2>
           <fieldset>
             <legend class="visually-hidden">View Options</legend>
             <div class="btn-group btn-grid-list" data-bs-toggle="buttons" role="radiogroup" aria-label="Grid or List View Toggle">
@@ -53,7 +53,7 @@ Description: Archive staff member page.
                       <th style="min-width: 10em;"><i class="fa fa-user" aria-hidden="true"></i> Name</th>
                       <th><i class="fa fa-bookmark"></i> Title</th>
                       <th><i class="fa fa-graduation-cap"></i> Rank</th>
-                      <th><i class="fa fa-university"></i> Department</th>
+                      <th style="min-width: 10em;"><i class="fa fa-university"></i> Department</th>
                       <th style="min-width: 6.75em;"><i class="fa fa-book"></i> Subject</th>
                       <th style="min-width: 10em;"><i class="fa fa-phone" aria-hidden="true"></i> Phone</th>
                       <th style="min-width: 6em;"><i class="fa fa-envelope"></i> Email</th>

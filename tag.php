@@ -5,7 +5,7 @@
 	<!-- tag.php -->
 		<div class="row">
 			<div class="col-sm-8">
-				<header><h1><a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ) ?>">News &amp; Blog</a></h1></header>
+				<header><h1 class="display-3 fw-semibold mt-5 mb-3"><a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ) ?>">News &amp; Blog</a></h1></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div>
 			<div class="col-sm-4">
@@ -71,8 +71,7 @@
                 					  <span class="news-post-date">Posted: <i class="fa fa-calendar"></i> <?php echo get_the_time('F jS, Y'); ?></span>
                 					</header>
 								</div>
-								<p><?php the_content(__('(more...)')); ?></p>
-								<p><?php comments_template( $file, $separate_comments ); ?></p>
+								<?php the_excerpt(); ?>
 							</div>
 						</div>
 					</article>
