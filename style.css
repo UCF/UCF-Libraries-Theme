@@ -33,6 +33,7 @@ Version: 1.22.1
 --ta-teal: #16bfcc;
 --ta-teal-hover: #138b95;
 --dark-gray: #333333;
+--bs-link-color-rgb: 26, 115, 179;
 }
 
 /* Temporary CSS to fix font size issues with upgrade from Bootstrap 3 to 5 */
@@ -71,13 +72,17 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.fw-semibold {
+  font-weight: 500!important;
+}
+
 @media (min-width: 1200px) {
     .h1, h1 {
         font-size: 3.5rem;
     }
 }
 
-a {color: #1a73b3;}
+/* a {color: #1a73b3;} */
 
 /* Focus outlines */
 a:focus {
@@ -90,6 +95,10 @@ a:focus-visible {
   /* Fallback for Chrome and Safari */
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: 2px;
+}
+
+a {
+  text-decoration: none;
 }
 
 p a, ul li a {
@@ -111,7 +120,7 @@ p a.btn, ul li a.btn, ul.navbar-nav li a{
 	background: var(--ucf-gold);
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
-.h1, h1 { margin: 1em 0;}
+/* .h1, h1 { margin: 1em 0;} */
 
 /* Login Modal */
 .modal-dialog {
@@ -159,11 +168,11 @@ img.media-object {    /* Stops media object images from breaking from img max-wi
 .capitalize { text-transform: capitalize;}
 .ellipsis { display: block; overflow: hidden; text-overflow: ellipsis;}
 
-.breadcrumb {
-  padding: 8px 2px;
+/* .breadcrumb {
+  /* padding: 8px 2px;
   margin-top: -2.5em;
-  background-color: transparent;
-}
+  background-color: transparent; 
+} */
 .breadcrumb-separator {
   color: #767676;
 }
@@ -432,7 +441,7 @@ footer ul li a:hover { text-decoration: none;}
   padding: .5em .5em 1em;
 }
 
-.scroll-top {
+/* .scroll-top {
   position: fixed;
   bottom: 5%;
   right: 5%;
@@ -442,10 +451,7 @@ footer ul li a:hover { text-decoration: none;}
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition:
-        opacity 0.2s ease,
-        visibility 0.2s ease;
-}
+
 
 .scroll-top.visible {
     opacity: 1;
@@ -457,13 +463,36 @@ footer ul li a:hover { text-decoration: none;}
   font-size: 40px;
 }
 .scroll-top .text {
-  /* margin-top: -5px; */
   font-size: 11px;
   display: block;
 }
 
 .scroll-top.visible:hover {
   opacity: 1;
+} */
+
+.scroll-top {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    width: 4rem;
+    height: 4rem;
+    border: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    visibility: hidden;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease;
+
+}
+
+.scroll-top:focus-visible {
+    outline: 3px solid var(--ucf-gold);
+    outline-offset: 2px;
 }
 
 /* Ask Us button */
@@ -1525,6 +1554,7 @@ th.header.empty-cell{
 	display: block;
 	width: 15em;
 	margin: 0 auto;
+  text-decoration: none;
 }
 
 .homepage-services a:hover {
@@ -1704,12 +1734,19 @@ th.header.empty-cell{
   position: relative;
 }
 
+.news-post a {
+  text-decoration: none;
+}
+.news-post a:hover {
+  text-decoration: underline;
+}
+
 .news-post.card:hover {
   border-radius: 2px;
   box-shadow: 0 0 5px #555;
 }
 
-.stretched-link::after {
+/* .stretched-link::after {
   bottom: 0;
   content: "";
   left: 0;
@@ -1717,7 +1754,7 @@ th.header.empty-cell{
   right: 0;
   top: 0;
   z-index: 1;
-}
+} */
 
 .news-post-title { margin: 1em 0 .5em; }
 .news-post-title-small {
@@ -1918,6 +1955,7 @@ th.header.empty-cell{
   font-family: 'Montserrat';
   display: none;
   margin-bottom: 0;
+  border-radius: 0;
 }
 
 .homepage-banner a {
