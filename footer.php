@@ -73,7 +73,7 @@
 				<button
 			type="button"
 			id="back-to-top"
-			class="scroll-top"
+			class="scroll-top fade"
 			aria-label="Back to top">
 			<i class="fa fa-solid fa-arrow-up" aria-hidden="true"></i>
 		</button>

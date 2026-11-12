@@ -254,6 +254,10 @@ function scroll_top_btn() {
             'visible',
             window.scrollY > 500
         );
+        scrollTopButton.classList.toggle(
+            'show',
+            window.scrollY > 500
+        );
     });
 
     scrollTopButton.addEventListener('click', event => {
