@@ -37,16 +37,16 @@ Version: 1.22.1
 }
 
 /* Temporary CSS to fix font size issues with upgrade from Bootstrap 3 to 5 */
-html {
+/* html {
     font-size: 10px;
 }
 
 body {
     font-size: 14px;
-}
-.btn {
+} */
+/* .btn {
   --bs-btn-font-size: 1.4rem;
-}
+} */
 
 .sr-only {display: none;}
 
@@ -59,7 +59,7 @@ body {
 }
 
 .library-body {
-  font-family: "Droid Sans", sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: #222;
 }
 
@@ -69,7 +69,7 @@ body {
 }
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-  font-family: "Roboto", sans-serif;
+  font-family: "Oswald", sans-serif;
 }
 
 .fw-semibold {
@@ -179,9 +179,9 @@ img.media-object {    /* Stops media object images from breaking from img max-wi
 .breadcrumb-current{
   color: #767676;
 }
-.header-search { margin: 1em 0; }
+.header-search { margin: 1rem 0; }
 @media (min-width: 768px) {
-	.header-search { margin: 3em 0 1em; }
+	.header-search { margin: 2.25rem 0 1rem; }
 }
 
 aside {margin-bottom: 2em}
@@ -390,7 +390,7 @@ footer ul li {
 
 footer ul li a {
 	text-decoration: none;
-	padding: 1.5rem 1rem;
+	padding: 1rem;
 	border-radius: 5px;
 	display: inline-block;
   	width: 100%;
@@ -398,7 +398,7 @@ footer ul li a {
 footer ul li a:hover { text-decoration: none;}
 
 .footer-title {
-	height: 5rem;
+	height: 3.5rem;
 	margin-bottom: 1rem;
 	font-size: 1.25em;
 }
@@ -475,8 +475,8 @@ footer ul li a:hover { text-decoration: none;}
     position: fixed;
     right: 1rem;
     bottom: 1rem;
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
     border: 0;
     border-radius: 50%;
     display: flex;
@@ -1150,7 +1150,7 @@ padding: 12px 15px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 1rem;
-  height: auto;
+  /* height: auto; */
 }
 
 .grid-item {
@@ -1544,7 +1544,7 @@ th.header.empty-cell{
 
 /* Homepage Service Bar */
 .homepage-services {
-	font-size: 1.5em;
+	font-size: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1552,7 +1552,7 @@ th.header.empty-cell{
 }
 .homepage-services a {
 	display: block;
-	width: 15em;
+	width: 15rem;
 	margin: 0 auto;
   text-decoration: none;
 }
@@ -1579,7 +1579,7 @@ th.header.empty-cell{
 
 
 .homepage-services> .h-s-item img {
-  max-width: 15rem;
+  max-width: 10rem;
 }
 
 .homepage-services>.h-s-item a {
@@ -1600,7 +1600,7 @@ th.header.empty-cell{
 @media (min-width: 768px) {
 
 	.homepage-services {
-		font-size: 1.1em;
+		font-size: 1.1rem;
     flex-direction: row;
 	}
 	.homepage-services a {
@@ -1626,7 +1626,7 @@ th.header.empty-cell{
 @media (min-width: 992px) {
 
 	.homepage-services {
-		font-size: 1.5em;
+		font-size: 1.5rem;
 	}
 
 }
@@ -1635,7 +1635,7 @@ th.header.empty-cell{
 @media (min-width: 1200px) {
 
   .homepage-services {
-    font-size: 1.8em;
+    font-size: 1.75rem;
   }
 
 }
@@ -1825,10 +1825,10 @@ th.header.empty-cell{
 }
 
 /* Hours Week Widget */
-  .s-lc-whw thead { background-color: #F5F5F5; }
-  .s-lc-whw-head-date { color: #555; }
-  .s-lc-whw-today-h {  background-color: #ddd; }
-  .s-lc-whw-today { background-color: #F5F5F5; }
+  .s-lc-whw thead th{ background-color: #F5F5F5!important; }
+  .s-lc-whw-head-date { color: #555!important; }
+  .s-lc-whw-today-h {  background-color: #ddd!important; }
+  .s-lc-whw-today { background-color: #F5F5F5!important; }
   .s-lc-whw-bh { text-align: right; white-space: nowrap; }
   .s-lc-whw-locname { font-weight: bold;}
   .s-lc-whw-sublocname{ padding-left: 10px!important; }
@@ -1951,8 +1951,8 @@ th.header.empty-cell{
 /* Homepage Message Banner */
 .homepage-banner {
   /* color: #fff; */
-  font-size: 1.25em;
-  font-family: 'Montserrat';
+  /* font-size: 1.25em;
+  font-family: 'Montserrat'; */
   display: none;
   margin-bottom: 0;
   border-radius: 0;
