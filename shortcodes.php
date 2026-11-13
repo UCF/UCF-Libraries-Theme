@@ -1686,7 +1686,7 @@ function occuspace_display($atts) {
         'occuspace-js',
         'occuspaceData',
         [
-            'restUrl' => rest_url('occuspace/v1/occupancy')
+            'restUrl' => rest_url('library/v1/occupancy')
         ]
     );
 

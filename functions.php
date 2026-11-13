@@ -1005,13 +1005,17 @@ add_filter('wp_kses_allowed_html', 'mawaha_filter_allowed_html', 10, 2);
 // REST API endpoint for occuspace occupancy data
 add_action('rest_api_init', function () {
 
-    register_rest_route('occuspace/v1', '/occupancy', [
+    register_rest_route(
+      'library/v1',
+       '/occupancy', 
+       array (
         'methods'             => 'GET',
         'callback'            => 'occuspace_rest_callback',
         'permission_callback' => '__return_true',
-    ]);
+      )
+    );
 
-});
+} );
 
 // REST API endpoint for labstats data
 add_action( 'rest_api_init', function () {
@@ -1042,6 +1046,32 @@ add_action( 'rest_api_init', function () {
     );
 
 } );
+
+// Add no-cache headers to library REST API endpoints
+add_filter(
+    'rest_pre_serve_request',
+    function ( $served, $result, $request, $server ) {
+
+        $route = $request->get_route();
+
+        if ( strpos( $route, '/library/v1/' ) === 0 ) {
+
+            header_remove( 'Cache-Control' );
+
+            header(
+                'Cache-Control: no-store, no-cache, must-revalidate, max-age=0'
+            );
+            header( 'Pragma: no-cache' );
+            header( 'Expires: Wed, 11 Jan 1984 05:00:00 GMT' );
+
+        }
+
+        return $served;
+
+    },
+    10,
+    4
+);
 
 /**
  * Primo API call function
