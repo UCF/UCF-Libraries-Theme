@@ -4,8 +4,8 @@
 	<!-- single.php -->
 	 	<div class="row">
 			<div class="col-sm-12">
-				<header class="mt-5 mb-4">
-					<a class="news-back-link fs-2 fw-semibold" href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>"><i class="fa fa-arrow-left"></i> News</a>
+				<header class="mt-4 mb-2">
+					<a class="news-back-link fs-2 fw-bold" href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>"><i class="fa fa-arrow-left"></i> News</a>
 				</header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div>
@@ -35,7 +35,7 @@
 						<div class="news-post-content">
 							<div class="news-post-title">
 								<header>
-									<h1 class="display-3 fw-semibold"><?php echo get_the_title(); ?></h1>
+									<h1 class="fw-semibold"><?php echo get_the_title(); ?></h1>
 									<div class="news-post-meta" aria-label="Post metadata">
 									<span class="news-post-category"><?php echo trim($output, $separator); ?></span>
 									<time class="news-post-date">Posted: <i class="fa fa-calendar"></i> <?php echo get_the_time('F jS, Y'); ?></time>

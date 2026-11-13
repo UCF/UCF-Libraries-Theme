@@ -5,7 +5,7 @@
 	<!-- home.php -->
 		<div class="row">
 			<div class="col-md-12">
-				<header><h1 class="display-3 fw-semibold mt-5 mb-5">News</h1></header>
+				<header><h1 class="display-4 fw-semibold mt-4 mb-4">News</h1></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div>
 		</div>
@@ -57,7 +57,7 @@
 						<div class="news-post-content">
 							<div class="news-post-title">
 								<header>
-									<h2 class="display-5 fw-semibold"><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h2>
+									<h2 class="fw-semibold"><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h2>
 									<span class="news-post-category"><?php echo trim($output, $separator); ?></span>
 									<span class="news-post-date">Posted: <i class="fa fa-calendar"></i> <?php echo get_the_time('F jS, Y'); ?></span>
 								</header>

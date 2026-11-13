@@ -16,9 +16,7 @@
  <form role="form" class="search search-site" action="<?php bloginfo('siteurl'); ?>/" id="searchform" method="get">
     <label for="site_search" class="visually-hidden">Search Website</label>
     <div class="input-group">
-        <input type="text" class="form-control" id="site_search" name="s" placeholder="Search Libraries Website" />
-        <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary" onclick="__gaTracker('send', 'event', 'internal-search', $('#site_search').val(), 'Site Search');"><i class="fa fa-search" aria-hidden="true"></i><strong> Search</strong></button>
-        </span>
+        <input type="text" class="form-control" id="site_search" name="s" placeholder="Search Libraries Website" aria-label="Search Libraries Website">
+        <button class="btn btn-primary" type="submit" onclick="__gaTracker('send', 'event', 'internal-search', $('#site_search').val(), 'Site Search');"><i class="fa fa-search" aria-hidden="true"></i><strong> Search</strong></button>
     </div>
 </form>

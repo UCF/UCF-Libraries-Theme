@@ -10,21 +10,21 @@ Description: Use if a page belongs under another page.
 <div id="main">
 	<div id="title_bar" class="container">
 		<div class="row">
-			<div class="col-sm-8">
+			<div class="col-md-7">
 				<header><h1 class="display-3 fw-semibold mt-5 mb-3"><?php echo get_the_title($post->post_parent);?></h1></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
-			</div><!-- col-sm-8 -->
-			<div class="col-sm-4">
+			</div><!-- col-md-8 -->
+			<div class="col-md-5">
 				<div class="header-search"><?php get_search_form(); ?></div>
-			</div><!-- col-sm-4 -->
+			</div><!-- col-md-4 -->
 		</div><!-- row -->
 	</div><!-- container -->
 	<div id="content" class="container">
 		<div class="row">
-			<div id="sidebar" class="col-sm-3">
+			<div id="sidebar" class="col-md-3">
 				<?php get_sidebar(); ?>
 			</div>
-			<div id="content_area" class="col-sm-9">
+			<div id="content_area" class="col-md-9">
 				<h2 class="subpage-title"><?php the_title(); ?></h2>
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					<?php the_content(__('(more...)')); ?>

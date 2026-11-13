@@ -10,11 +10,11 @@ Description: Default Page.
 	<div id="title_bar" class="container">
 	<!-- Page.php -->
 		<div class="row">
-			<div class="col-sm-8">
-				<header><h1 class="display-3 fw-semibold mt-5 mb-3"><?php the_title(); ?></h1></header>
+			<div class="col-md-7">
+				<header><h1 class="display-4 fw-semibold mt-4 mb-3"><?php the_title(); ?></h1></header>
 				<?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-md-5">
 				<div class="header-search"><?php get_search_form(); ?></div>
 			</div>
 		</div>
@@ -24,7 +24,7 @@ Description: Default Page.
 		<div id="content" class="container">
 <?php endif; ?>	
 			<div class="row">
-				<div class="col-sm-12">
+				<div class="col-md-12">
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					<article>
 					<?php the_content(__('(more...)')); ?>
